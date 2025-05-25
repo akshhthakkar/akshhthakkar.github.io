@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Blogs</title>
+  <title>Aksh's Blogs</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,17 +15,20 @@
       color: #222;
       line-height: 1.6;
     }
+
     h1 {
       text-align: center;
       color: #0077cc;
       margin-bottom: 30px;
       letter-spacing: 1.5px;
     }
+
     ul {
       list-style: none;
       padding: 0;
       border-top: 1px solid #ddd;
     }
+
     li {
       padding: 15px 10px;
       border-bottom: 1px solid #ddd;
@@ -34,10 +38,12 @@
       background: white;
       box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
     }
+
     li:hover {
       background: #e6f0fa;
       box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
     }
+
     a {
       text-decoration: none;
       color: #0077cc;
@@ -45,9 +51,11 @@
       font-size: 18px;
       display: block;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
     #loading {
       text-align: center;
       font-style: italic;
@@ -56,6 +64,7 @@
     }
   </style>
 </head>
+
 <body>
   <h1>Aksh's Blogs</h1>
   <ul id="blog-list">
@@ -80,7 +89,7 @@
         blogList.innerHTML = "";
 
         data.forEach(file => {
-          if(file.name.endsWith(".html") || file.name.endsWith(".md")) {
+          if (file.name.endsWith(".html") || file.name.endsWith(".md")) {
             let postName = file.name.replace(/\.html|\.md/, "").replace(/-/g, " ");
             postName = postName.charAt(0).toUpperCase() + postName.slice(1);
 
@@ -90,7 +99,7 @@
           }
         });
 
-        if(blogList.children.length === 0) {
+        if (blogList.children.length === 0) {
           blogList.innerHTML = "<li>No blogs found. Start writing!</li>";
         }
       })
@@ -101,4 +110,5 @@
       });
   </script>
 </body>
+
 </html>
