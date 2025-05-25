@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aksh Thakkar | Portfolio</title>
   <style>
-    /* Reset */
+    /* Reset + base */
     * {
       margin: 0;
       padding: 0;
@@ -14,100 +14,133 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f5f7fa;
-      color: #222;
+      font-family: 'Poppins', sans-serif;
+      background: #121212;
+      color: #eee;
       line-height: 1.6;
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
       padding: 40px 20px;
     }
 
-    .container {
-      max-width: 900px;
-      background: #fff;
+    main {
+      max-width: 700px;
+      width: 100%;
+      background: #1e1e1e;
       padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-      text-align: center;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgb(0 216 255 / 0.3);
     }
 
-    .profile-pic {
+    /* Profile header */
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .profile-header img {
       width: 140px;
       height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 20px;
-      border: 3px solid #0077cc;
+      border: 3px solid #00d8ff;
+      box-shadow: 0 0 15px #00d8ffaa;
+      transition: transform 0.3s ease;
     }
 
-    h1 {
-      font-weight: 700;
+    .profile-header img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #00d8ff;
+    }
+
+    .profile-info h1 {
       font-size: 2.8rem;
-      margin-bottom: 10px;
-      color: #0077cc;
+      color: #00d8ff;
+      margin-bottom: 8px;
     }
 
-    p.subtitle {
-      font-size: 1.15rem;
-      color: #555;
-      margin-bottom: 30px;
-      letter-spacing: 0.03em;
+    .profile-info h3 {
+      font-weight: 400;
+      color: #aaa;
+      margin-bottom: 4px;
     }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-bottom: 30px;
+    .profile-info p {
+      font-style: italic;
+      color: #666;
     }
 
-    nav a {
-      color: #0077cc;
+    /* About section */
+    #about {
+      font-size: 1.1rem;
+      color: #ddd;
+      line-height: 1.8;
+      padding-top: 10px;
+      border-top: 1px solid #333;
+    }
+
+    #about p {
+      margin-bottom: 20px;
+    }
+
+    #about strong {
+      color: #00d8ff;
+    }
+
+    /* Link style */
+    a {
+      color: #00d8ff;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.1rem;
-      padding: 8px 15px;
-      border: 2px solid transparent;
-      border-radius: 6px;
-      transition: all 0.3s ease;
     }
 
-    nav a:hover,
-    nav a:focus {
-      background-color: #0077cc;
-      color: #fff;
-      border-color: #0077cc;
-      outline: none;
+    a:hover {
+      text-decoration: underline;
     }
 
-    footer {
-      font-size: 0.9rem;
-      color: #999;
-      margin-top: 40px;
+    /* Responsive */
+    @media (max-width: 480px) {
+      main {
+        padding: 30px 20px;
+      }
+
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile-header img {
+        margin-bottom: 16px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <img src="images/profile.jpg" alt="Aksh Thakkar" class="profile-pic" />
-    <h1>Aksh Thakkar</h1>
-    <p class="subtitle">Student | Developer | Tech Enthusiast</p>
+  <main>
+    <header class="profile-header">
+      <img src="assets/images/profile_pic.jpg" alt="Aksh Thakkar" />
+      <div class="profile-info">
+        <h1>Aksh Thakkar</h1>
+        <h3>Student, Computer Science Engineering</h3>
+        <p>Your City, Your Country</p>
+      </div>
+    </header>
 
-    <nav>
-      <a href="repositories.html">Projects</a>
-      <a href="blogs.html">Blogs</a>
-      <a href="https://akshhthakkar.github.io/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-      <a href="https://github.com/akshhthakkar" target="_blank" rel="noopener noreferrer">GitHub</a>
-    </nav>
-
-    <footer>
-      &copy; 2025 Aksh Thakkar. All rights reserved.
-    </footer>
-  </div>
+    <section id="about">
+      <p>Hey, I’m <strong>Aksh Thakkar</strong> — a student, tech enthusiast, and a lifelong learner passionate about
+        computer science and innovation.</p>
+      <p>Currently diving deep into data structures, algorithms, and web development, I’m building projects that aim to
+        make everyday life simpler and cooler. I’m also exploring AI and machine learning because the future is
+        data-driven, and I want to be part of it.</p>
+      <p>Outside the code, I love gaming, vibing to lo-fi beats, and getting lost in sci-fi worlds that spark my
+        imagination.</p>
+      <p>If you’re into tech, projects, or just wanna connect, hit me up — always down to chat and collaborate!</p>
+    </section>
+  </main>
 </body>
 
 </html>
