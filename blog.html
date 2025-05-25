@@ -130,6 +130,12 @@
       margin: 0;
     }
 
+    .blog-card .source {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-top: 0.5rem;
+    }
+
     #loading {
       text-align: center;
       font-style: italic;
@@ -208,14 +214,14 @@
   <section class="container">
     <div class="hero">
       <h1>Aksh's Blogs</h1>
-      <p>Exploring web development, AI, and technology insights.</p>
+      <p>Exploring web development, AI, and technology insights from local posts and DEV.to.</p>
     </div>
     <div class="blog-grid" id="blog-list">
       <div id="loading">Loading blogs...</div>
     </div>
     <div class="cta">
       <a href="https://github.com/akshhthakkar" target="_blank" class="btn">Explore My GitHub</a>
-      <a href="mailto:your.email@example.com" class="btn">Contact Me</a>
+      <a href="mailto:your.aksht455@gmail.com" class="btn">Contact Me</a>
     </div>
   </section>
 
@@ -242,42 +248,89 @@
       const username = "akshhthakkar";
       const repo = "akshhthakkar.github.io";
       const blogFolder = "blogs";
+      const devToUsername = "akshthakkar"; // Replace with your DEV.to username
       const blogList = document.getElementById("blog-list");
       const loadingEl = document.getElementById("loading");
-      const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${blogFolder}`;
+      const githubApiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${blogFolder}`;
+      const devToApiUrl = `https://dev.to/api/articles?username=${devToUsername}&per_page=10`;
 
-      fetch(apiUrl)
+      // Fetch local blogs from GitHub
+      const fetchLocalBlogs = fetch(githubApiUrl)
         .then(res => {
-          if (!res.ok) throw new Error('Network response was not ok');
+          if (!res.ok) throw new Error('GitHub API error');
           return res.json();
         })
         .then(data => {
+          return data
+            .filter(file => file.name.endsWith(".html") || file.name.endsWith(".md"))
+            .map(file => {
+              let postName = file.name.replace(/\.html|\.md/, "").replace(/-/g, " ");
+              postName = postName.charAt(0).toUpperCase() + postName.slice(1);
+              return {
+                title: postName,
+                url: `${blogFolder}/${file.name}`,
+                description: "No excerpt available. Click to read the full post.",
+                source: "Local",
+                date: null // GitHub API doesn't provide file creation date
+              };
+            });
+        })
+        .catch(err => {
+          console.error('GitHub fetch error:', err);
+          return [];
+        });
+
+      // Fetch DEV.to blogs
+      const fetchDevToBlogs = fetch(devToApiUrl)
+        .then(res => {
+          if (!res.ok) throw new Error('DEV.to API error');
+          return res.json();
+        })
+        .then(data => {
+          return data.map(post => ({
+            title: post.title,
+            url: post.url,
+            description: post.description || "No excerpt available. Click to read the full post.",
+            source: "DEV.to",
+            date: post.published_at
+          }));
+        })
+        .catch(err => {
+          console.error('DEV.to fetch error:', err);
+          return [];
+        });
+
+      // Combine and display blogs
+      Promise.all([fetchLocalBlogs, fetchDevToBlogs])
+        .then(([localBlogs, devToBlogs]) => {
           loadingEl.style.display = 'none';
           blogList.innerHTML = "";
 
-          data.forEach(file => {
-            if (file.name.endsWith(".html") || file.name.endsWith(".md")) {
-              let postName = file.name.replace(/\.html|\.md/, "").replace(/-/g, " ");
-              postName = postName.charAt(0).toUpperCase() + postName.slice(1);
-
-              const blogCard = document.createElement("div");
-              blogCard.className = "blog-card";
-              blogCard.innerHTML = `
-                <a href="${blogFolder}/${file.name}" target="_blank" rel="noopener noreferrer">${postName}</a>
-                <p>No excerpt available. Click to read the full post.</p>
-              `;
-              blogList.appendChild(blogCard);
-            }
+          // Merge blogs and sort by date (if available)
+          const allBlogs = [...localBlogs, ...devToBlogs].sort((a, b) => {
+            if (!a.date || !b.date) return 0; // Keep order if dates are missing
+            return new Date(b.date) - new Date(a.date); // Newest first
           });
 
-          if (blogList.children.length === 0) {
+          allBlogs.forEach(post => {
+            const blogCard = document.createElement("div");
+            blogCard.className = "blog-card";
+            blogCard.innerHTML = `
+              <a href="${post.url}" target="_blank" rel="noopener noreferrer">${post.title}</a>
+              <p>${post.description}</p>
+              <div class="source">${post.source}</div>
+            `;
+            blogList.appendChild(blogCard);
+          });
+
+          if (allBlogs.length === 0) {
             blogList.innerHTML = "<div>No blogs found. Start writing!</div>";
           }
         })
         .catch(err => {
           loadingEl.style.display = 'none';
           blogList.innerHTML = "<div>Failed to load blogs. Try again later.</div>";
-          console.error(err);
+          console.error('Combined fetch error:', err);
         });
     });
   </script>
