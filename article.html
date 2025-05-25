@@ -7,9 +7,7 @@
     <meta name="description" content="Blog post by Aksh Thakkar, a Computer Science student at Parul University." />
     <title>Aksh Thakkar - Blog Post</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <!-- Primary marked.js CDN with defer -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
-    <!-- Fallback CDN if primary fails -->
     <script>
         window.addEventListener('load', () => {
             if (typeof marked === 'undefined') {
@@ -38,6 +36,8 @@
             --accent: #007bff;
             --accent-hover: #0056b3;
             --navbar-bg-mobile: #f0f0f0;
+            --card-bg: #f9f9f9;
+            /* Added for consistency */
             --switch-off-bg: #ccc;
             --switch-on-bg: #4CAF50;
             --switch-circle-color: #fff;
@@ -50,6 +50,8 @@
             --accent: #0d6efd;
             --accent-hover: #0a58ca;
             --navbar-bg-mobile: #1a1a1a;
+            --card-bg: #1e1e1e;
+            /* Added for consistency */
             --switch-off-bg: #555;
             --switch-on-bg: #2196F3;
             --switch-circle-color: #fff;
@@ -58,7 +60,8 @@
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Inter', sans-serif;
+            /* Changed to Inter for consistency */
             background-color: var(--bg);
             color: var(--text);
             transition: background 0.3s, color 0.3s;
@@ -124,6 +127,7 @@
             top: 0;
             left: 0;
             right: 0;
+            bottom: 0;
             background-color: var(--switch-off-bg);
             border-radius: 34px;
             transition: background-color 0.4s;
@@ -213,23 +217,66 @@
             padding: 2rem;
         }
 
+        /* Enhanced Article Container Styling */
         .article {
-            background: var(--bg);
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg);
+            /* Use card-bg for article background */
+            border-radius: 12px;
+            /* More rounded corners */
+            padding: 2.5rem;
+            /* Increased padding */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            /* Stronger shadow */
             margin-bottom: 2rem;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        [data-theme="dark"] .article {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         .article h1 {
-            font-size: 2rem;
-            color: var(--text);
-            margin-bottom: 1rem;
+            font-size: 2.8rem;
+            /* Larger title */
+            color: var(--accent);
+            /* Accent color for title */
+            margin-bottom: 1.5rem;
+            /* More space below title */
+            text-align: center;
+            /* Center align title */
+            line-height: 1.2;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] .article h1 {
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05);
         }
 
         .article-content {
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 1.05rem;
+            /* Slightly larger base font size */
+            line-height: 1.7;
+            /* Improved line height for readability */
+            color: var(--text);
+        }
+
+        .article-content h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        [data-theme="dark"] .article-content h2 {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
             color: var(--text);
         }
 
@@ -237,28 +284,47 @@
             max-width: 100%;
             height: auto;
             border-radius: 8px;
+            display: block;
+            /* Center images */
+            margin: 1.5rem auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .article-content a {
             color: var(--accent);
             text-decoration: none;
+            transition: color 0.2s, text-decoration 0.2s;
         }
 
         .article-content a:hover {
             text-decoration: underline;
+            color: var(--accent-hover);
         }
 
         .article-content pre {
             background: var(--bg);
-            padding: 1rem;
-            border-radius: 6px;
+            /* Use theme background for code blocks */
+            padding: 1.2rem;
+            /* More padding */
+            border-radius: 8px;
+            /* More rounded */
             overflow-x: auto;
             border: 1px solid rgba(0, 0, 0, 0.1);
+            margin: 1.5rem 0;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] .article-content pre {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
         }
 
         .article-content code {
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            /* More modern monospace font */
+            font-size: 0.95rem;
+            /* Slightly larger code font */
+            color: var(--text);
         }
 
         .article-content ul,
@@ -268,12 +334,23 @@
         }
 
         .article-content blockquote {
-            border-left: 4px solid var(--accent);
-            padding-left: 1rem;
-            margin: 1rem 0;
+            border-left: 5px solid var(--accent);
+            /* Thicker accent border */
+            padding-left: 1.2rem;
+            margin: 1.5rem 0;
             color: var(--text);
-            opacity: 0.8;
+            opacity: 0.9;
+            background-color: rgba(0, 0, 0, 0.03);
+            /* Subtle background for quotes */
+            border-radius: 4px;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
         }
+
+        [data-theme="dark"] .article-content blockquote {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
 
         #loading {
             text-align: center;
@@ -291,21 +368,33 @@
 
         .btn {
             display: inline-block;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
+            /* Larger button padding */
             background-color: var(--accent);
             color: var(--bg);
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.2s;
+            border-radius: 8px;
+            /* More rounded */
+            transition: background-color 0.2s, transform 0.1s ease-in-out;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .btn:hover {
             background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .cta {
             text-align: center;
             margin: 2rem 0;
+            display: flex;
+            /* Use flex for button alignment */
+            justify-content: center;
+            /* Center the button */
+            gap: 1rem;
+            /* Space between buttons if more are added later */
         }
 
         .footer {
@@ -314,6 +403,27 @@
             background: var(--bg);
             color: var(--text);
             margin-top: 2rem;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+            /* Added shadow for consistency */
+        }
+
+        /* Socials icons styling */
+        .socials {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .socials a {
+            margin: 0 12px;
+            color: var(--text);
+            font-size: 2rem;
+            /* Larger icons */
+            transition: color 0.3s, transform 0.2s ease-out;
+        }
+
+        .socials a:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
         }
 
         @media (max-width: 768px) {
@@ -367,8 +477,22 @@
                 padding: 1rem;
             }
 
+            .article {
+                padding: 1.5rem;
+                /* Adjust padding for smaller screens */
+            }
+
             .article h1 {
+                font-size: 2.2rem;
+                /* Adjust title size */
+            }
+
+            .article-content h2 {
                 font-size: 1.8rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.4rem;
             }
         }
 
@@ -378,7 +502,20 @@
             }
 
             .article h1 {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .socials a {
+                font-size: 1.7rem;
+                margin: 0 8px;
             }
         }
     </style>
@@ -388,7 +525,8 @@
     <nav class="navbar">
         <a href="index.html" class="navbar-brand"><strong>Aksh</strong></a>
         <ul class="navbar-nav">
-            <li><a href="index.html">About</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#certifications">Certifications</a></li>
             <li><a href="blog.html">Blogs</a></li>
             <li><a href="repositories.html">Repositories</a></li>
             <li class="desktop-theme-switch">
@@ -419,10 +557,16 @@
         </div>
         <div class="cta">
             <a href="blog.html" class="btn">Back to Blogs</a>
-            <a href="https://github.com/akshhthakkar" target="_blank" class="btn">Explore My GitHub</a>
-            <a href="mailto:aksht455@gmail.com" class="btn">Contact Me</a>
         </div>
     </section>
+
+    <div class="socials">
+        <a href="https://twitter.com/akshhthakkar" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://dev.to/akshthakkar" target="_blank" title="Dev.to"><i class="fab fa-dev"></i></a>
+        <a href="https://github.com/akshhthakkar" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/akshthakkar" target="_blank" title="LinkedIn"><i
+                class="fab fa-linkedin"></i></a>
+    </div>
 
     <footer class="footer">
         <p>© 2025 Aksh Thakkar</p>

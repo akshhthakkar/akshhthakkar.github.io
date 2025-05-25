@@ -9,6 +9,7 @@
   <title>Aksh Thakkar - Blogs</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
+    /* Universal box-sizing for consistent layout */
     html {
       box-sizing: border-box;
     }
@@ -19,38 +20,63 @@
       box-sizing: inherit;
     }
 
+    /* Root CSS variables for light theme */
     :root {
       --bg: #ffffff;
       --text: #000000;
       --accent: #007bff;
       --accent-hover: #0056b3;
       --navbar-bg-mobile: #f0f0f0;
+      --card-bg: #f9f9f9;
+      /* Light mode card background */
       --switch-off-bg: #ccc;
       --switch-on-bg: #4CAF50;
       --switch-circle-color: #fff;
       --switch-border: #999;
+
+      /* Hero section gradient colors - Light mode */
+      --hero-gradient-start-light: #e0f2f7;
+      /* Light blue */
+      --hero-gradient-mid-light: #ccecf7;
+      /* Lighter blue */
+      --hero-gradient-end-light: #ffffff;
+      /* White */
     }
 
+    /* Dark theme overrides for CSS variables */
     [data-theme="dark"] {
       --bg: #121212;
       --text: #f0f0f0;
       --accent: #0d6efd;
       --accent-hover: #0a58ca;
       --navbar-bg-mobile: #1a1a1a;
+      --card-bg: #1e1e1e;
+      /* Dark mode card background */
       --switch-off-bg: #555;
       --switch-on-bg: #2196F3;
       --switch-circle-color: #fff;
       --switch-border: #777;
+
+      /* Hero section gradient colors - Dark mode */
+      --hero-gradient-start-dark: #0a2a4a;
+      /* Dark blue */
+      --hero-gradient-mid-dark: #1a3a5a;
+      /* Slightly lighter dark blue */
+      --hero-gradient-end-dark: #121212;
+      /* Dark background */
     }
 
+    /* Body styling */
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
+      /* Consistent font family */
       background-color: var(--bg);
       color: var(--text);
       transition: background 0.3s, color 0.3s;
     }
 
+    /* Navbar styling */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -90,6 +116,7 @@
       color: var(--accent);
     }
 
+    /* Theme switch styling */
     .theme-switch {
       position: relative;
       display: inline-block;
@@ -172,12 +199,14 @@
       opacity: 1;
     }
 
+    /* Desktop specific theme switch */
     .desktop-theme-switch {
       margin-left: 1.5rem;
       display: flex;
       align-items: center;
     }
 
+    /* Mobile controls (hamburger and theme switch) */
     .mobile-controls-group {
       display: none;
       align-items: center;
@@ -195,27 +224,87 @@
       z-index: 11;
     }
 
+    /* Main container styling */
     .container {
       max-width: 1000px;
       margin: auto;
       padding: 2rem;
     }
 
+    /* Hero section styling */
     .hero {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--bg) 100%);
-      padding: 2rem;
-      border-radius: 8px;
+      background: linear-gradient(135deg, var(--hero-gradient-start-light) 0%, var(--hero-gradient-mid-light) 50%, var(--hero-gradient-end-light) 100%);
+      padding: 3rem 2rem;
+      border-radius: 16px;
       text-align: center;
-      margin-bottom: 2rem;
-      animation: fadeIn 0.5s ease-in;
+      margin-bottom: 3rem;
+      animation: fadeIn 0.8s ease-out;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    /* Dark mode hero background adjustment */
+    [data-theme="dark"] .hero {
+      background: linear-gradient(135deg, var(--hero-gradient-start-dark) 0%, var(--hero-gradient-mid-dark) 50%, var(--hero-gradient-end-dark) 100%);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      margin-bottom: 0.8rem;
       color: var(--text);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+      letter-spacing: 0.05em;
+      line-height: 1.2;
     }
 
+    [data-theme="dark"] .hero h1 {
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.15);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: var(--text);
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0.5rem auto 0 auto;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="dark"] .hero p {
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05);
+    }
+
+    /* Subtle background pattern/texture for hero */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 0, 0, 0.05) 0%, transparent 20%);
+      opacity: 0.5;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    [data-theme="dark"] .hero::before {
+      background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
+    }
+
+    /* Ensure hero content is above pseudo-element */
+    .hero h1,
+    .hero p {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Blog grid styling */
     .blog-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -223,46 +312,126 @@
       margin-bottom: 2rem;
     }
 
+    /* Individual blog card styling */
     .blog-card {
-      background: var(--bg);
+      background: var(--card-bg);
       border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+      border-left: 5px solid var(--accent);
+      /* Accent left border */
+      border-radius: 12px;
+      /* Consistent rounded corners */
       padding: 1.5rem;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      /* Important for border-radius on children */
+    }
+
+    [data-theme="dark"] .blog-card {
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-left: 5px solid var(--accent);
+      /* Accent left border in dark mode */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
 
     .blog-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: translateY(-10px) scale(1.02);
+      /* More pronounced lift and scale */
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+      /* Stronger shadow */
     }
 
-    .blog-card a {
+    [data-theme="dark"] .blog-card:hover {
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+      /* Stronger shadow for dark mode */
+    }
+
+    /* Blog title link styling */
+    .blog-card a.blog-title-link {
       text-decoration: none;
       color: var(--accent);
       font-weight: 600;
-      font-size: 1.2rem;
+      font-size: 1.35rem;
       display: block;
       margin-bottom: 0.5rem;
+      transition: color 0.2s;
     }
 
-    .blog-card a:hover {
+    .blog-card a.blog-title-link:hover {
+      color: var(--accent-hover);
       text-decoration: underline;
     }
 
+    /* Blog description paragraph styling */
     .blog-card p {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--text);
-      opacity: 0.8;
-      margin: 0;
+      opacity: 0.9;
+      margin: 0 0 1rem 0;
+      flex-grow: 1;
     }
 
-    .blog-card .source {
-      font-size: 0.8rem;
+    /* Blog metadata (date and source) styling */
+    .blog-card .blog-meta {
+      display: flex;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 0.5rem;
+      gap: 0.75rem;
+      /* Space between date and source */
+      flex-wrap: wrap;
+      /* Allow wrapping on small screens */
+    }
+
+    [data-theme="dark"] .blog-card .blog-meta {
+      color: #bbb;
+    }
+
+    .blog-card .blog-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      /* Space between icon and text */
+    }
+
+    .blog-card .blog-meta .fas {
+      font-size: 0.9em;
       color: var(--accent);
-      margin-top: 0.5rem;
     }
 
+    /* "Read More" button styling */
+    .blog-card .blog-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.6rem 1.2rem;
+      background-color: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background-color 0.2s, transform 0.1s ease-in-out;
+      align-self: flex-start;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-card .blog-link:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .blog-card .blog-link .fas {
+      margin-left: 0.5rem;
+      font-size: 0.8em;
+    }
+
+    /* Loading message styling */
     #loading {
       text-align: center;
       font-style: italic;
@@ -271,33 +440,39 @@
       margin-top: 2rem;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background-color: var(--accent);
-      color: var(--bg);
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.2s;
-    }
-
-    .btn:hover {
-      background-color: var(--accent-hover);
-    }
-
-    .cta {
-      text-align: center;
-      margin: 2rem 0;
-    }
-
+    /* Footer styling */
     .footer {
       text-align: center;
       padding: 1rem;
       background: var(--bg);
       color: var(--text);
       margin-top: 2rem;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
     }
 
+    /* Socials icons styling */
+    .socials {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .socials a {
+      margin: 0 12px;
+      /* Slightly more space */
+      color: var(--text);
+      font-size: 2rem;
+      /* Larger icons */
+      transition: color 0.3s, transform 0.2s ease-out;
+      /* Add transform transition */
+    }
+
+    .socials a:hover {
+      color: var(--accent);
+      transform: translateY(-5px);
+      /* Lift effect on hover */
+    }
+
+    /* Keyframe animation for fade-in effect */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -310,6 +485,7 @@
       }
     }
 
+    /* Media queries for responsiveness */
     @media (max-width: 768px) {
       .navbar {
         padding: 1rem 1.5rem;
@@ -362,11 +538,22 @@
       }
 
       .hero h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
       }
 
       .blog-grid {
         grid-template-columns: 1fr;
+      }
+
+      .blog-card .blog-meta {
+        flex-direction: column;
+        /* Stack date and source on very small screens */
+        align-items: flex-start;
+        gap: 0.25rem;
       }
     }
 
@@ -378,6 +565,17 @@
       .hero h1 {
         font-size: 1.8rem;
       }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      /* Adjust social icon size for smaller screens */
+      .socials a {
+        font-size: 1.7rem;
+        margin: 0 8px;
+        /* Slightly less margin for very small screens */
+      }
     }
   </style>
 </head>
@@ -386,7 +584,8 @@
   <nav class="navbar">
     <a href="index.html" class="navbar-brand"><strong>Aksh</strong></a>
     <ul class="navbar-nav">
-      <li><a href="index.html">About</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#certifications">Certifications</a></li>
       <li><a href="blog.html">Blogs</a></li>
       <li><a href="repositories.html">Repositories</a></li>
       <li class="desktop-theme-switch">
@@ -419,11 +618,18 @@
     <div class="blog-grid" id="blog-list">
       <div id="loading">Loading blogs...</div>
     </div>
-    <div class="cta">
-      <a href="https://github.com/akshhthakkar" target="_blank" class="btn">Explore My GitHub</a>
-      <a href="mailto:aksht455@gmail.com" class="btn">Contact Me</a>
-    </div>
   </section>
+
+  <div class="socials">
+    <a href="https://twitter.com/akshhthakkar" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://dev.to/akshthakkar" target="_blank" title="Dev.to"><i class="fab fa-dev"></i></a>
+    <a href="https://discord.com/users/sarcasticaksh" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+    <a href="https://www.instagram.com/akshhthakkar" target="_blank" title="Instagram"><i
+        class="fab fa-instagram"></i></a>
+    <a href="https://github.com/akshhthakkar" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/akshthakkar" target="_blank" title="LinkedIn"><i
+        class="fab fa-linkedin"></i></a>
+  </div>
 
   <footer class="footer">
     <p>© 2025 Aksh Thakkar</p>
@@ -486,6 +692,13 @@
         });
       });
 
+      // Function to format date
+      function formatDate(dateString) {
+        if (!dateString) return 'Date N/A';
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+      }
+
       // Blog fetching
       const username = 'akshhthakkar';
       const repo = 'akshhthakkar.github.io';
@@ -520,7 +733,7 @@
                 url: `${blogFolder}/${file.name}`,
                 description: 'No excerpt available. Click to read the full post.',
                 source: 'Local',
-                date: null
+                date: null // Local blogs don't have a date from this API, will display 'Date N/A'
               };
             });
         })
@@ -539,10 +752,11 @@
           console.log('DEV.to Posts:', data); // Debug
           return data.map(post => ({
             title: post.title,
-            url: `article.html?id=${post.id}&slug=${encodeURIComponent(post.slug)}`,
+            url: post.url,
+            /* Use post.url directly for DEV.to articles */
             description: post.description || 'No excerpt available. Click to read the full post.',
             source: 'DEV.to',
-            date: post.published_at
+            date: post.published_at // Use published_at for DEV.to posts
           }));
         })
         .catch(err => {
@@ -557,18 +771,27 @@
           blogList.innerHTML = '';
 
           const allBlogs = [...localBlogs, ...devToBlogs].sort((a, b) => {
-            if (!a.date || !b.date) return 0;
-            return new Date(b.date) - new Date(a.date);
+            // Sort by date, most recent first. Handle null dates gracefully.
+            const dateA = a.date ? new Date(a.date) : new Date(0); // Use epoch for null dates
+            const dateB = b.date ? new Date(b.date) : new Date(0);
+            return dateB - dateA;
           });
 
           allBlogs.forEach(post => {
             const blogCard = document.createElement('div');
             blogCard.className = 'blog-card';
-            const linkAttributes = post.source === 'Local' ? 'target="_blank" rel="noopener noreferrer"' : 'rel="noopener noreferrer"';
+            const linkTarget = post.source === 'Local' ? '_self' : '_blank'; // Open local in same tab, DEV.to in new
+            const linkRel = post.source === 'Local' ? '' : 'rel="noopener noreferrer"';
+            const sourceIcon = post.source === 'Local' ? '<i class="fas fa-code"></i>' : '<i class="fas fa-globe"></i>';
+
             blogCard.innerHTML = `
-                <a href="${post.url}" ${linkAttributes}>${post.title}</a>
+                <a href="${post.url}" class="blog-title-link" target="${linkTarget}" ${linkRel}>${post.title}</a>
+                <div class="blog-meta">
+                  <span><i class="fas fa-calendar-alt"></i> ${formatDate(post.date)}</span>
+                  <span>${sourceIcon} ${post.source}</span>
+                </div>
                 <p>${post.description}</p>
-                <div class="source">${post.source}</div>
+                <a href="${post.url}" class="blog-link" target="${linkTarget}" ${linkRel}>Read More <i class="fas fa-arrow-right"></i></a>
               `;
             blogList.appendChild(blogCard);
           });
@@ -579,7 +802,7 @@
         })
         .catch(err => {
           loadingEl.style.display = 'none';
-          blogList.innerHTML = '<div>Failed to load blogs. Try again later.</div>';
+          blogList.innerHTML = '<div>Failed to load blogs. Please try again later.</div>';
           console.error('Combined fetch error:', err);
         });
     });
