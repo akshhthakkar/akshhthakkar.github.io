@@ -1,189 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aksh Thakkar</title>
+  <title>Aksh Thakkar | Portfolio</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-p1CmV6N1uE17KgFqELoIPK1RlOEHRh96H2d78bGJkkQJDLrP3fr6FTXOBDjG5vYhTlHZ6hjSKPhe3C7xZolhag=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
   <style>
+    /* CSS Variables for light and dark mode */
     :root {
-      --bg-light: #fff;
-      --text-light: #222;
-      --bg-dark: #121212;
-      --text-dark: #ddd;
+      --bg-color: #f9f9f9;
+      --text-color: #222;
+      --accent-color: #007acc;
+      --nav-bg: #fff;
+      --nav-text: #222;
+      --icon-color: #007acc;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #ddd;
+      --accent-color: #1e90ff;
+      --nav-bg: #1c1c1c;
+      --nav-text: #ddd;
+      --icon-color: #1e90ff;
     }
 
     body {
+      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      max-width: 700px;
-      margin: 80px auto 40px;
-      padding: 0 20px;
-      background: var(--bg-light);
-      color: var(--text-light);
-      line-height: 1.5;
-      transition: background 0.3s, color 0.3s;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
     }
 
     nav {
-      position: fixed;
-      top: 20px;
-      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--nav-bg);
+      padding: 10px 30px;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--nav-text);
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
       display: flex;
       gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
       font-weight: 600;
     }
 
-    nav a {
-      color: var(--text-light);
+    nav ul li a {
+      color: var(--nav-text);
       text-decoration: none;
       font-size: 1rem;
+      transition: color 0.3s;
     }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    button#theme-toggle {
-      background: none;
-      border: 1px solid var(--text-light);
-      color: var(--text-light);
-      padding: 4px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: background 0.3s, color 0.3s, border-color 0.3s;
-    }
-
-    button#theme-toggle:hover {
-      background: var(--text-light);
-      color: var(--bg-light);
-      border-color: var(--text-light);
-    }
-
-    h1 {
-      font-weight: 700;
-      font-size: 2.2rem;
-      margin-bottom: 0.2rem;
-    }
-
-    h2 {
-      font-weight: 400;
-      font-size: 1.1rem;
-      color: #555;
-      margin-top: 0;
-      margin-bottom: 2rem;
-    }
-
-    p {
-      font-size: 1rem;
-      max-width: 100%;
-      color: var(--text-light);
-    }
-
-    hr {
-      margin: 3rem 0;
-      border: none;
-      border-top: 1px solid #eee;
-    }
-
-    body.dark {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-    }
-
-    body.dark nav a,
-    body.dark button#theme-toggle {
-      color: var(--text-dark);
-      border-color: var(--text-dark);
-    }
-
-    body.dark button#theme-toggle:hover {
-      background: var(--text-dark);
-      color: var(--bg-dark);
-      border-color: var(--text-dark);
+    nav ul li a:hover {
+      color: var(--accent-color);
     }
 
     /* Social icons container */
-    .social-links {
-      margin-top: 2rem;
+    .social-icons {
       display: flex;
-      gap: 20px;
+      gap: 15px;
+      margin-left: 30px;
     }
 
-    .social-links a {
+    .social-icons a {
+      color: var(--icon-color);
+      font-size: 1.4rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Theme toggle switch */
+    .theme-switch-wrapper {
+      display: flex;
+      align-items: center;
+      margin-left: 30px;
+    }
+
+    .theme-switch {
+      position: relative;
       display: inline-block;
-      width: 28px;
-      height: 28px;
-      fill: var(--text-light);
-      transition: fill 0.3s;
+      width: 50px;
+      height: 26px;
     }
 
-    .social-links a:hover {
-      fill: #0077b5;
-      /* LinkedIn blue as hover example */
+    .theme-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
     }
 
-    body.dark .social-links a {
-      fill: var(--text-dark);
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
     }
 
-    body.dark .social-links a:hover {
-      fill: #0a66c2;
-      /* LinkedIn blue for dark */
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent-color);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+
+    /* About Me section */
+    .about-me {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      max-width: 900px;
+      margin: 70px auto 50px;
+      padding: 0 20px;
+    }
+
+    .text-content {
+      flex: 1;
+    }
+
+    .text-content h1 {
+      margin-bottom: 10px;
+      font-size: 2.8rem;
+    }
+
+    .text-content h3 {
+      margin-bottom: 25px;
+      font-weight: 500;
+      color: var(--accent-color);
+    }
+
+    .text-content p {
+      margin-bottom: 18px;
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+
+    .profile-pic {
+      flex-shrink: 0;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Responsive for smaller screens */
+    @media (max-width: 768px) {
+      .about-me {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .profile-pic {
+        margin-bottom: 30px;
+      }
     }
   </style>
 </head>
-
 <body>
   <nav>
-    <a href="blog.html">Blogs</a>
-    <a href="repositories.html">Repositories</a>
-    <button id="theme-toggle">Dark Mode</button>
+    <a href="#" class="logo">Aksh Thakkar</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blogs">Blogs</a></li>
+      <li><a href="#repositories">Repositories</a></li>
+    </ul>
+    <div class="social-icons">
+      <a href="https://discord.com/users/sarcasticaksh" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+      <a href="https://www.instagram.com/akshhthakkar" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://github.com/akshhthakkar" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/akshthakkar" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="theme-switch-wrapper">
+      <label class="theme-switch" for="theme-toggle">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
   </nav>
 
-  <h1>Aksh Thakkar</h1>
-  <h2>CSE @ Parul University</h2>
+  <main>
+    <section id="about" class="about-me">
+      <div class="text-content">
+        <h1>Hello! I’m Aksh Thakkar</h1>
+        <h3>Second-year B.Tech. CSE @ Parul University (Class of 2027)</h3>
+        <p>
+          I’m super passionate about tech, especially building clean and user-friendly websites with HTML and JavaScript. I love crafting web pages that not only work smoothly but also look dope. Always grinding to level up my web dev game.
+        </p>
+        <p>
+          Lately, AI’s been catching my eye — it’s crazy how it can solve real-world problems. I’m just starting to dip my toes into AI, and so far, projects like my personal portfolio website have helped me sharpen my coding and design skills. Can’t wait to dive deeper and create more practical AI-powered stuff.
+        </p>
+        <p>
+          I’m all about learning, collaborating, and bringing fresh ideas to life. Whether it’s internships, hackathons, or team projects, I’m hyped to contribute, soak up knowledge, and grow as a web developer and AI explorer.
+        </p>
+      </div>
+      <div class="profile-pic">
+        <img src="images/profile.jpg" alt="Aksh Thakkar" />
+      </div>
+    </section>
 
-  <p>Hello, I am Aksh Thakkar, a second-year B.Tech. student in Computer Science and Engineering at Parul University,
-    class of 2027. I’m passionate about building innovative stuff and exploring new technologies.</p>
+    <!-- Placeholder sections for Projects, Blogs, Repositories -->
+    <section id="projects" style="max-width:900px; margin: auto; padding: 20px;">
+      <h2>Projects</h2>
+      <p>Coming soon...</p>
+    </section>
 
-  <hr />
+    <section id="blogs" style="max-width:900px; margin: auto; padding: 20px;">
+      <h2>Blogs</h2>
+      <p>Coming soon...</p>
+    </section>
 
-  <div class="social-links" aria-label="Social Media Links">
-    <a href="https://discord.com/users/sarcasticaksh" target="_blank" rel="noopener" aria-label="Discord">
-      <svg viewBox="0 0 24 24">
-        <path
-          d="M20.317 4.3698a19.791 19.791 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0786-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0811.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0064.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1062c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.028c1.961-.6067 3.95-1.5219 6.0028-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.5915-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1531-1.0857-2.1531-2.419 0-1.3332.9555-2.4189 2.1531-2.4189 1.2108 0 2.1757 1.0952 2.153 2.4189 0 1.3333-.9555 2.419-2.153 2.419zm7.9748 0c-1.1824 0-2.153 1.0857-2.153 2.419 0 1.3332.9554 2.4189 2.153 2.4189 1.2109 0 2.1758-1.0952 2.1531-2.4189 0-1.3333-.9556-2.419-2.1531-2.419z" />
-      </svg>
-    </a>
-    <a href="https://www.instagram.com/akshhthakkar" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg viewBox="0 0 24 24">
-        <path
-          d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm8.24 1.5a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0zM12 7a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5zm0 2a3 3 0 100 6 3 3 0 000-6z" />
-      </svg>
-    </a>
-    <a href="https://github.com/akshhthakkar" target="_blank" rel="noopener" aria-label="GitHub">
-      <svg viewBox="0 0 24 24">
-        <path
-          d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.084-.729.084-.729 1.205.084 1.84 1.234 1.84 1.234 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.304-5.466-1.334-5.466-5.931 0-1.31.465-2.381 1.235-3.221-.123-.303-.535-1.523.117-3.176 0 0 1.007-.322 3.301 1.23a11.53 11.53 0 016.003 0c2.292-1.552 3.298-1.23 3.298-1.23.653 1.653.242 2.873.12 3.176.77.84 1.233 1.911 1.233 3.22 0 4.609-2.804 5.625-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .321.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-      </svg>
-    </a>
-    <a href="https://www.linkedin.com/in/akshthakkar" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <svg viewBox="0 0 24 24">
-        <path
-          d="M4.983 3.5C4.983 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.103 1 2.5 1 4.983 2.12 4.983 3.5zM.12 7h4.763V24H.12zM7.12 7h4.57v2.2h.07c.64-1.2 2.2-2.46 4.52-2.46 4.83 0 5.72 3.18 5.72 7.3V24h-4.76v-7.9c0-1.9-.03-4.35-2.66-4.35-2.66 0-3.07 2.08-3.07 4.23V24h-4.76z" />
-      </svg>
-    </a>
-  </div>
+    <section id="repositories" style="max-width:900px; margin: auto; padding: 20px;">
+      <h2>Repositories</h2>
+      <p>Coming soon...</p>
+    </section>
+  </main>
 
   <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      themeToggle.textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
+    const toggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      toggle.checked = true;
+    }
+
+    toggle.addEventListener('change', () => {
+      if (toggle.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
     });
   </script>
 </body>
-
 </html>
