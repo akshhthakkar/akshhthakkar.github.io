@@ -2,15 +2,21 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="GitHub repositories, coding profiles, and skills of Aksh Thakkar, a Computer Science student at Parul University, showcasing web development and AI projects." />
+    content="GitHub repositories, coding profiles, and skills of Aksh Thakkar, a Computer Science student at Parul University, showcasing web development and AI projects.">
+  <meta property="og:title" content="Aksh Thakkar - Repositories">
+  <meta property="og:description" content="Explore my GitHub repositories, showcasing web development and AI projects.">
+  <meta property="og:image" content="https://akshhthakkar.github.io/assets/profile-image.jpg">
+  <meta property="og:url" content="https://akshhthakkar.github.io/repositories.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Aksh Thakkar - Repositories</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Universal box-sizing for consistent layout */
     html {
       box-sizing: border-box;
       scroll-behavior: smooth;
@@ -22,7 +28,6 @@
       box-sizing: inherit;
     }
 
-    /* Root CSS variables for light theme - COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY */
     :root {
       --bg: #ffffff;
       --text: #333333;
@@ -32,81 +37,49 @@
       --navbar-bg-mobile: #f8f8f8;
       --card-bg: #ffffff;
       --card-border: #e8e8e8;
-      /* Very light border for minimal look */
       --section-bg-light: #fdfdfd;
-      /* Very light background for sections */
       --subtle-shadow-light: rgba(0, 0, 0, 0.02);
-      /* Even more subtle shadow */
       --hover-shadow-light: rgba(0, 0, 0, 0.05);
-      /* Subtle hover shadow */
       --card-hover-bg-light: rgba(0, 123, 255, 0.01);
-      /* Extremely light blue tint on hover */
-
-      /* Switch colors - Light mode */
       --switch-off-bg: #ccc;
       --switch-on-bg: #4CAF50;
       --switch-circle-color: #fff;
       --switch-border: #999;
-
-      /* Hero section gradient colors - Light mode (REVERTED TO ORIGINAL INDEX.HTML VALUES) */
       --hero-gradient-start-light: #e0f2f7;
-      /* Light blue from index.html */
       --hero-gradient-mid-light: #ccecf7;
-      /* Lighter blue from index.html */
       --hero-gradient-end-light: #ffffff;
-      /* White from index.html */
     }
 
-    /* Dark theme overrides for CSS variables - COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY */
     [data-theme="dark"] {
       --bg: #121212;
-      /* Darker background */
       --text: #e0e0e0;
-      /* Lighter text */
       --heading-text: #ffffff;
       --accent: #66b3ff;
-      /* Brighter accent for dark mode */
       --accent-hover: #4da6ff;
       --navbar-bg-mobile: #1a1a1a;
       --card-bg: #1e1e1e;
       --card-border: #252525;
-      /* Darker border for minimal look */
       --section-bg-light: #151515;
-      /* Very dark background for sections */
       --subtle-shadow-dark: rgba(255, 255, 255, 0.02);
-      /* Even more subtle shadow */
       --hover-shadow-dark: rgba(255, 255, 255, 0.05);
-      /* Subtle hover shadow */
       --card-hover-bg-dark: rgba(102, 179, 255, 0.01);
-      /* Extremely light blue tint on hover */
-
-
-      /* Switch colors - Dark mode */
       --switch-off-bg: #555;
       --switch-on-bg: #2196F3;
-      --switch-circle-color: #fff;
       --switch-border: #777;
-
-      /* Hero section gradient colors - Dark mode (REVERTED TO ORIGINAL INDEX.HTML VALUES) */
       --hero-gradient-start-dark: #0a2a4a;
-      /* Dark blue from index.html */
       --hero-gradient-mid-dark: #1a3a5a;
-      /* Slightly lighter dark blue from index.html */
       --hero-gradient-end-dark: #121212;
-      /* Dark background from index.html */
     }
 
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      /* Consistent font family */
       background-color: var(--bg);
       color: var(--text);
       transition: background 0.3s, color 0.3s;
       line-height: 1.6;
     }
 
-    /* --- Navbar Styles (COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY) --- */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -272,32 +245,24 @@
       z-index: 11;
     }
 
-    /* --- Hero Section (Updated to match index.html's hero) --- */
-    .hero-section {
+    .hero {
       background: linear-gradient(135deg, var(--hero-gradient-start-light) 0%, var(--hero-gradient-mid-light) 50%, var(--hero-gradient-end-light) 100%);
       padding: 3rem 2rem;
-      /* Increased padding to match index.html */
       border-radius: 16px;
-      /* Rounded corners to match index.html */
       text-align: center;
       margin-bottom: 3rem;
-      /* Increased margin-bottom to match index.html */
       animation: fadeIn 0.8s ease-out;
-      /* Added fade-in animation */
       position: relative;
       overflow: hidden;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      /* Stronger shadow to match index.html */
     }
 
-    [data-theme="dark"] .hero-section {
+    [data-theme="dark"] .hero {
       background: linear-gradient(135deg, var(--hero-gradient-start-dark) 0%, var(--hero-gradient-mid-dark) 50%, var(--hero-gradient-end-dark) 100%);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-      /* Dark mode shadow */
     }
 
-    /* Added pseudo-element for hero section to match index.html's hero */
-    .hero-section::before {
+    .hero::before {
       content: '';
       position: absolute;
       top: 0;
@@ -310,51 +275,43 @@
       pointer-events: none;
     }
 
-    [data-theme="dark"] .hero-section::before {
+    [data-theme="dark"] .hero::before {
       background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
     }
 
-    .hero-section h1,
-    .hero-section p {
+    .hero h1,
+    .hero p {
       position: relative;
       z-index: 2;
-      /* Ensure text is above the pseudo-element */
     }
 
-    .hero-section h1 {
+    .hero h1 {
       font-size: 3.2rem;
-      /* Increased font size to match index.html */
       margin-bottom: 0.8rem;
-      /* Adjusted margin */
       color: var(--heading-text);
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-      /* Stronger text shadow */
       letter-spacing: 0.05em;
-      /* Adjusted letter spacing */
       line-height: 1.2;
     }
 
-    [data-theme="dark"] .hero-section h1 {
+    [data-theme="dark"] .hero h1 {
       text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.15);
     }
 
-    .hero-section p {
+    .hero p {
       font-size: 1.3rem;
-      /* Increased font size to match index.html */
       line-height: 1.6;
       color: var(--text);
       opacity: 0.95;
       max-width: 700px;
-      /* Increased max-width */
       margin: 0.5rem auto 0 auto;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
     }
 
-    [data-theme="dark"] .hero-section p {
+    [data-theme="dark"] .hero p {
       text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05);
     }
 
-    /* Keyframe animation for fade-in effect */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -367,11 +324,10 @@
       }
     }
 
-    /* --- Main Content Area --- */
     .container {
-      max-width: 960px;
+      max-width: 1000px;
       margin: auto;
-      padding: 1.5rem;
+      padding: 2rem;
     }
 
     h2 {
@@ -379,9 +335,6 @@
       text-align: center;
       margin-bottom: 1.5rem;
       color: var(--heading-text);
-      border-bottom: none;
-      display: block;
-      padding-bottom: 0;
       margin-top: 2.5rem;
     }
 
@@ -434,17 +387,13 @@
       display: block;
     }
 
-    /* Styling for the standalone profile views image */
     #profile-views-img {
       display: block;
       margin: 1.5rem auto 2rem auto;
-      /* Centered with top/bottom margin */
       max-width: 300px;
-      /* Limit width to prevent stretching */
       height: auto;
       border-radius: 6px;
       box-shadow: 0 1px 4px var(--subtle-shadow-light);
-      /* Subtle shadow for standalone image */
       transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
 
@@ -461,134 +410,137 @@
       box-shadow: 0 3px 8px var(--hover-shadow-dark);
     }
 
-
     .repo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
       margin-bottom: 2rem;
+      min-height: 200px;
     }
 
     .repo-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-left: 4px solid var(--accent);
-      border-radius: 6px;
-      padding: 1.2rem;
-      box-shadow: 0 1px 4px var(--subtle-shadow-light);
-      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background-color 0.15s ease-in-out;
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px var(--subtle-shadow-light);
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: relative;
       overflow: hidden;
     }
 
     [data-theme="dark"] .repo-card {
-      box-shadow: 0 1px 4px var(--subtle-shadow-dark);
+      box-shadow: 0 4px 15px var(--subtle-shadow-dark);
     }
 
     .repo-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 10px var(--hover-shadow-light);
-      background-color: var(--card-hover-bg-light);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 30px var(--hover-shadow-light);
     }
 
     [data-theme="dark"] .repo-card:hover {
-      box-shadow: 0 4px 10px var(--hover-shadow-dark);
-      background-color: var(--card-hover-bg-dark);
+      box-shadow: 0 15px 30px var(--hover-shadow-dark);
     }
 
-    .repo-card h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.3rem;
-      color: var(--heading-text);
-      border-bottom: none;
-      padding-bottom: 0;
-      line-height: 1.2;
+    .repo-card a.repo-title-link {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1.35rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .repo-card a.repo-title-link:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
     }
 
     .repo-card p {
-      margin: 0 0 0.7rem;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--text);
-      opacity: 0.75;
+      opacity: 0.9;
+      margin: 0 0 1rem 0;
       flex-grow: 1;
     }
 
-    .repo-card .language {
+    .repo-card .repo-meta {
+      display: flex;
+      align-items: center;
       font-size: 0.85rem;
       color: var(--text);
-      font-weight: 400;
+      opacity: 0.7;
       margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      opacity: 0.8;
+      gap: 0.75rem;
+      flex-wrap: wrap;
     }
 
-    .repo-card .language-dot {
-      display: inline-block;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      margin-right: 5px;
-      border: none;
-    }
-
-    .repo-card .stats {
-      font-size: 0.85rem;
+    [data-theme="dark"] .repo-card .repo-meta {
       color: var(--text);
-      opacity: 0.5;
-      display: flex;
-      gap: 8px;
     }
 
-    .repo-card .stats span {
+    .repo-card .repo-meta span {
       display: flex;
       align-items: center;
+      gap: 0.3rem;
     }
 
-    .repo-card .stats span i {
-      margin-right: 3px;
+    .repo-card .repo-meta .fas {
+      font-size: 0.9em;
       color: var(--accent);
     }
 
-    .repo-card .btn {
-      align-self: flex-start;
-      margin-top: auto;
-      padding: 0.4rem 0.8rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      border-radius: 5px;
-      box-shadow: none;
-      border: 1px solid var(--accent);
-      background-color: transparent;
-      color: var(--accent);
-      transition: background-color 0.15s ease-in-out, transform 0.1s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
-    }
-
-    .repo-card .btn:hover {
+    .repo-card .repo-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.6rem 1.2rem;
       background-color: var(--accent);
       color: white;
-      transform: translateY(-1px);
-      box-shadow: none;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background-color 0.2s, transform 0.1s ease-in-out;
+      align-self: flex-start;
+      box-shadow: 0 2px 5px var(--subtle-shadow-light);
     }
 
-    /* --- Languages and Tools --- */
+    [data-theme="dark"] .repo-card .repo-link {
+      box-shadow: 0 2px 5px var(--subtle-shadow-dark);
+    }
+
+    .repo-card .repo-link:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px var(--hover-shadow-light);
+    }
+
+    [data-theme="dark"] .repo-card .repo-link:hover {
+      box-shadow: 0 4px 8px var(--hover-shadow-dark);
+    }
+
+    .repo-card .repo-link .fas {
+      margin-left: 0.5rem;
+      font-size: 0.8em;
+    }
+
     .languages-tools {
       text-align: center;
       margin-bottom: 2rem;
       padding: 1.2rem;
       background-color: var(--section-bg-light);
       border-radius: 8px;
-      box-shadow: none;
       border: 1px solid var(--card-border);
     }
 
     .languages-tools h2 {
       margin-top: 0;
       margin-bottom: 1rem;
-      border-bottom: none;
-      padding-bottom: 0;
     }
 
     .tech-icons-grid {
@@ -599,9 +551,8 @@
     }
 
     .languages-tools img {
-      width: 40px;
-      height: 40px;
-      filter: none;
+      width: 32px;
+      height: 32px;
       transition: transform 0.15s ease-in-out;
     }
 
@@ -609,22 +560,18 @@
       transform: scale(1.08);
     }
 
-    /* --- Coding Profiles --- */
     .coding-profiles {
       text-align: center;
       margin-bottom: 2rem;
       padding: 1.2rem;
       background-color: var(--section-bg-light);
       border-radius: 8px;
-      box-shadow: none;
       border: 1px solid var(--card-border);
     }
 
     .coding-profiles h2 {
       margin-top: 0;
       margin-bottom: 1rem;
-      border-bottom: none;
-      padding-bottom: 0;
     }
 
     .profile-links {
@@ -661,7 +608,6 @@
       color: var(--accent-hover);
     }
 
-    /* CTA Buttons */
     .cta {
       text-align: center;
       margin: 2rem 0;
@@ -677,24 +623,25 @@
       background-color: var(--accent);
       color: white;
       text-decoration: none;
-      border-radius: 6px;
-      transition: background-color 0.15s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.15s ease-in-out;
-      font-weight: 500;
-      box-shadow: 0 1px 4px var(--subtle-shadow-light);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background-color 0.2s, transform 0.1s ease-in-out;
+      box-shadow: 0 2px 5px var(--subtle-shadow-light);
     }
 
     [data-theme="dark"] .btn {
-      box-shadow: 0 1px 4px var(--subtle-shadow-dark);
+      box-shadow: 0 2px 5px var(--subtle-shadow-dark);
     }
 
     .btn:hover {
       background-color: var(--accent-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 3px 8px var(--hover-shadow-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px var(--hover-shadow-light);
     }
 
     [data-theme="dark"] .btn:hover {
-      box-shadow: 0 3px 8px var(--hover-shadow-dark);
+      box-shadow: 0 4px 8px var(--hover-shadow-dark);
     }
 
     .btn i {
@@ -715,7 +662,93 @@
       box-shadow: 0 -1px 4px var(--subtle-shadow-dark);
     }
 
-    /* --- Media Queries for Repositories Page Specifics (COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY) --- */
+    .skeleton-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px var(--subtle-shadow-light);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    [data-theme="dark"] .skeleton-card {
+      box-shadow: 0 4px 15px var(--subtle-shadow-dark);
+    }
+
+    .skeleton-line {
+      background-color: var(--card-border);
+      border-radius: 4px;
+      height: 1em;
+      margin-bottom: 0.5em;
+    }
+
+    .skeleton-line.title {
+      width: 80%;
+      height: 1.3em;
+    }
+
+    .skeleton-line.meta {
+      width: 60%;
+      height: 0.8em;
+    }
+
+    .skeleton-line.text {
+      width: 100%;
+      height: 0.9em;
+    }
+
+    .skeleton-line.text:nth-child(3) {
+      width: 95%;
+    }
+
+    .skeleton-line.text:nth-child(4) {
+      width: 85%;
+    }
+
+    .skeleton-line.button {
+      width: 120px;
+      height: 2.2em;
+      margin-top: 0.75rem;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.6;
+      }
+    }
+
+    .loading-spinner {
+      border: 4px solid var(--card-border);
+      border-top: 4px solid var(--accent);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 1rem auto;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
     @media (max-width: 768px) {
       .navbar {
         padding: 1rem 1.5rem;
@@ -764,20 +797,16 @@
         display: block;
       }
 
-      /* Repositories Page Adjustments */
-      .hero-section {
+      .hero {
         padding: 2.5rem 1rem;
-        /* Adjusted for smaller screens */
       }
 
-      .hero-section h1 {
+      .hero h1 {
         font-size: 2.5rem;
-        /* Adjusted for smaller screens */
       }
 
-      .hero-section p {
+      .hero p {
         font-size: 1.1rem;
-        /* Adjusted for smaller screens */
       }
 
       .container {
@@ -806,12 +835,10 @@
         padding: 1rem;
       }
 
-      .repo-card h3 {
-        font-size: 1.2rem;
-      }
-
-      .repo-card p {
-        font-size: 0.85rem;
+      .repo-card .repo-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
       }
 
       .languages-tools {
@@ -819,8 +846,8 @@
       }
 
       .languages-tools img {
-        width: 35px;
-        height: 35px;
+        width: 28px;
+        height: 28px;
       }
 
       .coding-profiles {
@@ -833,6 +860,12 @@
 
       .coding-profiles a i {
         font-size: 1.4rem;
+      }
+
+      .cta .repo-link {
+        width: 90%;
+        text-align: center;
+        padding: 0.5rem 1rem;
       }
 
       .cta .btn {
@@ -851,31 +884,29 @@
         font-size: 1.2rem;
       }
 
-      .hero-section h1 {
+      .hero h1 {
         font-size: 1.8rem;
-        /* Adjusted for very small screens */
       }
 
-      .hero-section p {
+      .hero p {
         font-size: 1rem;
-        /* Adjusted for very small screens */
       }
 
       h2 {
         font-size: 1.4rem;
       }
 
-      .repo-card h3 {
-        font-size: 1.1rem;
+      .repo-card a.repo-title-link {
+        font-size: 1.2rem;
       }
 
       .repo-card p {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
       }
 
       .languages-tools img {
-        width: 30px;
-        height: 30px;
+        width: 24px;
+        height: 24px;
       }
 
       .coding-profiles a {
@@ -886,6 +917,7 @@
         font-size: 1.2rem;
       }
 
+      .repo-link,
       .btn {
         padding: 0.4rem 0.8rem;
         font-size: 0.8rem;
@@ -895,9 +927,8 @@
 </head>
 
 <body data-theme="light">
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Main navigation">
     <a href="index.html" class="navbar-brand"><strong>Aksh</strong></a>
-
     <ul class="navbar-nav">
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#certifications">Certifications</a></li>
@@ -913,7 +944,6 @@
         </label>
       </li>
     </ul>
-
     <div class="mobile-controls-group">
       <label class="theme-switch" aria-label="Toggle dark mode">
         <input type="checkbox" id="theme-toggle-checkbox-mobile">
@@ -922,257 +952,257 @@
           <i class="fas fa-moon icon-in-knob fa-moon-knob"></i>
         </span>
       </label>
-      <button class="hamburger" aria-label="Toggle navigation menu">&#9776;</button>
+      <button class="hamburger" aria-label="Toggle navigation menu" tabindex="0">☰</button>
     </div>
   </nav>
-
-  <section class="hero-section">
-    <div class="container">
+  <section class="container">
+    <div class="hero">
       <h1>My Digital Workshop</h1>
       <p>A curated collection of my coding projects, showcasing my journey in web development, AI, and beyond.</p>
     </div>
-  </section>
-
-  <section class="container">
     <h2>📊 GitHub Stats</h2>
     <div class="stats">
       <div class="stat-card">
-        <img id="github-stats-img"
+        <img id="github-stats-img" loading="lazy"
           src="https://github-readme-stats.vercel.app/api?username=akshhthakkar&show_icons=true&theme=default"
-          alt="GitHub stats card">
+          alt="Aksh Thakkar's GitHub Stats">
       </div>
     </div>
-    <img id="profile-views-img"
+    <img id="profile-views-img" loading="lazy"
       src="https://komarev.com/ghpvc/?username=akshhthakkar&label=Profile%20views&color=0e75b6&style=flat"
-      alt="Profile views counter">
-
-
+      alt="Aksh Thakkar's GitHub profile views counter">
     <h2>📚 Featured Repositories</h2>
     <div class="repo-grid" id="repos">
-      <p class="text-center">Loading repositories...</p>
+      <div class="text-center">
+        <div class="loading-spinner" role="status" aria-live="polite"><span class="sr-only">Loading
+            repositories...</span></div>
+      </div>
     </div>
-
     <div class="cta">
       <a href="https://github.com/akshhthakkar?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn">
-        <i class="fab fa-github"></i> Explore More on GitHub
+        <i class="fab fa-github"></i> Explore More on GitHub <i class="fas fa-arrow-right"></i>
       </a>
+      <button id="load-more" class="btn" style="display: none;">
+        <i class="fas fa-plus"></i> Load More
+      </button>
     </div>
-
-
     <h2>🛠️ Languages and Tools</h2>
     <div class="languages-tools">
       <div class="tech-icons-grid">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="C" title="C" />
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
+          alt="C programming language icon" title="C">
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
-          alt="C++" title="C++" />
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg"
-          alt="CSS3" title="CSS3" />
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg"
-          alt="HTML5" title="HTML5" />
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java"
-          title="Java" />
+          alt="C++ programming language icon" title="C++">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg"
+          alt="CSS3 icon" title="CSS3">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"
+          alt="HTML5 icon" title="HTML5">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg"
+          alt="Java programming language icon" title="Java">
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
-          alt="JavaScript" title="JavaScript" />
+          alt="JavaScript programming language icon" title="JavaScript">
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
-          alt="Python" title="Python" />
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg"
-          alt="React" title="React" />
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg"
-          alt="Node.js" title="Node.js" />
+          alt="Python programming language icon" title="Python">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
+          alt="React framework icon" title="React">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
+          alt="Node.js runtime icon" title="Node.js">
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg"
-          alt="Express" title="Express.js" />
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
-          alt="MongoDB" title="MongoDB" />
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original-wordmark.svg"
-          alt="Git" title="Git" />
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original-wordmark.svg"
-          alt="GitHub" title="GitHub" />
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original-wordmark.svg"
-          alt="VS Code" title="VS Code" />
+          alt="Express.js framework icon" title="Express.js">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg"
+          alt="MongoDB database icon" title="MongoDB">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg"
+          alt="Git version control icon" title="Git">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg"
+          alt="GitHub platform icon" title="GitHub">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg"
+          alt="Visual Studio Code icon" title="VS Code">
       </div>
     </div>
-
-
     <div class="coding-profiles">
       <h2>🔗 Coding Profiles</h2>
       <div class="profile-links">
-        <a href="https://www.leetcode.com/akshthakkar" target="_blank" title="LeetCode">
+        <a href="https://www.leetcode.com/akshthakkar" target="_blank" rel="noopener noreferrer" title="LeetCode">
           <i class="fas fa-code"></i> LeetCode
         </a>
-        <a href="https://www.codechef.com/users/akshthakkar" target="_blank" title="CodeChef">
+        <a href="https://www.codechef.com/users/akshthakkar" target="_blank" rel="noopener noreferrer" title="CodeChef">
           <i class="fas fa-utensils"></i> CodeChef
         </a>
-        <a href="https://www.hackerrank.com/aksht455" target="_blank" title="HackerRank">
+        <a href="https://www.hackerrank.com/aksht455" target="_blank" rel="noopener noreferrer" title="HackerRank">
           <i class="fas fa-laptop-code"></i> HackerRank
         </a>
-        <a href="https://codeforces.com/profile/akshthakkar" target="_blank" title="Codeforces">
+        <a href="https://codeforces.com/profile/akshthakkar" target="_blank" rel="noopener noreferrer"
+          title="Codeforces">
           <i class="fas fa-terminal"></i> Codeforces
         </a>
       </div>
     </div>
   </section>
-
   <footer class="footer">
     <p>© 2025 Aksh Thakkar.</p>
   </footer>
-
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const body = document.body;
       const themeToggleCheckboxDesktop = document.getElementById('theme-toggle-checkbox-desktop');
       const themeToggleCheckboxMobile = document.getElementById('theme-toggle-checkbox-mobile');
-
       const hamburger = document.querySelector('.hamburger');
       const navLinks = document.querySelector('.navbar-nav');
-
-      // Function to apply theme and update GitHub stats images
+      const loadMoreBtn = document.getElementById('load-more');
+      const reposContainer = document.getElementById('repos');
+      let page = 1;
+      const perPage = 9;
+      const languageColors = {
+        JavaScript: '#f0db4f',
+        Python: '#306998',
+        HTML: '#e34c26',
+        CSS: '#264de4',
+        Java: '#007396',
+        'C++': '#0056b3',
+        C: '#A8B9CC',
+        TypeScript: '#007acc',
+        PHP: '#777bb4',
+        Ruby: '#cc342d',
+        Unknown: ''
+      };
+      let timeout;
       function applyTheme(theme) {
-        body.setAttribute('data-theme', theme);
-        if (themeToggleCheckboxDesktop) {
-          themeToggleCheckboxDesktop.checked = (theme === 'dark');
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          body.setAttribute('data-theme', theme);
+          themeToggleCheckboxDesktop.checked = theme === 'dark';
+          themeToggleCheckboxMobile.checked = theme === 'dark';
+          localStorage.setItem('theme', theme);
+          const githubStatsImg = document.getElementById('github-stats-img');
+          if (githubStatsImg) {
+            const currentSrc = githubStatsImg.src;
+            const newThemeParam = `theme=${theme === 'dark' ? 'dark' : 'default'}`;
+            githubStatsImg.src = currentSrc.includes('theme')
+              ? currentSrc.replace(/theme=[^&]+/, newThemeParam)
+              : `${currentSrc}&${newThemeParam}`;
+          }
+        }, 100);
+      }
+      function renderSkeletonRepos(count) {
+        reposContainer.innerHTML = '';
+        for (let i = 0; i < count; i++) {
+          const skeletonCard = document.createElement('div');
+          skeletonCard.className = 'skeleton-card';
+          skeletonCard.innerHTML = `
+            <div class="skeleton-line title"></div>
+            <div class="skeleton-line meta"></div>
+            <div class="skeleton-line text"></div>
+            <div class="skeleton-line text"></div>
+            <div class="skeleton-line button"></div>
+          `;
+          reposContainer.appendChild(skeletonCard);
         }
-        if (themeToggleCheckboxMobile) {
-          themeToggleCheckboxMobile.checked = (theme === 'dark');
-        }
-        localStorage.setItem('theme', theme);
-
-        // Update GitHub stats images based on theme
-        const githubStatsImg = document.getElementById('github-stats-img');
-        const profileViewsImg = document.getElementById('profile-views-img');
-
-        if (githubStatsImg) {
-          const currentSrc = githubStatsImg.src;
-          const newThemeParam = `theme=${theme === 'dark' ? 'dark' : 'default'}`;
-          if (currentSrc.includes('theme=')) {
-            githubStatsImg.src = currentSrc.replace(/theme=[^&]+/, newThemeParam);
-          } else {
-            githubStatsImg.src = `${currentSrc}&${newThemeParam}`;
+      }
+      function renderRepoCard(repo) {
+        const languageDotColor = languageColors[repo.language] || languageColors.Unknown;
+        return `
+          <div class="repo-card">
+            <a href="${repo.html_url}" class="repo-title-link" target="_blank" rel="noopener noreferrer">${repo.name}</a>
+            <div class="repo-meta">
+              <span><i class="fas fa-code"></i> ${repo.language || 'Unknown'}</span>
+              <span><i class="fas fa-star"></i> ${repo.stargazers_count || 0}</span>
+              <span><i class="fas fa-code-branch"></i> ${repo.forks_count || 0}</span>
+            </div>
+            <p>${repo.description || 'No description available.'}</p>
+            <a href="${repo.html_url}" class="repo-link" target="_blank" rel="noopener noreferrer">View on GitHub <i class="fas fa-arrow-right"></i></a>
+          </div>
+        `;
+      }
+      function fetchRepos(append = false) {
+        if (!append) renderSkeletonRepos(3);
+        return fetch(`https://api.github.com/users/akshhthakkar/repos?sort=updated&direction=desc&per_page=${perPage}&page=${page}`)
+          .then(response => {
+            if (!response.ok) {
+              if (response.status === 403) {
+                throw new Error('GitHub API rate limit exceeded. Please try again later.');
+              }
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.message) {
+              throw new Error(data.message);
+            }
+            const filteredRepos = data.filter(repo => repo.name !== 'akshhthakkar.github.io');
+            if (filteredRepos.length === 0 && !append) {
+              reposContainer.innerHTML = '<p class="text-center">No repositories found. Check back later for new projects!</p>';
+              return;
+            }
+            if (!append) {
+              reposContainer.innerHTML = '';
+            }
+            filteredRepos.forEach(repo => {
+              reposContainer.insertAdjacentHTML('beforeend', renderRepoCard(repo));
+            });
+            loadMoreBtn.style.display = filteredRepos.length === perPage ? 'inline-block' : 'none';
+          })
+          .catch(error => {
+            reposContainer.innerHTML = `<p class="text-center">Error: ${error.message}</p>`;
+            console.error('Error fetching repositories:', error);
+          });
+      }
+      function trapFocus(e) {
+        const focusableElements = navLinks.querySelectorAll('a, button, input');
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        if (e.key === 'Tab') {
+          if (e.shiftKey && document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          } else if (!e.shiftKey && document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
           }
         }
-
-        // Komarev.com doesn't have a direct theme parameter, but we can ensure it's loaded
-        // if its source is somehow affected by theme logic, though it's usually static.
-        // For now, no specific theme change for komarev.com is applied.
       }
-
-      // Load saved theme
       const savedTheme = localStorage.getItem('theme') || 'light';
       applyTheme(savedTheme);
-
-      // Desktop theme toggle
-      if (themeToggleCheckboxDesktop) {
-        themeToggleCheckboxDesktop.addEventListener('change', () => {
-          const newTheme = themeToggleCheckboxDesktop.checked ? 'dark' : 'light';
-          applyTheme(newTheme);
-        });
-      }
-
-      // Mobile theme toggle
-      if (themeToggleCheckboxMobile) {
-        themeToggleCheckboxMobile.addEventListener('change', () => {
-          const newTheme = themeToggleCheckboxMobile.checked ? 'dark' : 'light';
-          applyTheme(newTheme);
-        });
-      }
-
-      // Hamburger menu toggle
-      if (hamburger && navLinks) {
-        hamburger.addEventListener('click', function () {
+      themeToggleCheckboxDesktop.addEventListener('change', () => {
+        applyTheme(themeToggleCheckboxDesktop.checked ? 'dark' : 'light');
+      });
+      themeToggleCheckboxMobile.addEventListener('change', () => {
+        applyTheme(themeToggleCheckboxMobile.checked ? 'dark' : 'light');
+      });
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        if (navLinks.classList.contains('active')) {
+          navLinks.querySelector('a').focus();
+          navLinks.addEventListener('keydown', trapFocus);
+        } else {
+          navLinks.removeEventListener('keydown', trapFocus);
+        }
+      });
+      hamburger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
           navLinks.classList.toggle('active');
-        });
-      }
-
-      // Close mobile menu on link click
-      const navItems = document.querySelectorAll('.navbar-nav li a');
-      navItems.forEach(item => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.querySelector('a').focus();
+            navLinks.addEventListener('keydown', trapFocus);
+          } else {
+            navLinks.removeEventListener('keydown', trapFocus);
+          }
+        }
+      });
+      document.querySelectorAll('.navbar-nav li a').forEach(item => {
         item.addEventListener('click', () => {
           if (navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
+            navLinks.removeEventListener('keydown', trapFocus);
           }
         });
       });
-
-      // Dynamically fetch and display GitHub repositories
-      fetch('https://api.github.com/users/akshhthakkar/repos?sort=updated&direction=desc') // Sort by most recently updated
-        .then(response => response.json())
-        .then(data => {
-          const reposContainer = document.getElementById('repos');
-          if (data.message) {
-            reposContainer.innerHTML = '<p class="text-center">Error fetching repositories. Please try again later.</p>';
-            return;
-          }
-
-          // Filter out your profile repo if you don't want it listed among projects
-          const filteredRepos = data.filter(repo => repo.name !== 'akshhthakkar.github.io');
-
-          reposContainer.innerHTML = ''; // Clear fallback content
-
-          // Limit to a reasonable number of repos if you have many, e.g., first 9
-          const displayLimit = 9; // Adjust as needed
-          filteredRepos.slice(0, displayLimit).forEach(repo => {
-            const repoCard = document.createElement('div');
-            repoCard.className = 'repo-card';
-
-            // Define language dot colors
-            let languageDotColor = 'var(--accent)'; // Default
-            switch (repo.language) {
-              case 'JavaScript':
-                languageDotColor = '#f0db4f';
-                break;
-              case 'Python':
-                languageDotColor = '#306998';
-                break;
-              case 'HTML':
-                languageDotColor = '#e34c26';
-                break;
-              case 'CSS':
-                languageDotColor = '#264de4';
-                break;
-              case 'Java':
-                languageDotColor = '#007396';
-                break;
-              case 'C++':
-                languageDotColor = '#00599c';
-                break;
-              case 'C':
-                languageDotColor = '#A8B9CC';
-                break;
-              case 'TypeScript':
-                languageDotColor = '#007acc';
-                break;
-              case 'PHP':
-                languageDotColor = '#777bb4';
-                break;
-              case 'Ruby':
-                languageDotColor = '#cc342d';
-                break;
-              // Add more languages as needed
-            }
-
-
-            repoCard.innerHTML = `
-                            <h3>${repo.name}</h3>
-                            <p>${repo.description || 'No description available.'}</p>
-                            <div class="language">
-                                <span style="background-color: ${languageDotColor};" class="language-dot"></span>
-                                ${repo.language || 'Unknown'}
-                            </div>
-                            <div class="stats">
-                                <span><i class="fas fa-star"></i> ${repo.stargazers_count || 0}</span>
-                                <span><i class="fas fa-code-branch"></i> ${repo.forks_count || 0}</span>
-                            </div>
-                            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="btn">View on GitHub</a>
-                        `;
-            reposContainer.appendChild(repoCard);
-          });
-
-          // The "Explore More on GitHub" button is now hardcoded in the HTML,
-          // so we don't need to dynamically add it here based on filteredRepos.length.
-        })
-        .catch(error => {
-          document.getElementById('repos').innerHTML = '<p class="text-center">Failed to load repositories. Please check your internet connection or try again later.</p>';
-          console.error('Error fetching repositories:', error);
-        });
+      loadMoreBtn.addEventListener('click', () => {
+        page++;
+        fetchRepos(true);
+      });
+      fetchRepos();
     });
   </script>
 </body>
