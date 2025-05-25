@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Personal portfolio of Aksh Thakkar, a Computer Science student at Parul University, showcasing web development projects and blogs." />
   <title>Aksh Thakkar</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
@@ -10,11 +13,14 @@
       --bg: #ffffff;
       --text: #000000;
       --accent: #007bff;
+      --accent-hover: #0056b3;
     }
+
     [data-theme="dark"] {
       --bg: #121212;
       --text: #f0f0f0;
       --accent: #0d6efd;
+      --accent-hover: #0a58ca;
     }
 
     body {
@@ -31,7 +37,7 @@
       align-items: center;
       padding: 1rem 2rem;
       background: var(--bg);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
       z-index: 10;
@@ -97,7 +103,22 @@
     .profile-img img {
       width: 100%;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: var(--accent-hover);
     }
 
     .socials {
@@ -116,10 +137,19 @@
       color: var(--accent);
     }
 
+    .footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--bg);
+      color: var(--text);
+      margin-top: 2rem;
+    }
+
     @media (max-width: 768px) {
       .container {
         flex-direction: column;
       }
+
       .navbar ul {
         flex-direction: column;
         gap: 1rem;
@@ -127,13 +157,14 @@
     }
   </style>
 </head>
+
 <body data-theme="light">
   <nav class="navbar">
     <div><strong>Aksh</strong></div>
     <ul>
       <li><a href="#about">About</a></li>
-      <li><a href="https://akshhthakkar.github.io/blog.html" target="_blank">Blogs</a></li>
-      <li><a href="https://akshhthakkar.github.io/repositories.html" target="_blank">Repositories</a></li>
+      <li><a href="blog.html">Blogs</a></li>
+      <li><a href="repositories.html">Repositories</a></li>
       <li><span class="theme-toggle" onclick="toggleTheme()"><i id="theme-icon" class="fas fa-sun"></i></span></li>
     </ul>
   </nav>
@@ -143,14 +174,23 @@
       <h1>Aksh Thakkar</h1>
       <h2>CSE @ Parul University</h2>
       <p>
-        Hello, I’m Aksh Thakkar, a second-year B.Tech. student in Computer Science and Engineering at Parul University, class of 2027. I’m passionate about technology and specialize in creating user-friendly websites using HTML and JavaScript. I enjoy building functional and visually appealing web pages and am committed to enhancing my skills in web development.
+        Hello, I’m Aksh Thakkar, a second-year B.Tech. student in Computer Science and Engineering at Parul University,
+        class of 2027. I’m passionate about technology and specialize in creating user-friendly websites using HTML and
+        JavaScript. I enjoy building functional and visually appealing web pages and am committed to enhancing my skills
+        in web development.
       </p>
       <p>
-        I’m also fascinated by artificial intelligence and its potential to solve real-world problems. While I’m just starting to explore AI concepts, I’ve worked on projects like a simple portfolio website, which helped me strengthen my coding and design skills. I’m excited to dive deeper into AI and apply my learning to practical projects.
+        I’m also fascinated by artificial intelligence and its potential to solve real-world problems. While I’m just
+        starting to explore AI concepts, I’ve worked on projects like a simple portfolio website, which helped me
+        strengthen my coding and design skills. I’m excited to dive deeper into AI and apply my learning to practical
+        projects.
       </p>
       <p>
-        As an enthusiastic learner, I’m always eager to explore new technologies and collaborate on innovative ideas. I’m looking forward to opportunities like internships, hackathons, or team projects where I can contribute my skills, learn from others, and grow as a developer in web development and AI.
+        As an enthusiastic learner, I’m always eager to explore new technologies and collaborate on innovative ideas.
+        I’m looking forward to opportunities like internships, hackathons, or team projects where I can contribute my
+        skills, learn from others, and grow as a developer in web development and AI.
       </p>
+      <a href="mailto:your.email@example.com" class="btn">Contact Me</a>
     </div>
     <div class="profile-img">
       <img src="images/profile.jpg" alt="Aksh Thakkar" />
@@ -158,20 +198,36 @@
   </section>
 
   <div class="socials">
+    <a href="https://twitter.com/akshhthakkar" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://dev.to/akshthakkar" target="_blank" title="Dev.to"><i class="fab fa-dev"></i></a>
     <a href="https://discord.com/users/sarcasticaksh" target="_blank"><i class="fab fa-discord"></i></a>
     <a href="https://www.instagram.com/akshhthakkar" target="_blank"><i class="fab fa-instagram"></i></a>
     <a href="https://github.com/akshhthakkar" target="_blank"><i class="fab fa-github"></i></a>
     <a href="https://www.linkedin.com/in/akshthakkar" target="_blank"><i class="fab fa-linkedin"></i></a>
   </div>
 
+  <footer class="footer">
+    <p>© 2025 Aksh Thakkar</p>
+  </footer>
+
   <script>
     function toggleTheme() {
       const body = document.body;
       const icon = document.getElementById('theme-icon');
       const isDark = body.getAttribute('data-theme') === 'dark';
-      body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      const newTheme = isDark ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
       icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+      localStorage.setItem('theme', newTheme);
     }
+
+    // Apply saved theme on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.body.setAttribute('data-theme', savedTheme);
+      document.getElementById('theme-icon').className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    });
   </script>
 </body>
+
 </html>
