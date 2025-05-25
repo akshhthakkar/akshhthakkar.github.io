@@ -1,177 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aksh Thakkar</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     :root {
       --bg: #ffffff;
-      --text: #000000;
-      --accent: #007bff;
+      --text: #1a1a1a;
+      --link: #0077cc;
     }
+
     [data-theme="dark"] {
       --bg: #121212;
-      --text: #f0f0f0;
-      --accent: #0d6efd;
+      --text: #f1f1f1;
+      --link: #66aaff;
     }
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      transition: background 0.3s, color 0.3s;
+      transition: all 0.3s ease;
     }
 
-    .navbar {
+    header {
+      background: var(--bg);
+      border-bottom: 1px solid #ddd;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
-      background: var(--bg);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 10px 20px;
       position: sticky;
       top: 0;
       z-index: 10;
     }
 
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      margin: 0;
-      padding: 0;
-    }
-
-    .navbar li a {
+    nav a {
+      margin: 0 15px;
       text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .navbar li a:hover {
-      color: var(--accent);
+      color: var(--link);
+      font-weight: 600;
     }
 
     .theme-toggle {
       cursor: pointer;
-      font-size: 1.4rem;
-      transition: color 0.3s;
+      font-size: 1.2rem;
+      color: var(--link);
     }
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .intro {
-      flex: 1;
-      min-width: 250px;
-    }
-
-    .intro h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .intro h2 {
-      font-size: 1.5rem;
-      font-weight: normal;
-      margin-bottom: 1rem;
-    }
-
-    .profile-img {
-      flex: 1;
-      max-width: 300px;
-    }
-
-    .profile-img img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-
-    .socials {
-      margin-top: 3rem;
+    main {
       text-align: center;
+      padding: 80px 20px 60px;
     }
 
-    .socials a {
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: var(--link);
+      margin-bottom: 30px;
+    }
+
+    footer {
+      border-top: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+      background: var(--bg);
+    }
+
+    .social-icons a {
+      color: var(--link);
       margin: 0 10px;
-      color: var(--text);
-      font-size: 1.8rem;
-      transition: color 0.3s;
+      font-size: 1.3rem;
+      transition: color 0.3s ease;
     }
 
-    .socials a:hover {
-      color: var(--accent);
+    .social-icons a:hover {
+      color: #ff6b6b;
     }
 
-    @media (max-width: 768px) {
-      .container {
+    @media (max-width: 600px) {
+      nav {
+        display: flex;
         flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
       }
-      .navbar ul {
-        flex-direction: column;
-        gap: 1rem;
+
+      .theme-toggle {
+        margin-top: 10px;
       }
     }
   </style>
 </head>
-<body data-theme="light">
-  <nav class="navbar">
+
+<body>
+  <header>
     <div><strong>Aksh</strong></div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="blogs/blog1.html">Blogs</a></li>
-      <li><a href="https://github.com/akshhthakkar?tab=repositories" target="_blank">Repositories</a></li>
-      <li><span class="theme-toggle" onclick="toggleTheme()"><i id="theme-icon" class="fas fa-sun"></i></span></li>
-    </ul>
-  </nav>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blogs</a>
+      <a href="repositories.html">Repositories</a>
+      <span class="theme-toggle" onclick="toggleTheme()">
+        <i id="theme-icon" class="fas fa-sun"></i>
+      </span>
+    </nav>
+  </header>
 
-  <section class="container" id="about">
-    <div class="intro">
-      <h1>Aksh Thakkar</h1>
-      <h2>CSE @ Parul University</h2>
-      <p>
-        Hello, I’m Aksh Thakkar, a second-year B.Tech. student in Computer Science and Engineering at Parul University, class of 2027. I’m passionate about technology and specialize in creating user-friendly websites using HTML and JavaScript. I enjoy building functional and visually appealing web pages and am committed to enhancing my skills in web development.
-      </p>
-      <p>
-        I’m also fascinated by artificial intelligence and its potential to solve real-world problems. While I’m just starting to explore AI concepts, I’ve worked on projects like a simple portfolio website, which helped me strengthen my coding and design skills. I’m excited to dive deeper into AI and apply my learning to practical projects.
-      </p>
-      <p>
-        As an enthusiastic learner, I’m always eager to explore new technologies and collaborate on innovative ideas. I’m looking forward to opportunities like internships, hackathons, or team projects where I can contribute my skills, learn from others, and grow as a developer in web development and AI.
-      </p>
-    </div>
-    <div class="profile-img">
-      <img src="images/profile.jpg" alt="Aksh Thakkar" />
-    </div>
-  </section>
+  <main>
+    <h1>Aksh Thakkar</h1>
+    <h2>CSE @ Parul University</h2>
+    <p>Welcome to my space on the web. I'm passionate about tech, code, and building cool stuff!</p>
+  </main>
 
-  <div class="socials">
-    <a href="https://discord.com/users/sarcasticaksh" target="_blank"><i class="fab fa-discord"></i></a>
-    <a href="https://www.instagram.com/akshhthakkar" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://github.com/akshhthakkar" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/akshthakkar" target="_blank"><i class="fab fa-linkedin"></i></a>
-  </div>
+  <footer>
+    <div class="social-icons">
+      <a href="https://github.com/akshhthakkar" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/akshthakkar" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://twitter.com/akshhthakkar" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>&copy; 2025 Aksh Thakkar. All rights reserved.</p>
+  </footer>
 
   <script>
     function toggleTheme() {
-      const body = document.body;
-      const icon = document.getElementById('theme-icon');
-      const isDark = body.getAttribute('data-theme') === 'dark';
-      body.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+      const html = document.documentElement;
+      const icon = document.getElementById("theme-icon");
+      const current = html.getAttribute("data-theme");
+
+      if (current === "light") {
+        html.setAttribute("data-theme", "dark");
+        icon.classList.replace("fa-sun", "fa-moon");
+      } else {
+        html.setAttribute("data-theme", "light");
+        icon.classList.replace("fa-moon", "fa-sun");
+      }
     }
   </script>
 </body>
+
 </html>
