@@ -3,45 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aksh's Blog</title>
+  <title>Aksh's Blogs</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
-    h1 { text-align: center; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 12px 0; }
-    a { color: #0077cc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 20px 40px;
+      background: #f9f9f9;
+      color: #222;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      color: #0077cc;
+      margin-bottom: 30px;
+      letter-spacing: 1.5px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      border-top: 1px solid #ddd;
+    }
+    li {
+      padding: 15px 10px;
+      border-bottom: 1px solid #ddd;
+      transition: background 0.3s ease;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      background: white;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+    }
+    li:hover {
+      background: #e6f0fa;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+    }
+    a {
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: 600;
+      font-size: 18px;
+      display: block;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    #loading {
+      text-align: center;
+      font-style: italic;
+      color: #666;
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
   <h1>Aksh's Blogs</h1>
-  <ul id="blog-list">Loading blogs...</ul>
+  <ul id="blog-list">
+    <li id="loading">Loading blogs...</li>
+  </ul>
+
   <script>
-    const username = "akshhthakkar";  // your GitHub username
-    const repo = "akshhthakkar.github.io";  // your GitHub Pages repo name
-    const blogFolder = "blog";  // folder where your blog posts are stored
+    const username = "akshhthakkar";
+    const repo = "akshhthakkar.github.io";
+    const blogFolder = "blog";
     const blogList = document.getElementById("blog-list");
+    const loadingEl = document.getElementById("loading");
     const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${blogFolder}`;
-    
+
     fetch(apiUrl)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
       .then(data => {
-        blogList.innerHTML = ""; // clear loading text
-        
+        loadingEl.style.display = 'none';
+        blogList.innerHTML = "";
+
         data.forEach(file => {
           if(file.name.endsWith(".html") || file.name.endsWith(".md")) {
-            // Remove file extension for display
-            const postName = file.name.replace(/\.html|\.md/, "").replace(/-/g, " ");
-            
-            // Create list item with link to the blog file
+            let postName = file.name.replace(/\.html|\.md/, "").replace(/-/g, " ");
+            postName = postName.charAt(0).toUpperCase() + postName.slice(1);
+
             const li = document.createElement("li");
-            li.innerHTML = `<a href="${blogFolder}/${file.name}" target="_blank">${postName.charAt(0).toUpperCase() + postName.slice(1)}</a>`;
+            li.innerHTML = `<a href="${blogFolder}/${file.name}" target="_blank" rel="noopener noreferrer">${postName}</a>`;
             blogList.appendChild(li);
           }
         });
+
+        if(blogList.children.length === 0) {
+          blogList.innerHTML = "<li>No blogs found. Start writing!</li>";
+        }
       })
       .catch(err => {
-        blogList.innerHTML = "Failed to load blogs.";
+        loadingEl.style.display = 'none';
+        blogList.innerHTML = "<li>Failed to load blogs. Try again later.</li>";
         console.error(err);
       });
   </script>
