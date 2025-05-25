@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aksh's Blog</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+    h1 { text-align: center; }
+    .post-list { list-style: none; padding: 0; }
+    .post-list li { margin: 15px 0; }
+    a { text-decoration: none; color: #0077cc; }
+    a:hover { text-decoration: underline; }
+    .new-post-btn { display: inline-block; margin-bottom: 20px; padding: 10px 15px; background: #0077cc; color: white; border-radius: 5px; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>Aksh's Blog Posts</h1>
+  <a href="create-blog.html" class="new-post-btn">+ Create New Blog</a>
+  <ul id="posts" class="post-list"></ul>
+
+  <script>
+    // Add your blog posts here as objects:
+    const blogPosts = [
+      { title: "My First Blog Post", url: "blog/my-first-blog-post.html", date: "2025-05-20" },
+      { title: "Learning Data Structures", url: "blog/data-structures.html", date: "2025-05-22" },
+      // Add more blog posts here following the same format
+    ];
+
+    const postsList = document.getElementById('posts');
+
+    blogPosts.forEach(post => {
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="${post.url}">${post.title}</a> <small>(${post.date})</small>`;
+      postsList.appendChild(li);
+    });
+  </script>
+</body>
+</html>
