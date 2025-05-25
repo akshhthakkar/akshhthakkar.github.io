@@ -4,11 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aksh Thakkar - Portfolio</title>
+  <title>Aksh Thakkar | Portfolio</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-
-    /* Reset and base */
+    /* Reset */
     * {
       margin: 0;
       padding: 0;
@@ -16,149 +14,100 @@
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #f0f0f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #222;
+      line-height: 1.6;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
 
-    img.profile-pic {
+    .profile-pic {
       width: 140px;
       height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.35);
-      margin-bottom: 25px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    img.profile-pic:hover {
-      transform: scale(1.05) rotate(3deg);
-      box-shadow: 0 12px 25px rgba(255, 78, 80, 0.5);
+      margin-bottom: 20px;
+      border: 3px solid #0077cc;
     }
 
     h1 {
-      font-weight: 600;
-      font-size: 3rem;
-      margin-bottom: 0.4rem;
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+      font-weight: 700;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      color: #0077cc;
     }
 
-    h2 {
-      font-weight: 300;
-      font-size: 1.5rem;
+    p.subtitle {
+      font-size: 1.15rem;
+      color: #555;
       margin-bottom: 30px;
-      opacity: 0.8;
+      letter-spacing: 0.03em;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 15px 30px;
-      margin: 10px 15px;
-      border-radius: 30px;
-      background: #ff4e50;
-      color: white;
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    nav a {
+      color: #0077cc;
+      text-decoration: none;
       font-weight: 600;
-      text-decoration: none;
-      box-shadow: 0 8px 15px rgba(255, 78, 80, 0.3);
+      font-size: 1.1rem;
+      padding: 8px 15px;
+      border: 2px solid transparent;
+      border-radius: 6px;
       transition: all 0.3s ease;
-      cursor: pointer;
-      user-select: none;
     }
 
-    .btn:hover {
-      background: #ff7879;
-      box-shadow: 0 15px 20px rgba(255, 120, 121, 0.5);
-      transform: translateY(-3px);
-    }
-
-    .links {
-      margin-top: 40px;
-    }
-
-    .links a {
-      color: #ffbaba;
-      margin: 0 15px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: color 0.25s ease;
-    }
-
-    .links a:hover {
+    nav a:hover,
+    nav a:focus {
+      background-color: #0077cc;
       color: #fff;
-      text-shadow: 0 0 8px #ff4e50;
+      border-color: #0077cc;
+      outline: none;
     }
 
     footer {
-      margin-top: auto;
-      padding: 20px 10px 10px;
       font-size: 0.9rem;
-      opacity: 0.6;
-      user-select: none;
-    }
-
-    /* Cool subtle fade-in */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    h1,
-    h2,
-    .btn,
-    .links,
-    img.profile-pic {
-      animation: fadeInUp 0.7s ease forwards;
-    }
-
-    h2 {
-      animation-delay: 0.2s;
-    }
-
-    .btn {
-      animation-delay: 0.4s;
-    }
-
-    .links {
-      animation-delay: 0.6s;
-    }
-
-    img.profile-pic {
-      animation-delay: 0.1s;
+      color: #999;
+      margin-top: 40px;
     }
   </style>
 </head>
 
 <body>
-  <img src="images/profile.jpg" alt="Aksh Thakkar" class="profile-pic" />
-  <h1>Hey, I'm Aksh 👋</h1>
-  <h2>Student | Developer | Culture Enthusiast</h2>
+  <div class="container">
+    <img src="images/profile.jpg" alt="Aksh Thakkar" class="profile-pic" />
+    <h1>Aksh Thakkar</h1>
+    <p class="subtitle">Student | Developer | Tech Enthusiast</p>
 
-  <a href="blogs/blog1.html" class="btn">Check My Blogs</a>
-  <a href="repositories.html" class="btn">View My Projects</a>
+    <nav>
+      <a href="repositories.html">Projects</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="https://akshhthakkar.github.io/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+      <a href="https://github.com/akshhthakkar" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
 
-  <div class="links">
-    <a href="https://github.com/akshhthakkar" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://linkedin.com/in/akshhthakkar" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="mailto:aksh@example.com">Email Me</a>
+    <footer>
+      &copy; 2025 Aksh Thakkar. All rights reserved.
+    </footer>
   </div>
-
-  <footer>© 2025 Aksh Thakkar. Made with 💙</footer>
 </body>
 
 </html>
