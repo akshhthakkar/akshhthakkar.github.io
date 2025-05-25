@@ -7,33 +7,43 @@
   <style>
     body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
     h1 { text-align: center; }
-    .post-list { list-style: none; padding: 0; }
-    .post-list li { margin: 15px 0; }
-    a { text-decoration: none; color: #0077cc; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 12px 0; }
+    a { color: #0077cc; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .new-post-btn { display: inline-block; margin-bottom: 20px; padding: 10px 15px; background: #0077cc; color: white; border-radius: 5px; text-decoration: none; }
   </style>
 </head>
 <body>
-  <h1>Aksh's Blog Posts</h1>
-  <a href="create-blog.html" class="new-post-btn">+ Create New Blog</a>
-  <ul id="posts" class="post-list"></ul>
-
+  <h1>Aksh's Blogs</h1>
+  <ul id="blog-list">Loading blogs...</ul>
   <script>
-    // Add your blog posts here as objects:
-    const blogPosts = [
-      { title: "My First Blog Post", url: "blog/my-first-blog-post.html", date: "2025-05-20" },
-      { title: "Learning Data Structures", url: "blog/data-structures.html", date: "2025-05-22" },
-      // Add more blog posts here following the same format
-    ];
-
-    const postsList = document.getElementById('posts');
-
-    blogPosts.forEach(post => {
-      const li = document.createElement('li');
-      li.innerHTML = `<a href="${post.url}">${post.title}</a> <small>(${post.date})</small>`;
-      postsList.appendChild(li);
-    });
+    const username = "akshhthakkar";  // your GitHub username
+    const repo = "akshhthakkar.github.io";  // your GitHub Pages repo name
+    const blogFolder = "blog";  // folder where your blog posts are stored
+    const blogList = document.getElementById("blog-list");
+    const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${blogFolder}`;
+    
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(data => {
+        blogList.innerHTML = ""; // clear loading text
+        
+        data.forEach(file => {
+          if(file.name.endsWith(".html") || file.name.endsWith(".md")) {
+            // Remove file extension for display
+            const postName = file.name.replace(/\.html|\.md/, "").replace(/-/g, " ");
+            
+            // Create list item with link to the blog file
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${blogFolder}/${file.name}" target="_blank">${postName.charAt(0).toUpperCase() + postName.slice(1)}</a>`;
+            blogList.appendChild(li);
+          }
+        });
+      })
+      .catch(err => {
+        blogList.innerHTML = "Failed to load blogs.";
+        console.error(err);
+      });
   </script>
 </body>
 </html>
