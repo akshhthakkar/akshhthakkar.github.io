@@ -8,10 +8,12 @@
     content="Personal portfolio of Aksh Thakkar, a Computer Engineering student at Parul University, showcasing web development projects, blogs, and key achievements." />
   <title>Aksh Thakkar</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Add this universal box-sizing for consistent layout */
+    /* Universal box-sizing for consistent layout */
     html {
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     *,
@@ -20,72 +22,119 @@
       box-sizing: inherit;
     }
 
+    /* Root CSS variables for light theme */
     :root {
       --bg: #ffffff;
-      --text: #000000;
+      --text: #333333;
+      --heading-text: #000000;
       --accent: #007bff;
       --accent-hover: #0056b3;
-      --navbar-bg-mobile: #f0f0f0;
-      --card-bg: #f9f9f9;
-      /* Light mode card background */
+      --navbar-bg-mobile: #f8f8f8;
+      --card-bg: #ffffff;
+      --card-border: #e8e8e8;
+      /* Very light border for minimal look */
+      --section-bg-light: #fdfdfd;
+      /* Very light background for sections */
+      --subtle-shadow-light: rgba(0, 0, 0, 0.02);
+      /* Even more subtle shadow */
+      --hover-shadow-light: rgba(0, 0, 0, 0.05);
+      /* Subtle hover shadow */
+      --card-hover-bg-light: rgba(0, 123, 255, 0.01);
+      /* Extremely light blue tint on hover */
 
       /* Switch colors - Light mode */
       --switch-off-bg: #ccc;
       --switch-on-bg: #4CAF50;
       --switch-circle-color: #fff;
       --switch-border: #999;
+
+      /* Hero section gradient colors - Light mode (more pronounced blue) */
+      --hero-gradient-start: #e0f2f7;
+      /* Light blue */
+      --hero-gradient-mid: #ccecf7;
+      /* Lighter blue */
+      --hero-gradient-end: #ffffff;
+      /* White */
     }
 
+    /* Dark theme overrides for CSS variables */
     [data-theme="dark"] {
       --bg: #121212;
-      --text: #f0f0f0;
-      --accent: #0d6efd;
-      --accent-hover: #0a58ca;
+      /* Darker background */
+      --text: #e0e0e0;
+      /* Lighter text */
+      --heading-text: #ffffff;
+      --accent: #66b3ff;
+      /* Brighter accent for dark mode */
+      --accent-hover: #4da6ff;
       --navbar-bg-mobile: #1a1a1a;
       --card-bg: #1e1e1e;
-      /* Dark mode card background */
+      --card-border: #252525;
+      /* Darker border for minimal look */
+      --section-bg-light: #151515;
+      /* Very dark background for sections */
+      --subtle-shadow-dark: rgba(255, 255, 255, 0.02);
+      /* Even more subtle shadow */
+      --hover-shadow-dark: rgba(255, 255, 255, 0.05);
+      /* Subtle hover shadow */
+      --card-hover-bg-dark: rgba(102, 179, 255, 0.01);
+      /* Extremely light blue tint on hover */
+
 
       /* Switch colors - Dark mode */
       --switch-off-bg: #555;
       --switch-on-bg: #2196F3;
       --switch-circle-color: #fff;
       --switch-border: #777;
+
+      /* Hero section gradient colors - Dark mode (more pronounced blue) */
+      --hero-gradient-start: #0a2a4a;
+      /* Dark blue */
+      --hero-gradient-mid: #1a3a5a;
+      /* Slightly lighter dark blue */
+      --hero-gradient-end: #121212;
+      /* Dark background */
     }
+
 
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      /* Changed to Inter as per instructions */
+      /* Consistent font family */
       background-color: var(--bg);
       color: var(--text);
       transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
     }
 
-    /* --- Navbar Styles --- */
+    /* --- Navbar Styles (Kept as is, per user request) --- */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
       background: var(--bg);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 4px var(--subtle-shadow-light);
       position: sticky;
       top: 0;
       z-index: 10;
     }
 
+    [data-theme="dark"] .navbar {
+      box-shadow: 0 1px 4px var(--subtle-shadow-dark);
+    }
+
     .navbar-brand {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--text);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--heading-text);
       text-decoration: none;
     }
 
-    /* Desktop Navigation Links */
     .navbar-nav {
       list-style: none;
       display: flex;
-      gap: 1.5rem;
+      gap: 1.8rem;
       margin: 0;
       padding: 0;
       align-items: center;
@@ -95,14 +144,30 @@
       text-decoration: none;
       color: var(--text);
       font-weight: 500;
-      transition: color 0.2s;
+      transition: color 0.2s ease-in-out;
+      position: relative;
+      padding-bottom: 0.2rem;
     }
 
     .navbar-nav li a:hover {
       color: var(--accent);
     }
 
-    /* --- Theme Switch Styles --- */
+    .navbar-nav li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width 0.3s ease-in-out;
+    }
+
+    .navbar-nav li a:hover::after {
+      width: 100%;
+    }
+
     .theme-switch {
       position: relative;
       display: inline-block;
@@ -112,14 +177,12 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Hide default checkbox */
     .theme-switch input {
       opacity: 0;
       width: 0;
       height: 0;
     }
 
-    /* The slider (track) */
     .slider {
       position: absolute;
       cursor: pointer;
@@ -133,7 +196,6 @@
       border: 1px solid var(--switch-border);
     }
 
-    /* The slider knob/circle */
     .slider:before {
       position: absolute;
       content: "";
@@ -146,10 +208,8 @@
       transition: transform 0.4s;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       z-index: 2;
-      /* Ensure the knob is above icons on track */
     }
 
-    /* When checked (dark mode), change background and move circle */
     .theme-switch input:checked+.slider {
       background-color: var(--switch-on-bg);
       border-color: var(--switch-on-bg);
@@ -159,75 +219,49 @@
       transform: translateX(26px);
     }
 
-    /* Styles for the sun/moon ICONS INSIDE THE KNOB */
     .slider .icon-in-knob {
       position: absolute;
       top: 50%;
-      /* Center vertically within the slider area */
       font-size: 0.7em;
-      /* Smaller size to fit inside knob */
       color: var(--text);
-      /* Text color, will be visible on the knob */
       transition: transform 0.4s, opacity 0.4s;
       z-index: 3;
-      /* Ensure icon is above the knob */
     }
 
     .slider .fa-sun-knob {
       left: 11px;
-      /* Adjust to center within the knob when it's on the left */
       transform: translateY(-50%) translateX(0);
-      /* Default position for sun */
       opacity: 1;
-      /* Visible in light mode */
     }
 
     .slider .fa-moon-knob {
       left: 37px;
-      /* Adjust to center within the knob when it's on the right */
       transform: translateY(-50%) translateX(0);
-      /* Default position for moon */
       opacity: 0;
-      /* Hidden in light mode */
     }
 
-    /* When checked (dark mode), move sun to right and hide, move moon to left and show */
     .theme-switch input:checked+.slider .fa-sun-knob {
       transform: translateY(-50%) translateX(26px);
-      /* Move with knob */
       opacity: 0;
-      /* Hide sun when in dark mode */
     }
 
     .theme-switch input:checked+.slider .fa-moon-knob {
       transform: translateY(-50%) translateX(-26px);
-      /* Move with knob (relative to initial pos) */
       opacity: 1;
-      /* Show moon when in dark mode */
     }
 
-
-    /* --- Desktop Specific Elements --- */
-    /* Desktop theme switch: visible by default, positioned within navbar-nav */
     .desktop-theme-switch {
       margin-left: 1.5rem;
-      /* Space from last nav link item */
       display: flex;
-      /* Ensure it's treated as a flex item */
       align-items: center;
-      /* Vertically align the switch */
     }
 
-    /* Mobile Controls (Hamburger + Mobile Theme Switch) */
     .mobile-controls-group {
       display: none;
-      /* Hidden by default on desktop */
       align-items: center;
       gap: 1rem;
-      /* Space between hamburger and switch */
     }
 
-    /* Hamburger icon: hidden on desktop */
     .hamburger {
       display: none;
       font-size: 1.8rem;
@@ -518,9 +552,9 @@
 
       .navbar-brand {
         flex-grow: 1;
+        font-size: 1.4rem;
       }
 
-      /* Hide desktop navigation links and desktop switch on mobile */
       .navbar-nav {
         display: none;
         flex-direction: column;
@@ -538,18 +572,24 @@
       .navbar-nav.active {
         display: flex;
         max-height: 300px;
+        /* Adjust as needed */
       }
+
+      .navbar-nav li {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 0;
+      }
+
 
       .desktop-theme-switch {
         display: none;
       }
 
-      /* Show mobile controls group (hamburger + mobile switch) */
       .mobile-controls-group {
         display: flex;
       }
 
-      /* Show hamburger on mobile */
       .hamburger {
         display: block;
       }
@@ -842,17 +882,15 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const body = document.body;
-      // Target BOTH checkboxes
       const themeToggleCheckboxDesktop = document.getElementById('theme-toggle-checkbox-desktop');
       const themeToggleCheckboxMobile = document.getElementById('theme-toggle-checkbox-mobile');
 
       const hamburger = document.querySelector('.hamburger');
       const navLinks = document.querySelector('.navbar-nav');
 
-      // --- Theme Toggle Function ---
+      // Function to apply theme
       function applyTheme(theme) {
         body.setAttribute('data-theme', theme);
-        // Sync both checkboxes
         if (themeToggleCheckboxDesktop) {
           themeToggleCheckboxDesktop.checked = (theme === 'dark');
         }
@@ -862,11 +900,11 @@
         localStorage.setItem('theme', theme);
       }
 
-      // Load saved theme on page load
+      // Load saved theme
       const savedTheme = localStorage.getItem('theme') || 'light';
-      applyTheme(savedTheme); // Initialize the theme and checkbox state
+      applyTheme(savedTheme);
 
-      // Listen for changes on desktop checkbox
+      // Desktop theme toggle
       if (themeToggleCheckboxDesktop) {
         themeToggleCheckboxDesktop.addEventListener('change', () => {
           const newTheme = themeToggleCheckboxDesktop.checked ? 'dark' : 'light';
@@ -874,7 +912,7 @@
         });
       }
 
-      // Listen for changes on mobile checkbox
+      // Mobile theme toggle
       if (themeToggleCheckboxMobile) {
         themeToggleCheckboxMobile.addEventListener('change', () => {
           const newTheme = themeToggleCheckboxMobile.checked ? 'dark' : 'light';
@@ -882,18 +920,17 @@
         });
       }
 
-      // --- Navbar Mobile Toggle Script ---
+      // Hamburger menu toggle
       if (hamburger && navLinks) {
         hamburger.addEventListener('click', function () {
           navLinks.classList.toggle('active');
         });
       }
 
-      // Optional: Close mobile menu when a link is clicked
+      // Close mobile menu on link click
       const navItems = document.querySelectorAll('.navbar-nav li a');
       navItems.forEach(item => {
         item.addEventListener('click', () => {
-          // Check if it's a mobile menu and if it's open
           if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
           }
