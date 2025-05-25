@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create New Blog - Aksh</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: auto; padding: 20px; }
+    h1 { text-align: center; }
+    code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Create New Blog Post</h1>
+  <p>To add a new blog post:</p>
+  <ol>
+    <li>Create a new HTML file inside the <code>blog/</code> folder. For example: <code>blog/my-new-post.html</code></li>
+    <li>Use this basic blog template (copy from an existing blog post):</li>
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+  &lt;title&gt;My New Blog Post&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;My New Blog Post&lt;/h1&gt;
+  &lt;p&gt;Write your blog content here.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+    <li>Then, open <code>blog.html</code> and add a new entry in the <code>blogPosts</code> array:</li>
+    <pre>
+{ title: "My New Blog Post", url: "blog/my-new-post.html", date: "2025-05-25" }
+    </pre>
+    <li>Save and push your changes to GitHub. Your blog page will now show the new post!</li>
+  </ol>
+  <p><a href="blog.html">Back to blog list</a></p>
+</body>
+</html>
