@@ -8,13 +8,12 @@
     content="GitHub repositories, coding profiles, and skills of Aksh Thakkar, a Computer Science student at Parul University, showcasing web development and AI projects." />
   <title>Aksh Thakkar - Repositories</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Add this universal box-sizing for consistent layout */
+    /* Universal box-sizing for consistent layout */
     html {
       box-sizing: border-box;
       scroll-behavior: smooth;
-      /* Smooth scrolling for anchor links if any */
     }
 
     *,
@@ -23,27 +22,44 @@
       box-sizing: inherit;
     }
 
+    /* Root CSS variables for light theme */
     :root {
       --bg: #ffffff;
       --text: #333333;
-      /* Slightly softer black */
       --heading-text: #000000;
       --accent: #007bff;
       --accent-hover: #0056b3;
       --navbar-bg-mobile: #f8f8f8;
       --card-bg: #ffffff;
-      --card-border: #e0e0e0;
-      --section-bg-light: #f5f5f5;
+      --card-border: #e8e8e8;
+      /* Very light border for minimal look */
+      --section-bg-light: #fdfdfd;
+      /* Very light background for sections */
+      --subtle-shadow-light: rgba(0, 0, 0, 0.02);
+      /* Even more subtle shadow */
+      --hover-shadow-light: rgba(0, 0, 0, 0.05);
+      /* Subtle hover shadow */
+      --card-hover-bg-light: rgba(0, 123, 255, 0.01);
+      /* Extremely light blue tint on hover */
 
       /* Switch colors - Light mode */
       --switch-off-bg: #ccc;
       --switch-on-bg: #4CAF50;
       --switch-circle-color: #fff;
       --switch-border: #999;
+
+      /* Hero section gradient colors - Light mode (more pronounced blue) */
+      --hero-gradient-start: #e0f2f7;
+      /* Light blue */
+      --hero-gradient-mid: #ccecf7;
+      /* Lighter blue */
+      --hero-gradient-end: #ffffff;
+      /* White */
     }
 
+    /* Dark theme overrides for CSS variables */
     [data-theme="dark"] {
-      --bg: #1a1a1a;
+      --bg: #121212;
       /* Darker background */
       --text: #e0e0e0;
       /* Lighter text */
@@ -51,58 +67,73 @@
       --accent: #66b3ff;
       /* Brighter accent for dark mode */
       --accent-hover: #4da6ff;
-      --navbar-bg-mobile: #2a2a2a;
-      --card-bg: #2a2a2a;
-      --card-border: #444444;
-      --section-bg-light: #222222;
+      --navbar-bg-mobile: #1a1a1a;
+      --card-bg: #1e1e1e;
+      --card-border: #252525;
+      /* Darker border for minimal look */
+      --section-bg-light: #151515;
+      /* Very dark background for sections */
+      --subtle-shadow-dark: rgba(255, 255, 255, 0.02);
+      /* Even more subtle shadow */
+      --hover-shadow-dark: rgba(255, 255, 255, 0.05);
+      /* Subtle hover shadow */
+      --card-hover-bg-dark: rgba(102, 179, 255, 0.01);
+      /* Extremely light blue tint on hover */
+
 
       /* Switch colors - Dark mode */
       --switch-off-bg: #555;
       --switch-on-bg: #2196F3;
       --switch-circle-color: #fff;
       --switch-border: #777;
+
+      /* Hero section gradient colors - Dark mode (more pronounced blue) */
+      --hero-gradient-start: #0a2a4a;
+      /* Dark blue */
+      --hero-gradient-mid: #1a3a5a;
+      /* Slightly lighter dark blue */
+      --hero-gradient-end: #121212;
+      /* Dark background */
     }
 
     body {
       margin: 0;
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
-      /* Poppins for a modern feel */
+      font-family: 'Inter', sans-serif;
+      /* Consistent font family */
       background-color: var(--bg);
       color: var(--text);
       transition: background 0.3s, color 0.3s;
       line-height: 1.6;
-      /* Improved readability */
     }
 
-    /* --- Navbar Styles --- */
+    /* --- Navbar Styles (Kept as is, per user request) --- */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
       background: var(--bg);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      /* Slightly more prominent shadow */
+      box-shadow: 0 1px 4px var(--subtle-shadow-light);
       position: sticky;
       top: 0;
       z-index: 10;
     }
 
+    [data-theme="dark"] .navbar {
+      box-shadow: 0 1px 4px var(--subtle-shadow-dark);
+    }
+
     .navbar-brand {
       font-size: 1.6rem;
-      /* Slightly larger */
       font-weight: 700;
-      /* Bolder */
       color: var(--heading-text);
       text-decoration: none;
     }
 
-    /* Desktop Navigation Links */
     .navbar-nav {
       list-style: none;
       display: flex;
       gap: 1.8rem;
-      /* Increased gap */
       margin: 0;
       padding: 0;
       align-items: center;
@@ -114,7 +145,6 @@
       font-weight: 500;
       transition: color 0.2s ease-in-out;
       position: relative;
-      /* For underline effect */
       padding-bottom: 0.2rem;
     }
 
@@ -122,7 +152,6 @@
       color: var(--accent);
     }
 
-    /* Underline effect on hover */
     .navbar-nav li a::after {
       content: '';
       position: absolute;
@@ -138,8 +167,6 @@
       width: 100%;
     }
 
-
-    /* --- Theme Switch Styles (Keep as is, they are good) --- */
     .theme-switch {
       position: relative;
       display: inline-block;
@@ -222,14 +249,12 @@
       opacity: 1;
     }
 
-    /* --- Desktop Specific Elements --- */
     .desktop-theme-switch {
       margin-left: 1.5rem;
       display: flex;
       align-items: center;
     }
 
-    /* Mobile Controls (Hamburger + Mobile Theme Switch) */
     .mobile-controls-group {
       display: none;
       align-items: center;
@@ -249,58 +274,68 @@
 
     /* --- Hero Section --- */
     .hero-section {
-      background: linear-gradient(135deg, var(--accent), #0056b3);
-      /* Dynamic gradient */
-      color: white;
+      background: linear-gradient(135deg, var(--hero-gradient-start), var(--hero-gradient-mid), var(--hero-gradient-end));
+      color: var(--text);
       text-align: center;
-      padding: 4rem 2rem;
+      padding: 2.5rem 2rem;
       margin-bottom: 2rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 5px var(--subtle-shadow-light);
+      border-radius: 0 0 12px 12px;
+      position: relative;
+      overflow: hidden;
     }
 
     [data-theme="dark"] .hero-section {
-      background: linear-gradient(135deg, #1f4068, #162447);
-      /* Darker, sophisticated gradient */
+      box-shadow: 0 1px 5px var(--subtle-shadow-dark);
+    }
+
+    .hero-section::before {
+      content: none;
     }
 
     .hero-section h1 {
-      font-size: 3.5rem;
-      /* Larger heading */
+      font-size: 2.8rem;
       margin-bottom: 0.5rem;
-      color: white;
-      /* Ensure heading is white */
+      color: var(--heading-text);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+      /* Reintroduced subtle text shadow */
+      letter-spacing: 0.01em;
+    }
+
+    [data-theme="dark"] .hero-section h1 {
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05);
     }
 
     .hero-section p {
-      font-size: 1.25rem;
-      max-width: 800px;
+      font-size: 1.1rem;
+      max-width: 600px;
       margin: 0 auto;
-      opacity: 0.9;
+      opacity: 0.85;
+      color: var(--text);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.02);
+      /* Reintroduced subtle text shadow */
+    }
+
+    [data-theme="dark"] .hero-section p {
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.02);
     }
 
     /* --- Main Content Area --- */
     .container {
-      max-width: 1100px;
-      /* Slightly wider container */
+      max-width: 960px;
       margin: auto;
-      padding: 2rem;
+      padding: 1.5rem;
     }
 
     h2 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       text-align: center;
       margin-bottom: 1.5rem;
       color: var(--heading-text);
-      border-bottom: 2px solid var(--accent);
-      /* Subtle underline */
-      display: inline-block;
-      /* To make border fit content */
-      padding-bottom: 0.5rem;
-      margin-left: auto;
-      /* Center with auto margins */
-      margin-right: auto;
-      margin-top: 3rem;
-      /* Space from previous section */
+      border-bottom: none;
+      display: block;
+      padding-bottom: 0;
+      margin-top: 2.5rem;
     }
 
     .text-center {
@@ -309,111 +344,156 @@
 
     .stats {
       text-align: center;
-      margin-bottom: 2rem;
-      display: flex;
-      /* Arrange stats side-by-side */
-      flex-wrap: wrap;
-      /* Allow wrapping on small screens */
+      margin-bottom: 1rem;
+      /* Reduced space below stats grid */
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       justify-content: center;
-      gap: 1.5rem;
-      /* Space between stat images */
+      gap: 1rem;
     }
 
-    .stats img {
-      max-width: 48%;
-      /* Adjust for two images per row on larger screens */
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 4px var(--subtle-shadow-light);
+      transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background-color 0.15s ease-in-out;
+    }
+
+    [data-theme="dark"] .stat-card {
+      box-shadow: 0 1px 4px var(--subtle-shadow-dark);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 8px var(--hover-shadow-light);
+      background-color: var(--card-hover-bg-light);
+    }
+
+    [data-theme="dark"] .stat-card:hover {
+      box-shadow: 0 3px 8px var(--hover-shadow-dark);
+      background-color: var(--card-hover-bg-dark);
+    }
+
+    .stat-card img {
+      max-width: 100%;
       height: auto;
-      border-radius: 8px;
-      /* Slightly rounded corners */
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      /* Subtle shadow */
-      transition: transform 0.2s ease-in-out;
+      border-radius: 2px;
+      display: block;
     }
 
-    .stats img:hover {
-      transform: translateY(-3px);
+    /* Styling for the standalone profile views image */
+    #profile-views-img {
+      display: block;
+      margin: 1.5rem auto 2rem auto;
+      /* Centered with top/bottom margin */
+      max-width: 300px;
+      /* Limit width to prevent stretching */
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px var(--subtle-shadow-light);
+      /* Subtle shadow for standalone image */
+      transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
+
+    [data-theme="dark"] #profile-views-img {
+      box-shadow: 0 1px 4px var(--subtle-shadow-dark);
+    }
+
+    #profile-views-img:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 8px var(--hover-shadow-light);
+    }
+
+    [data-theme="dark"] #profile-views-img:hover {
+      box-shadow: 0 3px 8px var(--hover-shadow-dark);
+    }
+
 
     .repo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      /* Slightly wider min width for cards */
-      gap: 1.8rem;
-      /* Increased gap */
-      margin-bottom: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
     }
 
     .repo-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 10px;
-      /* More rounded corners */
-      padding: 1.5rem;
-      /* More padding */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      /* More noticeable shadow */
-      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      padding: 1.2rem;
+      box-shadow: 0 1px 4px var(--subtle-shadow-light);
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background-color 0.15s ease-in-out;
       display: flex;
-      /* Use flex for internal layout */
       flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    [data-theme="dark"] .repo-card {
+      box-shadow: 0 1px 4px var(--subtle-shadow-dark);
     }
 
     .repo-card:hover {
-      transform: translateY(-8px);
-      /* More pronounced lift */
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      /* Stronger shadow on hover */
-      border-color: var(--accent);
-      /* Highlight border on hover */
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px var(--hover-shadow-light);
+      background-color: var(--card-hover-bg-light);
+    }
+
+    [data-theme="dark"] .repo-card:hover {
+      box-shadow: 0 4px 10px var(--hover-shadow-dark);
+      background-color: var(--card-hover-bg-dark);
     }
 
     .repo-card h3 {
-      margin: 0 0 0.75rem;
-      font-size: 1.6rem;
-      /* Slightly larger */
+      margin: 0 0 0.5rem;
+      font-size: 1.3rem;
       color: var(--heading-text);
-      border-bottom: 1px solid var(--card-border);
-      /* Subtle separator */
-      padding-bottom: 0.5rem;
-      line-height: 1.3;
+      border-bottom: none;
+      padding-bottom: 0;
+      line-height: 1.2;
     }
 
     .repo-card p {
-      margin: 0 0 1rem;
-      font-size: 1rem;
+      margin: 0 0 0.7rem;
+      font-size: 0.9rem;
       color: var(--text);
-      opacity: 0.85;
+      opacity: 0.75;
       flex-grow: 1;
-      /* Make description take available space */
     }
 
     .repo-card .language {
-      font-size: 0.95rem;
-      color: var(--accent);
-      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text);
+      font-weight: 400;
       margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
+      opacity: 0.8;
     }
 
-    .repo-card .language::before {
-      content: '';
+    .repo-card .language-dot {
       display: inline-block;
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background-color: var(--accent);
-      /* Language specific color if possible */
-      margin-right: 8px;
+      margin-right: 5px;
+      border: none;
     }
 
     .repo-card .stats {
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
+      font-size: 0.85rem;
       color: var(--text);
-      opacity: 0.7;
+      opacity: 0.5;
       display: flex;
-      gap: 15px;
+      gap: 8px;
     }
 
     .repo-card .stats span {
@@ -422,139 +502,171 @@
     }
 
     .repo-card .stats span i {
-      margin-right: 5px;
+      margin-right: 3px;
       color: var(--accent);
     }
 
     .repo-card .btn {
       align-self: flex-start;
-      /* Align button to the left */
       margin-top: auto;
-      /* Push button to the bottom if content varies */
-      padding: 0.6rem 1.2rem;
-      /* Slightly larger button */
-      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 5px;
+      box-shadow: none;
+      border: 1px solid var(--accent);
+      background-color: transparent;
+      color: var(--accent);
+      transition: background-color 0.15s ease-in-out, transform 0.1s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+    }
+
+    .repo-card .btn:hover {
+      background-color: var(--accent);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: none;
     }
 
     /* --- Languages and Tools --- */
     .languages-tools {
       text-align: center;
-      margin-bottom: 3rem;
-      padding: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1.2rem;
       background-color: var(--section-bg-light);
-      /* Light background for contrast */
-      border-radius: 10px;
-      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
-      /* Subtle inner shadow */
+      border-radius: 8px;
+      box-shadow: none;
+      border: 1px solid var(--card-border);
     }
 
     .languages-tools h2 {
       margin-top: 0;
       margin-bottom: 1rem;
+      border-bottom: none;
+      padding-bottom: 0;
     }
 
     .tech-icons-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.5rem;
-      /* Space between icons */
+      gap: 1.2rem;
     }
 
     .languages-tools img {
-      width: 50px;
-      /* Slightly larger icons */
-      height: 50px;
-      filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.1));
-      /* Subtle shadow for icons */
-      transition: transform 0.2s ease-in-out;
+      width: 40px;
+      height: 40px;
+      filter: none;
+      transition: transform 0.15s ease-in-out;
     }
 
     .languages-tools img:hover {
-      transform: scale(1.1);
-      /* Pop effect on hover */
+      transform: scale(1.08);
     }
 
     /* --- Coding Profiles --- */
     .coding-profiles {
       text-align: center;
-      margin-bottom: 3rem;
-      padding: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1.2rem;
       background-color: var(--section-bg-light);
-      /* Consistent background */
-      border-radius: 10px;
-      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      box-shadow: none;
+      border: 1px solid var(--card-border);
     }
 
     .coding-profiles h2 {
       margin-top: 0;
       margin-bottom: 1rem;
+      border-bottom: none;
+      padding-bottom: 0;
     }
 
     .profile-links {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      /* Space between links */
+      gap: 1.2rem;
       flex-wrap: wrap;
     }
 
     .coding-profiles a {
+      color: var(--text);
+      font-size: 1.6rem;
+      transition: color 0.15s ease-in-out, transform 0.1s ease-in-out;
+      padding: 0.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 400;
+    }
+
+    .coding-profiles a i {
+      font-size: 1.6rem;
+      margin-bottom: 0.2rem;
       color: var(--accent);
-      font-size: 2.5rem;
-      /* Larger icons */
-      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
-      padding: 0.5rem;
-      /* Add padding for larger clickable area */
     }
 
     .coding-profiles a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .coding-profiles a:hover i {
       color: var(--accent-hover);
-      transform: translateY(-5px);
-      /* Lift effect */
+    }
+
+    /* CTA Buttons */
+    .cta {
+      text-align: center;
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .btn {
       display: inline-block;
-      padding: 0.75rem 1.8rem;
-      /* Larger padding for CTA buttons */
+      padding: 0.6rem 1.2rem;
       background-color: var(--accent);
       color: white;
-      /* Changed from var(--bg) to white for consistency with accent */
       text-decoration: none;
-      border-radius: 8px;
-      /* More rounded */
-      transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
-      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.15s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.15s ease-in-out;
+      font-weight: 500;
+      box-shadow: 0 1px 4px var(--subtle-shadow-light);
+    }
+
+    [data-theme="dark"] .btn {
+      box-shadow: 0 1px 4px var(--subtle-shadow-dark);
     }
 
     .btn:hover {
       background-color: var(--accent-hover);
-      transform: translateY(-3px);
-      /* Subtle lift */
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px var(--hover-shadow-light);
     }
 
-    .cta {
-      text-align: center;
-      margin: 3rem 0;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      /* Space between buttons */
-      flex-wrap: wrap;
+    [data-theme="dark"] .btn:hover {
+      box-shadow: 0 3px 8px var(--hover-shadow-dark);
+    }
+
+    .btn i {
+      margin-right: 0.4rem;
     }
 
     .footer {
       text-align: center;
-      padding: 1.5rem;
-      /* More padding */
+      padding: 1rem;
       background: var(--bg);
       color: var(--text);
-      margin-top: 3rem;
-      /* More space */
-      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
-      /* Subtle shadow at the bottom */
-      font-size: 0.9rem;
+      margin-top: 2rem;
+      box-shadow: 0 -1px 4px var(--subtle-shadow-light);
+      font-size: 0.8rem;
+    }
+
+    [data-theme="dark"] .footer {
+      box-shadow: 0 -1px 4px var(--subtle-shadow-dark);
     }
 
     /* --- Media Queries for Repositories Page Specifics --- */
@@ -569,7 +681,6 @@
         font-size: 1.4rem;
       }
 
-      /* Hide desktop navigation links and desktop switch on mobile */
       .navbar-nav {
         display: none;
         flex-direction: column;
@@ -595,32 +706,29 @@
         padding: 0.8rem 0;
       }
 
-      /* Ensure desktop switch is hidden when mobile rules apply */
       .desktop-theme-switch {
         display: none;
       }
 
-      /* Show mobile controls group (hamburger + mobile switch) */
       .mobile-controls-group {
         display: flex;
       }
 
-      /* Show hamburger on mobile */
       .hamburger {
         display: block;
       }
 
       /* Repositories Page Adjustments */
       .hero-section {
-        padding: 3rem 1rem;
+        padding: 2rem 1rem;
       }
 
       .hero-section h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
 
       .hero-section p {
-        font-size: 1rem;
+        font-size: 0.95rem;
       }
 
       .container {
@@ -628,17 +736,34 @@
       }
 
       h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
       }
 
-      .stats img {
-        max-width: 95%;
-        /* Make stats images almost full width on small screens */
-        margin-bottom: 1rem;
+      .stats {
+        grid-template-columns: 1fr;
+        /* Stack stat cards on small screens */
+      }
+
+      .stat-card {
+        padding: 0.7rem;
       }
 
       .repo-grid {
         grid-template-columns: 1fr;
+      }
+
+      .repo-card {
+        padding: 1rem;
+      }
+
+      .repo-card h3 {
+        font-size: 1.2rem;
+      }
+
+      .repo-card p {
+        font-size: 0.85rem;
       }
 
       .languages-tools {
@@ -646,61 +771,74 @@
       }
 
       .languages-tools img {
-        width: 45px;
-        height: 45px;
+        width: 35px;
+        height: 35px;
+      }
+
+      .coding-profiles {
+        padding: 1rem;
       }
 
       .coding-profiles a {
-        font-size: 2rem;
+        font-size: 1.4rem;
+      }
+
+      .coding-profiles a i {
+        font-size: 1.4rem;
       }
 
       .cta .btn {
-        width: 100%;
+        width: 90%;
         text-align: center;
+        padding: 0.5rem 1rem;
       }
     }
 
     @media (max-width: 480px) {
       .navbar {
-        padding: 0.8rem;
+        padding: 0.6rem;
       }
 
       .navbar-brand {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
       }
 
       .hero-section h1 {
-        font-size: 2rem;
+        font-size: 1.6rem;
       }
 
       .hero-section p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
       }
 
       h2 {
-        font-size: 1.5rem;
-      }
-
-      .repo-card h3 {
         font-size: 1.4rem;
       }
 
+      .repo-card h3 {
+        font-size: 1.1rem;
+      }
+
       .repo-card p {
-        font-size: 0.95rem;
+        font-size: 0.8rem;
       }
 
       .languages-tools img {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
       }
 
       .coding-profiles a {
-        font-size: 1.8rem;
+        font-size: 1.2rem;
+      }
+
+      .coding-profiles a i {
+        font-size: 1.2rem;
       }
 
       .btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.95rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -711,7 +849,8 @@
     <a href="index.html" class="navbar-brand"><strong>Aksh</strong></a>
 
     <ul class="navbar-nav">
-      <li><a href="index.html">About</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#certifications">Certifications</a></li>
       <li><a href="blog.html">Blogs</a></li>
       <li><a href="repositories.html">Repositories</a></li>
       <li class="desktop-theme-switch">
@@ -747,38 +886,20 @@
   <section class="container">
     <h2>📊 GitHub Stats</h2>
     <div class="stats">
-      <img src="https://komarev.com/ghpvc/?username=akshhthakkar&label=Profile%20views&color=0e75b6&style=flat"
-        alt="Profile views counter">
-      <img src="https://github-readme-stats.vercel.app/api?username=akshhthakkar&show_icons=true&theme=default"
-        alt="GitHub stats card">
+      <div class="stat-card">
+        <img id="github-stats-img"
+          src="https://github-readme-stats.vercel.app/api?username=akshhthakkar&show_icons=true&theme=default"
+          alt="GitHub stats card">
+      </div>
     </div>
+    <img id="profile-views-img"
+      src="https://komarev.com/ghpvc/?username=akshhthakkar&label=Profile%20views&color=0e75b6&style=flat"
+      alt="Profile views counter">
+
 
     <h2>📚 Featured Repositories</h2>
     <div class="repo-grid" id="repos">
-      <div class="repo-card">
-        <h3>portfolio-website</h3>
-        <p>My personal portfolio website hosted on GitHub Pages, built with modern web standards.</p>
-        <div class="language"><span class="language-dot"></span>HTML</div>
-        <div class="stats"><span><i class="fas fa-star"></i> 0</span> <span><i class="fas fa-code-branch"></i> 0</span>
-        </div>
-        <a href="https://github.com/akshhthakkar/akshhthakkar.github.io" target="_blank" class="btn">View on GitHub</a>
-      </div>
-      <div class="repo-card">
-        <h3>project-x-ml</h3>
-        <p>An experimental machine learning project exploring data classification with Python.</p>
-        <div class="language"><span class="language-dot"></span>Python</div>
-        <div class="stats"><span><i class="fas fa-star"></i> 5</span> <span><i class="fas fa-code-branch"></i> 2</span>
-        </div>
-        <a href="https://github.com/akshhthakkar/project-x-ml" target="_blank" class="btn">View on GitHub</a>
-      </div>
-      <div class="repo-card">
-        <h3>web-app-dashboard</h3>
-        <p>A responsive admin dashboard template built using React and modern CSS frameworks.</p>
-        <div class="language"><span class="language-dot"></span>JavaScript</div>
-        <div class="stats"><span><i class="fas fa-star"></i> 12</span> <span><i class="fas fa-code-branch"></i> 4</span>
-        </div>
-        <a href="https://github.com/akshhthakkar/web-app-dashboard" target="_blank" class="btn">View on GitHub</a>
-      </div>
+      <p class="text-center">Loading repositories...</p>
     </div>
 
     <h2>🛠️ Languages and Tools</h2>
@@ -817,20 +938,22 @@
     <div class="cta">
       <a href="https://github.com/akshhthakkar" target="_blank" class="btn"><i class="fab fa-github"></i> Explore More
         on GitHub</a>
-      <a href="mailto:aksht455@gmail.com" class="btn"><i class="fas fa-envelope"></i> Contact Me</a>
-    </div>
 
     <div class="coding-profiles">
       <h2>🔗 Coding Profiles</h2>
       <div class="profile-links">
-        <a href="https://www.leetcode.com/akshthakkar" target="_blank" title="LeetCode"><i class="fas fa-code"></i>
-          LeetCode</a>
-        <a href="https://www.codechef.com/users/akshthakkar" target="_blank" title="CodeChef"><i
-            class="fas fa-utensils"></i> CodeChef</a>
-        <a href="https://www.hackerrank.com/aksht455" target="_blank" title="HackerRank"><i
-            class="fas fa-laptop-code"></i> HackerRank</a>
-        <a href="https://codeforces.com/profile/akshthakkar" target="_blank" title="Codeforces"><i
-            class="fas fa-terminal"></i> Codeforces</a>
+        <a href="https://www.leetcode.com/akshthakkar" target="_blank" title="LeetCode">
+          <i class="fas fa-code"></i> LeetCode
+        </a>
+        <a href="https://www.codechef.com/users/akshthakkar" target="_blank" title="CodeChef">
+          <i class="fas fa-utensils"></i> CodeChef
+        </a>
+        <a href="https://www.hackerrank.com/aksht455" target="_blank" title="HackerRank">
+          <i class="fas fa-laptop-code"></i> HackerRank
+        </a>
+        <a href="https://codeforces.com/profile/akshthakkar" target="_blank" title="Codeforces">
+          <i class="fas fa-terminal"></i> Codeforces
+        </a>
       </div>
     </div>
   </section>
@@ -848,6 +971,7 @@
       const hamburger = document.querySelector('.hamburger');
       const navLinks = document.querySelector('.navbar-nav');
 
+      // Function to apply theme and update GitHub stats images
       function applyTheme(theme) {
         body.setAttribute('data-theme', theme);
         if (themeToggleCheckboxDesktop) {
@@ -857,11 +981,31 @@
           themeToggleCheckboxMobile.checked = (theme === 'dark');
         }
         localStorage.setItem('theme', theme);
+
+        // Update GitHub stats images based on theme
+        const githubStatsImg = document.getElementById('github-stats-img');
+        const profileViewsImg = document.getElementById('profile-views-img');
+
+        if (githubStatsImg) {
+          const currentSrc = githubStatsImg.src;
+          const newThemeParam = `theme=${theme === 'dark' ? 'dark' : 'default'}`;
+          if (currentSrc.includes('theme=')) {
+            githubStatsImg.src = currentSrc.replace(/theme=[^&]+/, newThemeParam);
+          } else {
+            githubStatsImg.src = `${currentSrc}&${newThemeParam}`;
+          }
+        }
+
+        // Komarev.com doesn't have a direct theme parameter, but we can ensure it's loaded
+        // if its source is somehow affected by theme logic, though it's usually static.
+        // For now, no specific theme change for komarev.com is applied.
       }
 
+      // Load saved theme
       const savedTheme = localStorage.getItem('theme') || 'light';
       applyTheme(savedTheme);
 
+      // Desktop theme toggle
       if (themeToggleCheckboxDesktop) {
         themeToggleCheckboxDesktop.addEventListener('change', () => {
           const newTheme = themeToggleCheckboxDesktop.checked ? 'dark' : 'light';
@@ -869,6 +1013,7 @@
         });
       }
 
+      // Mobile theme toggle
       if (themeToggleCheckboxMobile) {
         themeToggleCheckboxMobile.addEventListener('change', () => {
           const newTheme = themeToggleCheckboxMobile.checked ? 'dark' : 'light';
@@ -876,12 +1021,14 @@
         });
       }
 
+      // Hamburger menu toggle
       if (hamburger && navLinks) {
         hamburger.addEventListener('click', function () {
           navLinks.classList.toggle('active');
         });
       }
 
+      // Close mobile menu on link click
       const navItems = document.querySelectorAll('.navbar-nav li a');
       navItems.forEach(item => {
         item.addEventListener('click', () => {
@@ -906,35 +1053,45 @@
 
           reposContainer.innerHTML = ''; // Clear fallback content
 
-          // Limit to a reasonable number of repos if you have many, e.g., first 6
+          // Limit to a reasonable number of repos if you have many, e.g., first 9
           const displayLimit = 9; // Adjust as needed
           filteredRepos.slice(0, displayLimit).forEach(repo => {
             const repoCard = document.createElement('div');
             repoCard.className = 'repo-card';
 
-            // Example of conditional language dot color (can be expanded)
+            // Define language dot colors
             let languageDotColor = 'var(--accent)'; // Default
             switch (repo.language) {
               case 'JavaScript':
-                languageDotColor = '#f0db4f'; break;
+                languageDotColor = '#f0db4f';
+                break;
               case 'Python':
-                languageDotColor = '#306998'; break;
+                languageDotColor = '#306998';
+                break;
               case 'HTML':
-                languageDotColor = '#e34c26'; break;
+                languageDotColor = '#e34c26';
+                break;
               case 'CSS':
-                languageDotColor = '#264de4'; break;
+                languageDotColor = '#264de4';
+                break;
               case 'Java':
-                languageDotColor = '#007396'; break;
+                languageDotColor = '#007396';
+                break;
               case 'C++':
-                languageDotColor = '#00599c'; break;
+                languageDotColor = '#00599c';
+                break;
               case 'C':
-                languageDotColor = '#A8B9CC'; break;
+                languageDotColor = '#A8B9CC';
+                break;
               case 'TypeScript':
-                languageDotColor = '#007acc'; break;
+                languageDotColor = '#007acc';
+                break;
               case 'PHP':
-                languageDotColor = '#777bb4'; break;
+                languageDotColor = '#777bb4';
+                break;
               case 'Ruby':
-                languageDotColor = '#cc342d'; break;
+                languageDotColor = '#cc342d';
+                break;
               // Add more languages as needed
             }
 

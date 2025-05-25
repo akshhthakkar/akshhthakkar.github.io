@@ -37,7 +37,6 @@
             --accent-hover: #0056b3;
             --navbar-bg-mobile: #f0f0f0;
             --card-bg: #f9f9f9;
-            /* Added for consistency */
             --switch-off-bg: #ccc;
             --switch-on-bg: #4CAF50;
             --switch-circle-color: #fff;
@@ -51,7 +50,6 @@
             --accent-hover: #0a58ca;
             --navbar-bg-mobile: #1a1a1a;
             --card-bg: #1e1e1e;
-            /* Added for consistency */
             --switch-off-bg: #555;
             --switch-on-bg: #2196F3;
             --switch-circle-color: #fff;
@@ -61,7 +59,6 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            /* Changed to Inter for consistency */
             background-color: var(--bg);
             color: var(--text);
             transition: background 0.3s, color 0.3s;
@@ -217,16 +214,11 @@
             padding: 2rem;
         }
 
-        /* Enhanced Article Container Styling */
         .article {
             background: var(--card-bg);
-            /* Use card-bg for article background */
             border-radius: 12px;
-            /* More rounded corners */
             padding: 2.5rem;
-            /* Increased padding */
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            /* Stronger shadow */
             margin-bottom: 2rem;
             transition: background 0.3s, box-shadow 0.3s;
         }
@@ -237,13 +229,9 @@
 
         .article h1 {
             font-size: 2.8rem;
-            /* Larger title */
             color: var(--accent);
-            /* Accent color for title */
             margin-bottom: 1.5rem;
-            /* More space below title */
             text-align: center;
-            /* Center align title */
             line-height: 1.2;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
         }
@@ -254,9 +242,7 @@
 
         .article-content {
             font-size: 1.05rem;
-            /* Slightly larger base font size */
             line-height: 1.7;
-            /* Improved line height for readability */
             color: var(--text);
         }
 
@@ -285,7 +271,6 @@
             height: auto;
             border-radius: 8px;
             display: block;
-            /* Center images */
             margin: 1.5rem auto;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
@@ -303,11 +288,8 @@
 
         .article-content pre {
             background: var(--bg);
-            /* Use theme background for code blocks */
             padding: 1.2rem;
-            /* More padding */
             border-radius: 8px;
-            /* More rounded */
             overflow-x: auto;
             border: 1px solid rgba(0, 0, 0, 0.1);
             margin: 1.5rem 0;
@@ -321,9 +303,7 @@
 
         .article-content code {
             font-family: 'Fira Code', 'Courier New', monospace;
-            /* More modern monospace font */
             font-size: 0.95rem;
-            /* Slightly larger code font */
             color: var(--text);
         }
 
@@ -335,13 +315,11 @@
 
         .article-content blockquote {
             border-left: 5px solid var(--accent);
-            /* Thicker accent border */
             padding-left: 1.2rem;
             margin: 1.5rem 0;
             color: var(--text);
             opacity: 0.9;
             background-color: rgba(0, 0, 0, 0.03);
-            /* Subtle background for quotes */
             border-radius: 4px;
             padding-top: 0.8rem;
             padding-bottom: 0.8rem;
@@ -350,7 +328,6 @@
         [data-theme="dark"] .article-content blockquote {
             background-color: rgba(255, 255, 255, 0.03);
         }
-
 
         #loading {
             text-align: center;
@@ -369,12 +346,10 @@
         .btn {
             display: inline-block;
             padding: 0.6rem 1.2rem;
-            /* Larger button padding */
             background-color: var(--accent);
             color: var(--bg);
             text-decoration: none;
             border-radius: 8px;
-            /* More rounded */
             transition: background-color 0.2s, transform 0.1s ease-in-out;
             font-weight: 600;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -390,11 +365,8 @@
             text-align: center;
             margin: 2rem 0;
             display: flex;
-            /* Use flex for button alignment */
             justify-content: center;
-            /* Center the button */
             gap: 1rem;
-            /* Space between buttons if more are added later */
         }
 
         .footer {
@@ -404,26 +376,6 @@
             color: var(--text);
             margin-top: 2rem;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
-            /* Added shadow for consistency */
-        }
-
-        /* Socials icons styling */
-        .socials {
-            margin-top: 3rem;
-            text-align: center;
-        }
-
-        .socials a {
-            margin: 0 12px;
-            color: var(--text);
-            font-size: 2rem;
-            /* Larger icons */
-            transition: color 0.3s, transform 0.2s ease-out;
-        }
-
-        .socials a:hover {
-            color: var(--accent);
-            transform: translateY(-5px);
         }
 
         @media (max-width: 768px) {
@@ -479,12 +431,10 @@
 
             .article {
                 padding: 1.5rem;
-                /* Adjust padding for smaller screens */
             }
 
             .article h1 {
                 font-size: 2.2rem;
-                /* Adjust title size */
             }
 
             .article-content h2 {
@@ -511,11 +461,6 @@
 
             .article-content h3 {
                 font-size: 1.2rem;
-            }
-
-            .socials a {
-                font-size: 1.7rem;
-                margin: 0 8px;
             }
         }
     </style>
@@ -550,7 +495,6 @@
             <button class="hamburger" aria-label="Toggle navigation menu">☰</button>
         </div>
     </nav>
-
     <section class="container">
         <div class="article" id="article">
             <div id="loading">Loading article...</div>
@@ -559,19 +503,9 @@
             <a href="blog.html" class="btn">Back to Blogs</a>
         </div>
     </section>
-
-    <div class="socials">
-        <a href="https://twitter.com/akshhthakkar" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://dev.to/akshthakkar" target="_blank" title="Dev.to"><i class="fab fa-dev"></i></a>
-        <a href="https://github.com/akshhthakkar" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/akshthakkar" target="_blank" title="LinkedIn"><i
-                class="fab fa-linkedin"></i></a>
-    </div>
-
     <footer class="footer">
         <p>© 2025 Aksh Thakkar</p>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
@@ -579,83 +513,57 @@
             const themeToggleCheckboxMobile = document.getElementById('theme-toggle-checkbox-mobile');
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.navbar-nav');
-
-            // Theme toggle function
             function applyTheme(theme) {
                 body.setAttribute('data-theme', theme);
-                if (themeToggleCheckboxDesktop) {
-                    themeToggleCheckboxDesktop.checked = (theme === 'dark');
-                }
-                if (themeToggleCheckboxMobile) {
-                    themeToggleCheckboxMobile.checked = (theme === 'dark');
-                }
+                if (themeToggleCheckboxDesktop) themeToggleCheckboxDesktop.checked = (theme === 'dark');
+                if (themeToggleCheckboxMobile) themeToggleCheckboxMobile.checked = (theme === 'dark');
                 localStorage.setItem('theme', theme);
             }
-
-            // Load saved theme
             const savedTheme = localStorage.getItem('theme') || 'light';
             applyTheme(savedTheme);
-
-            // Desktop theme toggle
             if (themeToggleCheckboxDesktop) {
                 themeToggleCheckboxDesktop.addEventListener('change', () => {
                     const newTheme = themeToggleCheckboxDesktop.checked ? 'dark' : 'light';
                     applyTheme(newTheme);
                 });
             }
-
-            // Mobile theme toggle
             if (themeToggleCheckboxMobile) {
                 themeToggleCheckboxMobile.addEventListener('change', () => {
                     const newTheme = themeToggleCheckboxMobile.checked ? 'dark' : 'light';
                     applyTheme(newTheme);
                 });
             }
-
-            // Hamburger menu toggle
             if (hamburger && navLinks) {
-                hamburger.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                });
+                hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
             }
-
-            // Close mobile menu on link click
             const navItems = document.querySelectorAll('.navbar-nav li a');
             navItems.forEach(item => {
                 item.addEventListener('click', () => {
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                    }
+                    if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
                 });
             });
-
-            // Article fetching
             const articleContainer = document.getElementById('article');
             const loadingEl = document.getElementById('loading');
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
             const slug = urlParams.get('slug');
-
-            console.log('Post ID:', postId, 'Slug:', slug); // Debug
-
+            console.log('Post ID:', postId, 'Slug:', slug);
             if (!postId && !slug) {
                 loadingEl.style.display = 'none';
                 articleContainer.innerHTML = '<div id="error">No article ID or slug provided.</div>';
                 return;
             }
-
             const apiUrl = postId ? `https://dev.to/api/articles/${postId}` : `https://dev.to/api/articles/${slug}`;
-            console.log('Fetching from:', apiUrl); // Debug
-
+            console.log('Fetching from:', apiUrl);
             fetch(apiUrl)
                 .then(response => {
-                    console.log('API Response Status:', response.status, 'OK:', response.ok); // Debug
+                    console.log('API Response Status:', response.status, 'OK:', response.ok);
                     if (!response.ok) throw new Error(`DEV.to API error: ${response.status} ${response.statusText}`);
                     return response.json();
                 })
                 .then(data => {
-                    console.log('API Data:', data); // Debug
-                    console.log('Is marked defined?', typeof marked !== 'undefined'); // Debug
+                    console.log('API Data:', data);
+                    console.log('Is marked defined?', typeof marked !== 'undefined');
                     if (typeof marked === 'undefined') {
                         throw new Error('marked.js is not loaded. Please check your internet or CDN.');
                     }
@@ -674,7 +582,7 @@
                 .catch(error => {
                     loadingEl.style.display = 'none';
                     articleContainer.innerHTML = `<div id="error">Failed to load article: ${error.message}. Please try again later.</div>`;
-                    console.error('Article fetch error:', error); // Debug
+                    console.error('Article fetch error:', error);
                 });
         });
     </script>
