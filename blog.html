@@ -9,7 +9,6 @@
   <title>Aksh Thakkar - Blogs</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* Add this universal box-sizing for consistent layout */
     html {
       box-sizing: border-box;
     }
@@ -26,8 +25,6 @@
       --accent: #007bff;
       --accent-hover: #0056b3;
       --navbar-bg-mobile: #f0f0f0;
-
-      /* Switch colors - Light mode */
       --switch-off-bg: #ccc;
       --switch-on-bg: #4CAF50;
       --switch-circle-color: #fff;
@@ -40,8 +37,6 @@
       --accent: #0d6efd;
       --accent-hover: #0a58ca;
       --navbar-bg-mobile: #1a1a1a;
-
-      /* Switch colors - Dark mode */
       --switch-off-bg: #555;
       --switch-on-bg: #2196F3;
       --switch-circle-color: #fff;
@@ -56,7 +51,6 @@
       transition: background 0.3s, color 0.3s;
     }
 
-    /* --- Navbar Styles --- */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -76,7 +70,6 @@
       text-decoration: none;
     }
 
-    /* Desktop Navigation Links */
     .navbar-nav {
       list-style: none;
       display: flex;
@@ -97,7 +90,6 @@
       color: var(--accent);
     }
 
-    /* --- Theme Switch Styles --- */
     .theme-switch {
       position: relative;
       display: inline-block;
@@ -107,14 +99,12 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Hide default checkbox */
     .theme-switch input {
       opacity: 0;
       width: 0;
       height: 0;
     }
 
-    /* The slider (track) */
     .slider {
       position: absolute;
       cursor: pointer;
@@ -128,7 +118,6 @@
       border: 1px solid var(--switch-border);
     }
 
-    /* The slider knob/circle */
     .slider:before {
       position: absolute;
       content: "";
@@ -141,10 +130,8 @@
       transition: transform 0.4s;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       z-index: 2;
-      /* Ensure the knob is above icons on track */
     }
 
-    /* When checked (dark mode), change background and move circle */
     .theme-switch input:checked+.slider {
       background-color: var(--switch-on-bg);
       border-color: var(--switch-on-bg);
@@ -154,75 +141,49 @@
       transform: translateX(26px);
     }
 
-    /* Styles for the sun/moon ICONS INSIDE THE KNOB */
     .slider .icon-in-knob {
       position: absolute;
       top: 50%;
-      /* Center vertically within the slider area */
       font-size: 0.7em;
-      /* Smaller size to fit inside knob */
       color: var(--text);
-      /* Text color, will be visible on the knob */
       transition: transform 0.4s, opacity 0.4s;
       z-index: 3;
-      /* Ensure icon is above the knob */
     }
 
     .slider .fa-sun-knob {
       left: 11px;
-      /* Adjust to center within the knob when it's on the left */
       transform: translateY(-50%) translateX(0);
-      /* Default position for sun */
       opacity: 1;
-      /* Visible in light mode */
     }
 
     .slider .fa-moon-knob {
       left: 37px;
-      /* Adjust to center within the knob when it's on the right */
       transform: translateY(-50%) translateX(0);
-      /* Default position for moon */
       opacity: 0;
-      /* Hidden in light mode */
     }
 
-    /* When checked (dark mode), move sun to right and hide, move moon to left and show */
     .theme-switch input:checked+.slider .fa-sun-knob {
       transform: translateY(-50%) translateX(26px);
-      /* Move with knob */
       opacity: 0;
-      /* Hide sun when in dark mode */
     }
 
     .theme-switch input:checked+.slider .fa-moon-knob {
       transform: translateY(-50%) translateX(-26px);
-      /* Move with knob (relative to initial pos) */
       opacity: 1;
-      /* Show moon when in dark mode */
     }
 
-
-    /* --- Desktop Specific Elements --- */
-    /* Desktop theme switch: visible by default, positioned within navbar-nav */
     .desktop-theme-switch {
       margin-left: 1.5rem;
-      /* Space from last nav link item */
       display: flex;
-      /* Ensure it's treated as a flex item */
       align-items: center;
-      /* Vertically align the switch */
     }
 
-    /* Mobile Controls (Hamburger + Mobile Theme Switch) */
     .mobile-controls-group {
       display: none;
-      /* Hidden by default on desktop */
       align-items: center;
       gap: 1rem;
-      /* Space between hamburger and switch */
     }
 
-    /* Hamburger icon: hidden on desktop */
     .hamburger {
       display: none;
       font-size: 1.8rem;
@@ -234,7 +195,6 @@
       z-index: 11;
     }
 
-    /* --- Main Content Area --- */
     .container {
       max-width: 1000px;
       margin: auto;
@@ -350,7 +310,6 @@
       }
     }
 
-    /* --- Media Queries for Responsiveness --- */
     @media (max-width: 768px) {
       .navbar {
         padding: 1rem 1.5rem;
@@ -361,7 +320,6 @@
         flex-grow: 1;
       }
 
-      /* Hide desktop navigation links and desktop switch on mobile */
       .navbar-nav {
         display: none;
         flex-direction: column;
@@ -387,22 +345,18 @@
         padding: 0.8rem 0;
       }
 
-      /* Ensure desktop switch is hidden when mobile rules apply */
       .desktop-theme-switch {
         display: none;
       }
 
-      /* Show mobile controls group (hamburger + mobile switch) */
       .mobile-controls-group {
         display: flex;
       }
 
-      /* Show hamburger on mobile */
       .hamburger {
         display: block;
       }
 
-      /* Blog Page Adjustments */
       .container {
         padding: 1rem;
       }
@@ -431,7 +385,6 @@
 <body data-theme="light">
   <nav class="navbar">
     <a href="index.html" class="navbar-brand"><strong>Aksh</strong></a>
-
     <ul class="navbar-nav">
       <li><a href="index.html">About</a></li>
       <li><a href="blog.html">Blogs</a></li>
@@ -446,7 +399,6 @@
         </label>
       </li>
     </ul>
-
     <div class="mobile-controls-group">
       <label class="theme-switch" aria-label="Toggle dark mode">
         <input type="checkbox" id="theme-toggle-checkbox-mobile">
@@ -455,7 +407,7 @@
           <i class="fas fa-moon icon-in-knob fa-moon-knob"></i>
         </span>
       </label>
-      <button class="hamburger" aria-label="Toggle navigation menu">&#9776;</button>
+      <button class="hamburger" aria-label="Toggle navigation menu">☰</button>
     </div>
   </nav>
 
@@ -480,17 +432,14 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const body = document.body;
-      // Target BOTH checkboxes
       const themeToggleCheckboxDesktop = document.getElementById('theme-toggle-checkbox-desktop');
       const themeToggleCheckboxMobile = document.getElementById('theme-toggle-checkbox-mobile');
-
       const hamburger = document.querySelector('.hamburger');
       const navLinks = document.querySelector('.navbar-nav');
 
-      // --- Theme Toggle Function ---
+      // Theme toggle function
       function applyTheme(theme) {
         body.setAttribute('data-theme', theme);
-        // Sync both checkboxes
         if (themeToggleCheckboxDesktop) {
           themeToggleCheckboxDesktop.checked = (theme === 'dark');
         }
@@ -500,11 +449,11 @@
         localStorage.setItem('theme', theme);
       }
 
-      // Load saved theme on page load
+      // Load saved theme
       const savedTheme = localStorage.getItem('theme') || 'light';
-      applyTheme(savedTheme); // Initialize the theme and checkbox state
+      applyTheme(savedTheme);
 
-      // Listen for changes on desktop checkbox
+      // Desktop theme toggle
       if (themeToggleCheckboxDesktop) {
         themeToggleCheckboxDesktop.addEventListener('change', () => {
           const newTheme = themeToggleCheckboxDesktop.checked ? 'dark' : 'light';
@@ -512,7 +461,7 @@
         });
       }
 
-      // Listen for changes on mobile checkbox
+      // Mobile theme toggle
       if (themeToggleCheckboxMobile) {
         themeToggleCheckboxMobile.addEventListener('change', () => {
           const newTheme = themeToggleCheckboxMobile.checked ? 'dark' : 'light';
@@ -520,14 +469,14 @@
         });
       }
 
-      // --- Navbar Mobile Toggle Script ---
+      // Hamburger menu toggle
       if (hamburger && navLinks) {
-        hamburger.addEventListener('click', function () {
+        hamburger.addEventListener('click', () => {
           navLinks.classList.toggle('active');
         });
       }
 
-      // Optional: Close mobile menu when a link is clicked
+      // Close mobile menu on link click
       const navItems = document.querySelectorAll('.navbar-nav li a');
       navItems.forEach(item => {
         item.addEventListener('click', () => {
@@ -537,17 +486,17 @@
         });
       });
 
-      // --- Existing Blog Fetching Script ---
-      const username = "akshhthakkar";
-      const repo = "akshhthakkar.github.io";
-      const blogFolder = "blogs";
-      const devToUsername = "akshthakkar"; // Replace with your DEV.to username
-      const blogList = document.getElementById("blog-list");
-      const loadingEl = document.getElementById("loading");
+      // Blog fetching
+      const username = 'akshhthakkar';
+      const repo = 'akshhthakkar.github.io';
+      const blogFolder = 'blogs';
+      const devToUsername = 'akshthakkar';
+      const blogList = document.getElementById('blog-list');
+      const loadingEl = document.getElementById('loading');
       const githubApiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${blogFolder}`;
       const devToApiUrl = `https://dev.to/api/articles?username=${devToUsername}&per_page=10`;
 
-      // Fetch local blogs from GitHub
+      // Fetch local blogs
       const fetchLocalBlogs = fetch(githubApiUrl)
         .then(res => {
           if (!res.ok) throw new Error('GitHub API error');
@@ -555,16 +504,16 @@
         })
         .then(data => {
           return data
-            .filter(file => file.name.endsWith(".html") || file.name.endsWith(".md"))
+            .filter(file => file.name.endsWith('.html') || file.name.endsWith('.md'))
             .map(file => {
-              let postName = file.name.replace(/\.html|\.md/, "").replace(/-/g, " ");
+              let postName = file.name.replace(/\.html|\.md/, '').replace(/-/g, ' ');
               postName = postName.charAt(0).toUpperCase() + postName.slice(1);
               return {
                 title: postName,
                 url: `${blogFolder}/${file.name}`,
-                description: "No excerpt available. Click to read the full post.",
-                source: "Local",
-                date: null // GitHub API doesn't provide file creation date
+                description: 'No excerpt available. Click to read the full post.',
+                source: 'Local',
+                date: null
               };
             });
         })
@@ -582,9 +531,9 @@
         .then(data => {
           return data.map(post => ({
             title: post.title,
-            url: post.url,
-            description: post.description || "No excerpt available. Click to read the full post.",
-            source: "DEV.to",
+            url: `article.html?id=${post.id}`,
+            description: post.description || 'No excerpt available. Click to read the full post.',
+            source: 'DEV.to',
             date: post.published_at
           }));
         })
@@ -597,32 +546,32 @@
       Promise.all([fetchLocalBlogs, fetchDevToBlogs])
         .then(([localBlogs, devToBlogs]) => {
           loadingEl.style.display = 'none';
-          blogList.innerHTML = "";
+          blogList.innerHTML = '';
 
-          // Merge blogs and sort by date (if available)
           const allBlogs = [...localBlogs, ...devToBlogs].sort((a, b) => {
-            if (!a.date || !b.date) return 0; // Keep order if dates are missing
-            return new Date(b.date) - new Date(a.date); // Newest first
+            if (!a.date || !b.date) return 0;
+            return new Date(b.date) - new Date(a.date);
           });
 
           allBlogs.forEach(post => {
-            const blogCard = document.createElement("div");
-            blogCard.className = "blog-card";
+            const blogCard = document.createElement('div');
+            blogCard.className = 'blog-card';
+            const linkAttributes = post.source === 'Local' ? 'target="_blank" rel="noopener noreferrer"' : 'rel="noopener noreferrer"';
             blogCard.innerHTML = `
-                            <a href="${post.url}" target="_blank" rel="noopener noreferrer">${post.title}</a>
-                            <p>${post.description}</p>
-                            <div class="source">${post.source}</div>
-                        `;
+              <a href="${post.url}" ${linkAttributes}>${post.title}</a>
+              <p>${post.description}</p>
+              <div class="source">${post.source}</div>
+            `;
             blogList.appendChild(blogCard);
           });
 
           if (allBlogs.length === 0) {
-            blogList.innerHTML = "<div>No blogs found. Start writing!</div>";
+            blogList.innerHTML = '<div>No blogs found. Start writing!</div>';
           }
         })
         .catch(err => {
           loadingEl.style.display = 'none';
-          blogList.innerHTML = "<div>Failed to load blogs. Try again later.</div>";
+          blogList.innerHTML = '<div>Failed to load blogs. Try again later.</div>';
           console.error('Combined fetch error:', err);
         });
     });
