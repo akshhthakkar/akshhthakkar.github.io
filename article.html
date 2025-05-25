@@ -7,6 +7,7 @@
     <meta name="description" content="Blog post by Aksh Thakkar, a Computer Science student at Parul University." />
     <title>Aksh Thakkar - Blog Post</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
     <script>
         window.addEventListener('load', () => {
@@ -20,8 +21,11 @@
         });
     </script>
     <style>
+        /* Universal box-sizing for consistent layout */
         html {
             box-sizing: border-box;
+            scroll-behavior: smooth;
+            /* Smooth scrolling for anchor links */
         }
 
         *,
@@ -30,63 +34,120 @@
             box-sizing: inherit;
         }
 
+        /* Root CSS variables for light theme - COPIED FROM INDEX.HTML FOR EXACT CONSISTENCY */
         :root {
             --bg: #ffffff;
-            --text: #000000;
+            --text: #333333;
+            --heading-text: #000000;
             --accent: #007bff;
             --accent-hover: #0056b3;
-            --navbar-bg-mobile: #f0f0f0;
-            --card-bg: #f9f9f9;
+            --navbar-bg-mobile: #f8f8f8;
+            --card-bg: #ffffff;
+            --card-border: #e8e8e8;
+            /* Very light border for minimal look */
+            --section-bg-light: #fdfdfd;
+            /* Very light background for sections */
+            --subtle-shadow-light: rgba(0, 0, 0, 0.02);
+            /* Even more subtle shadow */
+            --hover-shadow-light: rgba(0, 0, 0, 0.05);
+            /* Subtle hover shadow */
+            --card-hover-bg-light: rgba(0, 123, 255, 0.01);
+            /* Extremely light blue tint on hover */
+
+            /* Switch colors - Light mode */
             --switch-off-bg: #ccc;
             --switch-on-bg: #4CAF50;
             --switch-circle-color: #fff;
             --switch-border: #999;
+
+            /* Hero section gradient colors - Light mode (copied from index.html, though not directly used on this page's hero) */
+            --hero-gradient-start: #e0f2f7;
+            /* Light blue */
+            --hero-gradient-mid: #ccecf7;
+            /* Lighter blue */
+            --hero-gradient-end: #ffffff;
+            /* White */
         }
 
+        /* Dark theme overrides for CSS variables - COPIED FROM INDEX.HTML FOR EXACT CONSISTENCY */
         [data-theme="dark"] {
             --bg: #121212;
-            --text: #f0f0f0;
-            --accent: #0d6efd;
-            --accent-hover: #0a58ca;
+            /* Darker background */
+            --text: #e0e0e0;
+            /* Lighter text */
+            --heading-text: #ffffff;
+            --accent: #66b3ff;
+            /* Brighter accent for dark mode */
+            --accent-hover: #4da6ff;
             --navbar-bg-mobile: #1a1a1a;
             --card-bg: #1e1e1e;
+            --card-border: #252525;
+            /* Darker border for minimal look */
+            --section-bg-light: #151515;
+            /* Very dark background for sections */
+            --subtle-shadow-dark: rgba(255, 255, 255, 0.02);
+            /* Even more subtle shadow */
+            --hover-shadow-dark: rgba(255, 255, 255, 0.05);
+            /* Subtle hover shadow */
+            --card-hover-bg-dark: rgba(102, 179, 255, 0.01);
+            /* Extremely light blue tint on hover */
+
+
+            /* Switch colors - Dark mode */
             --switch-off-bg: #555;
             --switch-on-bg: #2196F3;
             --switch-circle-color: #fff;
             --switch-border: #777;
+
+            /* Hero section gradient colors - Dark mode (copied from index.html) */
+            --hero-gradient-start: #0a2a4a;
+            /* Dark blue */
+            --hero-gradient-mid: #1a3a5a;
+            /* Slightly lighter dark blue */
+            --hero-gradient-end: #121212;
+            /* Dark background */
         }
+
 
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
+            /* Consistent font family */
             background-color: var(--bg);
             color: var(--text);
             transition: background 0.3s, color 0.3s;
+            line-height: 1.6;
         }
 
+        /* --- Navbar Styles (COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY) --- */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2rem;
             background: var(--bg);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 4px var(--subtle-shadow-light);
             position: sticky;
             top: 0;
             z-index: 10;
         }
 
+        [data-theme="dark"] .navbar {
+            box-shadow: 0 1px 4px var(--subtle-shadow-dark);
+        }
+
         .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--text);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--heading-text);
             text-decoration: none;
         }
 
         .navbar-nav {
             list-style: none;
             display: flex;
-            gap: 1.5rem;
+            gap: 1.8rem;
+            /* Adjusted gap for consistency */
             margin: 0;
             padding: 0;
             align-items: center;
@@ -96,11 +157,28 @@
             text-decoration: none;
             color: var(--text);
             font-weight: 500;
-            transition: color 0.2s;
+            transition: color 0.2s ease-in-out;
+            position: relative;
+            padding-bottom: 0.2rem;
         }
 
         .navbar-nav li a:hover {
             color: var(--accent);
+        }
+
+        .navbar-nav li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease-in-out;
+        }
+
+        .navbar-nav li a:hover::after {
+            width: 100%;
         }
 
         .theme-switch {
@@ -208,6 +286,7 @@
             z-index: 11;
         }
 
+        /* Existing styles for the article page content - ENSURING NO UNINTENDED CHANGES */
         .container {
             max-width: 1000px;
             margin: auto;
@@ -218,13 +297,13 @@
             background: var(--card-bg);
             border-radius: 12px;
             padding: 2.5rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px var(--subtle-shadow-light);
             margin-bottom: 2rem;
             transition: background 0.3s, box-shadow 0.3s;
         }
 
         [data-theme="dark"] .article {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 20px var(--subtle-shadow-dark);
         }
 
         .article h1 {
@@ -250,20 +329,20 @@
             font-size: 2rem;
             margin-top: 2rem;
             margin-bottom: 1rem;
-            color: var(--text);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--heading-text);
+            border-bottom: 1px solid var(--card-border);
             padding-bottom: 0.5rem;
         }
 
         [data-theme="dark"] .article-content h2 {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--card-border);
         }
 
         .article-content h3 {
             font-size: 1.6rem;
             margin-top: 1.8rem;
             margin-bottom: 0.8rem;
-            color: var(--text);
+            color: var(--heading-text);
         }
 
         .article-content img {
@@ -272,7 +351,11 @@
             border-radius: 8px;
             display: block;
             margin: 1.5rem auto;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px var(--subtle-shadow-light);
+        }
+
+        [data-theme="dark"] .article-content img {
+            box-shadow: 0 4px 10px var(--subtle-shadow-dark);
         }
 
         .article-content a {
@@ -291,14 +374,14 @@
             padding: 1.2rem;
             border-radius: 8px;
             overflow-x: auto;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
             margin: 1.5rem 0;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 0 5px var(--subtle-shadow-light);
         }
 
         [data-theme="dark"] .article-content pre {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            box-shadow: inset 0 0 5px var(--subtle-shadow-dark);
         }
 
         .article-content code {
@@ -347,18 +430,26 @@
             display: inline-block;
             padding: 0.6rem 1.2rem;
             background-color: var(--accent);
-            color: var(--bg);
+            color: white;
             text-decoration: none;
             border-radius: 8px;
             transition: background-color 0.2s, transform 0.1s ease-in-out;
             font-weight: 600;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px var(--subtle-shadow-light);
+        }
+
+        [data-theme="dark"] .btn {
+            box-shadow: 0 2px 5px var(--subtle-shadow-dark);
         }
 
         .btn:hover {
             background-color: var(--accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px var(--hover-shadow-light);
+        }
+
+        [data-theme="dark"] .btn:hover {
+            box-shadow: 0 4px 8px var(--hover-shadow-dark);
         }
 
         .cta {
@@ -375,9 +466,14 @@
             background: var(--bg);
             color: var(--text);
             margin-top: 2rem;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 -1px 4px var(--subtle-shadow-light);
         }
 
+        [data-theme="dark"] .footer {
+            box-shadow: 0 -1px 4px var(--subtle-shadow-dark);
+        }
+
+        /* --- Media Queries for Responsiveness (COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY) --- */
         @media (max-width: 768px) {
             .navbar {
                 padding: 1rem 1.5rem;
@@ -386,6 +482,7 @@
 
             .navbar-brand {
                 flex-grow: 1;
+                font-size: 1.4rem;
             }
 
             .navbar-nav {
@@ -405,6 +502,7 @@
             .navbar-nav.active {
                 display: flex;
                 max-height: 300px;
+                /* Adjust as needed */
             }
 
             .navbar-nav li {
@@ -412,6 +510,7 @@
                 text-align: center;
                 padding: 0.8rem 0;
             }
+
 
             .desktop-theme-switch {
                 display: none;
@@ -470,10 +569,10 @@
     <nav class="navbar">
         <a href="index.html" class="navbar-brand"><strong>Aksh</strong></a>
         <ul class="navbar-nav">
-            <li><a href="index.html#about">About Me</a></li>
-            <li><a href="index.html#certifications">My Certifications</a></li>
-            <li><a href="blog.html">My Blog</a></li>
-            <li><a href="repositories.html">My Repositories</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#certifications">Certifications</a></li>
+            <li><a href="blog.html">Blogs</a></li>
+            <li><a href="repositories.html">Repositories</a></li>
             <li class="desktop-theme-switch">
                 <label class="theme-switch" aria-label="Toggle dark mode">
                     <input type="checkbox" id="theme-toggle-checkbox-desktop">
@@ -513,74 +612,103 @@
             const themeToggleCheckboxMobile = document.getElementById('theme-toggle-checkbox-mobile');
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.navbar-nav');
+
+            // Function to apply theme and update checkbox states
             function applyTheme(theme) {
                 body.setAttribute('data-theme', theme);
                 if (themeToggleCheckboxDesktop) themeToggleCheckboxDesktop.checked = (theme === 'dark');
                 if (themeToggleCheckboxMobile) themeToggleCheckboxMobile.checked = (theme === 'dark');
                 localStorage.setItem('theme', theme);
             }
+
+            // Load saved theme on page load
             const savedTheme = localStorage.getItem('theme') || 'light';
             applyTheme(savedTheme);
+
+            // Listen for changes on desktop checkbox
             if (themeToggleCheckboxDesktop) {
                 themeToggleCheckboxDesktop.addEventListener('change', () => {
                     const newTheme = themeToggleCheckboxDesktop.checked ? 'dark' : 'light';
                     applyTheme(newTheme);
                 });
             }
+
+            // Listen for changes on mobile checkbox
             if (themeToggleCheckboxMobile) {
                 themeToggleCheckboxMobile.addEventListener('change', () => {
                     const newTheme = themeToggleCheckboxMobile.checked ? 'dark' : 'light';
                     applyTheme(newTheme);
                 });
             }
+
+            // Hamburger menu toggle
             if (hamburger && navLinks) {
                 hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
             }
+
+            // Close mobile menu when a link is clicked
             const navItems = document.querySelectorAll('.navbar-nav li a');
             navItems.forEach(item => {
                 item.addEventListener('click', () => {
-                    if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+                    // Only close if it's a mobile view and the menu is active
+                    if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
                 });
             });
+
             const articleContainer = document.getElementById('article');
             const loadingEl = document.getElementById('loading');
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
             const slug = urlParams.get('slug');
+
             console.log('Post ID:', postId, 'Slug:', slug);
+
             if (!postId && !slug) {
                 loadingEl.style.display = 'none';
                 articleContainer.innerHTML = '<div id="error">No article ID or slug provided.</div>';
                 return;
             }
+
+            // Determine API URL based on whether ID or slug is present
             const apiUrl = postId ? `https://dev.to/api/articles/${postId}` : `https://dev.to/api/articles/${slug}`;
             console.log('Fetching from:', apiUrl);
+
             fetch(apiUrl)
                 .then(response => {
                     console.log('API Response Status:', response.status, 'OK:', response.ok);
-                    if (!response.ok) throw new Error(`DEV.to API error: ${response.status} ${response.statusText}`);
+                    if (!response.ok) {
+                        throw new Error(`DEV.to API error: ${response.status} ${response.statusText}`);
+                    }
                     return response.json();
                 })
                 .then(data => {
                     console.log('API Data:', data);
                     console.log('Is marked defined?', typeof marked !== 'undefined');
+
+                    // Check if marked.js is loaded before using it
                     if (typeof marked === 'undefined') {
                         throw new Error('marked.js is not loaded. Please check your internet or CDN.');
                     }
-                    loadingEl.style.display = 'none';
-                    const htmlContent = marked.parse(data.body_markdown || '');
+
+                    loadingEl.style.display = 'none'; // Hide loading message
+                    const htmlContent = marked.parse(data.body_markdown || ''); // Convert markdown to HTML
+
                     articleContainer.innerHTML = `
-            <h1>${data.title}</h1>
-            <div class="article-content">${htmlContent}</div>
-            <p>Source: <a href="${data.url}" target="_blank" rel="noopener noreferrer">DEV.to</a></p>
-          `;
+                        <h1>${data.title}</h1>
+                        <div class="article-content">${htmlContent}</div>
+                        <p>Source: <a href="${data.url}" target="_blank" rel="noopener noreferrer">DEV.to</a></p>
+                    `;
+
+                    // Add canonical link for SEO if needed
                     const canonicalLink = document.createElement('link');
                     canonicalLink.rel = 'canonical';
                     canonicalLink.href = window.location.href;
                     document.head.appendChild(canonicalLink);
                 })
                 .catch(error => {
-                    loadingEl.style.display = 'none';
+                    loadingEl.style.display = 'none'; // Hide loading message
                     articleContainer.innerHTML = `<div id="error">Failed to load article: ${error.message}. Please try again later.</div>`;
                     console.error('Article fetch error:', error);
                 });

@@ -8,9 +8,23 @@
     content="Blog posts by Aksh Thakkar, a Computer Science student at Parul University, covering web development, AI, and technology insights." />
   <title>Aksh Thakkar - Blogs</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      if (typeof marked === 'undefined') {
+        console.warn('Primary marked.js CDN failed, loading fallback');
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.min.js';
+        script.async = true;
+        document.head.appendChild(script);
+      }
+    });
+  </script>
   <style>
     html {
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     *,
@@ -19,69 +33,118 @@
       box-sizing: inherit;
     }
 
+    /* Root CSS variables for light theme (copied from repositories.html for consistency) */
     :root {
       --bg: #ffffff;
-      --text: #000000;
+      --text: #333333;
+      --heading-text: #000000;
       --accent: #007bff;
       --accent-hover: #0056b3;
-      --navbar-bg-mobile: #f0f0f0;
-      --card-bg: #f9f9f9;
+      --navbar-bg-mobile: #f8f8f8;
+      --card-bg: #ffffff;
+      --card-border: #e8e8e8;
+      /* Very light border for minimal look */
+      --section-bg-light: #fdfdfd;
+      /* Very light background for sections */
+      --subtle-shadow-light: rgba(0, 0, 0, 0.02);
+      /* Even more subtle shadow */
+      --hover-shadow-light: rgba(0, 0, 0, 0.05);
+      /* Subtle hover shadow */
+      --card-hover-bg-light: rgba(0, 123, 255, 0.01);
+      /* Extremely light blue tint on hover */
+
+      /* Switch colors - Light mode */
       --switch-off-bg: #ccc;
       --switch-on-bg: #4CAF50;
       --switch-circle-color: #fff;
       --switch-border: #999;
+
+      /* Hero section gradient colors - Light mode (more pronounced blue) */
       --hero-gradient-start-light: #e0f2f7;
+      /* Light blue */
       --hero-gradient-mid-light: #ccecf7;
+      /* Lighter blue */
       --hero-gradient-end-light: #ffffff;
+      /* White */
     }
 
+    /* Dark theme overrides for CSS variables (copied from repositories.html for consistency) */
     [data-theme="dark"] {
       --bg: #121212;
-      --text: #f0f0f0;
-      --accent: #0d6efd;
-      --accent-hover: #0a58ca;
+      /* Darker background */
+      --text: #e0e0e0;
+      /* Lighter text */
+      --heading-text: #ffffff;
+      --accent: #66b3ff;
+      /* Brighter accent for dark mode */
+      --accent-hover: #4da6ff;
       --navbar-bg-mobile: #1a1a1a;
       --card-bg: #1e1e1e;
+      --card-border: #252525;
+      /* Darker border for minimal look */
+      --section-bg-light: #151515;
+      /* Very dark background for sections */
+      --subtle-shadow-dark: rgba(255, 255, 255, 0.02);
+      /* Even more subtle shadow */
+      --hover-shadow-dark: rgba(255, 255, 255, 0.05);
+      /* Subtle hover shadow */
+      --card-hover-bg-dark: rgba(102, 179, 255, 0.01);
+      /* Extremely light blue tint on hover */
+
+
+      /* Switch colors - Dark mode */
       --switch-off-bg: #555;
       --switch-on-bg: #2196F3;
       --switch-circle-color: #fff;
       --switch-border: #777;
+
+      /* Hero section gradient colors - Dark mode (more pronounced blue) */
       --hero-gradient-start-dark: #0a2a4a;
+      /* Dark blue */
       --hero-gradient-mid-dark: #1a3a5a;
+      /* Slightly lighter dark blue */
       --hero-gradient-end-dark: #121212;
+      /* Dark background */
     }
 
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
+      /* Consistent font family */
       background-color: var(--bg);
       color: var(--text);
       transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
     }
 
+    /* --- Navbar Styles (copied from repositories.html for consistency) --- */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
       background: var(--bg);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 4px var(--subtle-shadow-light);
       position: sticky;
       top: 0;
       z-index: 10;
     }
 
+    [data-theme="dark"] .navbar {
+      box-shadow: 0 1px 4px var(--subtle-shadow-dark);
+    }
+
     .navbar-brand {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--text);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--heading-text);
       text-decoration: none;
     }
 
     .navbar-nav {
       list-style: none;
       display: flex;
-      gap: 1.5rem;
+      gap: 1.8rem;
       margin: 0;
       padding: 0;
       align-items: center;
@@ -91,11 +154,28 @@
       text-decoration: none;
       color: var(--text);
       font-weight: 500;
-      transition: color 0.2s;
+      transition: color 0.2s ease-in-out;
+      position: relative;
+      padding-bottom: 0.2rem;
     }
 
     .navbar-nav li a:hover {
       color: var(--accent);
+    }
+
+    .navbar-nav li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width 0.3s ease-in-out;
+    }
+
+    .navbar-nav li a:hover::after {
+      width: 100%;
     }
 
     .theme-switch {
@@ -229,7 +309,8 @@
     .hero h1 {
       font-size: 3.2rem;
       margin-bottom: 0.8rem;
-      color: var(--text);
+      color: var(--heading-text);
+      /* Changed to heading-text for consistency */
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
       letter-spacing: 0.05em;
       line-height: 1.2;
@@ -285,11 +366,13 @@
 
     .blog-card {
       background: var(--card-bg);
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--card-border);
+      /* Changed to use card-border variable */
       border-left: 5px solid var(--accent);
       border-radius: 12px;
       padding: 1.5rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px var(--subtle-shadow-light);
+      /* Changed to use subtle-shadow-light variable */
       transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
       display: flex;
       flex-direction: column;
@@ -299,18 +382,22 @@
     }
 
     [data-theme="dark"] .blog-card {
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      /* Changed to use card-border variable */
       border-left: 5px solid var(--accent);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 15px var(--subtle-shadow-dark);
+      /* Changed to use subtle-shadow-dark variable */
     }
 
     .blog-card:hover {
       transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 15px 30px var(--hover-shadow-light);
+      /* Changed to use hover-shadow-light variable */
     }
 
     [data-theme="dark"] .blog-card:hover {
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 15px 30px var(--hover-shadow-dark);
+      /* Changed to use hover-shadow-dark variable */
     }
 
     .blog-card a.blog-title-link {
@@ -340,14 +427,17 @@
       display: flex;
       align-items: center;
       font-size: 0.85rem;
-      color: #777;
+      color: var(--text);
+      /* Changed to use text variable */
+      opacity: 0.7;
+      /* Adjusted opacity for better contrast */
       margin-bottom: 0.5rem;
       gap: 0.75rem;
       flex-wrap: wrap;
     }
 
     [data-theme="dark"] .blog-card .blog-meta {
-      color: #bbb;
+      color: var(--text);
     }
 
     .blog-card .blog-meta span {
@@ -366,20 +456,33 @@
       margin-top: 0.75rem;
       padding: 0.6rem 1.2rem;
       background-color: var(--accent);
-      color: var(--bg);
+      color: white;
+      /* Explicitly white for button text */
       text-decoration: none;
       border-radius: 8px;
       font-size: 0.9rem;
       font-weight: 600;
       transition: background-color 0.2s, transform 0.1s ease-in-out;
       align-self: flex-start;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 5px var(--subtle-shadow-light);
+      /* Changed to use subtle-shadow-light variable */
+    }
+
+    [data-theme="dark"] .blog-card .blog-link {
+      box-shadow: 0 2px 5px var(--subtle-shadow-dark);
+      /* Changed to use subtle-shadow-dark variable */
     }
 
     .blog-card .blog-link:hover {
       background-color: var(--accent-hover);
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 8px var(--hover-shadow-light);
+      /* Changed to use hover-shadow-light variable */
+    }
+
+    [data-theme="dark"] .blog-card .blog-link:hover {
+      box-shadow: 0 4px 8px var(--hover-shadow-dark);
+      /* Changed to use hover-shadow-dark variable */
     }
 
     .blog-card .blog-link .fas {
@@ -401,8 +504,15 @@
       background: var(--bg);
       color: var(--text);
       margin-top: 2rem;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 -1px 4px var(--subtle-shadow-light);
+      /* Changed to use subtle-shadow-light variable */
     }
+
+    [data-theme="dark"] .footer {
+      box-shadow: 0 -1px 4px var(--subtle-shadow-dark);
+      /* Changed to use subtle-shadow-dark variable */
+    }
+
 
     @keyframes fadeIn {
       from {
@@ -424,6 +534,7 @@
 
       .navbar-brand {
         flex-grow: 1;
+        font-size: 1.4rem;
       }
 
       .navbar-nav {
@@ -550,6 +661,7 @@
       const themeToggleCheckboxMobile = document.getElementById('theme-toggle-checkbox-mobile');
       const hamburger = document.querySelector('.hamburger');
       const navLinks = document.querySelector('.navbar-nav');
+
       function applyTheme(theme) {
         body.setAttribute('data-theme', theme);
         if (themeToggleCheckboxDesktop) themeToggleCheckboxDesktop.checked = (theme === 'dark');
@@ -558,6 +670,7 @@
       }
       const savedTheme = localStorage.getItem('theme') || 'light';
       applyTheme(savedTheme);
+
       if (themeToggleCheckboxDesktop) {
         themeToggleCheckboxDesktop.addEventListener('change', () => {
           const newTheme = themeToggleCheckboxDesktop.checked ? 'dark' : 'light';
@@ -570,6 +683,7 @@
           applyTheme(newTheme);
         });
       }
+
       if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
       }
@@ -579,19 +693,23 @@
           if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
         });
       });
+
       function formatDate(dateString) {
         if (!dateString) return 'Date N/A';
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
       }
+
       const username = 'akshhthakkar';
       const repo = 'akshhthakkar.github.io';
       const blogFolder = 'blogs';
       const devToUsername = 'akshthakkar';
       const blogList = document.getElementById('blog-list');
       const loadingEl = document.getElementById('loading');
+
       const githubApiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${blogFolder}`;
       const devToApiUrl = `https://dev.to/api/articles?username=${devToUsername}&per_page=10`;
+
       const fetchLocalBlogs = fetch(githubApiUrl)
         .then(res => {
           if (!res.ok) {
@@ -612,14 +730,15 @@
               postName = postName.charAt(0).toUpperCase() + postName.slice(1);
               return {
                 title: postName,
-                url: `${blogFolder}/${file.name}`,
+                url: `article.html?slug=${encodeURIComponent(file.name.replace(/\.html|\.md/, ''))}`, // Pass slug for local articles
                 description: 'No excerpt available. Click to read the full post.',
                 source: 'Local',
-                date: null
+                date: null // Date will be fetched if needed, or default to null
               };
             });
         })
         .catch(err => { console.error('GitHub fetch error:', err); return []; });
+
       const fetchDevToBlogs = fetch(devToApiUrl)
         .then(res => { if (!res.ok) throw new Error('DEV.to API error'); return res.json(); })
         .then(data => {
@@ -633,6 +752,7 @@
           }));
         })
         .catch(err => { console.error('DEV.to fetch error:', err); return []; });
+
       Promise.all([fetchLocalBlogs, fetchDevToBlogs])
         .then(([localBlogs, devToBlogs]) => {
           loadingEl.style.display = 'none';
@@ -642,12 +762,15 @@
             const dateB = b.date ? new Date(b.date) : new Date(0);
             return dateB - dateA;
           });
+
           allBlogs.forEach(post => {
             const blogCard = document.createElement('div');
             blogCard.className = 'blog-card';
-            const linkTarget = post.source === 'Local' ? '_self' : '_self';
-            const linkRel = post.source === 'Local' ? '' : 'rel="noopener"';
-            const sourceIcon = post.source === 'Local' ? '<i class="fas fa-code"></i>' : '<i class="fas fa-globe"></i>';
+            const linkTarget = '_self'; // Always open in same tab, article.html handles routing
+            const linkRel = ''; // No rel for internal links
+
+            const sourceIcon = post.source === 'Local' ? '<i class="fas fa-code"></i>' : '<i class="fab fa-dev"></i>'; // Changed DEV.to icon to fab fa-dev
+
             blogCard.innerHTML = `
               <a href="${post.url}" class="blog-title-link" target="${linkTarget}" ${linkRel}>${post.title}</a>
               <div class="blog-meta">
@@ -659,6 +782,7 @@
             `;
             blogList.appendChild(blogCard);
           });
+
           if (allBlogs.length === 0) {
             blogList.innerHTML = '<div>No blogs found. Start writing!</div>';
           }
