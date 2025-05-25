@@ -103,6 +103,35 @@
       color: var(--bg-dark);
       border-color: var(--text-dark);
     }
+
+    /* Social icons container */
+    .social-links {
+      margin-top: 2rem;
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      fill: var(--text-light);
+      transition: fill 0.3s;
+    }
+
+    .social-links a:hover {
+      fill: #0077b5;
+      /* LinkedIn blue as hover example */
+    }
+
+    body.dark .social-links a {
+      fill: var(--text-dark);
+    }
+
+    body.dark .social-links a:hover {
+      fill: #0a66c2;
+      /* LinkedIn blue for dark */
+    }
   </style>
 </head>
 
@@ -121,17 +150,38 @@
 
   <hr />
 
-  <p>Feel free to check out my <a href="repositories.html">projects</a> or <a href="blog.html">blogs</a>.</p>
+  <div class="social-links" aria-label="Social Media Links">
+    <a href="https://discord.com/users/sarcasticaksh" target="_blank" rel="noopener" aria-label="Discord">
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M20.317 4.3698a19.791 19.791 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0786-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0811.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0064.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1062c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.028c1.961-.6067 3.95-1.5219 6.0028-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.5915-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1531-1.0857-2.1531-2.419 0-1.3332.9555-2.4189 2.1531-2.4189 1.2108 0 2.1757 1.0952 2.153 2.4189 0 1.3333-.9555 2.419-2.153 2.419zm7.9748 0c-1.1824 0-2.153 1.0857-2.153 2.419 0 1.3332.9554 2.4189 2.153 2.4189 1.2109 0 2.1758-1.0952 2.1531-2.4189 0-1.3333-.9556-2.419-2.1531-2.419z" />
+      </svg>
+    </a>
+    <a href="https://www.instagram.com/akshhthakkar" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm8.24 1.5a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0zM12 7a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5zm0 2a3 3 0 100 6 3 3 0 000-6z" />
+      </svg>
+    </a>
+    <a href="https://github.com/akshhthakkar" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.084-.729.084-.729 1.205.084 1.84 1.234 1.84 1.234 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.304-5.466-1.334-5.466-5.931 0-1.31.465-2.381 1.235-3.221-.123-.303-.535-1.523.117-3.176 0 0 1.007-.322 3.301 1.23a11.53 11.53 0 016.003 0c2.292-1.552 3.298-1.23 3.298-1.23.653 1.653.242 2.873.12 3.176.77.84 1.233 1.911 1.233 3.22 0 4.609-2.804 5.625-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .321.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/in/akshthakkar" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M4.983 3.5C4.983 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.103 1 2.5 1 4.983 2.12 4.983 3.5zM.12 7h4.763V24H.12zM7.12 7h4.57v2.2h.07c.64-1.2 2.2-2.46 4.52-2.46 4.83 0 5.72 3.18 5.72 7.3V24h-4.76v-7.9c0-1.9-.03-4.35-2.66-4.35-2.66 0-3.07 2.08-3.07 4.23V24h-4.76z" />
+      </svg>
+    </a>
+  </div>
 
   <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    toggleBtn.addEventListener('click', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark');
-      if (document.body.classList.contains('dark')) {
-        toggleBtn.textContent = 'Light Mode';
-      } else {
-        toggleBtn.textContent = 'Dark Mode';
-      }
+      themeToggle.textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
     });
   </script>
 </body>
