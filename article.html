@@ -7,7 +7,20 @@
     <meta name="description" content="Blog post by Aksh Thakkar, a Computer Science student at Parul University." />
     <title>Aksh Thakkar - Blog Post</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.12/lib/marked.min.js"></script>
+    <!-- Primary marked.js CDN with defer -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+    <!-- Fallback CDN if primary fails -->
+    <script>
+        window.addEventListener('load', () => {
+            if (typeof marked === 'undefined') {
+                console.warn('Primary marked.js CDN failed, loading fallback');
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.min.js';
+                script.async = true;
+                document.head.appendChild(script);
+            }
+        });
+    </script>
     <style>
         html {
             box-sizing: border-box;
@@ -111,7 +124,6 @@
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
             background-color: var(--switch-off-bg);
             border-radius: 34px;
             transition: background-color 0.4s;
@@ -478,24 +490,33 @@
             const loadingEl = document.getElementById('loading');
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
+            const slug = urlParams.get('slug');
 
-            console.log('Post ID:', postId); // Debug
+            console.log('Post ID:', postId, 'Slug:', slug); // Debug
 
-            if (!postId) {
+            if (!postId && !slug) {
                 loadingEl.style.display = 'none';
-                articleContainer.innerHTML = '<div id="error">No article ID provided.</div>';
+                articleContainer.innerHTML = '<div id="error">No article ID or slug provided.</div>';
                 return;
             }
 
-            fetch(`https://dev.to/api/articles/${postId}`)
+            const apiUrl = postId ? `https://dev.to/api/articles/${postId}` : `https://dev.to/api/articles/${slug}`;
+            console.log('Fetching from:', apiUrl); // Debug
+
+            fetch(apiUrl)
                 .then(response => {
-                    console.log('API Response Status:', response.status); // Debug
-                    if (!response.ok) throw new Error(`DEV.to API error: ${response.status}`);
+                    console.log('API Response Status:', response.status, 'OK:', response.ok); // Debug
+                    if (!response.ok) throw new Error(`DEV.to API error: ${response.status} ${response.statusText}`);
                     return response.json();
                 })
                 .then(data => {
+                    console.log('API Data:', data); // Debug
+                    console.log('Is marked defined?', typeof marked !== 'undefined'); // Debug
+                    if (typeof marked === 'undefined') {
+                        throw new Error('marked.js is not loaded. Please check your internet or CDN.');
+                    }
                     loadingEl.style.display = 'none';
-                    const htmlContent = marked.parse(data.body_markdown);
+                    const htmlContent = marked.parse(data.body_markdown || '');
                     articleContainer.innerHTML = `
             <h1>${data.title}</h1>
             <div class="article-content">${htmlContent}</div>
@@ -508,10 +529,11 @@
                 })
                 .catch(error => {
                     loadingEl.style.display = 'none';
-                    articleContainer.innerHTML = '<div id="error">Failed to load article. Try again later.</div>';
+                    articleContainer.innerHTML = `<div id="error">Failed to load article: ${error.message}. Please try again later.</div>`;
                     console.error('Article fetch error:', error); // Debug
                 });
         });
     </script>
 </body>
+
 </html>

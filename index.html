@@ -391,7 +391,7 @@
       margin: 0 auto;
       /* Center the scrollable area */
       max-width: 1000px;
-      /* Constrain width */
+      /* Default max-width for desktop */
       border-radius: 12px;
       /* Rounded corners for the scroll area */
       background-color: var(--bg);
@@ -602,11 +602,15 @@
       .certifications-grid {
         padding: 0.5rem;
         /* Less padding on mobile */
+        max-width: 100%;
+        /* Allow grid to take full width on smaller screens */
       }
 
       .certification-card {
-        flex: 0 0 280px;
-        /* Slightly smaller cards on mobile */
+        flex: 0 0 calc(100% - 2rem);
+        /* Take full width minus padding/gap */
+        max-width: 300px;
+        /* Keep a max-width for consistency */
       }
     }
 
@@ -655,12 +659,10 @@
       }
 
       .certification-card {
-        flex: 0 0 90%;
-        /* Make cards take up more width on very small screens */
-        max-width: 300px;
-        /* Cap max width */
-        margin: 0 auto;
-        /* Center if less than 100% */
+        flex: 0 0 calc(100% - 2rem);
+        /* Ensure it always takes full width minus padding/gap */
+        max-width: 280px;
+        /* Adjust max width if needed for very small screens */
       }
     }
   </style>
@@ -733,7 +735,7 @@
     <h2 class="section-title">Certifications & Recognition</h2>
     <div class="certifications-grid">
 
-      
+
       <div class="certification-card">
         <span class="card-date">March 23 2023</span>
         <p class="card-description">
@@ -742,80 +744,82 @@
         </p>
         <a href="./images/Multilingual.pdf" target="_blank" class="card-link">View
           Certificate <i class="fas fa-certificate"></i></a>
-        </div>
-        
-        <div class="certification-card">
-          <span class="card-date">April 23 2023</span>
-          <p class="card-description">
-            Completed Python course (100+ hours) with A+ grade from Centre for Development of Advanced Computing (C-DAC).
-          </p>
-          <a href="./images/Python - A.pdf" target="_blank"
-          class="card-link">View Certificate <i class="fas fa-certificate"></i></a>
-        </div>
-        
-        <div class="certification-card">
-          <span class="card-date">July 21, 2023</span>
-          <p class="card-description">
-            Successfully completed 15 day internship at Ignite Incubation Centre at my university on my startup idea
-          </p>
-          <a href="./images/Ignite Internship Certificate .pdf" target="_blank" class="card-link">View
-            Certificate <i class="fas fa-certificate"></i></a>
-        </div>
+      </div>
 
-        <div class="certification-card">
-          <span class="card-date">July 27, 2023</span>
-          <p class="card-description">
-            Placed 1st in Ideathon Startups 2023 while leading with my team.
-          </p>
-          <a href="./images/Ideathon.pdf" target="_blank" class="card-link">View
-            Certificate <i class="fas fa-certificate"></i></a>
-        </div>
+      <div class="certification-card">
+        <span class="card-date">April 23 2023</span>
+        <p class="card-description">
+          Completed Python course (100+ hours) with A+ grade from Centre for Development of Advanced Computing (C-DAC).
+        </p>
+        <a href="./images/Python - A.pdf" target="_blank" class="card-link">View Certificate <i
+            class="fas fa-certificate"></i></a>
+      </div>
 
-        <div class="certification-card">
-          <span class="card-date">August 8, 2023</span>
-          <p class="card-description">
-            Startup Idea Incubated at Ignite Incubation Centre, secured funding up to ₹2 Lakhs.
-          </p>
-          <a href="./images/Startup Incubation.jpg" target="_blank" class="card-link">View
-            Certificate <i class="fas fa-certificate"></i></a>
-        </div>
+      <div class="certification-card">
+        <span class="card-date">July 21, 2023</span>
+        <p class="card-description">
+          Successfully completed 15 day internship at Ignite Incubation Centre at my university on my startup idea
+        </p>
+        <a href="./images/Ignite Internship Certificate .pdf" target="_blank" class="card-link">View
+          Certificate <i class="fas fa-certificate"></i></a>
+      </div>
 
-        <div class="certification-card">
-          <span class="card-date">October 11, 2023</span>
-          <p class="card-description">
-            Attended a live workshop on discussion on understanding of Computer Networks and getting hands on experience with the technology.
-          </p>
-          <a href="./images/CN Workshop.pdf" target="_blank" class="card-link">View
-            Certificate <i class="fas fa-certificate"></i></a>
-        </div>
+      <div class="certification-card">
+        <span class="card-date">July 27, 2023</span>
+        <p class="card-description">
+          Placed 1st in Ideathon Startups 2023 while leading with my team.
+        </p>
+        <a href="./images/Ideathon.pdf" target="_blank" class="card-link">View
+          Certificate <i class="fas fa-certificate"></i></a>
+      </div>
 
-        <div class="certification-card">
-          <span class="card-date">April 30, 2024</span>
-          <p class="card-description">
-            Completed a 6-month MERN Stack Web Development Internship at One Technologies, delivering a fully functional web
-            application.
-          </p>
-          <a href="./images/OneTechnologies.pdf" target="_blank" class="card-link">View
-            Certificate <i class="fas fa-certificate"></i></a>
-        </div>
+      <div class="certification-card">
+        <span class="card-date">August 8, 2023</span>
+        <p class="card-description">
+          Startup Idea Incubated at Ignite Incubation Centre, secured funding up to ₹2 Lakhs.
+        </p>
+        <a href="./images/Startup Incubation.jpg" target="_blank" class="card-link">View
+          Certificate <i class="fas fa-certificate"></i></a>
+      </div>
 
-        <div class="certification-card">
-          <span class="card-date">January 7, 2025</span>
-          <p class="card-description">
-            Awarded Diploma in Computer Engineering with 10 CGPA from Silver Oak University.
-          </p>
-          <a href="./images/Diploma Certificate .pdf" target="_blank" class="card-link">View
-            Certificate <i class="fas fa-certificate"></i></a>
-        </div>
+      <div class="certification-card">
+        <span class="card-date">October 11, 2023</span>
+        <p class="card-description">
+          Attended a live workshop on discussion on understanding of Computer Networks and getting hands on experience
+          with the technology.
+        </p>
+        <a href="./images/CN Workshop.pdf" target="_blank" class="card-link">View
+          Certificate <i class="fas fa-certificate"></i></a>
+      </div>
 
-        <div class="certification-card">
-          <span class="card-date">February 10, 2025</span>
-          <p class="card-description">
+      <div class="certification-card">
+        <span class="card-date">April 30, 2024</span>
+        <p class="card-description">
+          Completed a 6-month MERN Stack Web Development Internship at One Technologies, delivering a fully functional
+          web
+          application.
+        </p>
+        <a href="./images/OneTechnologies.pdf" target="_blank" class="card-link">View
+          Certificate <i class="fas fa-certificate"></i></a>
+      </div>
+
+      <div class="certification-card">
+        <span class="card-date">January 7, 2025</span>
+        <p class="card-description">
+          Awarded Diploma in Computer Engineering with 10 CGPA from Silver Oak University.
+        </p>
+        <a href="./images/Diploma Certificate .pdf" target="_blank" class="card-link">View
+          Certificate <i class="fas fa-certificate"></i></a>
+      </div>
+
+      <div class="certification-card">
+        <span class="card-date">February 10, 2025</span>
+        <p class="card-description">
           Reached the Finale of the Listening Skills Event by Global Fun Fest.
-          </p>
-          <a href="./images/Listening.pdf" target="_blank" class="card-link">View
-            Certificate <i class="fas fa-certificate"></i></a>
-        </div>
+        </p>
+        <a href="./images/Listening.pdf" target="_blank" class="card-link">View
+          Certificate <i class="fas fa-certificate"></i></a>
+      </div>
 
     </div>
   </section>
