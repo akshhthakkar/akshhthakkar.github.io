@@ -22,7 +22,7 @@
       box-sizing: inherit;
     }
 
-    /* Root CSS variables for light theme */
+    /* Root CSS variables for light theme - COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY */
     :root {
       --bg: #ffffff;
       --text: #333333;
@@ -48,16 +48,16 @@
       --switch-circle-color: #fff;
       --switch-border: #999;
 
-      /* Hero section gradient colors - Light mode (more pronounced blue) */
-      --hero-gradient-start: #e0f2f7;
-      /* Light blue */
-      --hero-gradient-mid: #ccecf7;
-      /* Lighter blue */
-      --hero-gradient-end: #ffffff;
-      /* White */
+      /* Hero section gradient colors - Light mode (REVERTED TO ORIGINAL INDEX.HTML VALUES) */
+      --hero-gradient-start-light: #e0f2f7;
+      /* Light blue from index.html */
+      --hero-gradient-mid-light: #ccecf7;
+      /* Lighter blue from index.html */
+      --hero-gradient-end-light: #ffffff;
+      /* White from index.html */
     }
 
-    /* Dark theme overrides for CSS variables */
+    /* Dark theme overrides for CSS variables - COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY */
     [data-theme="dark"] {
       --bg: #121212;
       /* Darker background */
@@ -87,13 +87,13 @@
       --switch-circle-color: #fff;
       --switch-border: #777;
 
-      /* Hero section gradient colors - Dark mode (more pronounced blue) */
-      --hero-gradient-start: #0a2a4a;
-      /* Dark blue */
-      --hero-gradient-mid: #1a3a5a;
-      /* Slightly lighter dark blue */
-      --hero-gradient-end: #121212;
-      /* Dark background */
+      /* Hero section gradient colors - Dark mode (REVERTED TO ORIGINAL INDEX.HTML VALUES) */
+      --hero-gradient-start-dark: #0a2a4a;
+      /* Dark blue from index.html */
+      --hero-gradient-mid-dark: #1a3a5a;
+      /* Slightly lighter dark blue from index.html */
+      --hero-gradient-end-dark: #121212;
+      /* Dark background from index.html */
     }
 
     body {
@@ -106,7 +106,7 @@
       line-height: 1.6;
     }
 
-    /* --- Navbar Styles (Kept as is, per user request) --- */
+    /* --- Navbar Styles (COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY) --- */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -272,52 +272,99 @@
       z-index: 11;
     }
 
-    /* --- Hero Section --- */
+    /* --- Hero Section (Updated to match index.html's hero) --- */
     .hero-section {
-      background: linear-gradient(135deg, var(--hero-gradient-start), var(--hero-gradient-mid), var(--hero-gradient-end));
-      color: var(--text);
+      background: linear-gradient(135deg, var(--hero-gradient-start-light) 0%, var(--hero-gradient-mid-light) 50%, var(--hero-gradient-end-light) 100%);
+      padding: 3rem 2rem;
+      /* Increased padding to match index.html */
+      border-radius: 16px;
+      /* Rounded corners to match index.html */
       text-align: center;
-      padding: 2.5rem 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 1px 5px var(--subtle-shadow-light);
-      border-radius: 0 0 12px 12px;
+      margin-bottom: 3rem;
+      /* Increased margin-bottom to match index.html */
+      animation: fadeIn 0.8s ease-out;
+      /* Added fade-in animation */
       position: relative;
       overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      /* Stronger shadow to match index.html */
     }
 
     [data-theme="dark"] .hero-section {
-      box-shadow: 0 1px 5px var(--subtle-shadow-dark);
+      background: linear-gradient(135deg, var(--hero-gradient-start-dark) 0%, var(--hero-gradient-mid-dark) 50%, var(--hero-gradient-end-dark) 100%);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      /* Dark mode shadow */
     }
 
+    /* Added pseudo-element for hero section to match index.html's hero */
     .hero-section::before {
-      content: none;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(0, 0, 0, 0.05) 0%, transparent 20%);
+      opacity: 0.5;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    [data-theme="dark"] .hero-section::before {
+      background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
+    }
+
+    .hero-section h1,
+    .hero-section p {
+      position: relative;
+      z-index: 2;
+      /* Ensure text is above the pseudo-element */
     }
 
     .hero-section h1 {
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
+      font-size: 3.2rem;
+      /* Increased font size to match index.html */
+      margin-bottom: 0.8rem;
+      /* Adjusted margin */
       color: var(--heading-text);
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
-      /* Reintroduced subtle text shadow */
-      letter-spacing: 0.01em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+      /* Stronger text shadow */
+      letter-spacing: 0.05em;
+      /* Adjusted letter spacing */
+      line-height: 1.2;
     }
 
     [data-theme="dark"] .hero-section h1 {
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05);
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.15);
     }
 
     .hero-section p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-      opacity: 0.85;
+      font-size: 1.3rem;
+      /* Increased font size to match index.html */
+      line-height: 1.6;
       color: var(--text);
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.02);
-      /* Reintroduced subtle text shadow */
+      opacity: 0.95;
+      max-width: 700px;
+      /* Increased max-width */
+      margin: 0.5rem auto 0 auto;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
     }
 
     [data-theme="dark"] .hero-section p {
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.02);
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05);
+    }
+
+    /* Keyframe animation for fade-in effect */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* --- Main Content Area --- */
@@ -345,7 +392,6 @@
     .stats {
       text-align: center;
       margin-bottom: 1rem;
-      /* Reduced space below stats grid */
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       justify-content: center;
@@ -669,7 +715,7 @@
       box-shadow: 0 -1px 4px var(--subtle-shadow-dark);
     }
 
-    /* --- Media Queries for Repositories Page Specifics --- */
+    /* --- Media Queries for Repositories Page Specifics (COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY) --- */
     @media (max-width: 768px) {
       .navbar {
         padding: 1rem 1.5rem;
@@ -720,15 +766,18 @@
 
       /* Repositories Page Adjustments */
       .hero-section {
-        padding: 2rem 1rem;
+        padding: 2.5rem 1rem;
+        /* Adjusted for smaller screens */
       }
 
       .hero-section h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
+        /* Adjusted for smaller screens */
       }
 
       .hero-section p {
-        font-size: 0.95rem;
+        font-size: 1.1rem;
+        /* Adjusted for smaller screens */
       }
 
       .container {
@@ -743,7 +792,6 @@
 
       .stats {
         grid-template-columns: 1fr;
-        /* Stack stat cards on small screens */
       }
 
       .stat-card {
@@ -804,11 +852,13 @@
       }
 
       .hero-section h1 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+        /* Adjusted for very small screens */
       }
 
       .hero-section p {
-        font-size: 0.85rem;
+        font-size: 1rem;
+        /* Adjusted for very small screens */
       }
 
       h2 {
@@ -902,6 +952,13 @@
       <p class="text-center">Loading repositories...</p>
     </div>
 
+    <div class="cta">
+      <a href="https://github.com/akshhthakkar?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn">
+        <i class="fab fa-github"></i> Explore More on GitHub
+      </a>
+    </div>
+
+
     <h2>🛠️ Languages and Tools</h2>
     <div class="languages-tools">
       <div class="tech-icons-grid">
@@ -935,7 +992,7 @@
       </div>
     </div>
 
-    
+
     <div class="coding-profiles">
       <h2>🔗 Coding Profiles</h2>
       <div class="profile-links">
@@ -954,9 +1011,9 @@
       </div>
     </div>
   </section>
-  
+
   <footer class="footer">
-    <p>© 2025 Aksh Thakkar. All rights reserved.</p>
+    <p>© 2025 Aksh Thakkar.</p>
   </footer>
 
   <script>
@@ -1109,18 +1166,8 @@
             reposContainer.appendChild(repoCard);
           });
 
-          // Add a "View All Repositories" button if there are more than `displayLimit`
-          if (filteredRepos.length > displayLimit) {
-            const ctaSection = document.querySelector('.cta');
-            const viewAllBtn = document.createElement('a');
-            viewAllBtn.href = 'https://github.com/akshhthakkar?tab=repositories';
-            viewAllBtn.target = '_blank';
-            viewAllBtn.rel = 'noopener noreferrer';
-            viewAllBtn.className = 'btn';
-            viewAllBtn.innerHTML = '<i class="fas fa-arrow-right"></i> View All Repositories';
-            ctaSection.appendChild(viewAllBtn);
-          }
-
+          // The "Explore More on GitHub" button is now hardcoded in the HTML,
+          // so we don't need to dynamically add it here based on filteredRepos.length.
         })
         .catch(error => {
           document.getElementById('repos').innerHTML = '<p class="text-center">Failed to load repositories. Please check your internet connection or try again later.</p>';
