@@ -479,6 +479,8 @@
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
 
+            console.log('Post ID:', postId); // Debug
+
             if (!postId) {
                 loadingEl.style.display = 'none';
                 articleContainer.innerHTML = '<div id="error">No article ID provided.</div>';
@@ -487,7 +489,8 @@
 
             fetch(`https://dev.to/api/articles/${postId}`)
                 .then(response => {
-                    if (!response.ok) throw new Error('DEV.to API error');
+                    console.log('API Response Status:', response.status); // Debug
+                    if (!response.ok) throw new Error(`DEV.to API error: ${response.status}`);
                     return response.json();
                 })
                 .then(data => {
@@ -498,7 +501,6 @@
             <div class="article-content">${htmlContent}</div>
             <p>Source: <a href="${data.url}" target="_blank" rel="noopener noreferrer">DEV.to</a></p>
           `;
-                    // Set canonical URL for SEO
                     const canonicalLink = document.createElement('link');
                     canonicalLink.rel = 'canonical';
                     canonicalLink.href = window.location.href;
@@ -507,10 +509,9 @@
                 .catch(error => {
                     loadingEl.style.display = 'none';
                     articleContainer.innerHTML = '<div id="error">Failed to load article. Try again later.</div>';
-                    console.error('Article fetch error:', error);
+                    console.error('Article fetch error:', error); // Debug
                 });
         });
     </script>
 </body>
-
 </html>
