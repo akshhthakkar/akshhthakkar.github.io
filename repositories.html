@@ -3,36 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aksh — Repositories</title>
+  <title>Repositories — Aksh</title>
   <style>
-    /* Base reset + styles */
-    * {
-      box-sizing: border-box;
-    }
     body {
+      font-family: system-ui, sans-serif;
+      background: #f0f2f5;
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      background: #f5f5f7;
-      color: #222;
-      transition: background 0.3s, color 0.3s;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 3rem;
+      padding: 0;
     }
-    body.dark {
-      background: #121212;
-      color: #eee;
-    }
-    a {
-      color: #0366d6;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    /* Navbar */
     nav {
       background: #fff;
       border-bottom: 1px solid #ddd;
@@ -40,161 +18,41 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      transition: background 0.3s, color 0.3s;
     }
-    body.dark nav {
-      background: #1e1e1e;
-      border-color: #333;
-    }
-    nav .nav-links {
-      display: flex;
-      gap: 1.6rem;
-    }
-    nav .nav-links a {
+    .nav-links a {
+      margin-right: 1rem;
+      text-decoration: none;
+      color: #0366d6;
       font-weight: 500;
-      font-size: 1rem;
-      user-select: none;
     }
-    nav .nav-links a.active {
+    .nav-links a.active {
       font-weight: 700;
       border-bottom: 2px solid #0366d6;
       padding-bottom: 2px;
     }
-    /* Theme toggle */
-    .theme-switch {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 1rem;
-      user-select: none;
-    }
-    .theme-switch input {
-      cursor: pointer;
-      width: 40px;
-      height: 20px;
-      position: relative;
-      appearance: none;
-      background: #ccc;
-      border-radius: 12px;
-      outline: none;
-      transition: background 0.3s;
-    }
-    .theme-switch input:checked {
-      background: #0366d6;
-    }
-    .theme-switch input::before {
-      content: "";
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 16px;
-      height: 16px;
-      background: white;
-      border-radius: 50%;
-      transition: transform 0.3s;
-    }
-    .theme-switch input:checked::before {
-      transform: translateX(20px);
-    }
-    /* Main */
     main {
-      max-width: 900px;
-      margin: 3rem auto 0;
+      max-width: 700px;
+      margin: 3rem auto;
       padding: 0 1rem;
-      flex-grow: 1;
     }
-    main h1 {
-      font-weight: 800;
-      font-size: 2.8rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    /* Repo grid */
-    .repo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
-      gap: 1.6rem;
-    }
-    .repo-card {
-      background: #fff;
-      padding: 1.5rem 1.8rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: box-shadow 0.2s;
-    }
-    body.dark .repo-card {
-      background: #222;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.8);
-    }
-    .repo-card:hover {
-      box-shadow: 0 5px 15px rgb(0 0 0 / 0.2);
-    }
-    .repo-card h2 {
-      margin: 0 0 0.6rem;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #0366d6;
-    }
-    .repo-card p {
-      flex-grow: 1;
-      font-size: 0.95rem;
+    h1 {
+      font-size: 2rem;
       margin-bottom: 1rem;
-      color: #444;
     }
-    body.dark .repo-card p {
-      color: #ccc;
+    ul {
+      list-style: none;
+      padding-left: 0;
     }
-    .repo-meta {
-      font-size: 0.85rem;
-      color: #666;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+    li {
+      margin-bottom: 1rem;
     }
-    body.dark .repo-meta {
-      color: #aaa;
+    a.repo-link {
+      color: #0366d6;
+      font-weight: 600;
+      text-decoration: none;
     }
-    .repo-meta span {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-    /* Language color dot */
-    .lang-dot {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: gray;
-    }
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 1rem 0;
-      font-size: 0.9rem;
-      color: #666;
-    }
-    body.dark footer {
-      color: #999;
-    }
-    /* Responsive */
-    @media (max-width: 600px) {
-      nav {
-        padding: 1rem;
-      }
-      main {
-        margin: 2rem 1rem 3rem;
-      }
+    a.repo-link:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -205,104 +63,14 @@
       <a href="blog.html">Blog</a>
       <a href="repositories.html" class="active">Repositories</a>
     </div>
-    <label class="theme-switch" title="Toggle light/dark theme">
-      <input type="checkbox" id="themeToggle" />
-      <span>🌙</span>
-    </label>
   </nav>
 
   <main>
-    <h1>Repositories</h1>
-
-    <div class="repo-grid" id="repoGrid">
-      <!-- Repos will be inserted here dynamically -->
-    </div>
+    <h1>My GitHub Repositories 🚀</h1>
+    <ul>
+      <li><a class="repo-link" href="https://github.com/akshhthakkar/akshhthakkar.github.io" target="_blank">Personal Portfolio Site</a></li>
+      <!-- Add more repos here -->
+    </ul>
   </main>
-
-  <footer>
-    &copy; 2025 Aksh. All rights reserved.
-  </footer>
-
-  <script>
-    // Dark mode toggle
-    const toggle = document.getElementById('themeToggle');
-    if (localStorage.getItem('theme') === 'dark') {
-      document.body.classList.add('dark');
-      toggle.checked = true;
-    }
-    toggle.addEventListener('change', () => {
-      if (toggle.checked) {
-        document.body.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.body.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-    });
-
-    // Repo data — example format like github repos
-    const repos = [
-      {
-        name: "Mahabharata Quest",
-        description: "A 2D educational game based on Mahabharata, teaching youth about Indian culture.",
-        language: "C#",
-        stars: 10,
-        forks: 2,
-        url: "https://github.com/akshhthakkar/Mahabharata-Quest"
-      },
-      {
-        name: "DSA-Practice",
-        description: "Data Structures and Algorithms practice problems with solutions.",
-        language: "Python",
-        stars: 5,
-        forks: 0,
-        url: "https://github.com/akshhthakkar/DSA-Practice"
-      },
-      {
-        name: "Portfolio-Website",
-        description: "My personal portfolio website showcasing projects and skills.",
-        language: "HTML",
-        stars: 3,
-        forks: 1,
-        url: "https://github.com/akshhthakkar/Portfolio-Website"
-      }
-      // Add more repos here
-    ];
-
-    // Language colors (GitHub style)
-    const langColors = {
-      "C#": "#178600",
-      "Python": "#3572A5",
-      "Java": "#b07219",
-      "JavaScript": "#f1e05a",
-      "HTML": "#e34c26",
-      "CSS": "#563d7c",
-      "C++": "#f34b7d",
-      "TypeScript": "#2b7489",
-      "Ruby": "#701516"
-      // add more if needed
-    };
-
-    function createRepoCard(repo) {
-      const card = document.createElement('div');
-      card.className = 'repo-card';
-
-      card.innerHTML = `
-        <h2><a href="${repo.url}" target="_blank" rel="noopener">${repo.name}</a></h2>
-        <p>${repo.description}</p>
-        <div class="repo-meta">
-          <span><span class="lang-dot" style="background:${langColors[repo.language] || 'gray'}"></span>${repo.language || 'N/A'}</span>
-          <span>⭐ ${repo.stars || 0}</span>
-          <span>🍴 ${repo.forks || 0}</span>
-        </div>
-      `;
-      return card;
-    }
-
-    const repoGrid = document.getElementById('repoGrid');
-    repos.forEach(repo => {
-      repoGrid.appendChild(createRepoCard(repo));
-    });
-  </script>
 </body>
 </html>
