@@ -1,76 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Repositories — Aksh</title>
-  <style>
-    body {
-      font-family: system-ui, sans-serif;
-      background: #f0f2f5;
-      margin: 0;
-      padding: 0;
-    }
-    nav {
-      background: #fff;
-      border-bottom: 1px solid #ddd;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav-links a {
-      margin-right: 1rem;
-      text-decoration: none;
-      color: #0366d6;
-      font-weight: 500;
-    }
-    .nav-links a.active {
-      font-weight: 700;
-      border-bottom: 2px solid #0366d6;
-      padding-bottom: 2px;
-    }
-    main {
-      max-width: 700px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    li {
-      margin-bottom: 1rem;
-    }
-    a.repo-link {
-      color: #0366d6;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    a.repo-link:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <nav>
-    <div class="nav-links">
-      <a href="index.html">About</a>
-      <a href="blog.html">Blog</a>
-      <a href="repositories.html" class="active">Repositories</a>
-    </div>
-  </nav>
 
-  <main>
-    <h1>My GitHub Repositories 🚀</h1>
-    <ul>
-      <li><a class="repo-link" href="https://github.com/akshhthakkar/akshhthakkar.github.io" target="_blank">Personal Portfolio Site</a></li>
-      <!-- Add more repos here -->
-    </ul>
-  </main>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aksh's Repositories</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container py-5">
+    <h1 class="text-center mb-3">👨‍💻 Aksh's Repositories</h1>
+    <p class="text-center">I’m interested in Web Development, Software Development and learning any sorts of new things.</p>
+    <p class="text-center">
+      <img src="https://komarev.com/ghpvc/?username=akshhthakkar&label=Profile%20views&color=0e75b6&style=flat" alt="Profile views">
+    </p>
+
+    <div class="text-center">
+      <img src="https://github-readme-stats.vercel.app/api?username=akshhthakkar&show_icons=true&theme=default" alt="GitHub Stats">
+    </div>
+
+    <hr>
+
+    <h2 class="mt-5">📚 Repositories</h2>
+    <ul class="list-group list-group-flush" id="repo-list"></ul>
+
+    <hr>
+
+    <h3 class="mt-5">🔗 Connect With Me</h3>
+    <div class="d-flex gap-3 flex-wrap">
+      <a href="https://twitter.com/akshhthakkar" target="_blank">Twitter</a>
+      <a href="https://linkedin.com/in/akshthakkar" target="_blank">LinkedIn</a>
+      <a href="https://dev.to/akshthakkar" target="_blank">Dev.to</a>
+      <a href="https://www.leetcode.com/akshthakkar" target="_blank">LeetCode</a>
+      <a href="https://www.codechef.com/users/akshthakkar" target="_blank">CodeChef</a>
+      <a href="https://www.hackerrank.com/aksht455" target="_blank">HackerRank</a>
+      <a href="https://codeforces.com/profile/akshthakkar" target="_blank">Codeforces</a>
+    </div>
+
+    <hr>
+
+    <h3 class="mt-5">🛠️ Languages and Tools</h3>
+    <p>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" width="40" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" width="40" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" width="40" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" width="40" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" width="40" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" width="40" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="40" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" width="40" />
+    </p>
+  </div>
+
+  <script>
+    // Fetch GitHub Repos using API
+    fetch('https://api.github.com/users/akshhthakkar/repos')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('repo-list');
+        data.forEach(repo => {
+          const li = document.createElement('li');
+          li.className = 'list-group-item';
+          li.innerHTML = `<a href="${repo.html_url}" target="_blank">${repo.name}</a> - ⭐ ${repo.stargazers_count}`;
+          list.appendChild(li);
+        });
+      });
+  </script>
 </body>
+
 </html>
