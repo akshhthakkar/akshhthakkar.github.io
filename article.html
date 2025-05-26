@@ -13,19 +13,38 @@
     <meta property="og:type" content="article">
     <title>Aksh Thakkar - Blog Post</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
-    <script>window.addEventListener("load", () => { if (typeof marked === "undefined") { const s = document.createElement("script"); s.src = "https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.min.js"; s.async = true; document.head.appendChild(s) } }); function lz(e, c) { new IntersectionObserver((t, r) => { t.forEach(i => { if (i.isIntersecting) { c(i.target); r.unobserve(i.target) } }) }, { rootMargin: "100px" }).observe(e) }</script>
+    <script>
+        window.addEventListener("load", () => {
+            if (typeof marked === "undefined") {
+                const s = document.createElement("script");
+                s.src = "https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.min.js";
+                s.async = true;
+                document.head.appendChild(s);
+            }
+        });
+        function lz(e, c) {
+            new IntersectionObserver((t, r) => {
+                t.forEach(i => {
+                    if (i.isIntersecting) {
+                        c(i.target);
+                        r.unobserve(i.target);
+                    }
+                });
+            }, { rootMargin: "100px" }).observe(e);
+        }
+    </script>
     <style>
         html {
             box-sizing: border-box;
-            scroll-behavior: smooth
+            scroll-behavior: smooth;
         }
 
         *,
         *:before,
         *:after {
-            box-sizing: inherit
+            box-sizing: inherit;
         }
 
         :root {
@@ -42,7 +61,9 @@
             --sob: #ccc;
             --son: #4CAF50;
             --scc: #fff;
-            --sbd: #999
+            --sbd: #999;
+            --error-color: #dc3545;
+            --error-color-rgb: 220, 53, 69;
         }
 
         [data-theme="dark"] {
@@ -58,7 +79,9 @@
             --hl: rgba(255, 255, 255, 0.05);
             --sob: #555;
             --son: #2196F3;
-            --sbd: #777
+            --sbd: #777;
+            --error-color: #ff6b6b;
+            --error-color-rgb: 255, 107, 107;
         }
 
         body {
@@ -67,9 +90,10 @@
             background: var(--bg);
             color: var(--txt);
             transition: background 0.3s, color 0.3s;
-            line-height: 1.6
+            line-height: 1.6;
         }
 
+        /* Navbar Styles (Copied from index.html) */
         .nb {
             display: flex;
             justify-content: space-between;
@@ -79,18 +103,18 @@
             box-shadow: 0 1px 4px var(--sl);
             position: sticky;
             top: 0;
-            z-index: 10
+            z-index: 10;
         }
 
         [data-theme="dark"] .nb {
-            box-shadow: 0 1px 4px var(--sl)
+            box-shadow: 0 1px 4px var(--sl);
         }
 
         .nb-b {
             font-size: 1.6rem;
             font-weight: 700;
             color: var(--hdt);
-            text-decoration: none
+            text-decoration: none;
         }
 
         .nb-l {
@@ -99,7 +123,7 @@
             gap: 1.8rem;
             margin: 0;
             padding: 0;
-            align-items: center
+            align-items: center;
         }
 
         .nb-l li a {
@@ -108,11 +132,11 @@
             font-weight: 500;
             transition: color 0.2s ease-in-out;
             position: relative;
-            padding-bottom: 0.2rem
+            padding-bottom: 0.2rem;
         }
 
         .nb-l li a:hover {
-            color: var(--acc)
+            color: var(--acc);
         }
 
         .nb-l li a::after {
@@ -123,26 +147,27 @@
             width: 0;
             height: 2px;
             background-color: var(--acc);
-            transition: width 0.3s ease-in-out
+            transition: width 0.3s ease-in-out;
         }
 
         .nb-l li a:hover::after {
-            width: 100%
+            width: 100%;
         }
 
+        /* Theme Switcher Styles */
         .ts {
             position: relative;
             display: inline-block;
             width: 60px;
             height: 34px;
             user-select: none;
-            -webkit-tap-highlight-color: transparent
+            -webkit-tap-highlight-color: transparent;
         }
 
         .ts input {
             opacity: 0;
             width: 0;
-            height: 0
+            height: 0;
         }
 
         .sld {
@@ -155,7 +180,7 @@
             background-color: var(--sob);
             border-radius: 34px;
             transition: background-color 0.4s;
-            border: 1px solid var(--sbd)
+            border: 1px solid var(--sbd);
         }
 
         .sld:before {
@@ -169,16 +194,16 @@
             border-radius: 50%;
             transition: transform 0.4s;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 2
+            z-index: 2;
         }
 
         .ts input:checked+.sld {
             background-color: var(--son);
-            border-color: var(--son)
+            border-color: var(--son);
         }
 
         .ts input:checked+.sld:before {
-            transform: translateX(26px)
+            transform: translateX(26px);
         }
 
         .sld .ik {
@@ -187,41 +212,41 @@
             font-size: 0.7em;
             color: var(--txt);
             transition: transform 0.4s, opacity 0.4s;
-            z-index: 3
+            z-index: 3;
         }
 
         .sld .fs {
             left: 11px;
             transform: translateY(-50%) translateX(0);
-            opacity: 1
+            opacity: 1;
         }
 
         .sld .fm {
             left: 37px;
             transform: translateY(-50%) translateX(0);
-            opacity: 0
+            opacity: 0;
         }
 
         .ts input:checked+.sld .fs {
             transform: translateY(-50%) translateX(26px);
-            opacity: 0
+            opacity: 0;
         }
 
         .ts input:checked+.sld .fm {
             transform: translateY(-50%) translateX(-26px);
-            opacity: 1
+            opacity: 1;
         }
 
         .dts {
             margin-left: 1.5rem;
             display: flex;
-            align-items: center
+            align-items: center;
         }
 
         .mcg {
             display: none;
             align-items: center;
-            gap: 1rem
+            gap: 1rem;
         }
 
         .ham {
@@ -232,13 +257,14 @@
             color: var(--txt);
             cursor: pointer;
             padding: 0.5rem;
-            z-index: 11
+            z-index: 11;
         }
 
+        /* Article Styles (Unchanged) */
         .ct {
             max-width: 1000px;
             margin: auto;
-            padding: 2rem
+            padding: 2rem;
         }
 
         .ar {
@@ -247,11 +273,11 @@
             padding: 2.5rem;
             box-shadow: 0 8px 20px var(--sl);
             margin-bottom: 2rem;
-            transition: background 0.3s, box-shadow 0.3s
+            transition: background 0.3s, box-shadow 0.3s;
         }
 
         [data-theme="dark"] .ar {
-            box-shadow: 0 8px 20px var(--sl)
+            box-shadow: 0 8px 20px var(--sl);
         }
 
         .ar h1 {
@@ -260,17 +286,17 @@
             margin-bottom: 1.5rem;
             text-align: center;
             line-height: 1.2;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05)
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
         }
 
         [data-theme="dark"] .ar h1 {
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05)
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05);
         }
 
         .ar-c {
             font-size: 1.05rem;
             line-height: 1.7;
-            color: var(--txt)
+            color: var(--txt);
         }
 
         .ar-c h2 {
@@ -278,17 +304,17 @@
             margin: 2rem 0 1rem;
             color: var(--hdt);
             border-bottom: 1px solid var(--cbd);
-            padding-bottom: 0.5rem
+            padding-bottom: 0.5rem;
         }
 
         [data-theme="dark"] .ar-c h2 {
-            border-bottom: 1px solid var(--cbd)
+            border-bottom: 1px solid var(--cbd);
         }
 
         .ar-c h3 {
             font-size: 1.6rem;
             margin: 1.8rem 0 0.8rem;
-            color: var(--hdt)
+            color: var(--hdt);
         }
 
         .ar-c img {
@@ -298,26 +324,26 @@
             display: block;
             margin: 1.5rem auto;
             box-shadow: 0 4px 10px var(--sl);
-            opacity: 0
+            opacity: 0;
         }
 
         [data-theme="dark"] .ar-c img {
-            box-shadow: 0 4px 10px var(--sl)
+            box-shadow: 0 4px 10px var(--sl);
         }
 
         .ar-c img.visible {
-            opacity: 1
+            opacity: 1;
         }
 
         .ar-c a {
             color: var(--acc);
             text-decoration: none;
-            transition: color 0.2s
+            transition: color 0.2s;
         }
 
         .ar-c a:hover {
             text-decoration: underline;
-            color: var(--ach)
+            color: var(--ach);
         }
 
         .ar-c pre {
@@ -327,24 +353,24 @@
             overflow-x: auto;
             border: 1px solid var(--cbd);
             margin: 1.5rem 0;
-            box-shadow: inset 0 0 5px var(--sl)
+            box-shadow: inset 0 0 5px var(--sl);
         }
 
         [data-theme="dark"] .ar-c pre {
             border: 1px solid var(--cbd);
-            box-shadow: inset 0 0 5px var(--sl)
+            box-shadow: inset 0 0 5px var(--sl);
         }
 
         .ar-c code {
             font-family: 'Fira Code', 'Courier New', monospace;
             font-size: 0.95rem;
-            color: var(--txt)
+            color: var(--txt);
         }
 
         .ar-c ul,
         .ar-c ol {
             margin: 1rem 0;
-            padding-left: 2rem
+            padding-left: 2rem;
         }
 
         .ar-c blockquote {
@@ -354,17 +380,17 @@
             color: var(--txt);
             opacity: 0.9;
             background-color: rgba(0, 0, 0, 0.03);
-            border-radius: 4px
+            border-radius: 4px;
         }
 
         [data-theme="dark"] .ar-c blockquote {
-            background-color: rgba(255, 255, 255, 0.03)
+            background-color: rgba(255, 255, 255, 0.03);
         }
 
         #error {
             text-align: center;
             color: var(--txt);
-            margin-top: 2rem
+            margin-top: 2rem;
         }
 
         .btn {
@@ -376,21 +402,21 @@
             border-radius: 8px;
             transition: background-color 0.2s, transform 0.1s;
             font-weight: 600;
-            box-shadow: 0 2px 5px var(--sl)
+            box-shadow: 0 2px 5px var(--sl);
         }
 
         [data-theme="dark"] .btn {
-            box-shadow: 0 2px 5px var(--sl)
+            box-shadow: 0 2px 5px var(--sl);
         }
 
         .btn:hover {
             background-color: var(--ach);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px var(--hl)
+            box-shadow: 0 4px 8px var(--hl);
         }
 
         [data-theme="dark"] .btn:hover {
-            box-shadow: 0 4px 8px var(--hl)
+            box-shadow: 0 4px 8px var(--hl);
         }
 
         .cta {
@@ -398,7 +424,7 @@
             margin: 2rem 0;
             display: flex;
             justify-content: center;
-            gap: 1rem
+            gap: 1rem;
         }
 
         .ft {
@@ -407,21 +433,23 @@
             background: var(--bg);
             color: var(--txt);
             margin-top: 2rem;
-            box-shadow: 0 -1px 4px var(--sl)
+            box-shadow: 0 -1px 4px var(--sl);
         }
 
         [data-theme="dark"] .ft {
-            box-shadow: 0 -1px 4px var(--sl)
+            box-shadow: 0 -1px 4px var(--sl);
         }
 
+        /* Responsive Styles for Navbar (Copied from index.html) */
         @media (max-width: 768px) {
             .nb {
-                padding: 1rem 1.5rem
+                padding: 1rem 1.5rem;
+                flex-wrap: nowrap;
             }
 
             .nb-b {
                 flex-grow: 1;
-                font-size: 1.4rem
+                font-size: 1.4rem;
             }
 
             .nb-l {
@@ -435,87 +463,101 @@
                 left: 0;
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease-out
+                transition: max-height 0.3s ease-out;
             }
 
             .nb-l.active {
                 display: flex;
-                max-height: 300px
+                max-height: 300px;
             }
 
             .nb-l li {
                 width: 100%;
                 text-align: center;
-                padding: 0.8rem 0
+                padding: 0.8rem 0;
             }
 
             .dts {
-                display: none
+                display: none;
             }
 
             .mcg {
-                display: flex
+                display: flex;
             }
 
             .ham {
-                display: block
+                display: block;
             }
 
             .ct {
-                padding: 1rem
+                padding: 1rem;
             }
 
             .ar {
-                padding: 1.5rem
+                padding: 1.5rem;
             }
 
             .ar h1 {
-                font-size: 2.2rem
+                font-size: 2.2rem;
             }
 
             .ar-c h2 {
-                font-size: 1.8rem
+                font-size: 1.8rem;
             }
 
             .ar-c h3 {
-                font-size: 1.4rem
+                font-size: 1.4rem;
             }
         }
 
         @media (max-width: 480px) {
             .nb {
-                padding: 1rem
+                padding: 1rem;
             }
 
             .ar h1 {
-                font-size: 1.8rem
+                font-size: 1.8rem;
             }
 
             .ar-c h2 {
-                font-size: 1.5rem
+                font-size: 1.5rem;
             }
 
             .ar-c h3 {
-                font-size: 1.2rem
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 
 <body data-theme="light">
-    <nav class="nb"><a href="index.html" class="nb-b"><strong>Aksh</strong></a>
+    <nav class="nb">
+        <a href="index.html" class="nb-b"><strong>Aksh</strong></a>
         <ul class="nb-l">
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#certifications">Certifications</a></li>
             <li><a href="blog.html">Blogs</a></li>
             <li><a href="repositories.html">Repositories</a></li>
-            <li class="dts"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-d"><span
-                        class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label>
+            <li class="dts">
+                <label class="ts" aria-label="Toggle dark mode">
+                    <input type="checkbox" id="t-d">
+                    <span class="sld">
+                        <i class="fas fa-sun ik fs"></i>
+                        <i class="fas fa-moon ik fm"></i>
+                    </span>
+                </label>
             </li>
         </ul>
-        <div class="mcg"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-m"><span
-                    class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label><button
-                class="ham" aria-label="Toggle navigation menu">☰</button></div>
+        <div class="mcg">
+            <label class="ts" aria-label="Toggle dark mode">
+                <input type="checkbox" id="t-m">
+                <span class="sld">
+                    <i class="fas fa-sun ik fs"></i>
+                    <i class="fas fa-moon ik fm"></i>
+                </span>
+            </label>
+            <button class="ham" aria-label="Toggle navigation menu">☰</button>
+        </div>
     </nav>
     <section class="ct">
         <div class="ar" id="ar" role="article">
@@ -526,7 +568,103 @@
     <footer class="ft">
         <p>© 2025 Aksh Thakkar</p>
     </footer>
-    <script>document.addEventListener("DOMContentLoaded", () => { const b = document.body, d = document.getElementById("t-d"), m = document.getElementById("t-m"), h = document.querySelector(".ham"), n = document.querySelector(".nb-l"), a = document.getElementById("ar"), l = document.getElementById("loading"); function t(e) { b.setAttribute("data-theme", e); d.checked = m.checked = e === "dark"; localStorage.setItem("theme", e) } const s = localStorage.getItem("theme") || "light"; t(s);[d, m].forEach(c => c && c.addEventListener("change", () => { t(c.checked ? "dark" : "light") })); if (h && n) h.addEventListener("click", () => n.classList.toggle("active")); document.querySelectorAll(".nb-l li a").forEach(i => i.addEventListener("click", () => { if (window.innerWidth <= 768 && n.classList.contains("active")) n.classList.remove("active") })); const p = new URLSearchParams(window.location.search), i = p.get("id"), g = p.get("slug"); if (!i && !g) { l.style.display = "none"; a.innerHTML = '<div id="error">No article ID or slug provided.</div>'; return } const u = i ? `https://dev.to/api/articles/${i}` : `https://dev.to/api/articles/${g}`; fetch(u).then(r => { if (!r.ok) throw new Error(`DEV.to error: ${r.status}`); return r.json() }).then(d => { if (typeof marked === "undefined") throw new Error("marked.js not loaded"); l.style.display = "none"; const c = marked.parse(d.body_markdown || "No content available"); document.querySelector("meta[property='og:title']").content = d.title; document.querySelector("meta[property='og:description']").content = d.description || "Blog post by Aksh Thakkar"; a.innerHTML = `<h1>${d.title}</h1><div class="ar-c">${c}</div><p>Source: <a href="${d.url}" target="_blank" rel="noopener noreferrer">DEV.to</a></p>`; document.querySelectorAll(".ar-c img").forEach(m => lz(m, e => e.classList.add("visible"))); const cl = document.createElement("link"); cl.rel = "canonical"; cl.href = window.location.href; document.head.appendChild(cl) }).catch(e => { l.style.display = "none"; a.innerHTML = `<div id="error">Failed to load article: ${e.message}</div>` }) });</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const body = document.body;
+            const toggleDesktop = document.getElementById("t-d");
+            const toggleMobile = document.getElementById("t-m");
+            const hamburgerButton = document.querySelector(".ham");
+            const navLinks = document.querySelector(".nb-l");
+
+            // Theme toggle function
+            function setTheme(theme) {
+                body.setAttribute("data-theme", theme);
+                if (toggleDesktop) toggleDesktop.checked = theme === "dark";
+                if (toggleMobile) toggleMobile.checked = theme === "dark";
+                localStorage.setItem("theme", theme);
+            }
+
+            // Initialize theme
+            const savedTheme = localStorage.getItem("theme") || "light";
+            setTheme(savedTheme);
+
+            // Theme toggle event listeners
+            [toggleDesktop, toggleMobile].forEach(toggle => {
+                if (toggle) {
+                    toggle.addEventListener("change", () => {
+                        setTheme(toggle.checked ? "dark" : "light");
+                    });
+                }
+            });
+
+            // Hamburger menu functionality
+            if (hamburgerButton && navLinks) {
+                hamburgerButton.addEventListener("click", () => navLinks.classList.toggle("active"));
+                hamburgerButton.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        navLinks.classList.toggle("active");
+                    }
+                });
+            }
+
+            // Close mobile nav menu when a link is clicked
+            document.querySelectorAll(".nb-l li a").forEach(link => link.addEventListener("click", () => {
+                if (navLinks.classList.contains("active")) navLinks.classList.remove("active");
+            }));
+
+            // Close mobile nav menu when clicking outside
+            document.addEventListener('click', (event) => {
+                if (navLinks.classList.contains('active') &&
+                    !navLinks.contains(event.target) &&
+                    !hamburgerButton.contains(event.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // Close mobile nav menu when Escape key is pressed
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // Article fetching (unchanged)
+            const articleContainer = document.getElementById("ar");
+            const loading = document.getElementById("loading");
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get("id");
+            const slug = params.get("slug");
+            if (!id && !slug) {
+                loading.style.display = "none";
+                articleContainer.innerHTML = '<div id="error">No article ID or slug provided.</div>';
+                return;
+            }
+            const url = id ? `https://dev.to/api/articles/${id}` : `https://dev.to/api/articles/${slug}`;
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error(`DEV.to error: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    if (typeof marked === "undefined") throw new Error("marked.js not loaded");
+                    loading.style.display = "none";
+                    const content = marked.parse(data.body_markdown || "No content available");
+                    document.querySelector("meta[property='og:title']").content = data.title;
+                    document.querySelector("meta[property='og:description']").content = data.description || "Blog post by Aksh Thakkar";
+                    articleContainer.innerHTML = `<h1>${data.title}</h1><div class="ar-c">${content}</div><p>Source: <a href="${data.url}" target="_blank" rel="noopener noreferrer">DEV.to</a></p>`;
+                    document.querySelectorAll(".ar-c img").forEach(img => lz(img, e => e.classList.add("visible")));
+                    const canonicalLink = document.createElement("link");
+                    canonicalLink.rel = "canonical";
+                    canonicalLink.href = window.location.href;
+                    document.head.appendChild(canonicalLink);
+                })
+                .catch(error => {
+                    loading.style.display = "none";
+                    articleContainer.innerHTML = `<div id="error">Failed to load article: ${error.message}</div>`;
+                });
+        });
+    </script>
 </body>
 
-</html> 
+</html>
