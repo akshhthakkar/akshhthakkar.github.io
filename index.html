@@ -9,17 +9,19 @@
   <meta property="og:title" content="Aksh Thakkar">
   <meta property="og:description" content="Portfolio of Aksh Thakkar, featuring web dev, AI projects, and blogs.">
   <meta property="og:url" content="https://akshhthakkar.github.io/">
-  <meta property="og:image" src="/images/avatar.jpg" alt="Aksh Thakkar's profile picture">
+  <meta property="og:image" content="/images/profile.jpg">
   <meta property="og:site_name" content="Aksh Thakkar Portfolio">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
   <title>Aksh Thakkar</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    xintegrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400&display=swap">
   <script>
-    // Keep lz function as it's used for image/card lazy loading
     function lz(e, c) {
-      new IntersectionObserver((t, r) => {
+      const o = new IntersectionObserver((t, r) => {
         t.forEach(i => {
           if (i.isIntersecting) {
             c(i.target);
@@ -28,7 +30,8 @@
         })
       }, {
         rootMargin: "100px"
-      }).observe(e)
+      });
+      o.observe(e)
     }
   </script>
   <style>
@@ -55,7 +58,7 @@
       --sl: rgba(0, 0, 0, 0.02);
       --hl: rgba(0, 0, 0, 0.05);
       --sob: #ccc;
-      --son: #2196F3;
+      --son: #4CAF50;
       --scc: #fff;
       --sbd: #999;
       --hgs: #e0f2f7;
@@ -77,7 +80,7 @@
       --sl: rgba(255, 255, 255, 0.02);
       --hl: rgba(255, 255, 255, 0.05);
       --sob: #555;
-      --son: transparent;
+      --son: #2196F3;
       --sbd: #777;
       --hgs: #0a2a4a;
       --hgm: #1a3a5a;
@@ -95,7 +98,6 @@
       line-height: 1.6
     }
 
-    /* Navbar Styles (Copied from updated repositories.html) */
     .nb {
       display: flex;
       justify-content: space-between;
@@ -105,18 +107,18 @@
       box-shadow: 0 1px 4px var(--sl);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 10
     }
 
     [data-theme="dark"] .nb {
-      box-shadow: 0 1px 4px var(--sl);
+      box-shadow: 0 1px 4px var(--sl)
     }
 
     .nb-b {
       font-size: 1.6rem;
       font-weight: 700;
       color: var(--hdt);
-      text-decoration: none;
+      text-decoration: none
     }
 
     .nb-l {
@@ -125,7 +127,7 @@
       gap: 1.8rem;
       margin: 0;
       padding: 0;
-      align-items: center;
+      align-items: center
     }
 
     .nb-l li a {
@@ -134,11 +136,11 @@
       font-weight: 500;
       transition: color 0.2s ease-in-out;
       position: relative;
-      padding-bottom: 0.2rem;
+      padding-bottom: 0.2rem
     }
 
     .nb-l li a:hover {
-      color: var(--acc);
+      color: var(--acc)
     }
 
     .nb-l li a::after {
@@ -149,11 +151,11 @@
       width: 0;
       height: 2px;
       background-color: var(--acc);
-      transition: width 0.3s ease-in-out;
+      transition: width 0.3s ease-in-out
     }
 
     .nb-l li a:hover::after {
-      width: 100%;
+      width: 100%
     }
 
     .ts {
@@ -162,13 +164,13 @@
       width: 60px;
       height: 34px;
       user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      -webkit-tap-highlight-color: transparent
     }
 
     .ts input {
       opacity: 0;
       width: 0;
-      height: 0;
+      height: 0
     }
 
     .sld {
@@ -181,7 +183,7 @@
       background-color: var(--sob);
       border-radius: 34px;
       transition: background-color 0.4s;
-      border: 1px solid var(--sbd);
+      border: 1px solid var(--sbd)
     }
 
     .sld:before {
@@ -195,16 +197,16 @@
       border-radius: 50%;
       transition: transform 0.4s;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      z-index: 2;
+      z-index: 2
     }
 
     .ts input:checked+.sld {
       background-color: var(--son);
-      border-color: var(--son);
+      border-color: var(--son)
     }
 
     .ts input:checked+.sld:before {
-      transform: translateX(26px);
+      transform: translateX(26px)
     }
 
     .sld .ik {
@@ -213,41 +215,41 @@
       font-size: 0.7em;
       color: var(--txt);
       transition: transform 0.4s, opacity 0.4s;
-      z-index: 3;
+      z-index: 3
     }
 
     .sld .fs {
       left: 11px;
       transform: translateY(-50%) translateX(0);
-      opacity: 1;
+      opacity: 1
     }
 
     .sld .fm {
       left: 37px;
       transform: translateY(-50%) translateX(0);
-      opacity: 0;
+      opacity: 0
     }
 
     .ts input:checked+.sld .fs {
       transform: translateY(-50%) translateX(26px);
-      opacity: 0;
+      opacity: 0
     }
 
     .ts input:checked+.sld .fm {
       transform: translateY(-50%) translateX(-26px);
-      opacity: 1;
+      opacity: 1
     }
 
     .dts {
       margin-left: 1.5rem;
       display: flex;
-      align-items: center;
+      align-items: center
     }
 
     .mcg {
       display: none;
       align-items: center;
-      gap: 1rem;
+      gap: 1rem
     }
 
     .ham {
@@ -258,10 +260,9 @@
       color: var(--txt);
       cursor: pointer;
       padding: 0.5rem;
-      z-index: 11;
+      z-index: 11
     }
 
-    /* Non-Navbar Styles (Unchanged) */
     .ct {
       max-width: 1000px;
       margin: auto;
@@ -270,7 +271,7 @@
       flex-wrap: wrap;
       gap: 2rem;
       align-items: center;
-      justify-content: center
+      justify-content: center;
     }
 
     .in {
@@ -308,7 +309,8 @@
     }
 
     .pi img.visible {
-      opacity: 1
+      opacity: 1;
+      transition: opacity .5s ease;
     }
 
     .btn {
@@ -319,14 +321,32 @@
       color: var(--bg);
       text-decoration: none;
       border-radius: 5px;
-      transition: background-color 0.2s
+      font-size: .95rem;
+      transition: background-color .2s;
+      box-shadow: 0 2px 5px var(--sl);
     }
 
     .btn:hover {
-      background-color: var(--ach)
+      background-color: var(--ach);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px var(--hl);
+    }
+
+    [data-theme="dark"] .btn {
+      box-shadow: 0 2px 5px var(--sl);
+    }
+
+    [data-theme="dark"] .btn:hover {
+      box-shadow: 0 4px 8px var(--hl);
+    }
+
+    .btn .fa-envelope {
+      margin-right: 0.5rem;
+      font-size: 0.9em
     }
 
     s {
+      display: block;
       padding: 4rem 0
     }
 
@@ -340,14 +360,12 @@
     .cg {
       display: flex;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
       scroll-snap-type: x mandatory;
       gap: 1.5rem;
       padding: 1rem;
-      margin: 0 auto;
       border-radius: 12px;
       background-color: var(--bg);
-      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, .05);
       scrollbar-width: thin;
       scrollbar-color: var(--acc) var(--cbg)
     }
@@ -372,39 +390,39 @@
       padding: 1.5rem;
       background-color: var(--cbg);
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, .1);
       scroll-snap-align: start;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, .05);
       opacity: 0
     }
 
-    [data-theme="dark"] .cc {
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.05)
+    .cc.visible {
+      opacity: 1;
+      transition: opacity .5s ease;
     }
 
-    .cc.visible {
-      opacity: 1
+    [data-theme="dark"] .cc {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, .3);
+      border: 1px solid rgba(255, 255, 255, .05)
     }
 
     .cc:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15)
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .15)
     }
 
     [data-theme="dark"] .cc:hover {
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4)
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .4)
     }
 
     .cc .cd {
-      font-size: 0.95rem;
+      font-size: .95rem;
       font-weight: 600;
       color: var(--acc);
-      margin-bottom: 0.75rem
+      margin-bottom: .75rem
     }
 
     .cc .cdsc {
@@ -416,17 +434,17 @@
 
     .cc .cl {
       display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.4rem 0.8rem;
+      margin-top: .5rem;
+      padding: .4rem .8rem;
       background-color: var(--acc);
       color: var(--bg);
       text-decoration: none;
       border-radius: 4px;
-      font-size: 0.9rem;
-      transition: background-color 0.2s
+      font-size: .9rem;
+      transition: background-color .2s
     }
 
-    .cc .cl:hover {
+    .cl:hover {
       background-color: var(--ach)
     }
 
@@ -439,7 +457,7 @@
       margin: 0 10px;
       color: var(--txt);
       font-size: 1.8rem;
-      transition: color 0.3s
+      transition: color .3s
     }
 
     .soc a:hover {
@@ -452,19 +470,18 @@
       background: var(--bg);
       color: var(--txt);
       margin-top: 2rem;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05)
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, .05)
     }
 
-    /* Responsive Styles for Navbar (Copied from updated repositories.html) */
-    @media (max-width: 768px) {
+    @media (max-width:768px) {
       .nb {
         padding: 1rem 1.5rem;
-        flex-wrap: nowrap;
+        flex-wrap: nowrap
       }
 
       .nb-b {
         flex-grow: 1;
-        font-size: 1.4rem;
+        font-size: 1.4rem
       }
 
       .nb-l {
@@ -472,36 +489,36 @@
         flex-direction: column;
         width: 100%;
         background-color: var(--nbm);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
         position: absolute;
         top: 100%;
         left: 0;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease-out;
+        transition: max-height .3s ease-out
       }
 
       .nb-l.active {
         display: flex;
-        max-height: 300px;
+        max-height: 300px
       }
 
       .nb-l li {
         width: 100%;
         text-align: center;
-        padding: 0.8rem 0;
+        padding: .8rem 0
       }
 
       .dts {
-        display: none;
+        display: none
       }
 
       .mcg {
-        display: flex;
+        display: flex
       }
 
       .ham {
-        display: block;
+        display: block
       }
 
       .ct {
@@ -537,7 +554,7 @@
       }
 
       .cg {
-        padding: 0.5rem;
+        padding: .5rem;
         max-width: 100%
       }
 
@@ -547,13 +564,9 @@
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width:480px) {
       .nb {
-        padding: 0.6rem
-      }
-
-      .nb-b {
-        font-size: 1.2rem
+        padding: 1rem
       }
 
       .in h1 {
@@ -610,74 +623,80 @@
       <button class="ham" aria-label="Toggle navigation menu">☰</button>
     </div>
   </nav>
-  <section class="ct" id="about" role="region" aria-label="About">
-    <div class="in">
-      <h1>Aksh Thakkar</h1>
-      <h2>Computer Engineering Student | Web Developer | AI Enthusiast</h2>
-      <p>Hi! I'm Aksh, a 3rd-year B.Tech. student in Computer Engineering at Parul University (Class of 2027). I
-        specialize in creating user-friendly websites using HTML and JavaScript, aiming to build impactful web
-        solutions.</p>
-      <p>I'm fascinated by artificial intelligence and its potential to solve real-world problems. I've applied my
-        skills in projects like this portfolio, enhancing my coding and design abilities, and I'm excited to
-        integrate
-        AI into future applications.</p>
-      <p>As a learner, I explore new technologies, embrace challenges, and share insights via my blog. I'm seeking
-        internships, hackathons, or team projects to contribute and grow.</p><a href="mailto:aksht455@gmail.com"
-        class="btn" aria-label="Email Aksh"><i class="fas fa-envelope"></i>
-        Connect with Me</a>
-    </div>
-    <div class="pi"><img src="./images/avatar.jpg" alt="Aksh Thakkar" data-src="./images/avatar.jpg"
-        onerror="this.src='https://placehold.co/300x300/E0E0E0/000000?text=Aksh+Thakkar';"></div>
-  </section>
-  <section class="ct" id="certifications" role="region" aria-label="Certifications">
-    <h2 class="st">Certifications & Recognition</h2>
-    <div class="cg">
-      <div class="cc"><span class="cd">Mar 23, 2023</span>
-        <p class="cdsc">C, C++, Java, JavaScript, HTML, CSS course (144+ hours), A grade, C-DAC.</p><a
-          href="./images/Multilingual.pdf" target="_blank" class="cl"
-          aria-label="View C-DAC Multilingual Certificate">View <i class="fas fa-certificate"></i></a>
+
+  <main>
+    <section class="ct" id="about" role="region" aria-label="About">
+      <div class="in">
+        <h1>Aksh Thakkar</h1>
+        <h2>Computer Engineering Student | Web Developer | AI Enthusiast</h2>
+        <p>Hi! I'm Aksh, a 3rd-year B.Tech. student in Computer Engineering at Parul University (Class of 2027). I
+          specializes in creating user-friendly websites using HTML and JavaScript, aiming to build impactful web
+          solutions.</p>
+        <p>I'm fascinated by artificial intelligence and its potential to solve real-world problems. I've applied my
+          skills in projects like this portfolio, enhancing my coding and design abilities, and I'm excited to
+          integrate AI into future applications.</p>
+        <p>As a learner, I explore new technologies, embrace challenges, and share insights via my blog. I'm seeking
+          internships, hackathons, or team projects to contribute and grow.</p><a href="mailto:aksht455@gmail.com"
+          class="btn" aria-label="Email Aksh"><i class="fas fa-envelope"></i> Connect with Me</a>
       </div>
-      <div class="cc"><span class="cd">Apr 23, 2023</span>
-        <p class="cdsc">Python course (100+ hours), A+ grade, C-DAC.</p><a href="./images/Python - A.pdf"
-          target="_blank" class="cl" aria-label="View C-DAC Python Certificate">View <i
-            class="fas fa-certificate"></i></a>
+      <div class="pi">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+          data-src="./images/profile.jpg" alt="Aksh Thakkar"
+          onerror="this.src='https://placehold.co/300x300/E0E0E0/000000?text=Aksh+Thakkar';">
       </div>
-      <div class="cc"><span class="cd">Jul 21, 2023</span>
-        <p class="cdsc">15-day internship at Ignite Incubation Centre on startup idea.</p><a
-          href="./images/Ignite Internship Certificate .pdf" target="_blank" class="cl"
-          aria-label="View Ignite Internship Certificate">View <i class="fas fa-certificate"></i></a>
+    </section>
+    <section class="ct" id="certifications" role="region" aria-label="Certifications">
+      <h2 class="st">Certifications & Recognition</h2>
+      <div class="cg">
+        <div class="cc"><span class="cd">Mar 23, 2023</span>
+          <p class="cdsc">C, C++, Java, JavaScript, HTML, CSS course (144+ hours), A grade, C-DAC.</p><a
+            href="./images/Multilingual.pdf" target="_blank" class="cl"
+            aria-label="View C-DAC Multilingual Certificate">View <i class="fas fa-certificate"></i></a>
+        </div>
+        <div class="cc"><span class="cd">Apr 23, 2023</span>
+          <p class="cdsc">Python course (100+ hours), A+ grade, C-DAC.</p><a href="./images/Python - A.pdf"
+            target="_blank" class="cl" aria-label="View C-DAC Python Certificate">View <i
+              class="fas fa-certificate"></i></a>
+        </div>
+        <div class="cc"><span class="cd">Jul 21, 2023</span>
+          <p class="cdsc">15-day internship at Ignite Incubation Centre on startup idea.</p><a
+            href="./images/Ignite Internship Certificate .pdf" target="_blank" class="cl"
+            aria-label="View Ignite Internship Certificate">View <i class="fas fa-certificate"></i></a>
+        </div>
+        <div class="cc"><span class="cd">Jul 27, 2023</span>
+          <p class="cdsc">1st place in Ideathon Startups 2023, leading team.</p><a href="./images/Ideathon.pdf"
+            target="_blank" class="cl" aria-label="View Ideathon Certificate">View <i
+              class="fas fa-certificate"></i></a>
+        </div>
+        <div class="cc"><span class="cd">Aug 8, 2023</span>
+          <p class="cdsc">Startup idea incubated at Ignite, secured ₹2L funding.</p><a
+            href="./images/Startup Incubation.jpg" target="_blank" class="cl"
+            aria-label="View Startup Incubation Certificate">View <i class="fas fa-certificate"></i></a>
+        </div>
+        <div class="cc"><span class="cd">Oct 11, 2023</span>
+          <p class="cdsc">Computer Networks workshop, hands-on experience.</p><a href="./images/CN Workshop.pdf"
+            target="_blank" class="cl" aria-label="View Computer Networks Workshop Certificate">View <i
+              class="fas fa-certificate"></i></a>
+        </div>
+        <div class="cc"><span class="cd">Apr 30, 2024</span>
+          <p class="cdsc">6-month MERN Stack Internship at One Technologies, delivered web app.</p><a
+            href="./images/OneTechnologies.pdf" target="_blank" class="cl"
+            aria-label="View One Technologies Internship Certificate">View <i class="fas fa-certificate"></i></a>
+        </div>
+        <div class="cc"><span class="cd">Jan 7, 2025</span>
+          <p class="cdsc">Diploma in Computer Engineering, 10 CGPA, Silver Oak University.</p><a
+            href="./images/Diploma Certificate .pdf" target="_blank" class="cl"
+            aria-label="View Diploma Certificate">View
+            <i class="fas fa-certificate"></i></a>
+        </div>
+        <div class="cc"><span class="cd">Feb 10, 2025</span>
+          <p class="cdsc">Finalist in Listening Skills Event, Global Fun Fest.</p><a href="./images/Listening.pdf"
+            target="_blank" class="cl" aria-label="View Listening Skills Certificate">View <i
+              class="fas fa-certificate"></i></a>
+        </div>
       </div>
-      <div class="cc"><span class="cd">Jul 27, 2023</span>
-        <p class="cdsc">1st place in Ideathon Startups 2023, leading team.</p><a href="./images/Ideathon.pdf"
-          target="_blank" class="cl" aria-label="View Ideathon Certificate">View <i class="fas fa-certificate"></i></a>
-      </div>
-      <div class="cc"><span class="cd">Aug 8, 2023</span>
-        <p class="cdsc">Startup idea incubated at Ignite, secured ₹2L funding.</p><a
-          href="./images/Startup Incubation.jpg" target="_blank" class="cl"
-          aria-label="View Startup Incubation Certificate">View <i class="fas fa-certificate"></i></a>
-      </div>
-      <div class="cc"><span class="cd">Oct 11, 2023</span>
-        <p class="cdsc">Computer Networks workshop, hands-on experience.</p><a href="./images/CN Workshop.pdf"
-          target="_blank" class="cl" aria-label="View Computer Networks Workshop Certificate">View <i
-            class="fas fa-certificate"></i></a>
-      </div>
-      <div class="cc"><span class="cd">Apr 30, 2024</span>
-        <p class="cdsc">6-month MERN Stack Internship at One Technologies, delivered web app.</p><a
-          href="./images/OneTechnologies.pdf" target="_blank" class="cl"
-          aria-label="View One Technologies Internship Certificate">View <i class="fas fa-certificate"></i></a>
-      </div>
-      <div class="cc"><span class="cd">Jan 7, 2025</span>
-        <p class="cdsc">Diploma in Computer Engineering, 10 CGPA, Silver Oak University.</p><a
-          href="./images/Diploma Certificate .pdf" target="_blank" class="cl" aria-label="View Diploma Certificate">View
-          <i class="fas fa-certificate"></i></a>
-      </div>
-      <div class="cc"><span class="cd">Feb 10, 2025</span>
-        <p class="cdsc">Finalist in Listening Skills Event, Global Fun Fest.</p><a href="./images/Listening.pdf"
-          target="_blank" class="cl" aria-label="View Listening Skills Certificate">View <i
-            class="fas fa-certificate"></i></a>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
   <div class="soc"><a href="https://twitter.com/akshhthakkar" target="_blank" title="Twitter" aria-label="Twitter"><i
         class="fab fa-twitter"></i></a><a href="https://dev.to/akshthakkar" target="_blank" title="Dev.to"
       aria-label="DEV.to"><i class="fab fa-dev"></i></a><a href="https://discord.com/users/sarcasticaksh"
@@ -689,6 +708,7 @@
   <footer class="ft">
     <p>© 2025 Aksh Thakkar</p>
   </footer>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const body = document.body;
@@ -697,7 +717,6 @@
       const hamburgerButton = document.querySelector(".ham");
       const navLinks = document.querySelector(".nb-l");
 
-      // Theme toggle function (Copied from repositories.html)
       function setTheme(theme) {
         body.setAttribute("data-theme", theme);
         if (toggleDesktop) toggleDesktop.checked = theme === "dark";
@@ -705,11 +724,9 @@
         localStorage.setItem("theme", theme);
       }
 
-      // Initialize theme
       const savedTheme = localStorage.getItem("theme") || "light";
       setTheme(savedTheme);
 
-      // Theme toggle event listeners
       [toggleDesktop, toggleMobile].forEach(toggle => {
         if (toggle) {
           toggle.addEventListener("change", () => {
@@ -718,7 +735,6 @@
         }
       });
 
-      // Hamburger menu functionality (Copied from repositories.html)
       if (hamburgerButton && navLinks) {
         hamburgerButton.addEventListener("click", () => navLinks.classList.toggle("active"));
         hamburgerButton.addEventListener("keydown", (e) => {
@@ -729,12 +745,12 @@
         });
       }
 
-      // Close mobile nav menu when a link is clicked
       document.querySelectorAll(".nb-l li a").forEach(link => link.addEventListener("click", () => {
-        if (navLinks.classList.contains("active")) navLinks.classList.remove("active");
+        if (window.innerWidth <= 768 && navLinks.classList.contains("active")) {
+          navLinks.classList.remove("active");
+        }
       }));
 
-      // Close mobile nav menu when clicking outside
       document.addEventListener('click', (event) => {
         if (navLinks.classList.contains('active') &&
           !navLinks.contains(event.target) &&
@@ -743,17 +759,26 @@
         }
       });
 
-      // Close mobile nav menu when Escape key is pressed
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && navLinks.classList.contains('active')) {
           navLinks.classList.remove('active');
         }
       });
 
-      // Existing image/card lazy loading (Unchanged)
       const profileImage = document.querySelector(".pi img");
-      if (profileImage) lz(profileImage, e => e.classList.add("visible"));
-      document.querySelectorAll(".cc").forEach(card => lz(card, e => e.classList.add("visible")));
+      const certCards = document.querySelectorAll(".cc");
+
+      if (profileImage) {
+        lz(profileImage, img => {
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+          }
+          img.classList.add("visible");
+        });
+      }
+      if (certCards.length > 0) {
+        certCards.forEach(card => lz(card, element => element.classList.add("visible")));
+      }
     });
   </script>
 </body>
