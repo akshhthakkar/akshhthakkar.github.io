@@ -1,303 +1,673 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Blog posts by Aksh Thakkar, a Computer Science student at Parul University, covering web development, AI, and technology insights." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description"
+    content="Blog posts by Aksh Thakkar, a Computer Science student at Parul University, covering web development, AI, and technology insights.">
+  <meta property="og:title" content="Aksh Thakkar - Blogs">
+  <meta property="og:description" content="Explore web development, AI, and tech insights by Aksh Thakkar.">
+  <meta property="og:url" content="https://akshhthakkar.github.io/blog.html">
+  <meta property="og:type" content="website">
   <title>Aksh Thakkar - Blogs</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
-  <script>
-    window.addEventListener('load', () => {
-      if (typeof marked === 'undefined') {
-        console.warn('Primary marked.js CDN failed, loading fallback');
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.min.js';
-        script.async = true;
-        document.head.appendChild(script);
-      }
-    });
-  </script>
+  <script>window.addEventListener("load", () => { if (typeof marked === "undefined") { const s = document.createElement("script"); s.src = "https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.min.js"; s.async = true; document.head.appendChild(s) } }); function lz(e, c) { const o = new IntersectionObserver((t, r) => { t.forEach(i => { if (i.isIntersecting) { c(i.target); r.unobserve(i.target) } }) }, { rootMargin: "100px" }); o.observe(e) }</script>
   <style>
-    html { box-sizing: border-box; scroll-behavior: smooth; }
-    *, *:before, *:after { box-sizing: inherit; }
+    html {
+      box-sizing: border-box;
+      scroll-behavior: smooth
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit
+    }
+
     :root {
-      --bg: #ffffff; --text: #333333; --heading-text: #000000; --accent: #007bff; --accent-hover: #0056b3;
-      --navbar-bg-mobile: #f8f8f8; --card-bg: #ffffff; --card-border: #e8e8e8; --section-bg-light: #fdfdfd;
-      --subtle-shadow-light: rgba(0, 0, 0, 0.02); --hover-shadow-light: rgba(0, 0, 0, 0.05);
-      --card-hover-bg-light: rgba(0, 123, 255, 0.01); --switch-off-bg: #ccc; --switch-on-bg: #4CAF50;
-      --switch-circle-color: #fff; --switch-border: #999; --hero-gradient-start-light: #e0f2f7;
-      --hero-gradient-mid-light: #ccecf7; --hero-gradient-end-light: #ffffff;
+      --bg: #fff;
+      --txt: #333;
+      --hdt: #000;
+      --acc: #007bff;
+      --ach: #0056b3;
+      --nbm: #f8f8f8;
+      --cbg: #fff;
+      --cbd: #e8e8e8;
+      --sl: rgba(0, 0, 0, 0.02);
+      --hl: rgba(0, 0, 0, 0.05);
+      --sob: #ccc;
+      --son: #4CAF50;
+      --scc: #fff;
+      --sbd: #999;
+      --hgs: #e0f2f7;
+      --hgm: #ccecf7;
+      --hge: #fff
     }
+
     [data-theme="dark"] {
-      --bg: #121212; --text: #e0e0e0; --heading-text: #ffffff; --accent: #66b3ff; --accent-hover: #4da6ff;
-      --navbar-bg-mobile: #1a1a1a; --card-bg: #1e1e1e; --card-border: #252525; --section-bg-light: #151515;
-      --subtle-shadow-dark: rgba(255, 255, 255, 0.02); --hover-shadow-dark: rgba(255, 255, 255, 0.05);
-      --card-hover-bg-dark: rgba(102, 179, 255, 0.01); --switch-off-bg: #555; --switch-on-bg: #2196F3;
-      --switch-circle-color: #fff; --switch-border: #777; --hero-gradient-start-dark: #0a2a4a;
-      --hero-gradient-mid-dark: #1a3a5a; --hero-gradient-end-dark: #121212;
+      --bg: #121212;
+      --txt: #e0e0e0;
+      --hdt: #fff;
+      --acc: #66b3ff;
+      --ach: #4da6ff;
+      --nbm: #1a1a1a;
+      --cbg: #1e1e1e;
+      --cbd: #252525;
+      --sl: rgba(255, 255, 255, 0.02);
+      --hl: rgba(255, 255, 255, 0.05);
+      --sob: #555;
+      --son: #2196F3;
+      --sbd: #777;
+      --hgs: #0a2a4a;
+      --hgm: #1a3a5a;
+      --hge: #121212
     }
+
     body {
-      margin: 0; font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text);
-      transition: background 0.3s, color 0.3s; line-height: 1.6;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--txt);
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.6
     }
-    .navbar {
-      display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;
-      background: var(--bg); box-shadow: 0 1px 4px var(--subtle-shadow-light); position: sticky; top: 0; z-index: 10;
+
+    .nb {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: var(--bg);
+      box-shadow: 0 1px 4px var(--sl);
+      position: sticky;
+      top: 0;
+      z-index: 10
     }
-    [data-theme="dark"] .navbar { box-shadow: 0 1px 4px var(--subtle-shadow-dark); }
-    .navbar-brand { font-size: 1.6rem; font-weight: 700; color: var(--heading-text); text-decoration: none; }
-    .navbar-nav { list-style: none; display: flex; gap: 1.8rem; margin: 0; padding: 0; align-items: center; }
-    .navbar-nav li a { text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.2s ease-in-out; position: relative; padding-bottom: 0.2rem; }
-    .navbar-nav li a:hover { color: var(--accent); }
-    .navbar-nav li a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background-color: var(--accent); transition: width 0.3s ease-in-out; }
-    .navbar-nav li a:hover::after { width: 100%; }
-    .theme-switch { position: relative; display: inline-block; width: 60px; height: 34px; user-select: none; -webkit-tap-highlight-color: transparent; }
-    .theme-switch input { opacity: 0; width: 0; height: 0; }
-    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--switch-off-bg); border-radius: 34px; transition: background-color 0.4s; border: 1px solid var(--switch-border); }
-    .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 3px; background-color: var(--switch-circle-color); border-radius: 50%; transition: transform 0.4s; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 2; }
-    .theme-switch input:checked+.slider { background-color: var(--switch-on-bg); border-color: var(--switch-on-bg); }
-    .theme-switch input:checked+.slider:before { transform: translateX(26px); }
-    .slider .icon-in-knob { position: absolute; top: 50%; font-size: 0.7em; color: var(--text); transition: transform 0.4s, opacity 0.4s; z-index: 3; }
-    .slider .fa-sun-knob { left: 11px; transform: translateY(-50%) translateX(0); opacity: 1; }
-    .slider .fa-moon-knob { left: 37px; transform: translateY(-50%) translateX(0); opacity: 0; }
-    .theme-switch input:checked+.slider .fa-sun-knob { transform: translateY(-50%) translateX(26px); opacity: 0; }
-    .theme-switch input:checked+.slider .fa-moon-knob { transform: translateY(-50%) translateX(-26px); opacity: 1; }
-    .desktop-theme-switch { margin-left: 1.5rem; display: flex; align-items: center; }
-    .mobile-controls-group { display: none; align-items: center; gap: 1rem; }
-    .hamburger { display: none; font-size: 1.8rem; background: none; border: none; color: var(--text); cursor: pointer; padding: 0.5rem; z-index: 11; }
-    .container { max-width: 1000px; margin: auto; padding: 2rem; }
-    .hero { background: linear-gradient(135deg, var(--hero-gradient-start-light) 0%, var(--hero-gradient-mid-light) 50%, var(--hero-gradient-end-light) 100%); padding: 3rem 2rem; border-radius: 16px; text-align: center; margin-bottom: 3rem; animation: fadeIn 0.8s ease-out; position: relative; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); }
-    [data-theme="dark"] .hero { background: linear-gradient(135deg, var(--hero-gradient-start-dark) 0%, var(--hero-gradient-mid-dark) 50%, var(--hero-gradient-end-dark) 100%); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); }
-    .hero h1 { font-size: 3.2rem; margin-bottom: 0.8rem; color: var(--heading-text); text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15); letter-spacing: 0.05em; line-height: 1.2; }
-    [data-theme="dark"] .hero h1 { text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.15); }
-    .hero p { font-size: 1.3rem; line-height: 1.6; color: var(--text); opacity: 0.95; max-width: 700px; margin: 0.5rem auto 0 auto; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); }
-    [data-theme="dark"] .hero p { text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05); }
-    .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(0, 0, 0, 0.05) 0%, transparent 20%); opacity: 0.5; z-index: 1; pointer-events: none; }
-    [data-theme="dark"] .hero::before { background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%); }
-    .hero h1, .hero p { position: relative; z-index: 2; }
-    .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-    .blog-card { background: var(--card-bg); border: 1px solid var(--card-border); border-left: 5px solid var(--accent); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px var(--subtle-shadow-light); transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
-    [data-theme="dark"] .blog-card { border: 1px solid var(--card-border); border-left: 5px solid var(--accent); box-shadow: 0 4px 15px var(--subtle-shadow-dark); }
-    .blog-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 15px 30px var(--hover-shadow-light); }
-    [data-theme="dark"] .blog-card:hover { box-shadow: 0 15px 30px var(--hover-shadow-dark); }
-    .blog-card a.blog-title-link { text-decoration: none; color: var(--accent); font-weight: 600; font-size: 1.35rem; display: block; margin-bottom: 0.5rem; transition: color 0.2s; }
-    .blog-card a.blog-title-link:hover { color: var(--accent-hover); text-decoration: underline; }
-    .blog-card p { font-size: 0.95rem; color: var(--text); opacity: 0.9; margin: 0 0 1rem 0; flex-grow: 1; }
-    .blog-card .blog-meta { display: flex; align-items: center; font-size: 0.85rem; color: var(--text); opacity: 0.7; margin-bottom: 0.5rem; gap: 0.75rem; flex-wrap: wrap; }
-    [data-theme="dark"] .blog-card .blog-meta { color: var(--text); }
-    .blog-card .blog-meta span { display: flex; align-items: center; gap: 0.3rem; }
-    .blog-card .blog-meta .fas { font-size: 0.9em; color: var(--accent); }
-    .blog-card .blog-link { display: inline-block; margin-top: 0.75rem; padding: 0.6rem 1.2rem; background-color: var(--accent); color: white; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; transition: background-color 0.2s, transform 0.1s ease-in-out; align-self: flex-start; box-shadow: 0 2px 5px var(--subtle-shadow-light); }
-    [data-theme="dark"] .blog-card .blog-link { box-shadow: 0 2px 5px var(--subtle-shadow-dark); }
-    .blog-card .blog-link:hover { background-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 4px 8px var(--hover-shadow-light); }
-    [data-theme="dark"] .blog-card .blog-link:hover { box-shadow: 0 4px 8px var(--hover-shadow-dark); }
-    .blog-card .blog-link .fas { margin-left: 0.5rem; font-size: 0.8em; }
-    .skeleton-card { background: var(--card-bg); border: 1px solid var(--card-border); border-left: 5px solid var(--accent); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px var(--subtle-shadow-light); display: flex; flex-direction: column; gap: 0.5rem; animation: pulse 1.5s infinite ease-in-out; }
-    [data-theme="dark"] .skeleton-card { box-shadow: 0 4px 15px var(--subtle-shadow-dark); }
-    .skeleton-line { background-color: var(--card-border); border-radius: 4px; height: 1em; margin-bottom: 0.5em; }
-    .skeleton-line.title { width: 80%; height: 1.3em; }
-    .skeleton-line.meta { width: 60%; height: 0.8em; }
-    .skeleton-line.text { width: 100%; height: 0.9em; }
-    .skeleton-line.text:nth-child(3) { width: 95%; }
-    .skeleton-line.text:nth-child(4) { width: 85%; }
-    .skeleton-line.button { width: 120px; height: 2.2em; margin-top: 0.75rem; }
-    @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
-    #loading { text-align: center; font-style: italic; color: var(--text); opacity: 0.6; margin-top: 2rem; display: none; }
-    .refresh-container { text-align: center; margin-bottom: 1rem; }
-    .btn { display: inline-block; padding: 0.6rem 1.2rem; background-color: var(--accent); color: white; text-decoration: none; border-radius: 8px; transition: background-color 0.2s, transform 0.1s ease-in-out; font-weight: 600; box-shadow: 0 2px 5px var(--subtle-shadow-light); }
-    .btn:hover { background-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 4px 8px var(--hover-shadow-light); }
-    [data-theme="dark"] .btn { box-shadow: 0 2px 5px var(--subtle-shadow-dark); }
-    [data-theme="dark"] .btn:hover { box-shadow: 0 4px 8px var(--hover-shadow-dark); }
-    .footer { text-align: center; padding: 1rem; background: var(--bg); color: var(--text); margin-top: 2rem; box-shadow: 0 -1px 4px var(--subtle-shadow-light); }
-    [data-theme="dark"] .footer { box-shadow: 0 -1px 4px var(--subtle-shadow-dark); }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+    [data-theme="dark"] .nb {
+      box-shadow: 0 1px 4px var(--sl)
+    }
+
+    .nb-b {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--hdt);
+      text-decoration: none
+    }
+
+    .nb-l {
+      list-style: none;
+      display: flex;
+      gap: 1.8rem;
+      margin: 0;
+      padding: 0;
+      align-items: center
+    }
+
+    .nb-l li a {
+      text-decoration: none;
+      color: var(--txt);
+      font-weight: 500;
+      transition: color 0.2s ease-in-out;
+      position: relative;
+      padding-bottom: 0.2rem
+    }
+
+    .nb-l li a:hover {
+      color: var(--acc)
+    }
+
+    .nb-l li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--acc);
+      transition: width 0.3s ease-in-out
+    }
+
+    .nb-l li a:hover::after {
+      width: 100%
+    }
+
+    .ts {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    .ts input {
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .sld {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--sob);
+      border-radius: 34px;
+      transition: background-color 0.4s;
+      border: 1px solid var(--sbd)
+    }
+
+    .sld:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 3px;
+      background-color: var(--scc);
+      border-radius: 50%;
+      transition: transform 0.4s;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 2
+    }
+
+    .ts input:checked+.sld {
+      background-color: var(--son);
+      border-color: var(--son)
+    }
+
+    .ts input:checked+.sld:before {
+      transform: translateX(26px)
+    }
+
+    .sld .ik {
+      position: absolute;
+      top: 50%;
+      font-size: 0.7em;
+      color: var(--txt);
+      transition: transform 0.4s, opacity 0.4s;
+      z-index: 3
+    }
+
+    .sld .fs {
+      left: 11px;
+      transform: translateY(-50%) translateX(0);
+      opacity: 1
+    }
+
+    .sld .fm {
+      left: 37px;
+      transform: translateY(-50%) translateX(0);
+      opacity: 0
+    }
+
+    .ts input:checked+.sld .fs {
+      transform: translateY(-50%) translateX(26px);
+      opacity: 0
+    }
+
+    .ts input:checked+.sld .fm {
+      transform: translateY(-50%) translateX(-26px);
+      opacity: 1
+    }
+
+    .dts {
+      margin-left: 1.5rem;
+      display: flex;
+      align-items: center
+    }
+
+    .mcg {
+      display: none;
+      align-items: center;
+      gap: 1rem
+    }
+
+    .ham {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: var(--txt);
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 11
+    }
+
+    .ct {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem
+    }
+
+    .hr {
+      background: linear-gradient(135deg, var(--hgs) 0%, var(--hgm) 50%, var(--hge) 100%);
+      padding: 3rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeIn 0.8s ease-out;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1)
+    }
+
+    [data-theme="dark"] .hr {
+      background: linear-gradient(135deg, var(--hgs) 0%, var(--hgm) 50%, var(--hge) 100%);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4)
+    }
+
+    .hr h1 {
+      font-size: 3.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--hdt);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+      letter-spacing: 0.05em;
+      line-height: 1.2
+    }
+
+    [data-theme="dark"] .hr h1 {
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.15)
+    }
+
+    .hr p {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: var(--txt);
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0.5rem auto 0 auto;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05)
+    }
+
+    [data-theme="dark"] .hr p {
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05)
+    }
+
+    .hr::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(0, 0, 0, 0.05) 0%, transparent 20%);
+      opacity: 0.5;
+      z-index: 1;
+      pointer-events: none
+    }
+
+    [data-theme="dark"] .hr::before {
+      background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%)
+    }
+
+    .hr h1,
+    .hr p {
+      position: relative;
+      z-index: 2
+    }
+
+    .bg {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem
+    }
+
+    .bc {
+      background: var(--cbg);
+      border: 1px solid var(--cbd);
+      border-left: 5px solid var(--acc);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px var(--sl);
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      opacity: 0
+    }
+
+    [data-theme="dark"] .bc {
+      border: 1px solid var(--cbd);
+      border-left: 5px solid var(--acc);
+      box-shadow: 0 4px 15px var(--sl)
+    }
+
+    .bc.visible {
+      opacity: 1
+    }
+
+    .bc:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 30px var(--hl)
+    }
+
+    [data-theme="dark"] .bc:hover {
+      box-shadow: 0 15px 30px var(--hl)
+    }
+
+    .bc a.btl {
+      text-decoration: none;
+      color: var(--acc);
+      font-weight: 600;
+      font-size: 1.35rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s
+    }
+
+    .bc a.btl:hover {
+      color: var(--ach);
+      text-decoration: underline
+    }
+
+    .bc p {
+      font-size: 0.95rem;
+      color: var(--txt);
+      opacity: 0.9;
+      margin: 0 0 1rem 0;
+      flex-grow: 1
+    }
+
+    .bc .bm {
+      display: flex;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--txt);
+      opacity: 0.7;
+      margin-bottom: 0.5rem;
+      gap: 0.75rem;
+      flex-wrap: wrap
+    }
+
+    [data-theme="dark"] .bc .bm {
+      color: var(--txt)
+    }
+
+    .bc .bm span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem
+    }
+
+    .bc .bm .fas {
+      font-size: 0.9em;
+      color: var(--acc)
+    }
+
+    .bc .bl {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.6rem 1.2rem;
+      background-color: var(--acc);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background-color 0.2s, transform 0.1s ease-in-out;
+      align-self: flex-start;
+      box-shadow: 0 2px 5px var(--sl)
+    }
+
+    [data-theme="dark"] .bc .bl {
+      box-shadow: 0 2px 5px var(--sl)
+    }
+
+    .bc .bl:hover {
+      background-color: var(--ach);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px var(--hl)
+    }
+
+    [data-theme="dark"] .bc .bl:hover {
+      box-shadow: 0 4px 8px var(--hl)
+    }
+
+    .bc .bl .fas {
+      margin-left: 0.5rem;
+      font-size: 0.8em
+    }
+
+    .sc {
+      background: var(--cbg);
+      border: 1px solid var(--cbd);
+      border-left: 5px solid var(--acc);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px var(--sl);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      animation: pulse 1.5s infinite ease-in-out
+    }
+
+    [data-theme="dark"] .sc {
+      box-shadow: 0 4px 15px var(--sl)
+    }
+
+    .sl {
+      background-color: var(--cbd);
+      border-radius: 4px;
+      height: 1em;
+      margin-bottom: 0.5em
+    }
+
+    .sl.t {
+      width: 80%;
+      height: 1.3em
+    }
+
+    .sl.m {
+      width: 60%;
+      height: 0.8em
+    }
+
+    .sl.x {
+      width: 100%;
+      height: 0.9em
+    }
+
+    .sl.x:nth-child(3) {
+      width: 95%
+    }
+
+    .sl.x:nth-child(4) {
+      width: 85%
+    }
+
+    .sl.b {
+      width: 120px;
+      height: 2.2em;
+      margin-top: 0.75rem
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.6
+      }
+
+      50% {
+        opacity: 1
+      }
+
+      100% {
+        opacity: 0.6
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background-color: var(--acc);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.2s, transform 0.1s ease-in-out;
+      font-weight: 600;
+      box-shadow: 0 2px 5px var(--sl)
+    }
+
+    .btn:hover {
+      background-color: var(--ach);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px var(--hl)
+    }
+
+    [data-theme="dark"] .btn {
+      box-shadow: 0 2px 5px var(--sl)
+    }
+
+    [data-theme="dark"] .btn:hover {
+      box-shadow: 0 4px 8px var(--hl)
+    }
+
+    .ft {
+      text-align: center;
+      padding: 1rem;
+      background: var(--bg);
+      color: var(--txt);
+      margin-top: 2rem;
+      box-shadow: 0 -1px 4px var(--sl)
+    }
+
+    [data-theme="dark"] .ft {
+      box-shadow: 0 -1px 4px var(--sl)
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
     @media (max-width: 768px) {
-      .navbar { padding: 1rem 1.5rem; flex-wrap: nowrap; }
-      .navbar-brand { flex-grow: 1; font-size: 1.4rem; }
-      .navbar-nav { display: none; flex-direction: column; width: 100%; background-color: var(--navbar-bg-mobile); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); position: absolute; top: 100%; left: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-      .navbar-nav.active { display: flex; max-height: 300px; }
-      .navbar-nav li { width: 100%; text-align: center; padding: 0.8rem 0; }
-      .desktop-theme-switch { display: none; }
-      .mobile-controls-group { display: flex; }
-      .hamburger { display: block; }
-      .container { padding: 1rem; }
-      .hero h1 { font-size: 2.5rem; }
-      .hero p { font-size: 1.1rem; }
-      .blog-grid { grid-template-columns: 1fr; }
-      .blog-card .blog-meta { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+      .nb {
+        padding: 1rem 1.5rem;
+        flex-wrap: nowrap
+      }
+
+      .nb-b {
+        flex-grow: 1;
+        font-size: 1.4rem
+      }
+
+      .nb-l {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--nbm);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out
+      }
+
+      .nb-l.active {
+        display: flex;
+        max-height: 300px
+      }
+
+      .nb-l li {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 0
+      }
+
+      .dts {
+        display: none
+      }
+
+      .mcg {
+        display: flex
+      }
+
+      .ham {
+        display: block
+      }
+
+      .ct {
+        padding: 1rem
+      }
+
+      .hr h1 {
+        font-size: 2.5rem
+      }
+
+      .hr p {
+        font-size: 1.1rem
+      }
+
+      .bg {
+        grid-template-columns: 1fr
+      }
+
+      .bc .bm {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem
+      }
     }
+
     @media (max-width: 480px) {
-      .navbar { padding: 1rem; }
-      .hero h1 { font-size: 1.8rem; }
-      .hero p { font-size: 1rem; }
+      .nb {
+        padding: 1rem
+      }
+
+      .hr h1 {
+        font-size: 1.8rem
+      }
+
+      .hr p {
+        font-size: 1rem
+      }
     }
   </style>
 </head>
+
 <body data-theme="light">
-  <nav class="navbar">
-    <a href="index.html" class="navbar-brand"><strong>Aksh</strong></a>
-    <ul class="navbar-nav">
+  <nav class="nb"><a href="index.html" class="nb-b"><strong>Aksh</strong></a>
+    <ul class="nb-l">
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#certifications">Certifications</a></li>
       <li><a href="blog.html">Blogs</a></li>
       <li><a href="repositories.html">Repositories</a></li>
-      <li class="desktop-theme-switch">
-        <label class="theme-switch" aria-label="Toggle dark mode">
-          <input type="checkbox" id="theme-toggle-checkbox-desktop">
-          <span class="slider">
-            <i class="fas fa-sun icon-in-knob fa-sun-knob"></i>
-            <i class="fas fa-moon icon-in-knob fa-moon-knob"></i>
-          </span>
-        </label>
-      </li>
+      <li class="dts"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-d"><span
+            class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label></li>
     </ul>
-    <div class="mobile-controls-group">
-      <label class="theme-switch" aria-label="Toggle dark mode">
-        <input type="checkbox" id="theme-toggle-checkbox-mobile">
-        <span class="slider">
-          <i class="fas fa-sun icon-in-knob fa-sun-knob"></i>
-          <i class="fas fa-moon icon-in-knob fa-moon-knob"></i>
-        </span>
-      </label>
-      <button class="hamburger" aria-label="Toggle navigation menu">☰</button>
-    </div>
+    <div class="mcg"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-m"><span
+          class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label><button
+        class="ham" aria-label="Toggle navigation menu">☰</button></div>
   </nav>
-  <section class="container">
-    <div class="hero">
+  <section class="ct">
+    <div class="hr">
       <h1>My Blogs</h1>
       <p>Exploring web development, AI, and technology insights from local posts and DEV.to.</p>
     </div>
-    <div class="refresh-container">
-      <button class="btn" onclick="fetchBlogs()">Refresh Posts</button>
-    </div>
-    <div class="blog-grid" id="blog-list"></div>
+    <div class="bg" id="bl"></div>
   </section>
-  <footer class="footer">
+  <footer class="ft">
     <p>© 2025 Aksh Thakkar</p>
   </footer>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const body = document.body;
-      const themeToggleCheckboxDesktop = document.getElementById('theme-toggle-checkbox-desktop');
-      const themeToggleCheckboxMobile = document.getElementById('theme-toggle-checkbox-mobile');
-      const hamburger = document.querySelector('.hamburger');
-      const navLinks = document.querySelector('.navbar-nav');
-      const blogList = document.getElementById('blog-list');
-
-      // Theme toggle logic
-      function applyTheme(theme) {
-        body.setAttribute('data-theme', theme);
-        if (themeToggleCheckboxDesktop) themeToggleCheckboxDesktop.checked = (theme === 'dark');
-        if (themeToggleCheckboxMobile) themeToggleCheckboxMobile.checked = (theme === 'dark');
-        localStorage.setItem('theme', theme);
-      }
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      applyTheme(savedTheme);
-
-      if (themeToggleCheckboxDesktop) {
-        themeToggleCheckboxDesktop.addEventListener('change', () => {
-          const newTheme = themeToggleCheckboxDesktop.checked ? 'dark' : 'light';
-          applyTheme(newTheme);
-        });
-      }
-      if (themeToggleCheckboxMobile) {
-        themeToggleCheckboxMobile.addEventListener('change', () => {
-          const newTheme = themeToggleCheckboxMobile.checked ? 'dark' : 'light';
-          applyTheme(newTheme);
-        });
-      }
-
-      // Hamburger menu logic
-      if (hamburger && navLinks) {
-        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
-      }
-      const navItems = document.querySelectorAll('.navbar-nav li a');
-      navItems.forEach(item => {
-        item.addEventListener('click', () => {
-          if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
-        });
-      });
-
-      // Format date for display
-      function formatDate(dateString) {
-        if (!dateString) return 'Date N/A';
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date(dateString).toLocaleDateString(undefined, options);
-      }
-
-      // Create skeleton loaders
-      function showSkeletonLoaders(count = 3) {
-        blogList.innerHTML = '';
-        for (let i = 0; i < count; i++) {
-          const skeleton = document.createElement('div');
-          skeleton.className = 'skeleton-card';
-          skeleton.innerHTML = `
-            <div class="skeleton-line title"></div>
-            <div class="skeleton-line meta"></div>
-            <div class="skeleton-line text"></div>
-            <div class="skeleton-line text"></div>
-            <div class="skeleton-line button"></div>
-          `;
-          blogList.appendChild(skeleton);
-        }
-      }
-
-      // Fetch blogs function
-      function fetchBlogs() {
-        showSkeletonLoaders();
-        const devToUsername = 'akshthakkar';
-        const devToApiUrl = `https://dev.to/api/articles?username=${devToUsername}&per_page=30`;
-
-        fetch(devToApiUrl)
-          .then(res => {
-            if (!res.ok) throw new Error(`DEV.to API error: ${res.status}`);
-            return res.json();
-          })
-          .then(data => {
-            console.log('DEV.to Posts:', data); // Debug log
-            blogList.innerHTML = '';
-            if (data.length === 0) {
-              blogList.innerHTML = '<div>No blogs found. Start writing!</div>';
-              return;
-            }
-            const devToBlogs = data.map(post => ({
-              title: post.title,
-              url: `article.html?id=${post.id}&slug=${encodeURIComponent(post.slug)}`,
-              description: post.description || 'No excerpt available. Click to read the full post.',
-              source: 'DEV.to',
-              date: post.published_at
-            }));
-            devToBlogs.sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by newest
-            devToBlogs.forEach(post => {
-              const blogCard = document.createElement('div');
-              blogCard.className = 'blog-card';
-              blogCard.innerHTML = `
-                <a href="${post.url}" class="blog-title-link">${post.title}</a>
-                <div class="blog-meta">
-                  <span><i class="fas fa-calendar-alt"></i> ${formatDate(post.date)}</span>
-                  <span><i class="fas fa-globe"></i> ${post.source}</span>
-                </div>
-                <p>${post.description}</p>
-                <a href="${post.url}" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
-              `;
-              blogList.appendChild(blogCard);
-            });
-          })
-          .catch(err => {
-            console.error('DEV.to fetch error:', err);
-            blogList.innerHTML = `
-              <div id="error">
-                <p>Failed to load blogs: ${err.message}</p>
-                <button class="btn" onclick="fetchBlogs()">Retry</button>
-              </div>`;
-          });
-      }
-
-      // Initial fetch
-      fetchBlogs();
-    });
-  </script>
+  <script>document.addEventListener("DOMContentLoaded", () => { const b = document.body, d = document.getElementById("t-d"), m = document.getElementById("t-m"), h = document.querySelector(".ham"), n = document.querySelector(".nb-l"), l = document.getElementById("bl"); function t(e) { b.setAttribute("data-theme", e); d.checked = m.checked = e === "dark"; localStorage.setItem("theme", e) } const s = localStorage.getItem("theme") || "light"; t(s);[d, m].forEach(c => c && c.addEventListener("change", () => { t(c.checked ? "dark" : "light") })); if (h && n) h.addEventListener("click", () => n.classList.toggle("active")); document.querySelectorAll(".nb-l li a").forEach(i => i.addEventListener("click", () => { if (n.classList.contains("active")) n.classList.remove("active") })); function f(d) { return d ? new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : "Date N/A" } function sk(c = 3) { l.innerHTML = ""; for (let i = 0; i < c; i++) { const s = document.createElement("div"); s.className = "sc"; s.innerHTML = '<div class="sl t"></div><div class="sl m"></div><div class="sl x"></div><div class="sl x"></div><div class="sl b"></div>'; l.appendChild(s) } } function fb() { const k = "dtb", kt = "dtbt", cd = 5 * 60 * 1000, cb = localStorage.getItem(k), ct = localStorage.getItem(kt); if (cb && ct && (Date.now() - ct) < cd) { r(JSON.parse(cb)); return } sk(); fetch("https://dev.to/api/articles?username=akshthakkar&per_page=30").then(res => { if (!res.ok) throw new Error(`DEV.to error: ${res.status}`); return res.json() }).then(d => { localStorage.setItem(k, JSON.stringify(d)); localStorage.setItem(kt, Date.now()); r(d) }).catch(e => { l.innerHTML = `<div id="err"><p>Failed to load blogs: ${e.message}</p><button class="btn" onclick="fb()">Retry</button></div>` }) } function r(d) { l.innerHTML = ""; if (d.length === 0) { l.innerHTML = "<div>No blogs found. Start writing!</div>"; return } const b = d.map(p => ({ t: p.title, u: `article.html?id=${p.id}&slug=${encodeURIComponent(p.slug)}`, d: p.description || "No excerpt available. Click to read the full post.", s: "DEV.to", dt: p.published_at })); b.sort((a, b) => new Date(b.dt) - new Date(a.dt)); b.forEach(p => { const c = document.createElement("div"); c.className = "bc"; c.setAttribute("role", "article"); c.innerHTML = `<a href="${p.u}" class="btl" aria-label="Read ${p.t}">${p.t}</a><div class="bm"><span><i class="fas fa-calendar-alt" aria-hidden="true"></i> ${f(p.dt)}</span><span><i class="fas fa-globe" aria-hidden="true"></i> ${p.s}</span></div><p>${p.d}</p><a href="${p.u}" class="bl" aria-label="Read more about ${p.t}">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>`; l.appendChild(c); lz(c, e => e.classList.add("visible")) }) } fb(); setInterval(fb, 5 * 60 * 1000) });</script>
 </body>
+
 </html>

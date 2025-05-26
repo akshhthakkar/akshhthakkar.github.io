@@ -2,279 +2,246 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description"
-    content="Personal portfolio of Aksh Thakkar, a Computer Engineering student at Parul University, showcasing web development projects, blogs, and key achievements." />
+    content="Portfolio of Aksh Thakkar, Computer Engineering student at Parul University, showcasing web dev projects and blogs.">
+  <meta property="og:title" content="Aksh Thakkar">
+  <meta property="og:description" content="Portfolio of Aksh Thakkar, featuring web dev, AI projects, and blogs.">
+  <meta property="og:url" content="https://akshhthakkar.github.io/">
+  <meta property="og:image" content="/images/profile.jpg">
+  <meta property="og:site_name" content="Aksh Thakkar Portfolio">
+  <meta property="og:type" content="website">
   <title>Aksh Thakkar</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
+  <script>function lz(e, c) { new IntersectionObserver((t, r) => { t.forEach(i => { if (i.isIntersecting) { c(i.target); r.unobserve(i.target) } }) }, { rootMargin: "100px" }).observe(e) }</script>
   <style>
-    /* Universal box-sizing for consistent layout */
     html {
       box-sizing: border-box;
-      scroll-behavior: smooth;
+      scroll-behavior: smooth
     }
 
     *,
     *:before,
     *:after {
-      box-sizing: inherit;
+      box-sizing: inherit
     }
 
-    /* Root CSS variables for light theme */
     :root {
-      --bg: #ffffff;
-      --text: #333333;
-      --heading-text: #000000;
-      --accent: #007bff;
-      --accent-hover: #0056b3;
-      --navbar-bg-mobile: #f8f8f8;
-      --card-bg: #ffffff;
-      --card-border: #e8e8e8;
-      /* Very light border for minimal look */
-      --section-bg-light: #fdfdfd;
-      /* Very light background for sections */
-      --subtle-shadow-light: rgba(0, 0, 0, 0.02);
-      /* Even more subtle shadow */
-      --hover-shadow-light: rgba(0, 0, 0, 0.05);
-      /* Subtle hover shadow */
-      --card-hover-bg-light: rgba(0, 123, 255, 0.01);
-      /* Extremely light blue tint on hover */
-
-      /* Switch colors - Light mode */
-      --switch-off-bg: #ccc;
-      --switch-on-bg: #4CAF50;
-      --switch-circle-color: #fff;
-      --switch-border: #999;
-
-      /* Hero section gradient colors - Light mode (more pronounced blue) */
-      --hero-gradient-start: #e0f2f7;
-      /* Light blue */
-      --hero-gradient-mid: #ccecf7;
-      /* Lighter blue */
-      --hero-gradient-end: #ffffff;
-      /* White */
+      --bg: #fff;
+      --txt: #333;
+      --hdt: #000;
+      --acc: #007bff;
+      --ach: #0056b3;
+      --nbm: #f8f8f8;
+      --cbg: #fff;
+      --cbd: #e8e8e8;
+      --sl: rgba(0, 0, 0, 0.02);
+      --hl: rgba(0, 0, 0, 0.05);
+      --sob: #ccc;
+      --son: #4CAF50;
+      --scc: #fff;
+      --sbd: #999;
+      --hgs: #e0f2f7;
+      --hgm: #ccecf7;
+      --hge: #fff
     }
 
-    /* Dark theme overrides for CSS variables */
     [data-theme="dark"] {
       --bg: #121212;
-      /* Darker background */
-      --text: #e0e0e0;
-      /* Lighter text */
-      --heading-text: #ffffff;
-      --accent: #66b3ff;
-      /* Brighter accent for dark mode */
-      --accent-hover: #4da6ff;
-      --navbar-bg-mobile: #1a1a1a;
-      --card-bg: #1e1e1e;
-      --card-border: #252525;
-      /* Darker border for minimal look */
-      --section-bg-light: #151515;
-      /* Very dark background for sections */
-      --subtle-shadow-dark: rgba(255, 255, 255, 0.02);
-      /* Even more subtle shadow */
-      --hover-shadow-dark: rgba(255, 255, 255, 0.05);
-      /* Subtle hover shadow */
-      --card-hover-bg-dark: rgba(102, 179, 255, 0.01);
-      /* Extremely light blue tint on hover */
-
-
-      /* Switch colors - Dark mode */
-      --switch-off-bg: #555;
-      --switch-on-bg: #2196F3;
-      --switch-circle-color: #fff;
-      --switch-border: #777;
-
-      /* Hero section gradient colors - Dark mode (more pronounced blue) */
-      --hero-gradient-start: #0a2a4a;
-      /* Dark blue */
-      --hero-gradient-mid: #1a3a5a;
-      /* Slightly lighter dark blue */
-      --hero-gradient-end: #121212;
-      /* Dark background */
+      --txt: #e0e0e0;
+      --hdt: #fff;
+      --acc: #66b3ff;
+      --ach: #4da6ff;
+      --nbm: #1a1a1a;
+      --cbg: #1e1e1e;
+      --cbd: #252525;
+      --sl: rgba(255, 255, 255, 0.02);
+      --hl: rgba(255, 255, 255, 0.05);
+      --sob: #555;
+      --son: #2196F3;
+      --sbd: #777;
+      --hgs: #0a2a4a;
+      --hgm: #1a3a5a;
+      --hge: #121212
     }
-
 
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      /* Consistent font family */
-      background-color: var(--bg);
-      color: var(--text);
+      background: var(--bg);
+      color: var(--txt);
       transition: background 0.3s, color 0.3s;
-      line-height: 1.6;
+      line-height: 1.6
     }
 
-    /* --- Navbar Styles (Kept as is, per user request) --- */
-    .navbar {
+    .nb {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
       background: var(--bg);
-      box-shadow: 0 1px 4px var(--subtle-shadow-light);
+      box-shadow: 0 1px 4px var(--sl);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 10
     }
 
-    [data-theme="dark"] .navbar {
-      box-shadow: 0 1px 4px var(--subtle-shadow-dark);
+    [data-theme="dark"] .nb {
+      box-shadow: 0 1px 4px var(--sl)
     }
 
-    .navbar-brand {
+    .nb-b {
       font-size: 1.6rem;
       font-weight: 700;
-      color: var(--heading-text);
-      text-decoration: none;
+      color: var(--hdt);
+      text-decoration: none
     }
 
-    .navbar-nav {
+    .nb-l {
       list-style: none;
       display: flex;
       gap: 1.8rem;
       margin: 0;
       padding: 0;
-      align-items: center;
+      align-items: center
     }
 
-    .navbar-nav li a {
+    .nb-l li a {
       text-decoration: none;
-      color: var(--text);
+      color: var(--txt);
       font-weight: 500;
       transition: color 0.2s ease-in-out;
       position: relative;
-      padding-bottom: 0.2rem;
+      padding-bottom: 0.2rem
     }
 
-    .navbar-nav li a:hover {
-      color: var(--accent);
+    .nb-l li a:hover {
+      color: var(--acc)
     }
 
-    .navbar-nav li a::after {
+    .nb-l li a::after {
       content: '';
       position: absolute;
       left: 0;
       bottom: 0;
       width: 0;
       height: 2px;
-      background-color: var(--accent);
-      transition: width 0.3s ease-in-out;
+      background-color: var(--acc);
+      transition: width 0.3s ease-in-out
     }
 
-    .navbar-nav li a:hover::after {
-      width: 100%;
+    .nb-l li a:hover::after {
+      width: 100%
     }
 
-    .theme-switch {
+    .ts {
       position: relative;
       display: inline-block;
       width: 60px;
       height: 34px;
       user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      -webkit-tap-highlight-color: transparent
     }
 
-    .theme-switch input {
+    .ts input {
       opacity: 0;
       width: 0;
-      height: 0;
+      height: 0
     }
 
-    .slider {
+    .sld {
       position: absolute;
       cursor: pointer;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: var(--switch-off-bg);
+      background-color: var(--sob);
       border-radius: 34px;
       transition: background-color 0.4s;
-      border: 1px solid var(--switch-border);
+      border: 1px solid var(--sbd)
     }
 
-    .slider:before {
+    .sld:before {
       position: absolute;
       content: "";
       height: 26px;
       width: 26px;
       left: 4px;
       bottom: 3px;
-      background-color: var(--switch-circle-color);
+      background-color: var(--scc);
       border-radius: 50%;
       transition: transform 0.4s;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      z-index: 2;
+      z-index: 2
     }
 
-    .theme-switch input:checked+.slider {
-      background-color: var(--switch-on-bg);
-      border-color: var(--switch-on-bg);
+    .ts input:checked+.sld {
+      background-color: var(--son);
+      border-color: var(--son)
     }
 
-    .theme-switch input:checked+.slider:before {
-      transform: translateX(26px);
+    .ts input:checked+.sld:before {
+      transform: translateX(26px)
     }
 
-    .slider .icon-in-knob {
+    .sld .ik {
       position: absolute;
       top: 50%;
       font-size: 0.7em;
-      color: var(--text);
+      color: var(--txt);
       transition: transform 0.4s, opacity 0.4s;
-      z-index: 3;
+      z-index: 3
     }
 
-    .slider .fa-sun-knob {
+    .sld .fs {
       left: 11px;
       transform: translateY(-50%) translateX(0);
-      opacity: 1;
+      opacity: 1
     }
 
-    .slider .fa-moon-knob {
+    .sld .fm {
       left: 37px;
       transform: translateY(-50%) translateX(0);
-      opacity: 0;
+      opacity: 0
     }
 
-    .theme-switch input:checked+.slider .fa-sun-knob {
+    .ts input:checked+.sld .fs {
       transform: translateY(-50%) translateX(26px);
-      opacity: 0;
+      opacity: 0
     }
 
-    .theme-switch input:checked+.slider .fa-moon-knob {
+    .ts input:checked+.sld .fm {
       transform: translateY(-50%) translateX(-26px);
-      opacity: 1;
+      opacity: 1
     }
 
-    .desktop-theme-switch {
+    .dts {
       margin-left: 1.5rem;
       display: flex;
-      align-items: center;
+      align-items: center
     }
 
-    .mobile-controls-group {
+    .mcg {
       display: none;
       align-items: center;
-      gap: 1rem;
+      gap: 1rem
     }
 
-    .hamburger {
+    .ham {
       display: none;
       font-size: 1.8rem;
       background: none;
       border: none;
-      color: var(--text);
+      color: var(--txt);
       cursor: pointer;
       padding: 0.5rem;
-      z-index: 11;
+      z-index: 11
     }
 
-    /* --- Main Content Area --- */
-    .container {
+    .ct {
       max-width: 1000px;
       margin: auto;
       padding: 2rem;
@@ -282,662 +249,409 @@
       flex-wrap: wrap;
       gap: 2rem;
       align-items: center;
-      justify-content: center;
+      justify-content: center
     }
 
-    .intro {
+    .in {
       flex: 1;
-      min-width: 250px;
+      min-width: 250px
     }
 
-    .intro h1 {
+    .in h1 {
       font-size: 3rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.5rem
     }
 
-    .intro h2 {
+    .in h2 {
       font-size: 1.5rem;
-      font-weight: normal;
-      margin-bottom: 1rem;
+      font-weight: 400;
+      margin-bottom: 1rem
     }
 
-    .intro p {
-      line-height: 1.6;
+    .in p {
+      line-height: 1.6
     }
 
-    .profile-img {
+    .pi {
       flex: 1;
       max-width: 300px;
-      text-align: center;
+      text-align: center
     }
 
-    .profile-img img {
+    .pi img {
       width: 100%;
       height: auto;
-      max-width: 300px;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      opacity: 0
+    }
+
+    .pi img.visible {
+      opacity: 1
     }
 
     .btn {
       display: inline-block;
       margin-top: 1rem;
       padding: 0.5rem 1rem;
-      background-color: var(--accent);
+      background-color: var(--acc);
       color: var(--bg);
       text-decoration: none;
       border-radius: 5px;
-      transition: background-color 0.2s;
+      transition: background-color 0.2s
     }
 
     .btn:hover {
-      background-color: var(--accent-hover);
+      background-color: var(--ach)
     }
 
-    /* --- Sections General Styles --- */
-    section {
-      padding-top: 4rem;
-      padding-bottom: 4rem;
+    .btn .fa-envelope {
+      margin-right: 0.5rem;
+      font-size: 0.9em
     }
 
-    .section-title {
+    s {
+      padding: 4rem 0
+    }
+
+    .st {
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: 2.5rem;
-      color: var(--text);
+      color: var(--txt)
     }
 
-    /* --- Achievements List (Vertical) Styles --- */
-    /* This section was removed, but keeping styles in case it's re-added or for other lists */
-    .achievement-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .achievement-item {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      color: var(--text);
-      transition: border-color 0.3s;
-    }
-
-    [data-theme="dark"] .achievement-item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .achievement-item:last-child {
-      border-bottom: none;
-    }
-
-    .achievement-date {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: var(--accent);
-      min-width: 150px;
-      margin-bottom: 0.5rem;
-    }
-
-    .achievement-description {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      margin: 0;
-      flex-grow: 1;
-    }
-
-    .achievement-description a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .achievement-description a:hover {
-      color: var(--accent-hover);
-      text-decoration: underline;
-    }
-
-    .achievement-description a .fa-external-link-alt,
-    .achievement-description a .fa-certificate {
-      font-size: 0.8em;
-      margin-left: 5px;
-      vertical-align: middle;
-    }
-
-    /* --- Certifications Grid (Horizontal Scroll) Styles --- */
-    .certifications-grid {
+    .cg {
       display: flex;
       overflow-x: auto;
-      /* Enable horizontal scrolling */
       -webkit-overflow-scrolling: touch;
-      /* Smooth scrolling on iOS */
       scroll-snap-type: x mandatory;
-      /* Snap to cards */
       gap: 1.5rem;
-      /* Space between cards */
       padding: 1rem;
-      /* Padding around the scrollable area */
       margin: 0 auto;
-      /* Center the scrollable area */
-      max-width: 1000px;
-      /* Default max-width for desktop */
       border-radius: 12px;
-      /* Rounded corners for the scroll area */
       background-color: var(--bg);
-      /* Match body background */
       box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
-      /* Subtle inner shadow */
       scrollbar-width: thin;
-      /* Firefox */
-      scrollbar-color: var(--accent) var(--card-bg);
-      /* Firefox */
+      scrollbar-color: var(--acc) var(--cbg)
     }
 
-    /* Webkit scrollbar styles */
-    .certifications-grid::-webkit-scrollbar {
-      height: 8px;
+    .cg::-webkit-scrollbar {
+      height: 8px
     }
 
-    .certifications-grid::-webkit-scrollbar-track {
-      background: var(--card-bg);
+    .cg::-webkit-scrollbar-track {
+      background: var(--cbg);
+      border-radius: 10px
+    }
+
+    .cg::-webkit-scrollbar-thumb {
+      background-color: var(--acc);
       border-radius: 10px;
+      border: 2px solid var(--cbg)
     }
 
-    .certifications-grid::-webkit-scrollbar-thumb {
-      background-color: var(--accent);
-      border-radius: 10px;
-      border: 2px solid var(--card-bg);
-    }
-
-    .certification-card {
+    .cc {
       flex: 0 0 300px;
-      /* Do not grow, do not shrink, fixed width */
       padding: 1.5rem;
-      background-color: var(--card-bg);
+      background-color: var(--cbg);
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       scroll-snap-align: start;
-      /* Snap to the start of each card */
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
       border: 1px solid rgba(0, 0, 0, 0.05);
-      /* Subtle border */
+      opacity: 0
     }
 
-    [data-theme="dark"] .certification-card {
+    [data-theme="dark"] .cc {
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05)
     }
 
-    .certification-card:hover {
+    .cc.visible {
+      opacity: 1
+    }
+
+    .cc:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15)
     }
 
-    [data-theme="dark"] .certification-card:hover {
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    [data-theme="dark"] .cc:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4)
     }
 
-    .certification-card .card-date {
+    .cc .cd {
       font-size: 0.95rem;
       font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
+      color: var(--acc);
+      margin-bottom: 0.75rem
     }
 
-    .certification-card .card-description {
+    .cc .cdsc {
       font-size: 1rem;
       line-height: 1.5;
       margin-bottom: 1rem;
-      flex-grow: 1;
-      /* Allows description to take up available space */
+      flex-grow: 1
     }
 
-    .certification-card .card-link {
+    .cc .cl {
       display: inline-block;
       margin-top: 0.5rem;
       padding: 0.4rem 0.8rem;
-      background-color: var(--accent);
+      background-color: var(--acc);
       color: var(--bg);
       text-decoration: none;
       border-radius: 4px;
       font-size: 0.9rem;
-      transition: background-color 0.2s;
+      transition: background-color 0.2s
     }
 
-    .certification-card .card-link:hover {
-      background-color: var(--accent-hover);
+    .cc .cl:hover {
+      background-color: var(--ach)
     }
 
-
-    .socials {
+    .soc {
       margin-top: 3rem;
-      text-align: center;
+      text-align: center
     }
 
-    .socials a {
+    .soc a {
       margin: 0 10px;
-      color: var(--text);
+      color: var(--txt);
       font-size: 1.8rem;
-      transition: color 0.3s;
+      transition: color 0.3s
     }
 
-    .socials a:hover {
-      color: var(--accent);
+    .soc a:hover {
+      color: var(--acc)
     }
 
-    .footer {
+    .ft {
       text-align: center;
       padding: 1rem;
       background: var(--bg);
-      color: var(--text);
+      color: var(--txt);
       margin-top: 2rem;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05)
     }
 
-
-    /* --- Media Queries for Responsiveness --- */
     @media (max-width: 768px) {
-      .navbar {
+      .nb {
         padding: 1rem 1.5rem;
-        flex-wrap: nowrap;
+        flex-wrap: nowrap
       }
 
-      .navbar-brand {
+      .nb-b {
         flex-grow: 1;
-        font-size: 1.4rem;
+        font-size: 1.4rem
       }
 
-      .navbar-nav {
+      .nb-l {
         display: none;
         flex-direction: column;
         width: 100%;
-        background-color: var(--navbar-bg-mobile);
+        background-color: var(--nbm);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         position: absolute;
         top: 100%;
         left: 0;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease-out;
+        transition: max-height 0.3s ease-out
       }
 
-      .navbar-nav.active {
+      .nb-l.active {
         display: flex;
-        max-height: 300px;
-        /* Adjust as needed */
+        max-height: 300px
       }
 
-      .navbar-nav li {
+      .nb-l li {
         width: 100%;
         text-align: center;
-        padding: 0.8rem 0;
+        padding: 0.8rem 0
       }
 
-
-      .desktop-theme-switch {
-        display: none;
+      .dts {
+        display: none
       }
 
-      .mobile-controls-group {
-        display: flex;
+      .mcg {
+        display: flex
       }
 
-      .hamburger {
-        display: block;
+      .ham {
+        display: block
       }
 
-      /* About Page Adjustments */
-      .container {
+      .ct {
         flex-direction: column;
-        padding: 1rem;
+        padding: 1rem
       }
 
-      .intro {
+      .in {
         text-align: center;
-        min-width: unset;
+        min-width: unset
       }
 
-      .intro h1 {
-        font-size: 2.5rem;
+      .in h1 {
+        font-size: 2.5rem
       }
 
-      .intro h2 {
-        font-size: 1.3rem;
+      .in h2 {
+        font-size: 1.3rem
       }
 
-      .profile-img {
+      .pi {
         order: -1;
         margin-bottom: 1.5rem;
-        max-width: 250px;
+        max-width: 250px
       }
 
-      .socials {
-        margin-top: 2rem;
+      .soc {
+        margin-top: 2rem
       }
 
-      .socials a {
-        font-size: 1.5rem;
+      .soc a {
+        font-size: 1.5rem
       }
 
-      /* Adjustments for vertical achievement list on smaller screens */
-      .achievement-item {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .achievement-date {
-        margin-right: 0;
-        margin-bottom: 0.5rem;
-      }
-
-      /* Certifications grid on mobile */
-      .certifications-grid {
+      .cg {
         padding: 0.5rem;
-        /* Less padding on mobile */
-        max-width: 100%;
-        /* Allow grid to take full width on smaller screens */
+        max-width: 100%
       }
 
-      .certification-card {
+      .cc {
         flex: 0 0 calc(100% - 2rem);
-        /* Take full width minus padding/gap */
-        max-width: 300px;
-        /* Keep a max-width for consistency */
+        max-width: 300px
       }
     }
-
-    @media (min-width: 768px) {
-      .achievement-item {
-        flex-direction: row;
-        /* Layout date and description side-by-side */
-        align-items: baseline;
-        /* Align text baselines */
-      }
-
-      .achievement-date {
-        margin-right: 2rem;
-        /* Space between date and description */
-        margin-bottom: 0;
-        /* Remove bottom margin on desktop */
-      }
-    }
-
 
     @media (max-width: 480px) {
-      .navbar {
-        padding: 1rem;
+      .nb {
+        padding: 1rem
       }
 
-      .intro h1 {
+      .in h1 {
+        font-size: 2rem
+      }
+
+      .in h2 {
+        font-size: 1.1rem
+      }
+
+      .st {
         font-size: 2rem;
+        margin-bottom: 2rem
       }
 
-      .intro h2 {
-        font-size: 1.1rem;
+      s {
+        padding: 2rem 1rem
       }
 
-      .section-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-      }
-
-      section {
-        padding: 2rem 1rem;
-      }
-
-      .achievement-list {
-        padding: 0 0.5rem;
-        /* Slightly less padding on very small screens */
-      }
-
-      .certification-card {
+      .cc {
         flex: 0 0 calc(100% - 2rem);
-        /* Ensure it always takes full width minus padding/gap */
-        max-width: 280px;
-        /* Adjust max width if needed for very small screens */
+        max-width: 280px
       }
     }
   </style>
 </head>
 
 <body data-theme="light">
-  <nav class="navbar">
-    <a href="index.html" class="navbar-brand"><strong>Aksh</strong></a>
-
-    <ul class="navbar-nav">
+  <nav class="nb"><a href="index.html" class="nb-b"><strong>Aksh</strong></a>
+    <ul class="nb-l">
       <li><a href="#about">About</a></li>
       <li><a href="#certifications">Certifications</a></li>
       <li><a href="blog.html">Blogs</a></li>
       <li><a href="repositories.html">Repositories</a></li>
-      <li class="desktop-theme-switch">
-        <label class="theme-switch" aria-label="Toggle dark mode">
-          <input type="checkbox" id="theme-toggle-checkbox-desktop">
-          <span class="slider">
-            <i class="fas fa-sun icon-in-knob fa-sun-knob"></i>
-            <i class="fas fa-moon icon-in-knob fa-moon-knob"></i>
-          </span>
-        </label>
-      </li>
+      <li class="dts"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-d"><span
+            class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label></li>
     </ul>
-
-    <div class="mobile-controls-group">
-      <label class="theme-switch" aria-label="Toggle dark mode">
-        <input type="checkbox" id="theme-toggle-checkbox-mobile">
-        <span class="slider">
-          <i class="fas fa-sun icon-in-knob fa-sun-knob"></i>
-          <i class="fas fa-moon icon-in-knob fa-moon-knob"></i>
-        </span>
-      </label>
-      <button class="hamburger" aria-label="Toggle navigation menu">&#9776;</button>
-    </div>
+    <div class="mcg"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-m"><span
+          class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label><button
+        class="ham" aria-label="Toggle navigation menu">☰</button></div>
   </nav>
-
-  <section class="container" id="about">
-    <div class="intro">
+  <section class="ct" id="about" role="region" aria-label="About">
+    <div class="in">
       <h1>Aksh Thakkar</h1>
-      <h2>Computer Engineering Student | Web Developer | Aspiring AI Enthusiast</h2>
-      <p>
-        Hi! I'm Aksh, a passionate 3rd-year B.Tech. student in Computer Engineering at Parul University (Class of 2027).
-        I'm driven by a curiosity for how technology shapes our world and specialize in creating **user-friendly
-        websites** using modern web technologies like HTML and JavaScript. My goal is to build functional, visually
-        appealing, and impactful web solutions.
-      </p>
-      <p>
-        Beyond web development, I'm fascinated by **artificial intelligence** and its vast potential to solve complex
-        real-world problems. I'm actively exploring AI concepts and have already applied my growing skills in projects
-        like my own portfolio website, which strengthened my coding and design abilities. I'm excited to dive deeper
-        into AI and integrate it into practical applications.
-      </p>
-      <p>
-        As an enthusiastic learner, I'm always eager to explore new technologies, embrace challenges, and collaborate on
-        innovative ideas. I'm currently expanding my knowledge through personal projects and my new **blog**, where I'll
-        share insights, tutorials, and my journey in web development and AI. I'm actively seeking opportunities like
-        internships, hackathons, or team projects where I can contribute my skills, learn from others, and grow as a
-        developer.
-      </p>
-      <a href="mailto:aksht455@gmail.com" class="btn">Connect with Me</a>
+      <h2>Computer Engineering Student | Web Developer | AI Enthusiast</h2>
+      <p>Hi! I'm Aksh, a 3rd-year B.Tech. student in Computer Engineering at Parul University (Class of 2027). I
+        specialize in creating user-friendly websites using HTML and JavaScript, aiming to build impactful web
+        solutions.</p>
+      <p>I'm fascinated by artificial intelligence and its potential to solve real-world problems. I've applied my
+        skills in projects like this portfolio, enhancing my coding and design abilities, and I'm excited to integrate
+        AI into future applications.</p>
+      <p>As a learner, I explore new technologies, embrace challenges, and share insights via my blog. I'm seeking
+        internships, hackathons, or team projects to contribute and grow.</p><a href="mailto:aksht455@gmail.com"
+        class="btn" aria-label="Email Aksh"><i class="fas fa-envelope"></i> Connect with Me</a>
     </div>
-    <div class="profile-img">
-      <img src="./images/profile.jpg" alt="Aksh Thakkar"
-        onerror="this.onerror=null;this.src='https://placehold.co/300x300/E0E0E0/000000?text=Aksh+Thakkar';" />
-    </div>
+    <div class="pi"><img src="./images/profile.jpg" alt="Aksh Thakkar" data-src="./images/profile.jpg"
+        onerror="this.src='https://placehold.co/300x300/E0E0E0/000000?text=Aksh+Thakkar';"></div>
   </section>
-
-  <section class="container" id="certifications">
-    <h2 class="section-title">Certifications & Recognition</h2>
-    <div class="certifications-grid">
-
-
-      <div class="certification-card">
-        <span class="card-date">March 23 2023</span>
-        <p class="card-description">
-          Completed C, C++, Java, Javascript, HTML, CSS course (144+ hours) with A grade from Centre for Development of
-          Advanced Computing (C-DAC).
-        </p>
-        <a href="./images/Multilingual.pdf" target="_blank" class="card-link">View
-          Certificate <i class="fas fa-certificate"></i></a>
+  <section class="ct" id="certifications" role="region" aria-label="Certifications">
+    <h2 class="st">Certifications & Recognition</h2>
+    <div class="cg">
+      <div class="cc"><span class="cd">Mar 23, 2023</span>
+        <p class="cdsc">C, C++, Java, JavaScript, HTML, CSS course (144+ hours), A grade, C-DAC.</p><a
+          href="./images/Multilingual.pdf" target="_blank" class="cl"
+          aria-label="View C-DAC Multilingual Certificate">View <i class="fas fa-certificate"></i></a>
       </div>
-
-      <div class="certification-card">
-        <span class="card-date">April 23 2023</span>
-        <p class="card-description">
-          Completed Python course (100+ hours) with A+ grade from Centre for Development of Advanced Computing (C-DAC).
-        </p>
-        <a href="./images/Python - A.pdf" target="_blank" class="card-link">View Certificate <i
+      <div class="cc"><span class="cd">Apr 23, 2023</span>
+        <p class="cdsc">Python course (100+ hours), A+ grade, C-DAC.</p><a href="./images/Python - A.pdf"
+          target="_blank" class="cl" aria-label="View C-DAC Python Certificate">View <i
             class="fas fa-certificate"></i></a>
       </div>
-
-      <div class="certification-card">
-        <span class="card-date">July 21, 2023</span>
-        <p class="card-description">
-          Successfully completed 15 day internship at Ignite Incubation Centre at my university on my startup idea
-        </p>
-        <a href="./images/Ignite Internship Certificate .pdf" target="_blank" class="card-link">View
-          Certificate <i class="fas fa-certificate"></i></a>
+      <div class="cc"><span class="cd">Jul 21, 2023</span>
+        <p class="cdsc">15-day internship at Ignite Incubation Centre on startup idea.</p><a
+          href="./images/Ignite Internship Certificate .pdf" target="_blank" class="cl"
+          aria-label="View Ignite Internship Certificate">View <i class="fas fa-certificate"></i></a>
       </div>
-
-      <div class="certification-card">
-        <span class="card-date">July 27, 2023</span>
-        <p class="card-description">
-          Placed 1st in Ideathon Startups 2023 while leading with my team.
-        </p>
-        <a href="./images/Ideathon.pdf" target="_blank" class="card-link">View
-          Certificate <i class="fas fa-certificate"></i></a>
+      <div class="cc"><span class="cd">Jul 27, 2023</span>
+        <p class="cdsc">1st place in Ideathon Startups 2023, leading team.</p><a href="./images/Ideathon.pdf"
+          target="_blank" class="cl" aria-label="View Ideathon Certificate">View <i class="fas fa-certificate"></i></a>
       </div>
-
-      <div class="certification-card">
-        <span class="card-date">August 8, 2023</span>
-        <p class="card-description">
-          Startup Idea Incubated at Ignite Incubation Centre, secured funding up to ₹2 Lakhs.
-        </p>
-        <a href="./images/Startup Incubation.jpg" target="_blank" class="card-link">View
-          Certificate <i class="fas fa-certificate"></i></a>
+      <div class="cc"><span class="cd">Aug 8, 2023</span>
+        <p class="cdsc">Startup idea incubated at Ignite, secured ₹2L funding.</p><a
+          href="./images/Startup Incubation.jpg" target="_blank" class="cl"
+          aria-label="View Startup Incubation Certificate">View <i class="fas fa-certificate"></i></a>
       </div>
-
-      <div class="certification-card">
-        <span class="card-date">October 11, 2023</span>
-        <p class="card-description">
-          Attended a live workshop on discussion on understanding of Computer Networks and getting hands on experience
-          with the technology.
-        </p>
-        <a href="./images/CN Workshop.pdf" target="_blank" class="card-link">View
-          Certificate <i class="fas fa-certificate"></i></a>
+      <div class="cc"><span class="cd">Oct 11, 2023</span>
+        <p class="cdsc">Computer Networks workshop, hands-on experience.</p><a href="./images/CN Workshop.pdf"
+          target="_blank" class="cl" aria-label="View Computer Networks Workshop Certificate">View <i
+            class="fas fa-certificate"></i></a>
       </div>
-
-      <div class="certification-card">
-        <span class="card-date">April 30, 2024</span>
-        <p class="card-description">
-          Completed a 6-month MERN Stack Web Development Internship at One Technologies, delivering a fully functional
-          web
-          application.
-        </p>
-        <a href="./images/OneTechnologies.pdf" target="_blank" class="card-link">View
-          Certificate <i class="fas fa-certificate"></i></a>
+      <div class="cc"><span class="cd">Apr 30, 2024</span>
+        <p class="cdsc">6-month MERN Stack Internship at One Technologies, delivered web app.</p><a
+          href="./images/OneTechnologies.pdf" target="_blank" class="cl"
+          aria-label="View One Technologies Internship Certificate">View <i class="fas fa-certificate"></i></a>
       </div>
-
-      <div class="certification-card">
-        <span class="card-date">January 7, 2025</span>
-        <p class="card-description">
-          Awarded Diploma in Computer Engineering with 10 CGPA from Silver Oak University.
-        </p>
-        <a href="./images/Diploma Certificate .pdf" target="_blank" class="card-link">View
-          Certificate <i class="fas fa-certificate"></i></a>
+      <div class="cc"><span class="cd">Jan 7, 2025</span>
+        <p class="cdsc">Diploma in Computer Engineering, 10 CGPA, Silver Oak University.</p><a
+          href="./images/Diploma Certificate .pdf" target="_blank" class="cl" aria-label="View Diploma Certificate">View
+          <i class="fas fa-certificate"></i></a>
       </div>
-
-      <div class="certification-card">
-        <span class="card-date">February 10, 2025</span>
-        <p class="card-description">
-          Reached the Finale of the Listening Skills Event by Global Fun Fest.
-        </p>
-        <a href="./images/Listening.pdf" target="_blank" class="card-link">View
-          Certificate <i class="fas fa-certificate"></i></a>
+      <div class="cc"><span class="cd">Feb 10, 2025</span>
+        <p class="cdsc">Finalist in Listening Skills Event, Global Fun Fest.</p><a href="./images/Listening.pdf"
+          target="_blank" class="cl" aria-label="View Listening Skills Certificate">View <i
+            class="fas fa-certificate"></i></a>
       </div>
-
     </div>
   </section>
-
-  <div class="socials">
-    <a href="https://twitter.com/akshhthakkar" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-    <a href="https://dev.to/akshthakkar" target="_blank" title="Dev.to"><i class="fab fa-dev"></i></a>
-    <a href="https://discord.com/users/sarcasticaksh" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-    <a href="https://www.instagram.com/akshhthakkar" target="_blank" title="Instagram"><i
-        class="fab fa-instagram"></i></a>
-    <a href="https://github.com/akshhthakkar" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/akshthakkar" target="_blank" title="LinkedIn"><i
-        class="fab fa-linkedin"></i></a>
-  </div>
-
-  <footer class="footer">
+  <div class="soc"><a href="https://twitter.com/akshhthakkar" target="_blank" title="Twitter" aria-label="Twitter"><i
+        class="fab fa-twitter"></i></a><a href="https://dev.to/akshthakkar" target="_blank" title="Dev.to"
+      aria-label="DEV.to"><i class="fab fa-dev"></i></a><a href="https://discord.com/users/sarcasticaksh"
+      target="_blank" title="Discord" aria-label="Discord"><i class="fab fa-discord"></i></a><a
+      href="https://www.instagram.com/akshhthakkar" target="_blank" title="Instagram" aria-label="Instagram"><i
+        class="fab fa-instagram"></i></a><a href="https://github.com/akshhthakkar" target="_blank" title="GitHub"
+      aria-label="GitHub"><i class="fab fa-github"></i></a><a href="https://www.linkedin.com/in/akshthakkar"
+      target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></div>
+  <footer class="ft">
     <p>© 2025 Aksh Thakkar</p>
   </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const body = document.body;
-      const themeToggleCheckboxDesktop = document.getElementById('theme-toggle-checkbox-desktop');
-      const themeToggleCheckboxMobile = document.getElementById('theme-toggle-checkbox-mobile');
-
-      const hamburger = document.querySelector('.hamburger');
-      const navLinks = document.querySelector('.navbar-nav');
-
-      // Function to apply theme
-      function applyTheme(theme) {
-        body.setAttribute('data-theme', theme);
-        if (themeToggleCheckboxDesktop) {
-          themeToggleCheckboxDesktop.checked = (theme === 'dark');
-        }
-        if (themeToggleCheckboxMobile) {
-          themeToggleCheckboxMobile.checked = (theme === 'dark');
-        }
-        localStorage.setItem('theme', theme);
-      }
-
-      // Load saved theme
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      applyTheme(savedTheme);
-
-      // Desktop theme toggle
-      if (themeToggleCheckboxDesktop) {
-        themeToggleCheckboxDesktop.addEventListener('change', () => {
-          const newTheme = themeToggleCheckboxDesktop.checked ? 'dark' : 'light';
-          applyTheme(newTheme);
-        });
-      }
-
-      // Mobile theme toggle
-      if (themeToggleCheckboxMobile) {
-        themeToggleCheckboxMobile.addEventListener('change', () => {
-          const newTheme = themeToggleCheckboxMobile.checked ? 'dark' : 'light';
-          applyTheme(newTheme);
-        });
-      }
-
-      // Hamburger menu toggle
-      if (hamburger && navLinks) {
-        hamburger.addEventListener('click', function () {
-          navLinks.classList.toggle('active');
-        });
-      }
-
-      // Close mobile menu on link click
-      const navItems = document.querySelectorAll('.navbar-nav li a');
-      navItems.forEach(item => {
-        item.addEventListener('click', () => {
-          if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-          }
-        });
-      });
-    });
-  </script>
+  <script>document.addEventListener("DOMContentLoaded", () => { const b = document.body, d = document.getElementById("t-d"), m = document.getElementById("t-m"), h = document.querySelector(".ham"), n = document.querySelector(".nb-l"); function t(e) { b.setAttribute("data-theme", e); d.checked = m.checked = e === "dark"; localStorage.setItem("theme", e) } const s = localStorage.getItem("theme") || "light"; t(s);[d, m].forEach(c => c && c.addEventListener("change", () => { t(c.checked ? "dark" : "light") })); if (h && n) h.addEventListener("click", () => n.classList.toggle("active")); document.querySelectorAll(".nb-l li a").forEach(i => i.addEventListener("click", () => { if (window.innerWidth <= 768 && n.classList.contains("active")) n.classList.remove("active") })); const p = document.querySelector(".pi img"); lz(p, e => e.classList.add("visible")); document.querySelectorAll(".cc").forEach(c => lz(c, e => e.classList.add("visible"))) });</script>
 </body>
 
 </html>

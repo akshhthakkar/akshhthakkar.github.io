@@ -2,454 +2,395 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Blog post by Aksh Thakkar, a Computer Science student at Parul University." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Blog post by Aksh Thakkar, Computer Science student at Parul University.">
+    <meta property="og:title" content="Aksh Thakkar - Blog Post">
+    <meta property="og:description" content="Read blog posts by Aksh Thakkar on web dev and AI.">
+    <meta property="og:url" content="https://akshhthakkar.github.io/article.html">
+    <meta property="og:image" content="/images/profile.jpg">
+    <meta property="og:site_name" content="Aksh Thakkar Portfolio">
+    <meta property="og:type" content="article">
     <title>Aksh Thakkar - Blog Post</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
-    <script>
-        window.addEventListener('load', () => {
-            if (typeof marked === 'undefined') {
-                console.warn('Primary marked.js CDN failed, loading fallback');
-                const script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.min.js';
-                script.async = true;
-                document.head.appendChild(script);
-            }
-        });
-    </script>
+    <script>window.addEventListener("load", () => { if (typeof marked === "undefined") { const s = document.createElement("script"); s.src = "https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.min.js"; s.async = true; document.head.appendChild(s) } }); function lz(e, c) { new IntersectionObserver((t, r) => { t.forEach(i => { if (i.isIntersecting) { c(i.target); r.unobserve(i.target) } }) }, { rootMargin: "100px" }).observe(e) }</script>
     <style>
-        /* Universal box-sizing for consistent layout */
         html {
             box-sizing: border-box;
-            scroll-behavior: smooth;
-            /* Smooth scrolling for anchor links */
+            scroll-behavior: smooth
         }
 
         *,
         *:before,
         *:after {
-            box-sizing: inherit;
+            box-sizing: inherit
         }
 
-        /* Root CSS variables for light theme - COPIED FROM INDEX.HTML FOR EXACT CONSISTENCY */
         :root {
-            --bg: #ffffff;
-            --text: #333333;
-            --heading-text: #000000;
-            --accent: #007bff;
-            --accent-hover: #0056b3;
-            --navbar-bg-mobile: #f8f8f8;
-            --card-bg: #ffffff;
-            --card-border: #e8e8e8;
-            /* Very light border for minimal look */
-            --section-bg-light: #fdfdfd;
-            /* Very light background for sections */
-            --subtle-shadow-light: rgba(0, 0, 0, 0.02);
-            /* Even more subtle shadow */
-            --hover-shadow-light: rgba(0, 0, 0, 0.05);
-            /* Subtle hover shadow */
-            --card-hover-bg-light: rgba(0, 123, 255, 0.01);
-            /* Extremely light blue tint on hover */
-
-            /* Switch colors - Light mode */
-            --switch-off-bg: #ccc;
-            --switch-on-bg: #4CAF50;
-            --switch-circle-color: #fff;
-            --switch-border: #999;
-
-            /* Hero section gradient colors - Light mode (copied from index.html, though not directly used on this page's hero) */
-            --hero-gradient-start: #e0f2f7;
-            /* Light blue */
-            --hero-gradient-mid: #ccecf7;
-            /* Lighter blue */
-            --hero-gradient-end: #ffffff;
-            /* White */
+            --bg: #fff;
+            --txt: #333;
+            --hdt: #000;
+            --acc: #007bff;
+            --ach: #0056b3;
+            --nbm: #f8f8f8;
+            --cbg: #fff;
+            --cbd: #e8e8e8;
+            --sl: rgba(0, 0, 0, 0.02);
+            --hl: rgba(0, 0, 0, 0.05);
+            --sob: #ccc;
+            --son: #4CAF50;
+            --scc: #fff;
+            --sbd: #999
         }
 
-        /* Dark theme overrides for CSS variables - COPIED FROM INDEX.HTML FOR EXACT CONSISTENCY */
         [data-theme="dark"] {
             --bg: #121212;
-            /* Darker background */
-            --text: #e0e0e0;
-            /* Lighter text */
-            --heading-text: #ffffff;
-            --accent: #66b3ff;
-            /* Brighter accent for dark mode */
-            --accent-hover: #4da6ff;
-            --navbar-bg-mobile: #1a1a1a;
-            --card-bg: #1e1e1e;
-            --card-border: #252525;
-            /* Darker border for minimal look */
-            --section-bg-light: #151515;
-            /* Very dark background for sections */
-            --subtle-shadow-dark: rgba(255, 255, 255, 0.02);
-            /* Even more subtle shadow */
-            --hover-shadow-dark: rgba(255, 255, 255, 0.05);
-            /* Subtle hover shadow */
-            --card-hover-bg-dark: rgba(102, 179, 255, 0.01);
-            /* Extremely light blue tint on hover */
-
-
-            /* Switch colors - Dark mode */
-            --switch-off-bg: #555;
-            --switch-on-bg: #2196F3;
-            --switch-circle-color: #fff;
-            --switch-border: #777;
-
-            /* Hero section gradient colors - Dark mode (copied from index.html) */
-            --hero-gradient-start: #0a2a4a;
-            /* Dark blue */
-            --hero-gradient-mid: #1a3a5a;
-            /* Slightly lighter dark blue */
-            --hero-gradient-end: #121212;
-            /* Dark background */
+            --txt: #e0e0e0;
+            --hdt: #fff;
+            --acc: #66b3ff;
+            --ach: #4da6ff;
+            --nbm: #1a1a1a;
+            --cbg: #1e1e1e;
+            --cbd: #252525;
+            --sl: rgba(255, 255, 255, 0.02);
+            --hl: rgba(255, 255, 255, 0.05);
+            --sob: #555;
+            --son: #2196F3;
+            --sbd: #777
         }
-
 
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            /* Consistent font family */
-            background-color: var(--bg);
-            color: var(--text);
+            background: var(--bg);
+            color: var(--txt);
             transition: background 0.3s, color 0.3s;
-            line-height: 1.6;
+            line-height: 1.6
         }
 
-        /* --- Navbar Styles (COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY) --- */
-        .navbar {
+        .nb {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2rem;
             background: var(--bg);
-            box-shadow: 0 1px 4px var(--subtle-shadow-light);
+            box-shadow: 0 1px 4px var(--sl);
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 10
         }
 
-        [data-theme="dark"] .navbar {
-            box-shadow: 0 1px 4px var(--subtle-shadow-dark);
+        [data-theme="dark"] .nb {
+            box-shadow: 0 1px 4px var(--sl)
         }
 
-        .navbar-brand {
+        .nb-b {
             font-size: 1.6rem;
             font-weight: 700;
-            color: var(--heading-text);
-            text-decoration: none;
+            color: var(--hdt);
+            text-decoration: none
         }
 
-        .navbar-nav {
+        .nb-l {
             list-style: none;
             display: flex;
             gap: 1.8rem;
-            /* Adjusted gap for consistency */
             margin: 0;
             padding: 0;
-            align-items: center;
+            align-items: center
         }
 
-        .navbar-nav li a {
+        .nb-l li a {
             text-decoration: none;
-            color: var(--text);
+            color: var(--txt);
             font-weight: 500;
             transition: color 0.2s ease-in-out;
             position: relative;
-            padding-bottom: 0.2rem;
+            padding-bottom: 0.2rem
         }
 
-        .navbar-nav li a:hover {
-            color: var(--accent);
+        .nb-l li a:hover {
+            color: var(--acc)
         }
 
-        .navbar-nav li a::after {
+        .nb-l li a::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
             width: 0;
             height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease-in-out;
+            background-color: var(--acc);
+            transition: width 0.3s ease-in-out
         }
 
-        .navbar-nav li a:hover::after {
-            width: 100%;
+        .nb-l li a:hover::after {
+            width: 100%
         }
 
-        .theme-switch {
+        .ts {
             position: relative;
             display: inline-block;
             width: 60px;
             height: 34px;
             user-select: none;
-            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: transparent
         }
 
-        .theme-switch input {
+        .ts input {
             opacity: 0;
             width: 0;
-            height: 0;
+            height: 0
         }
 
-        .slider {
+        .sld {
             position: absolute;
             cursor: pointer;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: var(--switch-off-bg);
+            background-color: var(--sob);
             border-radius: 34px;
             transition: background-color 0.4s;
-            border: 1px solid var(--switch-border);
+            border: 1px solid var(--sbd)
         }
 
-        .slider:before {
+        .sld:before {
             position: absolute;
             content: "";
             height: 26px;
             width: 26px;
             left: 4px;
             bottom: 3px;
-            background-color: var(--switch-circle-color);
+            background-color: var(--scc);
             border-radius: 50%;
             transition: transform 0.4s;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 2;
+            z-index: 2
         }
 
-        .theme-switch input:checked+.slider {
-            background-color: var(--switch-on-bg);
-            border-color: var(--switch-on-bg);
+        .ts input:checked+.sld {
+            background-color: var(--son);
+            border-color: var(--son)
         }
 
-        .theme-switch input:checked+.slider:before {
-            transform: translateX(26px);
+        .ts input:checked+.sld:before {
+            transform: translateX(26px)
         }
 
-        .slider .icon-in-knob {
+        .sld .ik {
             position: absolute;
             top: 50%;
             font-size: 0.7em;
-            color: var(--text);
+            color: var(--txt);
             transition: transform 0.4s, opacity 0.4s;
-            z-index: 3;
+            z-index: 3
         }
 
-        .slider .fa-sun-knob {
+        .sld .fs {
             left: 11px;
             transform: translateY(-50%) translateX(0);
-            opacity: 1;
+            opacity: 1
         }
 
-        .slider .fa-moon-knob {
+        .sld .fm {
             left: 37px;
             transform: translateY(-50%) translateX(0);
-            opacity: 0;
+            opacity: 0
         }
 
-        .theme-switch input:checked+.slider .fa-sun-knob {
+        .ts input:checked+.sld .fs {
             transform: translateY(-50%) translateX(26px);
-            opacity: 0;
+            opacity: 0
         }
 
-        .theme-switch input:checked+.slider .fa-moon-knob {
+        .ts input:checked+.sld .fm {
             transform: translateY(-50%) translateX(-26px);
-            opacity: 1;
+            opacity: 1
         }
 
-        .desktop-theme-switch {
+        .dts {
             margin-left: 1.5rem;
             display: flex;
-            align-items: center;
+            align-items: center
         }
 
-        .mobile-controls-group {
+        .mcg {
             display: none;
             align-items: center;
-            gap: 1rem;
+            gap: 1rem
         }
 
-        .hamburger {
+        .ham {
             display: none;
             font-size: 1.8rem;
             background: none;
             border: none;
-            color: var(--text);
+            color: var(--txt);
             cursor: pointer;
             padding: 0.5rem;
-            z-index: 11;
+            z-index: 11
         }
 
-        /* Existing styles for the article page content - ENSURING NO UNINTENDED CHANGES */
-        .container {
+        .ct {
             max-width: 1000px;
             margin: auto;
-            padding: 2rem;
+            padding: 2rem
         }
 
-        .article {
-            background: var(--card-bg);
+        .ar {
+            background: var(--cbg);
             border-radius: 12px;
             padding: 2.5rem;
-            box-shadow: 0 8px 20px var(--subtle-shadow-light);
+            box-shadow: 0 8px 20px var(--sl);
             margin-bottom: 2rem;
-            transition: background 0.3s, box-shadow 0.3s;
+            transition: background 0.3s, box-shadow 0.3s
         }
 
-        [data-theme="dark"] .article {
-            box-shadow: 0 8px 20px var(--subtle-shadow-dark);
+        [data-theme="dark"] .ar {
+            box-shadow: 0 8px 20px var(--sl)
         }
 
-        .article h1 {
+        .ar h1 {
             font-size: 2.8rem;
-            color: var(--accent);
+            color: var(--acc);
             margin-bottom: 1.5rem;
             text-align: center;
             line-height: 1.2;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05)
         }
 
-        [data-theme="dark"] .article h1 {
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05);
+        [data-theme="dark"] .ar h1 {
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05)
         }
 
-        .article-content {
+        .ar-c {
             font-size: 1.05rem;
             line-height: 1.7;
-            color: var(--text);
+            color: var(--txt)
         }
 
-        .article-content h2 {
+        .ar-c h2 {
             font-size: 2rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: var(--heading-text);
-            border-bottom: 1px solid var(--card-border);
-            padding-bottom: 0.5rem;
+            margin: 2rem 0 1rem;
+            color: var(--hdt);
+            border-bottom: 1px solid var(--cbd);
+            padding-bottom: 0.5rem
         }
 
-        [data-theme="dark"] .article-content h2 {
-            border-bottom: 1px solid var(--card-border);
+        [data-theme="dark"] .ar-c h2 {
+            border-bottom: 1px solid var(--cbd)
         }
 
-        .article-content h3 {
+        .ar-c h3 {
             font-size: 1.6rem;
-            margin-top: 1.8rem;
-            margin-bottom: 0.8rem;
-            color: var(--heading-text);
+            margin: 1.8rem 0 0.8rem;
+            color: var(--hdt)
         }
 
-        .article-content img {
+        .ar-c img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             display: block;
             margin: 1.5rem auto;
-            box-shadow: 0 4px 10px var(--subtle-shadow-light);
+            box-shadow: 0 4px 10px var(--sl);
+            opacity: 0
         }
 
-        [data-theme="dark"] .article-content img {
-            box-shadow: 0 4px 10px var(--subtle-shadow-dark);
+        [data-theme="dark"] .ar-c img {
+            box-shadow: 0 4px 10px var(--sl)
         }
 
-        .article-content a {
-            color: var(--accent);
+        .ar-c img.visible {
+            opacity: 1
+        }
+
+        .ar-c a {
+            color: var(--acc);
             text-decoration: none;
-            transition: color 0.2s, text-decoration 0.2s;
+            transition: color 0.2s
         }
 
-        .article-content a:hover {
+        .ar-c a:hover {
             text-decoration: underline;
-            color: var(--accent-hover);
+            color: var(--ach)
         }
 
-        .article-content pre {
+        .ar-c pre {
             background: var(--bg);
             padding: 1.2rem;
             border-radius: 8px;
             overflow-x: auto;
-            border: 1px solid var(--card-border);
+            border: 1px solid var(--cbd);
             margin: 1.5rem 0;
-            box-shadow: inset 0 0 5px var(--subtle-shadow-light);
+            box-shadow: inset 0 0 5px var(--sl)
         }
 
-        [data-theme="dark"] .article-content pre {
-            border: 1px solid var(--card-border);
-            box-shadow: inset 0 0 5px var(--subtle-shadow-dark);
+        [data-theme="dark"] .ar-c pre {
+            border: 1px solid var(--cbd);
+            box-shadow: inset 0 0 5px var(--sl)
         }
 
-        .article-content code {
+        .ar-c code {
             font-family: 'Fira Code', 'Courier New', monospace;
             font-size: 0.95rem;
-            color: var(--text);
+            color: var(--txt)
         }
 
-        .article-content ul,
-        .article-content ol {
+        .ar-c ul,
+        .ar-c ol {
             margin: 1rem 0;
-            padding-left: 2rem;
+            padding-left: 2rem
         }
 
-        .article-content blockquote {
-            border-left: 5px solid var(--accent);
-            padding-left: 1.2rem;
+        .ar-c blockquote {
+            border-left: 5px solid var(--acc);
+            padding: 0.8rem 0 0.8rem 1.2rem;
             margin: 1.5rem 0;
-            color: var(--text);
+            color: var(--txt);
             opacity: 0.9;
             background-color: rgba(0, 0, 0, 0.03);
-            border-radius: 4px;
-            padding-top: 0.8rem;
-            padding-bottom: 0.8rem;
+            border-radius: 4px
         }
 
-        [data-theme="dark"] .article-content blockquote {
-            background-color: rgba(255, 255, 255, 0.03);
-        }
-
-        #loading {
-            text-align: center;
-            font-style: italic;
-            color: var(--text);
-            opacity: 0.6;
-            margin-top: 2rem;
+        [data-theme="dark"] .ar-c blockquote {
+            background-color: rgba(255, 255, 255, 0.03)
         }
 
         #error {
             text-align: center;
-            color: var(--text);
-            margin-top: 2rem;
+            color: var(--txt);
+            margin-top: 2rem
         }
 
         .btn {
             display: inline-block;
             padding: 0.6rem 1.2rem;
-            background-color: var(--accent);
-            color: white;
+            background-color: var(--acc);
+            color: #fff;
             text-decoration: none;
             border-radius: 8px;
-            transition: background-color 0.2s, transform 0.1s ease-in-out;
+            transition: background-color 0.2s, transform 0.1s;
             font-weight: 600;
-            box-shadow: 0 2px 5px var(--subtle-shadow-light);
+            box-shadow: 0 2px 5px var(--sl)
         }
 
         [data-theme="dark"] .btn {
-            box-shadow: 0 2px 5px var(--subtle-shadow-dark);
+            box-shadow: 0 2px 5px var(--sl)
         }
 
         .btn:hover {
-            background-color: var(--accent-hover);
+            background-color: var(--ach);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px var(--hover-shadow-light);
+            box-shadow: 0 4px 8px var(--hl)
         }
 
         [data-theme="dark"] .btn:hover {
-            box-shadow: 0 4px 8px var(--hover-shadow-dark);
+            box-shadow: 0 4px 8px var(--hl)
         }
 
         .cta {
@@ -457,263 +398,135 @@
             margin: 2rem 0;
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1rem
         }
 
-        .footer {
+        .ft {
             text-align: center;
             padding: 1rem;
             background: var(--bg);
-            color: var(--text);
+            color: var(--txt);
             margin-top: 2rem;
-            box-shadow: 0 -1px 4px var(--subtle-shadow-light);
+            box-shadow: 0 -1px 4px var(--sl)
         }
 
-        [data-theme="dark"] .footer {
-            box-shadow: 0 -1px 4px var(--subtle-shadow-dark);
+        [data-theme="dark"] .ft {
+            box-shadow: 0 -1px 4px var(--sl)
         }
 
-        /* --- Media Queries for Responsiveness (COPIED EXACTLY FROM INDEX.HTML FOR CONSISTENCY) --- */
         @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem 1.5rem;
-                flex-wrap: nowrap;
+            .nb {
+                padding: 1rem 1.5rem
             }
 
-            .navbar-brand {
+            .nb-b {
                 flex-grow: 1;
-                font-size: 1.4rem;
+                font-size: 1.4rem
             }
 
-            .navbar-nav {
+            .nb-l {
                 display: none;
                 flex-direction: column;
                 width: 100%;
-                background-color: var(--navbar-bg-mobile);
+                background-color: var(--nbm);
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                 position: absolute;
                 top: 100%;
                 left: 0;
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease-out;
+                transition: max-height 0.3s ease-out
             }
 
-            .navbar-nav.active {
+            .nb-l.active {
                 display: flex;
-                max-height: 300px;
-                /* Adjust as needed */
+                max-height: 300px
             }
 
-            .navbar-nav li {
+            .nb-l li {
                 width: 100%;
                 text-align: center;
-                padding: 0.8rem 0;
+                padding: 0.8rem 0
             }
 
-
-            .desktop-theme-switch {
-                display: none;
+            .dts {
+                display: none
             }
 
-            .mobile-controls-group {
-                display: flex;
+            .mcg {
+                display: flex
             }
 
-            .hamburger {
-                display: block;
+            .ham {
+                display: block
             }
 
-            .container {
-                padding: 1rem;
+            .ct {
+                padding: 1rem
             }
 
-            .article {
-                padding: 1.5rem;
+            .ar {
+                padding: 1.5rem
             }
 
-            .article h1 {
-                font-size: 2.2rem;
+            .ar h1 {
+                font-size: 2.2rem
             }
 
-            .article-content h2 {
-                font-size: 1.8rem;
+            .ar-c h2 {
+                font-size: 1.8rem
             }
 
-            .article-content h3 {
-                font-size: 1.4rem;
+            .ar-c h3 {
+                font-size: 1.4rem
             }
         }
 
         @media (max-width: 480px) {
-            .navbar {
-                padding: 1rem;
+            .nb {
+                padding: 1rem
             }
 
-            .article h1 {
-                font-size: 1.8rem;
+            .ar h1 {
+                font-size: 1.8rem
             }
 
-            .article-content h2 {
-                font-size: 1.5rem;
+            .ar-c h2 {
+                font-size: 1.5rem
             }
 
-            .article-content h3 {
-                font-size: 1.2rem;
+            .ar-c h3 {
+                font-size: 1.2rem
             }
         }
     </style>
 </head>
 
 <body data-theme="light">
-    <nav class="navbar">
-        <a href="index.html" class="navbar-brand"><strong>Aksh</strong></a>
-        <ul class="navbar-nav">
+    <nav class="nb"><a href="index.html" class="nb-b"><strong>Aksh</strong></a>
+        <ul class="nb-l">
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#certifications">Certifications</a></li>
             <li><a href="blog.html">Blogs</a></li>
             <li><a href="repositories.html">Repositories</a></li>
-            <li class="desktop-theme-switch">
-                <label class="theme-switch" aria-label="Toggle dark mode">
-                    <input type="checkbox" id="theme-toggle-checkbox-desktop">
-                    <span class="slider">
-                        <i class="fas fa-sun icon-in-knob fa-sun-knob"></i>
-                        <i class="fas fa-moon icon-in-knob fa-moon-knob"></i>
-                    </span>
-                </label>
+            <li class="dts"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-d"><span
+                        class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label>
             </li>
         </ul>
-        <div class="mobile-controls-group">
-            <label class="theme-switch" aria-label="Toggle dark mode">
-                <input type="checkbox" id="theme-toggle-checkbox-mobile">
-                <span class="slider">
-                    <i class="fas fa-sun icon-in-knob fa-sun-knob"></i>
-                    <i class="fas fa-moon icon-in-knob fa-moon-knob"></i>
-                </span>
-            </label>
-            <button class="hamburger" aria-label="Toggle navigation menu">☰</button>
-        </div>
+        <div class="mcg"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-m"><span
+                    class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label><button
+                class="ham" aria-label="Toggle navigation menu">☰</button></div>
     </nav>
-    <section class="container">
-        <div class="article" id="article">
-            <div id="loading">Loading article...</div>
+    <section class="ct">
+        <div class="ar" id="ar" role="article">
+            <div id="loading">Loading...</div>
         </div>
-        <div class="cta">
-            <a href="blog.html" class="btn">Back to Blogs</a>
-        </div>
+        <div class="cta"><a href="blog.html" class="btn" aria-label="Back to Blogs">Back to Blogs</a></div>
     </section>
-    <footer class="footer">
+    <footer class="ft">
         <p>© 2025 Aksh Thakkar</p>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const body = document.body;
-            const themeToggleCheckboxDesktop = document.getElementById('theme-toggle-checkbox-desktop');
-            const themeToggleCheckboxMobile = document.getElementById('theme-toggle-checkbox-mobile');
-            const hamburger = document.querySelector('.hamburger');
-            const navLinks = document.querySelector('.navbar-nav');
-
-            // Function to apply theme and update checkbox states
-            function applyTheme(theme) {
-                body.setAttribute('data-theme', theme);
-                if (themeToggleCheckboxDesktop) themeToggleCheckboxDesktop.checked = (theme === 'dark');
-                if (themeToggleCheckboxMobile) themeToggleCheckboxMobile.checked = (theme === 'dark');
-                localStorage.setItem('theme', theme);
-            }
-
-            // Load saved theme on page load
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            applyTheme(savedTheme);
-
-            // Listen for changes on desktop checkbox
-            if (themeToggleCheckboxDesktop) {
-                themeToggleCheckboxDesktop.addEventListener('change', () => {
-                    const newTheme = themeToggleCheckboxDesktop.checked ? 'dark' : 'light';
-                    applyTheme(newTheme);
-                });
-            }
-
-            // Listen for changes on mobile checkbox
-            if (themeToggleCheckboxMobile) {
-                themeToggleCheckboxMobile.addEventListener('change', () => {
-                    const newTheme = themeToggleCheckboxMobile.checked ? 'dark' : 'light';
-                    applyTheme(newTheme);
-                });
-            }
-
-            // Hamburger menu toggle
-            if (hamburger && navLinks) {
-                hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
-            }
-
-            // Close mobile menu when a link is clicked
-            const navItems = document.querySelectorAll('.navbar-nav li a');
-            navItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    // Only close if it's a mobile view and the menu is active
-                    if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                    }
-                });
-            });
-
-            const articleContainer = document.getElementById('article');
-            const loadingEl = document.getElementById('loading');
-            const urlParams = new URLSearchParams(window.location.search);
-            const postId = urlParams.get('id');
-            const slug = urlParams.get('slug');
-
-            console.log('Post ID:', postId, 'Slug:', slug);
-
-            if (!postId && !slug) {
-                loadingEl.style.display = 'none';
-                articleContainer.innerHTML = '<div id="error">No article ID or slug provided.</div>';
-                return;
-            }
-
-            // Determine API URL based on whether ID or slug is present
-            const apiUrl = postId ? `https://dev.to/api/articles/${postId}` : `https://dev.to/api/articles/${slug}`;
-            console.log('Fetching from:', apiUrl);
-
-            fetch(apiUrl)
-                .then(response => {
-                    console.log('API Response Status:', response.status, 'OK:', response.ok);
-                    if (!response.ok) {
-                        throw new Error(`DEV.to API error: ${response.status} ${response.statusText}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('API Data:', data);
-                    console.log('Is marked defined?', typeof marked !== 'undefined');
-
-                    // Check if marked.js is loaded before using it
-                    if (typeof marked === 'undefined') {
-                        throw new Error('marked.js is not loaded. Please check your internet or CDN.');
-                    }
-
-                    loadingEl.style.display = 'none'; // Hide loading message
-                    const htmlContent = marked.parse(data.body_markdown || ''); // Convert markdown to HTML
-
-                    articleContainer.innerHTML = `
-                        <h1>${data.title}</h1>
-                        <div class="article-content">${htmlContent}</div>
-                        <p>Source: <a href="${data.url}" target="_blank" rel="noopener noreferrer">DEV.to</a></p>
-                    `;
-
-                    // Add canonical link for SEO if needed
-                    const canonicalLink = document.createElement('link');
-                    canonicalLink.rel = 'canonical';
-                    canonicalLink.href = window.location.href;
-                    document.head.appendChild(canonicalLink);
-                })
-                .catch(error => {
-                    loadingEl.style.display = 'none'; // Hide loading message
-                    articleContainer.innerHTML = `<div id="error">Failed to load article: ${error.message}. Please try again later.</div>`;
-                    console.error('Article fetch error:', error);
-                });
-        });
-    </script>
+    <script>document.addEventListener("DOMContentLoaded", () => { const b = document.body, d = document.getElementById("t-d"), m = document.getElementById("t-m"), h = document.querySelector(".ham"), n = document.querySelector(".nb-l"), a = document.getElementById("ar"), l = document.getElementById("loading"); function t(e) { b.setAttribute("data-theme", e); d.checked = m.checked = e === "dark"; localStorage.setItem("theme", e) } const s = localStorage.getItem("theme") || "light"; t(s);[d, m].forEach(c => c && c.addEventListener("change", () => { t(c.checked ? "dark" : "light") })); if (h && n) h.addEventListener("click", () => n.classList.toggle("active")); document.querySelectorAll(".nb-l li a").forEach(i => i.addEventListener("click", () => { if (window.innerWidth <= 768 && n.classList.contains("active")) n.classList.remove("active") })); const p = new URLSearchParams(window.location.search), i = p.get("id"), g = p.get("slug"); if (!i && !g) { l.style.display = "none"; a.innerHTML = '<div id="error">No article ID or slug provided.</div>'; return } const u = i ? `https://dev.to/api/articles/${i}` : `https://dev.to/api/articles/${g}`; fetch(u).then(r => { if (!r.ok) throw new Error(`DEV.to error: ${r.status}`); return r.json() }).then(d => { if (typeof marked === "undefined") throw new Error("marked.js not loaded"); l.style.display = "none"; const c = marked.parse(d.body_markdown || "No content available"); document.querySelector("meta[property='og:title']").content = d.title; document.querySelector("meta[property='og:description']").content = d.description || "Blog post by Aksh Thakkar"; a.innerHTML = `<h1>${d.title}</h1><div class="ar-c">${c}</div><p>Source: <a href="${d.url}" target="_blank" rel="noopener noreferrer">DEV.to</a></p>`; document.querySelectorAll(".ar-c img").forEach(m => lz(m, e => e.classList.add("visible"))); const cl = document.createElement("link"); cl.rel = "canonical"; cl.href = window.location.href; document.head.appendChild(cl) }).catch(e => { l.style.display = "none"; a.innerHTML = `<div id="error">Failed to load article: ${e.message}</div>` }) });</script>
 </body>
 
-</html>
+</html> 
