@@ -16,7 +16,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
   <script>
-    // Ensure marked.js is available, lazy load if not
     window.addEventListener("load", () => {
       if (typeof marked === "undefined") {
         const s = document.createElement("script");
@@ -26,7 +25,6 @@
       }
     });
 
-    // Lazy load utility function for elements entering viewport
     function lz(e, c) {
       const o = new IntersectionObserver((t, r) => {
         t.forEach(i => {
@@ -42,7 +40,6 @@
     }
   </script>
   <style>
-    /* General Reset & Base Styles */
     html {
       box-sizing: border-box;
       scroll-behavior: smooth
@@ -54,7 +51,6 @@
       box-sizing: inherit
     }
 
-    /* CSS Variables for Theming (Light & Dark) */
     :root {
       --bg: #fff;
       --txt: #333;
@@ -107,7 +103,6 @@
       line-height: 1.6
     }
 
-    /* Navbar Styles */
     .nb {
       display: flex;
       justify-content: space-between;
@@ -168,7 +163,6 @@
       width: 100%
     }
 
-    /* Theme Switcher Styles */
     .ts {
       position: relative;
       display: inline-block;
@@ -274,7 +268,6 @@
       z-index: 11
     }
 
-    /* Main Content & Header */
     .ct {
       max-width: 1000px;
       margin: auto;
@@ -348,7 +341,6 @@
       z-index: 2
     }
 
-    /* Blog Grid & Card Styles */
     .bg {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -370,7 +362,6 @@
       position: relative;
       overflow: hidden;
       opacity: 0;
-      /* For lazy loading animation */
     }
 
     [data-theme="dark"] .bc {
@@ -476,7 +467,6 @@
       font-size: 0.8em
     }
 
-    /* Skeleton Loader Styles */
     .sc {
       background: var(--cbg);
       border: 1px solid var(--cbd);
@@ -488,9 +478,7 @@
       flex-direction: column;
       gap: 0.5rem;
       animation: pulse 1.5s infinite ease-in-out;
-      /* Added pulse animation */
       opacity: 1;
-      /* Skeletons are visible immediately */
     }
 
     [data-theme="dark"] .sc {
@@ -537,7 +525,6 @@
       margin-top: 0.75rem
     }
 
-    /* General Button Styles */
     .btn {
       display: inline-block;
       padding: 0.6rem 1.2rem;
@@ -564,7 +551,6 @@
       box-shadow: 0 4px 8px var(--hl)
     }
 
-    /* Footer Styles */
     .ft {
       text-align: center;
       padding: 1rem;
@@ -578,7 +564,6 @@
       box-shadow: 0 -1px 4px var(--sl)
     }
 
-    /* Error Message Styles */
     .error-message {
       color: var(--error-color);
       font-weight: 500;
@@ -600,7 +585,6 @@
       margin-bottom: 0.5rem
     }
 
-    /* Keyframe Animations */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -627,7 +611,6 @@
       }
     }
 
-    /* Reduced Motion Accessibility */
     @media (prefers-reduced-motion: reduce) {
 
       .bc,
@@ -638,7 +621,6 @@
       }
     }
 
-    /* Responsive Styles */
     @media (max-width: 768px) {
       .nb {
         padding: 1rem 1.5rem;
@@ -667,12 +649,6 @@
       .nb-l.active {
         display: flex;
         max-height: 300px
-      }
-
-      .nb-l li {
-        width: 100%;
-        text-align: center;
-        padding: 0.8rem 0
       }
 
       .dts {
@@ -752,36 +728,34 @@
     <p>© 2025 Aksh Thakkar</p>
   </footer>
   <script>
-    // Static fallback blogs, useful if DEV.to API fails or is empty
     const staticBlogs = [{
       t: "Sajhkasj",
       u: "article.html?id=123456&slug=sajhkasj-o33",
       d: "A brief description of my new post.",
       s: "DEV.to",
-      dt: "2025-05-26"
+      dt: "2024-05-20"
     }, {
       t: "How to Build a Portfolio Website with HTML and JavaScript",
       u: "article.html?id=123456&slug=how-to-build-a-portfolio-website",
       d: "Learn how to create a stunning portfolio website using HTML, JavaScript, and CSS.",
       s: "DEV.to",
-      dt: "2025-05-01"
+      dt: "2024-04-25"
     }, {
       t: "Getting Started with AI: A Beginner's Guide",
       u: "article.html?id=123457&slug=getting-started-with-ai",
       d: "An introduction to artificial intelligence concepts for beginners.",
       s: "DEV.to",
-      dt: "2025-04-15"
+      dt: "2024-03-10"
     }, {
       t: "Responsive Web Design Tips",
       u: "article.html?id=123458&slug=responsive-web-design-tips",
       d: "Best practices for creating responsive layouts that work on all devices.",
       s: "DEV.to",
-      dt: "2025-03-20"
+      dt: "2024-02-15"
     }];
 
-    // Global variable to store currently fetched DEV.to blogs for comparison
     let currentDevToBlogs = [];
-    let isFetching = false; // Flag to prevent concurrent fetches
+    let isFetching = false;
 
     document.addEventListener("DOMContentLoaded", () => {
       const body = document.body;
@@ -791,21 +765,15 @@
       const navLinks = document.querySelector(".nb-l");
       const blogListContainer = document.getElementById("bl");
 
-      /**
-       * Sets the theme (light/dark) and persists it in localStorage.
-       * @param {string} theme - The theme to set ('light' or 'dark').
-       */
       function setTheme(theme) {
         body.setAttribute("data-theme", theme);
         toggleDesktop.checked = toggleMobile.checked = theme === "dark";
         localStorage.setItem("theme", theme);
       }
 
-      // Initialize theme from localStorage or default to 'light'
       const savedTheme = localStorage.getItem("theme") || "light";
       setTheme(savedTheme);
 
-      // Add event listeners for theme toggles
       [toggleDesktop, toggleMobile].forEach(toggle => {
         if (toggle) {
           toggle.addEventListener("change", () => {
@@ -814,7 +782,6 @@
         }
       });
 
-      // Hamburger menu functionality for mobile
       if (hamburgerButton && navLinks) {
         hamburgerButton.addEventListener("click", () => navLinks.classList.toggle("active"));
         hamburgerButton.addEventListener("keydown", (e) => {
@@ -825,12 +792,10 @@
         });
       }
 
-      // Close mobile nav menu when a link is clicked
       document.querySelectorAll(".nb-l li a").forEach(link => link.addEventListener("click", () => {
         if (navLinks.classList.contains("active")) navLinks.classList.remove("active");
       }));
 
-      // Close mobile nav menu when clicking outside
       document.addEventListener('click', (event) => {
         if (navLinks.classList.contains('active') &&
           !navLinks.contains(event.target) &&
@@ -839,7 +804,6 @@
         }
       });
 
-      // Close mobile nav menu when Escape key is pressed
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && navLinks.classList.contains('active')) {
           navLinks.classList.remove('active');
@@ -847,11 +811,6 @@
       });
 
 
-      /**
-       * Formats a date string into a human-readable format.
-       * @param {string} dateString - The date string to format.
-       * @returns {string} Formatted date or "Date N/A".
-       */
       function formatDate(dateString) {
         return dateString ? new Date(dateString).toLocaleDateString("en-US", {
           year: "numeric",
@@ -860,15 +819,10 @@
         }) : "Date N/A";
       }
 
-      /**
-       * Renders blog posts into the DOM.
-       * @param {Array<Object>} blogs - An array of blog post objects.
-       */
       function renderBlogs(blogs) {
-        // Sort blogs by date in descending order (latest first)
         blogs.sort((a, b) => new Date(b.dt) - new Date(a.dt));
 
-        blogListContainer.innerHTML = ""; // Clear existing content
+        blogListContainer.innerHTML = "";
 
         if (blogs.length === 0) {
           blogListContainer.innerHTML = "<div class='error-message'><i class='fas fa-info-circle'></i><p>No blogs found. Start writing!</p></div>";
@@ -877,7 +831,7 @@
 
         blogs.forEach(post => {
           const card = document.createElement("div");
-          card.className = "bc"; // Blog Card class
+          card.className = "bc";
           card.setAttribute("role", "article");
           card.innerHTML = `
                         <a href="${post.u}" class="btl" aria-label="Read ${post.t}">${post.t}</a>
@@ -889,19 +843,15 @@
                         <a href="${post.u}" class="bl" aria-label="Read more about ${post.t}">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     `;
           blogListContainer.appendChild(card);
-          // Apply lazy loading animation
           lz(card, element => element.classList.add("visible"));
         });
       }
 
-      /**
-       * Displays skeleton loaders while content is being fetched.
-       */
       function showSkeletonLoaders() {
-        blogListContainer.innerHTML = ''; // Clear existing content
-        for (let i = 0; i < 3; i++) { // Show 3 skeleton cards
+        blogListContainer.innerHTML = '';
+        for (let i = 0; i < 3; i++) {
           const skeletonCard = document.createElement("div");
-          skeletonCard.className = "bc sc"; // Add 'sc' class for skeleton styling
+          skeletonCard.className = "bc sc";
           skeletonCard.innerHTML = `
                         <div class="sl t"></div>
                         <div class="sl m"></div>
@@ -913,19 +863,15 @@
         }
       }
 
-      /**
-       * Fetches blog posts from DEV.to API.
-       * Displays skeleton loaders, handles errors, and updates content.
-       */
       async function fetchDevToPosts() {
         if (isFetching) {
           console.log("Fetch already in progress, skipping.");
-          return; // Prevent multiple concurrent fetches
+          return;
         }
 
         isFetching = true;
         console.log("Attempting to fetch DEV.to posts...");
-        showSkeletonLoaders(); // Show loaders immediately
+        showSkeletonLoaders();
 
         try {
           const timestamp = Date.now();
@@ -933,7 +879,7 @@
           console.log("Fetching from:", apiUrl);
 
           const response = await fetch(apiUrl, {
-            cache: "no-store" // Ensure fresh data
+            cache: "no-store"
           });
 
           if (!response.ok) {
@@ -944,8 +890,8 @@
               userMessage = "Too many requests to DEV.to. Please wait a moment.";
             }
             blogListContainer.innerHTML = `<div class="error-message"><i class="fas fa-exclamation-circle"></i><p>${userMessage}</p><p>Showing static blogs instead.</p></div>`;
-            renderBlogs(staticBlogs); // Fallback to static blogs on API error
-            return; // Exit function if API error
+            renderBlogs(staticBlogs);
+            return;
           }
 
           const data = await response.json();
@@ -960,47 +906,38 @@
               dt: post.published_at
             }));
 
-            // Check if the fetched data is different from currentDevToBlogs
-            // Simple comparison: check length and stringified content (less efficient but reliable)
-            // More robust comparison: compare IDs and published_at dates
             const fetchedBlogsString = JSON.stringify(fetchedBlogs.map(b => ({ t: b.t, dt: b.dt, u: b.u })));
             const currentBlogsString = JSON.stringify(currentDevToBlogs.map(b => ({ t: b.t, dt: b.dt, u: b.u })));
 
             if (fetchedBlogsString !== currentBlogsString) {
               console.log("DEV.to blogs updated. Re-rendering.");
-              currentDevToBlogs = fetchedBlogs; // Update global state
-              renderBlogs(currentDevToBlogs); // Re-render with new data
+              currentDevToBlogs = fetchedBlogs;
+              renderBlogs(currentDevToBlogs);
             } else {
-              console.log("DEV.to blogs are up to date. No re-render needed.");
-              // If no change, re-render the currentDevToBlogs (which are the fetched ones)
-              // This ensures skeleton loaders are replaced even if data didn't change
+              console.log("DEV.to blogs are up to date. No re-render needed (content is identical).");
               renderBlogs(currentDevToBlogs);
             }
 
           } else {
             console.log("No DEV.to blogs found in the response. Showing static blogs.");
-            blogListContainer.innerHTML = `<div class="error-message"><i class="fas fa-info-circle"></i><p>No DEV.to blogs available. Showing static content.</p></div>`;
-            renderBlogs(staticBlogs); // Show static blogs if API returns empty array
+            blogListContainer.innerHTML = `<div class="error-message"><i class="fas fa-info-circle'></i><p>No DEV.to blogs available. Showing static content.</p></div>`;
+            renderBlogs(staticBlogs);
           }
 
         } catch (error) {
           console.error("Failed to fetch DEV.to posts (network/other error):", error.message, error);
           blogListContainer.innerHTML = `<div class="error-message"><i class="fas fa-exclamation-triangle"></i><p>Network error: Unable to fetch blogs. Please check your internet connection.</p><p>Showing static blogs instead.</p></div>`;
-          renderBlogs(staticBlogs); // Fallback to static blogs on any fetch error
+          renderBlogs(staticBlogs);
         } finally {
-          isFetching = false; // Reset fetching flag
+          isFetching = false;
         }
       }
 
-      // Initial load: Display static blogs first for immediate content
       renderBlogs(staticBlogs);
 
-      // Then immediately try to fetch and display dynamic blogs from DEV.to
       fetchDevToPosts();
 
-      // Set up polling: Fetch DEV.to posts every 5 minutes (300,000 milliseconds)
-      // Adjust this interval as needed, but be mindful of API rate limits.
-      setInterval(fetchDevToPosts, 300000); // 5 minutes
+      setInterval(fetchDevToPosts, 300000);
     });
   </script>
 </body>
