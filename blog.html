@@ -540,7 +540,7 @@
     .btn:hover {
       background-color: var(--ach);
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px var(--hl)
+      box-shadow: 0 4一層8px var(--hl)
     }
 
     [data-theme="dark"] .btn {
@@ -875,9 +875,8 @@
 
         try {
           const timestamp = Date.now();
-          // CORRECTED: Changed per_page from 30 to 1000
           const apiUrl = `https://dev.to/api/articles?username=akshthakkar&per_page=1000&_=${timestamp}`;
-          console.log("Fetching from:", apiUrl);
+          // console.log("Fetching from:", apiUrl); // Commented out for less console noise
 
           const response = await fetch(apiUrl, {
             cache: "no-store"
@@ -896,7 +895,7 @@
           }
 
           const data = await response.json();
-          console.log("DEV.to API response data:", data);
+          // console.log("DEV.to API response data:", data); // Commented out for less console noise
 
           if (data.length > 0) {
             const fetchedBlogs = data.map(post => ({
@@ -911,7 +910,7 @@
             const currentBlogsString = JSON.stringify(currentDevToBlogs.map(b => ({ t: b.t, dt: b.dt, u: b.u })));
 
             if (fetchedBlogsString !== currentBlogsString) {
-              console.log("DEV.to blogs updated. Re-rendering.");
+              console.log("DEV.to blogs updated");
               currentDevToBlogs = fetchedBlogs;
               renderBlogs(currentDevToBlogs);
             } else {
