@@ -48,6 +48,7 @@
       --hgm: #ccecf7;
       --hge: #fff;
       --error-color: #dc3545;
+      --error-color-rgb: 220, 53, 69;
     }
 
     [data-theme="dark"] {
@@ -65,6 +66,7 @@
       --son: #2196F3;
       --sbd: #777;
       --error-color: #ff6b6b;
+      --error-color-rgb: 255, 107, 107;
       --hgs: #0a2a4a;
       --hgm: #1a3a5a;
       --hge: #121212;
@@ -765,12 +767,13 @@
       padding: 1rem;
       border: 1px solid var(--error-color);
       border-radius: 8px;
-      background-color: rgba(var(--error-color-rgb, 220, 53, 69), 0.1);
+      background-color: rgba(var(--error-color-rgb), 0.1);
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
       font-size: 1rem;
+      text-align: center;
     }
 
     .error-message i.fas {
@@ -1103,29 +1106,29 @@
           const skeletonCard = document.createElement("div");
           skeletonCard.className = "sk";
           skeletonCard.innerHTML = `
-                        <div class="sl t"></div>
-                        <div class="sl m"></div>
-                        <div class="sl x"></div>
-                        <div class="sl x"></div>
-                        <div class="sl b"></div>
-                    `;
+                            <div class="sl t"></div>
+                            <div class="sl m"></div>
+                            <div class="sl x"></div>
+                            <div class="sl x"></div>
+                            <div class="sl b"></div>
+                        `;
           repositoriesGrid.appendChild(skeletonCard);
         }
       }
 
       function createRepoCard(repo) {
         return `
-                    <div class="rc">
-                        <a href="${repo.html_url}" class="rtl" target="_blank" rel="noopener">${repo.name}</a>
-                        <div class="rm">
-                            <span><i class="fas fa-code"></i> ${repo.language || "Unknown"}</span>
-                            <span><i class="fas fa-star"></i> ${repo.stargazers_count || 0}</span>
-                            <span><i class="fas fa-code-branch"></i> ${repo.forks_count || 0}</span>
+                        <div class="rc">
+                            <a href="${repo.html_url}" class="rtl" target="_blank" rel="noopener">${repo.name}</a>
+                            <div class="rm">
+                                <span><i class="fas fa-code"></i> ${repo.language || "Unknown"}</span>
+                                <span><i class="fas fa-star"></i> ${repo.stargazers_count || 0}</span>
+                                <span><i class="fas fa-code-branch"></i> ${repo.forks_count || 0}</span>
+                            </div>
+                            <p>${repo.description || "No description."}</p>
+                            <a href="${repo.html_url}" class="rl" target="_blank" rel="noopener">View on GitHub <i class="fas fa-arrow-right"></i></a>
                         </div>
-                        <p>${repo.description || "No description."}</p>
-                        <a href="${repo.html_url}" class="rl" target="_blank" rel="noopener">View on GitHub <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                `;
+                    `;
       }
 
       async function fetchRepositories(append = false) {
@@ -1171,22 +1174,23 @@
           console.error("Failed to fetch repositories:", error);
           let errorMessage = `Error loading repositories: ${error.message}.`;
           if (error instanceof TypeError && error.message === "Failed to fetch") {
-            errorMessage += " This usually means a network issue (e.g., no internet, ad blocker, or browser extension blocking the request). Please check your internet connection and try disabling browser extensions.";
+            errorMessage = "The request to GitHub failed. This often indicates a network issue (e.g., no internet connection, a firewall blocking the request, or a browser extension like an ad blocker interfering). Please check your internet and try disabling extensions.";
           } else if (error.message.includes("rate limit exceeded")) {
-            errorMessage += " You might have hit the GitHub API rate limit. Please wait an hour and try again.";
+            errorMessage = "You've likely hit the GitHub API rate limit for unauthenticated requests. Please wait an hour and try again.";
           }
+
           if (append && repositoriesGrid.children.length > 0) {
             repositoriesGrid.insertAdjacentHTML("beforeend", `
-                            <p class="tc error-message" style="margin-top: 1rem;">
-                                <i class="fas fa-exclamation-triangle"></i> Error loading more repositories: ${errorMessage}
-                            </p>
-                        `);
+                                <p class="tc error-message" style="margin-top: 1rem;" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i> Error loading more repositories: ${errorMessage}
+                                </p>
+                            `);
           } else {
             repositoriesGrid.innerHTML = `
-                            <p class="tc error-message">
-                                <i class="fas fa-exclamation-triangle"></i> Error loading repositories: ${errorMessage}
-                            </p>
-                        `;
+                                <p class="tc error-message" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i> Error loading repositories: ${errorMessage}
+                                </p>
+                            `;
           }
           loadMoreBtn.style.display = "none";
         }
