@@ -1,0 +1,32 @@
+name: Trigger DEV.to Blog Rebuild
+
+on:
+  repository_dispatch:
+    types: [devto_update_trigger] # This is the custom event type our Netlify function will send
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4 # Use v4 for better compatibility
+
+      - name: Set up Node.js (if your site uses it for building)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20" # Or your desired Node.js version if you have a build step
+
+      # Add your site's build steps here if you have any (e.g., if you use a static site generator)
+      # For a simple HTML/CSS/JS site, you might not need specific build steps
+      # - name: Build Project
+      #   run: npm install && npm run build # Example if you have a build process
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3 # A popular action for deploying to GitHub Pages
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ # Or the directory where your blog.html and other static files are (e.g., ./docs)
+          # If your GitHub Pages are served from the root of the 'main' branch, '.' is usually correct.
+          # If they are served from a 'docs' folder, change to 'publish_dir: ./docs'
+          # If your GitHub Pages are built by a specific GitHub Pages build process (newer repos),
+          # you might instead use actions/deploy-pages@v1, but peaceiris is more general.
