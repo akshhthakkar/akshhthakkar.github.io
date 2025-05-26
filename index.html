@@ -9,9 +9,10 @@
   <meta property="og:title" content="Aksh Thakkar">
   <meta property="og:description" content="Portfolio of Aksh Thakkar, featuring web dev, AI projects, and blogs.">
   <meta property="og:url" content="https://akshhthakkar.github.io/">
-  <meta property="og:image" content="/images/profile.jpg">
+  <meta property="og:image" src="/images/avatar.jpg" alt="Aksh Thakkar's profile picture">
   <meta property="og:site_name" content="Aksh Thakkar Portfolio">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Aksh Thakkar</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -31,12 +32,6 @@
     }
   </script>
   <style>
-    /*
-        *****************************************************************************
-        * START OF NAVBAR & THEME CSS (COPIED FROM BLOG.HTML)
-        *****************************************************************************
-        */
-
     html {
       box-sizing: border-box;
       scroll-behavior: smooth
@@ -48,7 +43,6 @@
       box-sizing: inherit
     }
 
-    /* CSS Variables for Theming (Light & Dark) */
     :root {
       --bg: #fff;
       --txt: #333;
@@ -61,13 +55,12 @@
       --sl: rgba(0, 0, 0, 0.02);
       --hl: rgba(0, 0, 0, 0.05);
       --sob: #ccc;
-      --son: #4CAF50;
+      --son: #2196F3;
       --scc: #fff;
       --sbd: #999;
       --hgs: #e0f2f7;
       --hgm: #ccecf7;
       --hge: #fff;
-      /* Added from blog.html, might not be used here but good for consistency */
       --error-color: #dc3545;
       --error-color-rgb: 220, 53, 69;
     }
@@ -84,12 +77,11 @@
       --sl: rgba(255, 255, 255, 0.02);
       --hl: rgba(255, 255, 255, 0.05);
       --sob: #555;
-      --son: #2196F3;
+      --son: transparent;
       --sbd: #777;
       --hgs: #0a2a4a;
       --hgm: #1a3a5a;
       --hge: #121212;
-      /* Added from blog.html, might not be used here but good for consistency */
       --error-color: #ff6b6b;
       --error-color-rgb: 255, 107, 107;
     }
@@ -103,7 +95,7 @@
       line-height: 1.6
     }
 
-    /* Navbar Styles */
+    /* Navbar Styles (Copied from updated repositories.html) */
     .nb {
       display: flex;
       justify-content: space-between;
@@ -113,18 +105,18 @@
       box-shadow: 0 1px 4px var(--sl);
       position: sticky;
       top: 0;
-      z-index: 10
+      z-index: 10;
     }
 
     [data-theme="dark"] .nb {
-      box-shadow: 0 1px 4px var(--sl)
+      box-shadow: 0 1px 4px var(--sl);
     }
 
     .nb-b {
       font-size: 1.6rem;
       font-weight: 700;
       color: var(--hdt);
-      text-decoration: none
+      text-decoration: none;
     }
 
     .nb-l {
@@ -133,7 +125,7 @@
       gap: 1.8rem;
       margin: 0;
       padding: 0;
-      align-items: center
+      align-items: center;
     }
 
     .nb-l li a {
@@ -142,11 +134,11 @@
       font-weight: 500;
       transition: color 0.2s ease-in-out;
       position: relative;
-      padding-bottom: 0.2rem
+      padding-bottom: 0.2rem;
     }
 
     .nb-l li a:hover {
-      color: var(--acc)
+      color: var(--acc);
     }
 
     .nb-l li a::after {
@@ -157,27 +149,26 @@
       width: 0;
       height: 2px;
       background-color: var(--acc);
-      transition: width 0.3s ease-in-out
+      transition: width 0.3s ease-in-out;
     }
 
     .nb-l li a:hover::after {
-      width: 100%
+      width: 100%;
     }
 
-    /* Theme Switcher Styles */
     .ts {
       position: relative;
       display: inline-block;
       width: 60px;
       height: 34px;
       user-select: none;
-      -webkit-tap-highlight-color: transparent
+      -webkit-tap-highlight-color: transparent;
     }
 
     .ts input {
       opacity: 0;
       width: 0;
-      height: 0
+      height: 0;
     }
 
     .sld {
@@ -190,7 +181,7 @@
       background-color: var(--sob);
       border-radius: 34px;
       transition: background-color 0.4s;
-      border: 1px solid var(--sbd)
+      border: 1px solid var(--sbd);
     }
 
     .sld:before {
@@ -204,16 +195,16 @@
       border-radius: 50%;
       transition: transform 0.4s;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      z-index: 2
+      z-index: 2;
     }
 
     .ts input:checked+.sld {
       background-color: var(--son);
-      border-color: var(--son)
+      border-color: var(--son);
     }
 
     .ts input:checked+.sld:before {
-      transform: translateX(26px)
+      transform: translateX(26px);
     }
 
     .sld .ik {
@@ -222,41 +213,41 @@
       font-size: 0.7em;
       color: var(--txt);
       transition: transform 0.4s, opacity 0.4s;
-      z-index: 3
+      z-index: 3;
     }
 
     .sld .fs {
       left: 11px;
       transform: translateY(-50%) translateX(0);
-      opacity: 1
+      opacity: 1;
     }
 
     .sld .fm {
       left: 37px;
       transform: translateY(-50%) translateX(0);
-      opacity: 0
+      opacity: 0;
     }
 
     .ts input:checked+.sld .fs {
       transform: translateY(-50%) translateX(26px);
-      opacity: 0
+      opacity: 0;
     }
 
     .ts input:checked+.sld .fm {
       transform: translateY(-50%) translateX(-26px);
-      opacity: 1
+      opacity: 1;
     }
 
     .dts {
       margin-left: 1.5rem;
       display: flex;
-      align-items: center
+      align-items: center;
     }
 
     .mcg {
       display: none;
       align-items: center;
-      gap: 1rem
+      gap: 1rem;
     }
 
     .ham {
@@ -267,65 +258,10 @@
       color: var(--txt);
       cursor: pointer;
       padding: 0.5rem;
-      z-index: 11
+      z-index: 11;
     }
 
-    /* Responsive Styles for Navbar (Copied from blog.html) */
-    @media (max-width: 768px) {
-      .nb {
-        padding: 1rem 1.5rem;
-        flex-wrap: nowrap
-      }
-
-      .nb-b {
-        flex-grow: 1;
-        font-size: 1.4rem
-      }
-
-      .nb-l {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: var(--nbm);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        position: absolute;
-        top: 100%;
-        left: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out
-      }
-
-      .nb-l.active {
-        display: flex;
-        max-height: 300px
-      }
-
-      .nb-l li {
-        width: 100%;
-        text-align: center;
-        padding: 0.8rem 0
-      }
-
-      .dts {
-        display: none
-      }
-
-      .mcg {
-        display: flex
-      }
-
-      .ham {
-        display: block
-      }
-    }
-
-    @media (max-width: 480px) {
-      .nb {
-        padding: 1rem
-      }
-    }
-
+    /* Non-Navbar Styles (Unchanged) */
     .ct {
       max-width: 1000px;
       margin: auto;
@@ -519,7 +455,55 @@
       box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05)
     }
 
+    /* Responsive Styles for Navbar (Copied from updated repositories.html) */
     @media (max-width: 768px) {
+      .nb {
+        padding: 1rem 1.5rem;
+        flex-wrap: nowrap;
+      }
+
+      .nb-b {
+        flex-grow: 1;
+        font-size: 1.4rem;
+      }
+
+      .nb-l {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--nbm);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+
+      .nb-l.active {
+        display: flex;
+        max-height: 300px;
+      }
+
+      .nb-l li {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 0;
+      }
+
+      .dts {
+        display: none;
+      }
+
+      .mcg {
+        display: flex;
+      }
+
+      .ham {
+        display: block;
+      }
+
       .ct {
         flex-direction: column;
         padding: 1rem
@@ -564,6 +548,14 @@
     }
 
     @media (max-width: 480px) {
+      .nb {
+        padding: 0.6rem
+      }
+
+      .nb-b {
+        font-size: 1.2rem
+      }
+
       .in h1 {
         font-size: 2rem
       }
@@ -590,19 +582,33 @@
 </head>
 
 <body data-theme="light">
-  <nav class="nb"><a href="index.html" class="nb-b"><strong>Aksh</strong></a>
+  <nav class="nb">
+    <a href="index.html" class="nb-b"><strong>Aksh</strong></a>
     <ul class="nb-l">
-      <li><a href="#about">About</a></li>
-      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#certifications">Certifications</a></li>
       <li><a href="blog.html">Blogs</a></li>
       <li><a href="repositories.html">Repositories</a></li>
-      <li class="dts"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-d"><span
-            class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label>
+      <li class="dts">
+        <label class="ts" aria-label="Toggle dark mode">
+          <input type="checkbox" id="t-d">
+          <span class="sld">
+            <i class="fas fa-sun ik fs"></i>
+            <i class="fas fa-moon ik fm"></i>
+          </span>
+        </label>
       </li>
     </ul>
-    <div class="mcg"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-m"><span
-          class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label><button
-        class="ham" aria-label="Toggle navigation menu">☰</button></div>
+    <div class="mcg">
+      <label class="ts" aria-label="Toggle dark mode">
+        <input type="checkbox" id="t-m">
+        <span class="sld">
+          <i class="fas fa-sun ik fs"></i>
+          <i class="fas fa-moon ik fm"></i>
+        </span>
+      </label>
+      <button class="ham" aria-label="Toggle navigation menu">☰</button>
+    </div>
   </nav>
   <section class="ct" id="about" role="region" aria-label="About">
     <div class="in">
@@ -620,7 +626,7 @@
         class="btn" aria-label="Email Aksh"><i class="fas fa-envelope"></i>
         Connect with Me</a>
     </div>
-    <div class="pi"><img src="./images/profile.jpg" alt="Aksh Thakkar" data-src="./images/profile.jpg"
+    <div class="pi"><img src="./images/avatar.jpg" alt="Aksh Thakkar" data-src="./images/avatar.jpg"
         onerror="this.src='https://placehold.co/300x300/E0E0E0/000000?text=Aksh+Thakkar';"></div>
   </section>
   <section class="ct" id="certifications" role="region" aria-label="Certifications">
@@ -691,32 +697,28 @@
       const hamburgerButton = document.querySelector(".ham");
       const navLinks = document.querySelector(".nb-l");
 
-      /**
-       * Sets the theme (light/dark) and persists it in localStorage.
-       * @param {string} theme - The theme to set ('light' or 'dark').
-       */
+      // Theme toggle function (Copied from repositories.html)
       function setTheme(theme) {
         body.setAttribute("data-theme", theme);
-        // Ensure toggles are checked/unchecked based on the theme
         if (toggleDesktop) toggleDesktop.checked = theme === "dark";
         if (toggleMobile) toggleMobile.checked = theme === "dark";
         localStorage.setItem("theme", theme);
       }
 
-      // Initialize theme from localStorage or default to 'light'
+      // Initialize theme
       const savedTheme = localStorage.getItem("theme") || "light";
       setTheme(savedTheme);
 
-      // Add event listeners for theme toggles
+      // Theme toggle event listeners
       [toggleDesktop, toggleMobile].forEach(toggle => {
-        if (toggle) { // Check if the toggle element exists
+        if (toggle) {
           toggle.addEventListener("change", () => {
             setTheme(toggle.checked ? "dark" : "light");
           });
         }
       });
 
-      // Hamburger menu functionality for mobile
+      // Hamburger menu functionality (Copied from repositories.html)
       if (hamburgerButton && navLinks) {
         hamburgerButton.addEventListener("click", () => navLinks.classList.toggle("active"));
         hamburgerButton.addEventListener("keydown", (e) => {
@@ -748,7 +750,7 @@
         }
       });
 
-      // Existing image/card lazy loading remains
+      // Existing image/card lazy loading (Unchanged)
       const profileImage = document.querySelector(".pi img");
       if (profileImage) lz(profileImage, e => e.classList.add("visible"));
       document.querySelectorAll(".cc").forEach(card => lz(card, e => e.classList.add("visible")));
