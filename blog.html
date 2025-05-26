@@ -875,7 +875,8 @@
 
         try {
           const timestamp = Date.now();
-          const apiUrl = `https://dev.to/api/articles?username=akshthakkar&per_page=30&_=${timestamp}`;
+          // CORRECTED: Changed per_page from 30 to 1000
+          const apiUrl = `https://dev.to/api/articles?username=akshthakkar&per_page=1000&_=${timestamp}`;
           console.log("Fetching from:", apiUrl);
 
           const response = await fetch(apiUrl, {
