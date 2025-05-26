@@ -777,7 +777,7 @@
         const cachedBlogs = localStorage.getItem(cacheKey);
         const cachedTimestamp = localStorage.getItem(cacheTimestampKey);
 
-        // Check cache only if forceRefresh is false
+        // Check cache only if forceRefresh is false AND cache exists and is not expired
         if (!forceRefresh && cachedBlogs && cachedTimestamp && (Date.now() - cachedTimestamp) < cacheDuration) {
           console.log("Serving blogs from cache.");
           renderBlogs(JSON.parse(cachedBlogs));
@@ -794,6 +794,7 @@
           }
           const data = await response.json();
 
+          // Store new data in cache
           localStorage.setItem(cacheKey, JSON.stringify(data));
           localStorage.setItem(cacheTimestampKey, Date.now());
 
@@ -845,36 +846,33 @@
         });
       }
 
-      // --- NEW LOGIC FOR NAVBAR CLICK ---
+      // --- Logic for Navbar 'Blogs' Link Click ---
       if (navBlogsLink) {
         navBlogsLink.addEventListener('click', (event) => {
-          // Check if the current page is blog.html
-          // If it's already on blog.html, prevent default navigation
-          // and force a refresh. If it's navigating from another page,
-          // the page will load, and then the initial fetchBlogs() will run.
-          if (window.location.pathname.endsWith('/blog.html') || window.location.pathname.endsWith('/blog.html#')) {
-            event.preventDefault(); // Stop the default link behavior
+          // Check if the current page is blog.html to prevent unnecessary full reloads
+          // when navigating from another page (e.g., index.html to blog.html)
+          if (window.location.pathname.endsWith('/blog.html') || window.location.pathname.endsWith('/blog.html#') || window.location.hash.startsWith('#')) {
+            event.preventDefault(); // Stop the default link navigation
             localStorage.removeItem("dtb"); // Clear cached data
             localStorage.removeItem("dtbt"); // Clear cached timestamp
             console.log("Navbar 'Blogs' link clicked on blog.html. Cache cleared. Forcing refresh.");
             fetchBlogs(true); // Call fetchBlogs, forcing a refresh
-            // Optionally, scroll to top if not already at top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top for better UX
           }
-          // If navigating from another page, the browser will navigate to blog.html
-          // and the initial fetchBlogs() call (below) will handle it.
+          // If navigating from another page (e.g., index.html), the browser will load blog.html
+          // and the initial fetchBlogs() call (below) will handle fetching the content.
         });
       }
       // ------------------------------------
 
+      // Initial fetch when the page loads (important for direct access or first visit)
+      fetchBlogs(false); // Do not force refresh initially, respect cache
 
-      // Initial fetch when the page loads (still important for direct access)
-      fetchBlogs();
-
-      // Set interval for re-fetching (this will respect the 5-minute cache)
+      // Set interval for re-fetching (this will respect the 5-minute cache by default)
+      // This ensures content eventually updates even if the user doesn't click the navbar link
       setInterval(() => fetchBlogs(false), 5 * 60 * 1000); // Fetch every 5 minutes (respecting cache)
 
-      // --- OPTIONAL: Retained manual refresh button ---
+      // --- Manual Refresh Button (Optional, for easy testing) ---
       const refreshBtn = document.createElement('button');
       refreshBtn.className = 'btn';
       refreshBtn.textContent = 'Refresh Blogs (Manual)';
@@ -886,6 +884,7 @@
         console.log("Manual 'Refresh Blogs' button clicked. Cache cleared. Forcing refresh.");
         fetchBlogs(true); // Call fetchBlogs, forcing a refresh
       };
+      // Append the manual refresh button to the content section
       document.querySelector('.ct').appendChild(refreshBtn);
       // -------------------------------------------------------------------
     });
