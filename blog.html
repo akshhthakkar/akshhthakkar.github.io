@@ -539,9 +539,14 @@
       color: white;
       text-decoration: none;
       border-radius: 8px;
-      transition: background-color 0.2s, transform 0.1s ease-in-out;
+      font-size: 0.9rem;
       font-weight: 600;
-      box-shadow: 0 2px 5px var(--sl)
+      transition: background-color 0.2s, transform 0.1s ease-in-out;
+      box-shadow: 0 2px 5px var(--sl);
+      cursor: pointer;
+      /* Added cursor pointer */
+      border: none;
+      /* Ensure button has no default border */
     }
 
     .btn:hover {
@@ -585,13 +590,49 @@
       align-items: center;
       gap: 0.5rem;
       font-size: 1rem;
-      text-align: center
+      text-align: center;
+      margin-top: 1rem;
+      /* Added margin for spacing */
     }
 
     .error-message i.fas {
       font-size: 1.5rem;
       margin-bottom: 0.5rem
     }
+
+    /* Loading Message Styles */
+    .loading-message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+      color: var(--acc);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .loading-message i.fas {
+      font-size: 2rem;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Refresh Button Container */
+    .refresh-container {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
 
     /* Animations */
     @keyframes fadeIn {
@@ -721,14 +762,15 @@
       <h1>My Blogs</h1>
       <p>Exploring web development, AI, and technology insights from DEV.to.</p>
     </div>
+    <div class="refresh-container">
+      <button id="refreshBlogsBtn" class="btn"><i class="fas fa-sync-alt"></i> Refresh Blogs</button>
+    </div>
     <div class="bg" id="bl"></div>
   </section>
   <footer class="ft">
     <p>© 2025 Aksh Thakkar</p>
   </footer>
   <script>
-    // Removed staticBlogs array as requested.
-
     document.addEventListener("DOMContentLoaded", () => {
       // Get references to DOM elements
       const body = document.body;
@@ -737,6 +779,10 @@
       const hamburgerMenuButton = document.querySelector(".ham");
       const navLinksList = document.querySelector(".nb-l");
       const blogListContainer = document.getElementById("bl");
+      const refreshBlogsButton = document.getElementById("refreshBlogsBtn");
+
+      // Set the polling interval (in milliseconds)
+      const POLLING_INTERVAL = 30000; // 30 seconds
 
       /**
        * Sets the theme for the body and updates toggle states.
@@ -799,7 +845,7 @@
         blogListContainer.innerHTML = ""; // Clear existing content
 
         if (posts.length === 0) {
-          blogListContainer.innerHTML = "<div class='error-message'><i class='fas fa-exclamation-triangle'></i>No blogs found from DEV.to. Please check your username or try again later.</div>";
+          blogListContainer.innerHTML = "<div class='error-message'><i class='fas fa-exclamation-triangle'></i>No blogs found from DEV.to for 'akshthakkar'. Start writing on DEV.to!</div>";
           return;
         }
 
@@ -831,6 +877,10 @@
        * Handles API errors and displays appropriate messages.
        */
       async function fetchAndRenderBlogs() {
+        // Show loading message
+        blogListContainer.innerHTML = "<div class='loading-message'><i class='fas fa-spinner'></i> Fetching latest blogs...</div>";
+        if (refreshBlogsButton) refreshBlogsButton.disabled = true; // Disable refresh button during fetch
+
         try {
           const timestamp = Date.now(); // Cache busting for API request
           const response = await fetch(`https://dev.to/api/articles?username=akshthakkar&per_page=30&_=${timestamp}`, { cache: "no-store" });
@@ -866,11 +916,21 @@
         } catch (error) {
           console.error("Failed to fetch DEV.to posts:", error.message);
           blogListContainer.innerHTML = `<div class='error-message'><i class='fas fa-exclamation-triangle'></i>An error occurred while fetching DEV.to blogs. Please check your internet connection.</div>`;
+        } finally {
+          if (refreshBlogsButton) refreshBlogsButton.disabled = false; // Re-enable refresh button
         }
       }
 
-      // Initiate fetching and rendering of blogs when the DOM is ready
+      // Add event listener for manual refresh button
+      if (refreshBlogsButton) {
+        refreshBlogsButton.addEventListener("click", fetchAndRenderBlogs);
+      }
+
+      // Initial fetch and render when the DOM is ready
       fetchAndRenderBlogs();
+
+      // Set up automatic polling for updates
+      setInterval(fetchAndRenderBlogs, POLLING_INTERVAL);
     });
   </script>
 </body>
