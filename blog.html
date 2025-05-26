@@ -15,8 +15,34 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
-  <script>window.addEventListener("load", () => { if (typeof marked === "undefined") { const s = document.createElement("script"); s.src = "https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.min.js"; s.async = true; document.head.appendChild(s) } }); function lz(e, c) { const o = new IntersectionObserver((t, r) => { t.forEach(i => { if (i.isIntersecting) { c(i.target); r.unobserve(i.target) } }) }, { rootMargin: "100px" }); o.observe(e) }</script>
+  <script>
+    // Ensure marked.js is available, lazy load if not
+    window.addEventListener("load", () => {
+      if (typeof marked === "undefined") {
+        const s = document.createElement("script");
+        s.src = "https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.min.js";
+        s.async = true;
+        document.head.appendChild(s)
+      }
+    });
+
+    // Lazy load utility function for elements entering viewport
+    function lz(e, c) {
+      const o = new IntersectionObserver((t, r) => {
+        t.forEach(i => {
+          if (i.isIntersecting) {
+            c(i.target);
+            r.unobserve(i.target)
+          }
+        })
+      }, {
+        rootMargin: "100px"
+      });
+      o.observe(e)
+    }
+  </script>
   <style>
+    /* General Reset & Base Styles */
     html {
       box-sizing: border-box;
       scroll-behavior: smooth
@@ -28,6 +54,7 @@
       box-sizing: inherit
     }
 
+    /* CSS Variables for Theming (Light & Dark) */
     :root {
       --bg: #fff;
       --txt: #333;
@@ -80,6 +107,7 @@
       line-height: 1.6
     }
 
+    /* Navbar Styles */
     .nb {
       display: flex;
       justify-content: space-between;
@@ -140,6 +168,7 @@
       width: 100%
     }
 
+    /* Theme Switcher Styles */
     .ts {
       position: relative;
       display: inline-block;
@@ -245,6 +274,7 @@
       z-index: 11
     }
 
+    /* Main Content & Header */
     .ct {
       max-width: 1000px;
       margin: auto;
@@ -318,6 +348,7 @@
       z-index: 2
     }
 
+    /* Blog Grid & Card Styles */
     .bg {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -338,7 +369,8 @@
       justify-content: space-between;
       position: relative;
       overflow: hidden;
-      opacity: 0
+      opacity: 0;
+      /* For lazy loading animation */
     }
 
     [data-theme="dark"] .bc {
@@ -348,7 +380,8 @@
     }
 
     .bc.visible {
-      opacity: 1
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
     }
 
     .bc:hover {
@@ -443,6 +476,7 @@
       font-size: 0.8em
     }
 
+    /* Skeleton Loader Styles */
     .sc {
       background: var(--cbg);
       border: 1px solid var(--cbd);
@@ -453,7 +487,10 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      animation: none
+      animation: pulse 1.5s infinite ease-in-out;
+      /* Added pulse animation */
+      opacity: 1;
+      /* Skeletons are visible immediately */
     }
 
     [data-theme="dark"] .sc {
@@ -464,7 +501,11 @@
       background-color: var(--cbd);
       border-radius: 4px;
       height: 1em;
-      margin-bottom: 0.5em
+      margin-bottom: 0.5em;
+    }
+
+    [data-theme="dark"] .sl {
+      background-color: var(--cbd);
     }
 
     .sl.t {
@@ -496,6 +537,7 @@
       margin-top: 0.75rem
     }
 
+    /* General Button Styles */
     .btn {
       display: inline-block;
       padding: 0.6rem 1.2rem;
@@ -522,6 +564,7 @@
       box-shadow: 0 4px 8px var(--hl)
     }
 
+    /* Footer Styles */
     .ft {
       text-align: center;
       padding: 1rem;
@@ -535,6 +578,7 @@
       box-shadow: 0 -1px 4px var(--sl)
     }
 
+    /* Error Message Styles */
     .error-message {
       color: var(--error-color);
       font-weight: 500;
@@ -547,7 +591,8 @@
       align-items: center;
       gap: 0.5rem;
       font-size: 1rem;
-      text-align: center
+      text-align: center;
+      margin: 1.5rem 0;
     }
 
     .error-message i.fas {
@@ -555,6 +600,7 @@
       margin-bottom: 0.5rem
     }
 
+    /* Keyframe Animations */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -567,14 +613,32 @@
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
+    @keyframes pulse {
+      0% {
+        opacity: 0.8;
+      }
 
-      .bc,
-      .btn {
-        transition: none;
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 0.8;
       }
     }
 
+    /* Reduced Motion Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+
+      .bc,
+      .btn,
+      .sc {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+
+    /* Responsive Styles */
     @media (max-width: 768px) {
       .nb {
         padding: 1rem 1.5rem;
@@ -670,7 +734,8 @@
       <li><a href="blog.html">Blogs</a></li>
       <li><a href="repositories.html">Repositories</a></li>
       <li class="dts"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-d"><span
-            class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label></li>
+            class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label>
+      </li>
     </ul>
     <div class="mcg"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-m"><span
           class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label><button
@@ -687,13 +752,256 @@
     <p>© 2025 Aksh Thakkar</p>
   </footer>
   <script>
-    const staticBlogs = [
-      { t: "Sajhkasj", u: "article.html?id=123456&slug=sajhkasj-o33", d: "A brief description of my new post.", s: "DEV.to", dt: "2025-05-26" },
-      { t: "How to Build a Portfolio Website with HTML and JavaScript", u: "article.html?id=123456&slug=how-to-build-a-portfolio-website", d: "Learn how to create a stunning portfolio website using HTML, JavaScript, and CSS.", s: "DEV.to", dt: "2025-05-01" },
-      { t: "Getting Started with AI: A Beginner's Guide", u: "article.html?id=123457&slug=getting-started-with-ai", d: "An introduction to artificial intelligence concepts for beginners.", s: "DEV.to", dt: "2025-04-15" },
-      { t: "Responsive Web Design Tips", u: "article.html?id=123458&slug=responsive-web-design-tips", d: "Best practices for creating responsive layouts that work on all devices.", s: "DEV.to", dt: "2025-03-20" }
-    ];
-    document.addEventListener("DOMContentLoaded", () => { const b = document.body, d = document.getElementById("t-d"), m = document.getElementById("t-m"), h = document.querySelector(".ham"), n = document.querySelector(".nb-l"), l = document.getElementById("bl"); function t(e) { b.setAttribute("data-theme", e); d.checked = m.checked = e === "dark"; localStorage.setItem("theme", e) } const s = localStorage.getItem("theme") || "light"; t(s);[d, m].forEach(c => c && c.addEventListener("change", () => { t(c.checked ? "dark" : "light") })); if (h && n) { h.addEventListener("click", () => n.classList.toggle("active")); h.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); n.classList.toggle("active") } }) } document.querySelectorAll(".nb-l li a").forEach(i => i.addEventListener("click", () => { if (n.classList.contains("active")) n.classList.remove("active") })); function f(d) { return d ? new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : "Date N/A" } function r(d) { l.innerHTML = ""; if (d.length === 0) { l.innerHTML = "<div>No blogs found. Start writing!</div>"; return } d.sort((a, b) => new Date(b.dt) - new Date(a.dt)); d.forEach(p => { const c = document.createElement("div"); c.className = "bc"; c.setAttribute("role", "article"); c.innerHTML = `<a href="${p.u}" class="btl" aria-label="Read ${p.t}">${p.t}</a><div class="bm"><span><i class="fas fa-calendar-alt" aria-hidden="true"></i> ${f(p.dt)}</span><span><i class="fas fa-globe" aria-hidden="true"></i> ${p.s}</span></div><p>${p.d}</p><a href="${p.u}" class="bl" aria-label="Read more about ${p.t}">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>`; l.appendChild(c); lz(c, e => e.classList.add("visible")) }) } async function u() { try { const ts = Date.now(); const res = await fetch(`https://dev.to/api/articles?username=akshthakkar&per_page=30&_=${ts}`, { cache: "no-store" }); if (!res.ok) { console.error(`DEV.to API error: ${res.status} ${res.statusText}`); if (res.status === 429) console.error("Rate limit exceeded."); return } const d = await res.json(); if (d.length > 0) { const ub = d.map(p => ({ t: p.title, u: `article.html?id=${p.id}&slug=${encodeURIComponent(p.slug)}`, d: p.description || "No excerpt available.", s: "DEV.to", dt: p.published_at })); r(ub) } } catch (e) { console.error("Failed to fetch DEV.to posts:", e.message) } } r(staticBlogs); u(); });
+    // Static fallback blogs, useful if DEV.to API fails or is empty
+    const staticBlogs = [{
+      t: "Sajhkasj",
+      u: "article.html?id=123456&slug=sajhkasj-o33",
+      d: "A brief description of my new post.",
+      s: "DEV.to",
+      dt: "2025-05-26"
+    }, {
+      t: "How to Build a Portfolio Website with HTML and JavaScript",
+      u: "article.html?id=123456&slug=how-to-build-a-portfolio-website",
+      d: "Learn how to create a stunning portfolio website using HTML, JavaScript, and CSS.",
+      s: "DEV.to",
+      dt: "2025-05-01"
+    }, {
+      t: "Getting Started with AI: A Beginner's Guide",
+      u: "article.html?id=123457&slug=getting-started-with-ai",
+      d: "An introduction to artificial intelligence concepts for beginners.",
+      s: "DEV.to",
+      dt: "2025-04-15"
+    }, {
+      t: "Responsive Web Design Tips",
+      u: "article.html?id=123458&slug=responsive-web-design-tips",
+      d: "Best practices for creating responsive layouts that work on all devices.",
+      s: "DEV.to",
+      dt: "2025-03-20"
+    }];
+
+    // Global variable to store currently fetched DEV.to blogs for comparison
+    let currentDevToBlogs = [];
+    let isFetching = false; // Flag to prevent concurrent fetches
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const body = document.body;
+      const toggleDesktop = document.getElementById("t-d");
+      const toggleMobile = document.getElementById("t-m");
+      const hamburgerButton = document.querySelector(".ham");
+      const navLinks = document.querySelector(".nb-l");
+      const blogListContainer = document.getElementById("bl");
+
+      /**
+       * Sets the theme (light/dark) and persists it in localStorage.
+       * @param {string} theme - The theme to set ('light' or 'dark').
+       */
+      function setTheme(theme) {
+        body.setAttribute("data-theme", theme);
+        toggleDesktop.checked = toggleMobile.checked = theme === "dark";
+        localStorage.setItem("theme", theme);
+      }
+
+      // Initialize theme from localStorage or default to 'light'
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+
+      // Add event listeners for theme toggles
+      [toggleDesktop, toggleMobile].forEach(toggle => {
+        if (toggle) {
+          toggle.addEventListener("change", () => {
+            setTheme(toggle.checked ? "dark" : "light");
+          });
+        }
+      });
+
+      // Hamburger menu functionality for mobile
+      if (hamburgerButton && navLinks) {
+        hamburgerButton.addEventListener("click", () => navLinks.classList.toggle("active"));
+        hamburgerButton.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            navLinks.classList.toggle("active");
+          }
+        });
+      }
+
+      // Close mobile nav menu when a link is clicked
+      document.querySelectorAll(".nb-l li a").forEach(link => link.addEventListener("click", () => {
+        if (navLinks.classList.contains("active")) navLinks.classList.remove("active");
+      }));
+
+      // Close mobile nav menu when clicking outside
+      document.addEventListener('click', (event) => {
+        if (navLinks.classList.contains('active') &&
+          !navLinks.contains(event.target) &&
+          !hamburgerButton.contains(event.target)) {
+          navLinks.classList.remove('active');
+        }
+      });
+
+      // Close mobile nav menu when Escape key is pressed
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
+      });
+
+
+      /**
+       * Formats a date string into a human-readable format.
+       * @param {string} dateString - The date string to format.
+       * @returns {string} Formatted date or "Date N/A".
+       */
+      function formatDate(dateString) {
+        return dateString ? new Date(dateString).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        }) : "Date N/A";
+      }
+
+      /**
+       * Renders blog posts into the DOM.
+       * @param {Array<Object>} blogs - An array of blog post objects.
+       */
+      function renderBlogs(blogs) {
+        // Sort blogs by date in descending order (latest first)
+        blogs.sort((a, b) => new Date(b.dt) - new Date(a.dt));
+
+        blogListContainer.innerHTML = ""; // Clear existing content
+
+        if (blogs.length === 0) {
+          blogListContainer.innerHTML = "<div class='error-message'><i class='fas fa-info-circle'></i><p>No blogs found. Start writing!</p></div>";
+          return;
+        }
+
+        blogs.forEach(post => {
+          const card = document.createElement("div");
+          card.className = "bc"; // Blog Card class
+          card.setAttribute("role", "article");
+          card.innerHTML = `
+                        <a href="${post.u}" class="btl" aria-label="Read ${post.t}">${post.t}</a>
+                        <div class="bm">
+                            <span><i class="fas fa-calendar-alt" aria-hidden="true"></i> ${formatDate(post.dt)}</span>
+                            <span><i class="fas fa-globe" aria-hidden="true"></i> ${post.s}</span>
+                        </div>
+                        <p>${post.d}</p>
+                        <a href="${post.u}" class="bl" aria-label="Read more about ${post.t}">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    `;
+          blogListContainer.appendChild(card);
+          // Apply lazy loading animation
+          lz(card, element => element.classList.add("visible"));
+        });
+      }
+
+      /**
+       * Displays skeleton loaders while content is being fetched.
+       */
+      function showSkeletonLoaders() {
+        blogListContainer.innerHTML = ''; // Clear existing content
+        for (let i = 0; i < 3; i++) { // Show 3 skeleton cards
+          const skeletonCard = document.createElement("div");
+          skeletonCard.className = "bc sc"; // Add 'sc' class for skeleton styling
+          skeletonCard.innerHTML = `
+                        <div class="sl t"></div>
+                        <div class="sl m"></div>
+                        <div class="sl x"></div>
+                        <div class="sl x"></div>
+                        <div class="sl b"></div>
+                    `;
+          blogListContainer.appendChild(skeletonCard);
+        }
+      }
+
+      /**
+       * Fetches blog posts from DEV.to API.
+       * Displays skeleton loaders, handles errors, and updates content.
+       */
+      async function fetchDevToPosts() {
+        if (isFetching) {
+          console.log("Fetch already in progress, skipping.");
+          return; // Prevent multiple concurrent fetches
+        }
+
+        isFetching = true;
+        console.log("Attempting to fetch DEV.to posts...");
+        showSkeletonLoaders(); // Show loaders immediately
+
+        try {
+          const timestamp = Date.now();
+          const apiUrl = `https://dev.to/api/articles?username=akshthakkar&per_page=30&_=${timestamp}`;
+          console.log("Fetching from:", apiUrl);
+
+          const response = await fetch(apiUrl, {
+            cache: "no-store" // Ensure fresh data
+          });
+
+          if (!response.ok) {
+            const errorText = `DEV.to API error: ${response.status} ${response.statusText}`;
+            console.error(errorText);
+            let userMessage = "Failed to load latest blogs from DEV.to. Please try again later.";
+            if (response.status === 429) {
+              userMessage = "Too many requests to DEV.to. Please wait a moment.";
+            }
+            blogListContainer.innerHTML = `<div class="error-message"><i class="fas fa-exclamation-circle"></i><p>${userMessage}</p><p>Showing static blogs instead.</p></div>`;
+            renderBlogs(staticBlogs); // Fallback to static blogs on API error
+            return; // Exit function if API error
+          }
+
+          const data = await response.json();
+          console.log("DEV.to API response data:", data);
+
+          if (data.length > 0) {
+            const fetchedBlogs = data.map(post => ({
+              t: post.title,
+              u: `article.html?id=${post.id}&slug=${encodeURIComponent(post.slug)}`,
+              d: post.description || "No excerpt available.",
+              s: "DEV.to",
+              dt: post.published_at
+            }));
+
+            // Check if the fetched data is different from currentDevToBlogs
+            // Simple comparison: check length and stringified content (less efficient but reliable)
+            // More robust comparison: compare IDs and published_at dates
+            const fetchedBlogsString = JSON.stringify(fetchedBlogs.map(b => ({ t: b.t, dt: b.dt, u: b.u })));
+            const currentBlogsString = JSON.stringify(currentDevToBlogs.map(b => ({ t: b.t, dt: b.dt, u: b.u })));
+
+            if (fetchedBlogsString !== currentBlogsString) {
+              console.log("DEV.to blogs updated. Re-rendering.");
+              currentDevToBlogs = fetchedBlogs; // Update global state
+              renderBlogs(currentDevToBlogs); // Re-render with new data
+            } else {
+              console.log("DEV.to blogs are up to date. No re-render needed.");
+              // If no change, re-render the currentDevToBlogs (which are the fetched ones)
+              // This ensures skeleton loaders are replaced even if data didn't change
+              renderBlogs(currentDevToBlogs);
+            }
+
+          } else {
+            console.log("No DEV.to blogs found in the response. Showing static blogs.");
+            blogListContainer.innerHTML = `<div class="error-message"><i class="fas fa-info-circle"></i><p>No DEV.to blogs available. Showing static content.</p></div>`;
+            renderBlogs(staticBlogs); // Show static blogs if API returns empty array
+          }
+
+        } catch (error) {
+          console.error("Failed to fetch DEV.to posts (network/other error):", error.message, error);
+          blogListContainer.innerHTML = `<div class="error-message"><i class="fas fa-exclamation-triangle"></i><p>Network error: Unable to fetch blogs. Please check your internet connection.</p><p>Showing static blogs instead.</p></div>`;
+          renderBlogs(staticBlogs); // Fallback to static blogs on any fetch error
+        } finally {
+          isFetching = false; // Reset fetching flag
+        }
+      }
+
+      // Initial load: Display static blogs first for immediate content
+      renderBlogs(staticBlogs);
+
+      // Then immediately try to fetch and display dynamic blogs from DEV.to
+      fetchDevToPosts();
+
+      // Set up polling: Fetch DEV.to posts every 5 minutes (300,000 milliseconds)
+      // Adjust this interval as needed, but be mindful of API rate limits.
+      setInterval(fetchDevToPosts, 300000); // 5 minutes
+    });
   </script>
 </body>
 

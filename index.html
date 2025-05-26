@@ -14,9 +14,29 @@
   <meta property="og:type" content="website">
   <title>Aksh Thakkar</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
-  <script>function lz(e, c) { new IntersectionObserver((t, r) => { t.forEach(i => { if (i.isIntersecting) { c(i.target); r.unobserve(i.target) } }) }, { rootMargin: "100px" }).observe(e) }</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    // Keep lz function as it's used for image/card lazy loading
+    function lz(e, c) {
+      new IntersectionObserver((t, r) => {
+        t.forEach(i => {
+          if (i.isIntersecting) {
+            c(i.target);
+            r.unobserve(i.target)
+          }
+        })
+      }, {
+        rootMargin: "100px"
+      }).observe(e)
+    }
+  </script>
   <style>
+    /*
+        *****************************************************************************
+        * START OF NAVBAR & THEME CSS (COPIED FROM BLOG.HTML)
+        *****************************************************************************
+        */
+
     html {
       box-sizing: border-box;
       scroll-behavior: smooth
@@ -28,6 +48,7 @@
       box-sizing: inherit
     }
 
+    /* CSS Variables for Theming (Light & Dark) */
     :root {
       --bg: #fff;
       --txt: #333;
@@ -45,7 +66,10 @@
       --sbd: #999;
       --hgs: #e0f2f7;
       --hgm: #ccecf7;
-      --hge: #fff
+      --hge: #fff;
+      /* Added from blog.html, might not be used here but good for consistency */
+      --error-color: #dc3545;
+      --error-color-rgb: 220, 53, 69;
     }
 
     [data-theme="dark"] {
@@ -64,18 +88,22 @@
       --sbd: #777;
       --hgs: #0a2a4a;
       --hgm: #1a3a5a;
-      --hge: #121212
+      --hge: #121212;
+      /* Added from blog.html, might not be used here but good for consistency */
+      --error-color: #ff6b6b;
+      --error-color-rgb: 255, 107, 107;
     }
 
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
+      background-color: var(--bg);
       color: var(--txt);
       transition: background 0.3s, color 0.3s;
       line-height: 1.6
     }
 
+    /* Navbar Styles */
     .nb {
       display: flex;
       justify-content: space-between;
@@ -136,6 +164,7 @@
       width: 100%
     }
 
+    /* Theme Switcher Styles */
     .ts {
       position: relative;
       display: inline-block;
@@ -241,6 +270,62 @@
       z-index: 11
     }
 
+    /* Responsive Styles for Navbar (Copied from blog.html) */
+    @media (max-width: 768px) {
+      .nb {
+        padding: 1rem 1.5rem;
+        flex-wrap: nowrap
+      }
+
+      .nb-b {
+        flex-grow: 1;
+        font-size: 1.4rem
+      }
+
+      .nb-l {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--nbm);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out
+      }
+
+      .nb-l.active {
+        display: flex;
+        max-height: 300px
+      }
+
+      .nb-l li {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 0
+      }
+
+      .dts {
+        display: none
+      }
+
+      .mcg {
+        display: flex
+      }
+
+      .ham {
+        display: block
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nb {
+        padding: 1rem
+      }
+    }
+
     .ct {
       max-width: 1000px;
       margin: auto;
@@ -303,11 +388,6 @@
 
     .btn:hover {
       background-color: var(--ach)
-    }
-
-    .btn .fa-envelope {
-      margin-right: 0.5rem;
-      font-size: 0.9em
     }
 
     s {
@@ -440,53 +520,6 @@
     }
 
     @media (max-width: 768px) {
-      .nb {
-        padding: 1rem 1.5rem;
-        flex-wrap: nowrap
-      }
-
-      .nb-b {
-        flex-grow: 1;
-        font-size: 1.4rem
-      }
-
-      .nb-l {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: var(--nbm);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        position: absolute;
-        top: 100%;
-        left: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out
-      }
-
-      .nb-l.active {
-        display: flex;
-        max-height: 300px
-      }
-
-      .nb-l li {
-        width: 100%;
-        text-align: center;
-        padding: 0.8rem 0
-      }
-
-      .dts {
-        display: none
-      }
-
-      .mcg {
-        display: flex
-      }
-
-      .ham {
-        display: block
-      }
-
       .ct {
         flex-direction: column;
         padding: 1rem
@@ -531,10 +564,6 @@
     }
 
     @media (max-width: 480px) {
-      .nb {
-        padding: 1rem
-      }
-
       .in h1 {
         font-size: 2rem
       }
@@ -568,7 +597,8 @@
       <li><a href="blog.html">Blogs</a></li>
       <li><a href="repositories.html">Repositories</a></li>
       <li class="dts"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-d"><span
-            class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label></li>
+            class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label>
+      </li>
     </ul>
     <div class="mcg"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-m"><span
           class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label><button
@@ -582,11 +612,13 @@
         specialize in creating user-friendly websites using HTML and JavaScript, aiming to build impactful web
         solutions.</p>
       <p>I'm fascinated by artificial intelligence and its potential to solve real-world problems. I've applied my
-        skills in projects like this portfolio, enhancing my coding and design abilities, and I'm excited to integrate
+        skills in projects like this portfolio, enhancing my coding and design abilities, and I'm excited to
+        integrate
         AI into future applications.</p>
       <p>As a learner, I explore new technologies, embrace challenges, and share insights via my blog. I'm seeking
         internships, hackathons, or team projects to contribute and grow.</p><a href="mailto:aksht455@gmail.com"
-        class="btn" aria-label="Email Aksh"><i class="fas fa-envelope"></i> Connect with Me</a>
+        class="btn" aria-label="Email Aksh"><i class="fas fa-envelope"></i>
+        Connect with Me</a>
     </div>
     <div class="pi"><img src="./images/profile.jpg" alt="Aksh Thakkar" data-src="./images/profile.jpg"
         onerror="this.src='https://placehold.co/300x300/E0E0E0/000000?text=Aksh+Thakkar';"></div>
@@ -651,7 +683,77 @@
   <footer class="ft">
     <p>© 2025 Aksh Thakkar</p>
   </footer>
-  <script>document.addEventListener("DOMContentLoaded", () => { const b = document.body, d = document.getElementById("t-d"), m = document.getElementById("t-m"), h = document.querySelector(".ham"), n = document.querySelector(".nb-l"); function t(e) { b.setAttribute("data-theme", e); d.checked = m.checked = e === "dark"; localStorage.setItem("theme", e) } const s = localStorage.getItem("theme") || "light"; t(s);[d, m].forEach(c => c && c.addEventListener("change", () => { t(c.checked ? "dark" : "light") })); if (h && n) h.addEventListener("click", () => n.classList.toggle("active")); document.querySelectorAll(".nb-l li a").forEach(i => i.addEventListener("click", () => { if (window.innerWidth <= 768 && n.classList.contains("active")) n.classList.remove("active") })); const p = document.querySelector(".pi img"); lz(p, e => e.classList.add("visible")); document.querySelectorAll(".cc").forEach(c => lz(c, e => e.classList.add("visible"))) });</script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const body = document.body;
+      const toggleDesktop = document.getElementById("t-d");
+      const toggleMobile = document.getElementById("t-m");
+      const hamburgerButton = document.querySelector(".ham");
+      const navLinks = document.querySelector(".nb-l");
+
+      /**
+       * Sets the theme (light/dark) and persists it in localStorage.
+       * @param {string} theme - The theme to set ('light' or 'dark').
+       */
+      function setTheme(theme) {
+        body.setAttribute("data-theme", theme);
+        // Ensure toggles are checked/unchecked based on the theme
+        if (toggleDesktop) toggleDesktop.checked = theme === "dark";
+        if (toggleMobile) toggleMobile.checked = theme === "dark";
+        localStorage.setItem("theme", theme);
+      }
+
+      // Initialize theme from localStorage or default to 'light'
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+
+      // Add event listeners for theme toggles
+      [toggleDesktop, toggleMobile].forEach(toggle => {
+        if (toggle) { // Check if the toggle element exists
+          toggle.addEventListener("change", () => {
+            setTheme(toggle.checked ? "dark" : "light");
+          });
+        }
+      });
+
+      // Hamburger menu functionality for mobile
+      if (hamburgerButton && navLinks) {
+        hamburgerButton.addEventListener("click", () => navLinks.classList.toggle("active"));
+        hamburgerButton.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            navLinks.classList.toggle("active");
+          }
+        });
+      }
+
+      // Close mobile nav menu when a link is clicked
+      document.querySelectorAll(".nb-l li a").forEach(link => link.addEventListener("click", () => {
+        if (navLinks.classList.contains("active")) navLinks.classList.remove("active");
+      }));
+
+      // Close mobile nav menu when clicking outside
+      document.addEventListener('click', (event) => {
+        if (navLinks.classList.contains('active') &&
+          !navLinks.contains(event.target) &&
+          !hamburgerButton.contains(event.target)) {
+          navLinks.classList.remove('active');
+        }
+      });
+
+      // Close mobile nav menu when Escape key is pressed
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
+      });
+
+      // Existing image/card lazy loading remains
+      const profileImage = document.querySelector(".pi img");
+      if (profileImage) lz(profileImage, e => e.classList.add("visible"));
+      document.querySelectorAll(".cc").forEach(card => lz(card, e => e.classList.add("visible")));
+    });
+  </script>
 </body>
 
 </html>
