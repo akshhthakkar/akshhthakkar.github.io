@@ -1119,22 +1119,65 @@
                     }
                 }
 
-                function createRepoCard(repo) {
-                    return `
-                        <div class="rc">
-                            <a href="${repo.html_url}" class="rtl" target="_blank" rel="noopener">${repo.name}</a>
-                            <div class="rm">
-                                <span><i class="fas fa-code"></i> ${repo.language || "Unknown"}</span>
-                                <span><i class="fas fa-star"></i> ${repo.stargazers_count || 0}</span>
-                                <span><i class="fas fa-code-branch"></i> ${repo.forks_count || 0}</span>
-                            </div>
-                            <p>${repo.description || "No description."}</p>
-                            <a href="${repo.html_url}" class="rl" target="_blank" rel="noopener">View on GitHub <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    `;
+                // Modified to return a DOM element instead of an HTML string
+                function createRepoCardElement(repo) {
+                    const div = document.createElement('div');
+                    div.className = "rc";
+
+                    const titleLink = document.createElement('a');
+                    titleLink.href = repo.html_url;
+                    titleLink.className = "rtl";
+                    titleLink.target = "_blank";
+                    titleLink.rel = "noopener";
+                    titleLink.textContent = repo.name;
+                    div.appendChild(titleLink);
+
+                    const metaDiv = document.createElement('div');
+                    metaDiv.className = "rm";
+
+                    const langSpan = document.createElement('span');
+                    langSpan.innerHTML = `<i class="fas fa-code"></i> ${repo.language || "Unknown"}`;
+                    metaDiv.appendChild(langSpan);
+
+                    const starSpan = document.createElement('span');
+                    starSpan.innerHTML = `<i class="fas fa-star"></i> ${repo.stargazers_count || 0}`;
+                    metaDiv.appendChild(starSpan);
+
+                    const forkSpan = document.createElement('span');
+                    forkSpan.innerHTML = `<i class="fas fa-code-branch"></i> ${repo.forks_count || 0}`;
+                    metaDiv.appendChild(forkSpan);
+
+                    div.appendChild(metaDiv);
+
+                    const descriptionP = document.createElement('p');
+                    descriptionP.textContent = repo.description || "No description.";
+                    div.appendChild(descriptionP);
+
+                    const viewLink = document.createElement('a');
+                    viewLink.href = repo.html_url;
+                    viewLink.className = "rl";
+                    viewLink.target = "_blank";
+                    viewLink.rel = "noopener";
+                    viewLink.innerHTML = `View on GitHub <i class="fas fa-arrow-right"></i>`;
+                    div.appendChild(viewLink);
+
+                    return div;
                 }
 
                 async function fetchRepositories(append = false) {
+                    // Critical check: Ensure repositoriesGrid is a valid DOM element
+                    if (!repositoriesGrid || !(repositoriesGrid instanceof Element)) {
+                        console.error("Critical Error: repositoriesGrid element not found or is invalid:", repositoriesGrid);
+                        const errorMessageDiv = document.createElement('p');
+                        errorMessageDiv.className = 'tc error-message';
+                        errorMessageDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Critical Error: Cannot find the target area for repositories (HTML element with ID 'r'). Please ensure the HTML structure is correct.`;
+                        if (document.body) {
+                            document.body.appendChild(errorMessageDiv);
+                        }
+                        if (loadMoreBtn) loadMoreBtn.style.display = "none";
+                        return; // Stop execution
+                    }
+
                     if (!append) {
                         showSkeletonLoaders(reposPerPage);
                     }
@@ -1168,34 +1211,32 @@
                         }
 
                         filteredRepos.forEach(repo => {
-                            repositoriesGrid.insertAdjacentHTML("beforeend", createRepoCard(repo));
+                            repositoriesGrid.appendChild(createRepoCardElement(repo)); // Appending element directly
                         });
 
                         loadMoreBtn.style.display = filteredRepos.length === reposPerPage ? "inline-block" : "none";
 
                     } catch (error) {
                         console.error("Failed to fetch repositories:", error);
-                        let errorMessage = `Error loading repositories: ${error.message}.`;
-                        if (error instanceof TypeError && error.message === "Failed to fetch") {
-                            errorMessage = "The request to GitHub failed. This often indicates a network issue (e.g., no internet connection, a firewall blocking the request, or a browser extension like an ad blocker interfering). Please check your internet and try disabling extensions.";
+                        let userFacingMessage = `Error loading repositories: ${error.message}.`;
+                        if (error instanceof TypeError && error.message.includes("Failed to fetch")) {
+                            userFacingMessage = "The request to GitHub failed. This often indicates a network issue (e.g., no internet connection, a firewall blocking the request, or a browser extension like an ad blocker interfering). Please check your internet and try disabling extensions.";
                         } else if (error.message.includes("rate limit exceeded")) {
-                            errorMessage = "You've likely hit the GitHub API rate limit for unauthenticated requests. Please wait an hour and try again.";
+                            userFacingMessage = "You've likely hit the GitHub API rate limit for unauthenticated requests. Please wait an hour and try again.";
                         }
                         
+                        const errorDisplayElement = document.createElement('p');
+                        errorDisplayElement.className = 'tc error-message';
+                        errorDisplayElement.setAttribute('role', 'alert');
+                        errorDisplayElement.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${userFacingMessage}`;
+
                         if (append && repositoriesGrid.children.length > 0) {
-                            repositoriesGrid.insertAdjacentHTML("beforeend", `
-                                <p class="tc error-message" style="margin-top: 1rem;" role="alert">
-                                    <i class="fas fa-exclamation-triangle"></i> Error loading more repositories: ${errorMessage}
-                                </p>
-                            `);
+                            repositoriesGrid.appendChild(errorDisplayElement); // Append error if already content
                         } else {
-                            repositoriesGrid.innerHTML = `
-                                <p class="tc error-message" role="alert">
-                                    <i class="fas fa-exclamation-triangle"></i> Error loading repositories: ${errorMessage}
-                                </p>
-                            `;
+                            repositoriesGrid.innerHTML = ''; // Clear previous content
+                            repositoriesGrid.appendChild(errorDisplayElement); // Show error prominently
                         }
-                        loadMoreBtn.style.display = "none";
+                        if (loadMoreBtn) loadMoreBtn.style.display = "none";
                     }
                 }
 
