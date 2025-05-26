@@ -568,9 +568,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-
-      .bc,
-      .btn {
+      .bc, .btn {
         transition: none;
       }
     }
@@ -674,7 +672,7 @@
     </ul>
     <div class="mcg"><label class="ts" aria-label="Toggle dark mode"><input type="checkbox" id="t-m"><span
           class="sld"><i class="fas fa-sun ik fs"></i><i class="fas fa-moon ik fm"></i></span></label><button
-        class="ham" aria-label="Toggle navigation menu">☰</button></div>
+          class="ham" aria-label="Toggle navigation menu">☰</button></div>
   </nav>
   <section class="ct">
     <div class="hr">
@@ -688,12 +686,13 @@
   </footer>
   <script>
     const staticBlogs = [
-      { t: "Your New Post Title", u: "article.html?id=123456789&slug=your-post-title", d: "Your new post description.", s: "DEV.to", dt: "2025-05-26" },
+      { t: "Sajhkasj", u: "article.html?id=123456&slug=sajhkasj-o33", d: "A brief description of my new post.", s: "DEV.to", dt: "2025-05-26" },
       { t: "How to Build a Portfolio Website with HTML and JavaScript", u: "article.html?id=123456&slug=how-to-build-a-portfolio-website", d: "Learn how to create a stunning portfolio website using HTML, JavaScript, and CSS.", s: "DEV.to", dt: "2025-05-01" },
       { t: "Getting Started with AI: A Beginner's Guide", u: "article.html?id=123457&slug=getting-started-with-ai", d: "An introduction to artificial intelligence concepts for beginners.", s: "DEV.to", dt: "2025-04-15" },
       { t: "Responsive Web Design Tips", u: "article.html?id=123458&slug=responsive-web-design-tips", d: "Best practices for creating responsive layouts that work on all devices.", s: "DEV.to", dt: "2025-03-20" }
     ];
-    document.addEventListener("DOMContentLoaded", () => { const b = document.body, d = document.getElementById("t-d"), m = document.getElementById("t-m"), h = document.querySelector(".ham"), n = document.querySelector(".nb-l"), l = document.getElementById("bl"); function t(e) { b.setAttribute("data-theme", e); d.checked = m.checked = e === "dark"; localStorage.setItem("theme", e) } const s = localStorage.getItem("theme") || "light"; t(s);[d, m].forEach(c => c && c.addEventListener("change", () => { t(c.checked ? "dark" : "light") })); if (h && n) { h.addEventListener("click", () => n.classList.toggle("active")); h.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); n.classList.toggle("active") } }) } document.querySelectorAll(".nb-l li a").forEach(i => i.addEventListener("click", () => { if (n.classList.contains("active")) n.classList.remove("active") })); function f(d) { return d ? new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : "Date N/A" } function r(d) { l.innerHTML = ""; if (d.length === 0) { l.innerHTML = "<div>No blogs found. Start writing!</div>"; return } d.sort((a, b) => new Date(b.dt) - new Date(a.dt)); d.forEach(p => { const c = document.createElement("div"); c.className = "bc"; c.setAttribute("role", "article"); c.innerHTML = `<a href="${p.u}" class="btl" aria-label="Read ${p.t}">${p.t}</a><div class="bm"><span><i class="fas fa-calendar-alt" aria-hidden="true"></i> ${f(p.dt)}</span><span><i class="fas fa-globe" aria-hidden="true"></i> ${p.s}</span></div><p>${p.d}</p><a href="${p.u}" class="bl" aria-label="Read more about ${p.t}">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>`; l.appendChild(c); lz(c, e => e.classList.add("visible")) }) } async function u() { try { const ts = Date.now(); const res = await fetch(`https://dev.to/api/articles?username=akshthakkar&per_page=30&_=${ts}`, { cache: "no-store" }); if (!res.ok) { console.error(`DEV.to API error: ${res.status} ${res.statusText}`); if (res.status === 429) console.error("Rate limit exceeded."); return } const d = await res.json(); if (d.length > 0) { const ub = d.map(p => ({ t: p.title, u: `article.html?id=${p.id}&slug=${encodeURIComponent(p.slug)}`, d: p.description || "No excerpt available.", s: "DEV.to", dt: p.published_at })); r(ub) } } catch (e) { console.error("Failed to fetch DEV.to posts:", e.message) } } r(staticBlogs); u(); });
+    document.addEventListener("DOMContentLoaded", () => { const b = document.body, d = document.getElementById("t-d"), m = document.getElementById("t-m"), h = document.querySelector(".ham"), n = document.querySelector(".nb-l"), l = document.getElementById("bl"); function t(e) { b.setAttribute("data-theme", e); d.checked = m.checked = e === "dark"; localStorage.setItem("theme", e) } const s = localStorage.getItem("theme") || "light"; t(s);[d, m].forEach(c => c && c.addEventListener("change", () => { t(c.checked ? "dark" : "light") })); if (h && n) {h.addEventListener("click", () => n.classList.toggle("active")); h.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); n.classList.toggle("active") } })} document.querySelectorAll(".nb-l li a").forEach(i => i.addEventListener("click", () => { if (n.classList.contains("active")) n.classList.remove("active") })); function f(d) { return d ? new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : "Date N/A" } function r(d) { l.innerHTML = ""; if (d.length === 0) { l.innerHTML = "<div>No blogs found. Start writing!</div>"; return } d.sort((a, b) => new Date(b.dt) - new Date(a.dt)); d.forEach(p => { const c = document.createElement("div"); c.className = "bc"; c.setAttribute("role", "article"); c.innerHTML = `<a href="${p.u}" class="btl" aria-label="Read ${p.t}">${p.t}</a><div class="bm"><span><i class="fas fa-calendar-alt" aria-hidden="true"></i> ${f(p.dt)}</span><span><i class="fas fa-globe" aria-hidden="true"></i> ${p.s}</span></div><p>${p.d}</p><a href="${p.u}" class="bl" aria-label="Read more about ${p.t}">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>`; l.appendChild(c); lz(c, e => e.classList.add("visible")) }) } async function u() { try { const ts = Date.now(); const res = await fetch(`https://dev.to/api/articles?username=akshthakkar&per_page=30&_=${ts}`, { cache: "no-store" }); if (!res.ok) { console.error(`DEV.to API error: ${res.status} ${res.statusText}`); if (res.status === 429) console.error("Rate limit exceeded."); return } const d = await res.json(); if (d.length > 0) { const ub = d.map(p => ({ t: p.title, u: `article.html?id=${p.id}&slug=${encodeURIComponent(p.slug)}`, d: p.description || "No excerpt available.", s: "DEV.to", dt: p.published_at })); r(ub) } } catch (e) { console.error("Failed to fetch DEV.to posts:", e.message) } } r(staticBlogs); u(); });
   </script>
 </body>
+
 </html>
