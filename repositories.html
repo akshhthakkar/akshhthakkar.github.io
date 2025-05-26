@@ -17,6 +17,10 @@
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
+  <link rel="preload"
+    href="https://github-readme-stats.vercel.app/api?username=akshhthakkar&show_icons=true&theme=default" as="image">
+  <link rel="preload"
+    href="https://komarev.com/ghpvc/?username=akshhthakkar&label=Profile%20views&color=0e75b6&style=flat" as="image">
   <style>
     html {
       box-sizing: border-box;
@@ -684,7 +688,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      animation: pulse 1.5s infinite ease-in-out
+      animation: none
     }
 
     [data-theme="dark"] .sk {
@@ -727,20 +731,6 @@
       margin-top: 0.75rem
     }
 
-    @keyframes pulse {
-      0% {
-        opacity: 0.6
-      }
-
-      50% {
-        opacity: 1
-      }
-
-      100% {
-        opacity: 0.6
-      }
-    }
-
     .ls {
       border: 4px solid var(--cbd);
       border-top: 4px solid var(--acc);
@@ -781,6 +771,17 @@
       margin-bottom: 0.5rem;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+
+      .rc,
+      .sc,
+      .rl,
+      .btn,
+      #pv {
+        transition: none;
+      }
+    }
+
     @media (max-width: 768px) {
       .nb {
         padding: 1rem 1.5rem
@@ -797,7 +798,7 @@
         width: 100%;
         background-color: var(--nbm);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        position: absolute;
+        positionende: absolute;
         top: 100%;
         left: 0;
         max-height: 0;
@@ -998,7 +999,7 @@
       <a href="https://github.com/akshhthakkar?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn">
         <i class="fab fa-github"></i> Explore More on GitHub <i class="fas fa-arrow-right"></i>
       </a>
-      <button id="lm" class="btn" style="display:none">
+      <button id="lm" class="btn" style="display:none" data-loading="false">
         <i class="fas fa-plus"></i> Load More
       </button>
     </div>
@@ -1067,7 +1068,7 @@
       const loadMoreBtn = document.getElementById("lm");
       const repositoriesGrid = document.getElementById("r");
       let currentPage = 1;
-      const reposPerPage = 9;
+      const reposPerPage = 6;
       let themeChangeTimeout;
 
       function lazyLoadImage(element) {
@@ -1100,7 +1101,7 @@
         }, 100);
       }
 
-      function showSkeletonLoaders(count) {
+      function showSkeletonLoaders(count = 3) {
         repositoriesGrid.innerHTML = "";
         for (let i = 0; i < count; i++) {
           const skeletonCard = document.createElement("div");
@@ -1109,8 +1110,6 @@
                             <div class="sl t"></div>
                             <div class="sl m"></div>
                             <div class="sl x"></div>
-                            <div class="sl x"></div>
-                            <div class="sl b"></div>
                         `;
           repositoriesGrid.appendChild(skeletonCard);
         }
@@ -1131,20 +1130,41 @@
                     `;
       }
 
+      function debounce(func, wait) {
+        let timeout;
+        return function (...args) {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+      }
+
       async function fetchRepositories(append = false) {
-        if (!append) {
-          showSkeletonLoaders(reposPerPage);
+        const cacheKey = `repos_page_${currentPage}`;
+        const cachedData = localStorage.getItem(cacheKey);
+        const cacheExpiration = 5 * 60 * 1000;
+        const now = new Date().getTime();
+
+        if (cachedData) {
+          const { data, timestamp } = JSON.parse(cachedData);
+          if (now - timestamp < cacheExpiration) {
+            const filteredRepos = data.filter(repo => repo.name !== "akshhthakkar.github.io");
+            if (!append) repositoriesGrid.innerHTML = "";
+            repositoriesGrid.insertAdjacentHTML("beforeend", filteredRepos.map(createRepoCard).join(""));
+            loadMoreBtn.style.display = filteredRepos.length === reposPerPage ? "inline-block" : "none";
+            return;
+          }
         }
+
+        if (!append) showSkeletonLoaders();
 
         try {
           const response = await fetch(`https://api.github.com/users/akshhthakkar/repos?sort=updated&direction=desc&per_page=${reposPerPage}&page=${currentPage}`);
-
           if (!response.ok) {
             let errorMessage = `HTTP Error: ${response.status} - ${response.statusText}.`;
             if (response.status === 403) {
-              errorMessage = "GitHub API rate limit exceeded. This is common for unauthenticated requests. Please try again in about an hour.";
+              errorMessage = "GitHub API rate limit exceeded. Please try again later.";
             } else if (response.status === 404) {
-              errorMessage = "GitHub user or repositories not found. Please check the username or repository visibility.";
+              errorMessage = "GitHub user or repositories not found.";
             } else if (response.status >= 500) {
               errorMessage = "GitHub API server error. Please try again later.";
             }
@@ -1154,41 +1174,36 @@
           const data = await response.json();
           const filteredRepos = data.filter(repo => repo.name !== "akshhthakkar.github.io");
 
+          localStorage.setItem(cacheKey, JSON.stringify({ data, timestamp: now }));
+
           if (filteredRepos.length === 0 && !append) {
-            repositoriesGrid.innerHTML = '<p class="tc">No public repositories found (excluding this portfolio).<br>If you expect to see more, ensure they are public on GitHub.</p>';
+            repositoriesGrid.innerHTML = '<p class="tc">No public repositories found (excluding this portfolio).</p>';
             loadMoreBtn.style.display = "none";
             return;
           }
 
-          if (!append) {
-            repositoriesGrid.innerHTML = "";
-          }
-
-          filteredRepos.forEach(repo => {
-            repositoriesGrid.insertAdjacentHTML("beforeend", createRepoCard(repo));
-          });
-
+          if (!append) repositoriesGrid.innerHTML = "";
+          repositoriesGrid.insertAdjacentHTML("beforeend", filteredRepos.map(createRepoCard).join(""));
           loadMoreBtn.style.display = filteredRepos.length === reposPerPage ? "inline-block" : "none";
-
         } catch (error) {
           console.error("Failed to fetch repositories:", error);
-          let errorMessage = `Error loading repositories: ${error.message}.`;
+          let errorMessage = `Unable to load repositories. Please try again later.`;
           if (error instanceof TypeError && error.message === "Failed to fetch") {
-            errorMessage = "The request to GitHub failed. This often indicates a network issue (e.g., no internet connection, a firewall blocking the request, or a browser extension like an ad blocker interfering). Please check your internet and try disabling extensions.";
+            errorMessage = "Network issue detected. Please check your internet connection.";
           } else if (error.message.includes("rate limit exceeded")) {
-            errorMessage = "You've likely hit the GitHub API rate limit for unauthenticated requests. Please wait an hour and try again.";
+            errorMessage = "GitHub API rate limit exceeded. Please try again later.";
           }
 
           if (append && repositoriesGrid.children.length > 0) {
             repositoriesGrid.insertAdjacentHTML("beforeend", `
                                 <p class="tc error-message" style="margin-top: 1rem;" role="alert">
-                                    <i class="fas fa-exclamation-triangle"></i> Error loading more repositories: ${errorMessage}
+                                    <i class="fas fa-exclamation-triangle"></i> ${errorMessage}
                                 </p>
                             `);
           } else {
             repositoriesGrid.innerHTML = `
                                 <p class="tc error-message" role="alert">
-                                    <i class="fas fa-exclamation-triangle"></i> Error loading repositories: ${errorMessage}
+                                    <i class="fas fa-exclamation-triangle"></i> ${errorMessage}
                                 </p>
                             `;
           }
@@ -1267,10 +1282,15 @@
       });
 
       if (loadMoreBtn) {
-        loadMoreBtn.addEventListener("click", () => {
+        loadMoreBtn.addEventListener("click", debounce(async () => {
+          if (loadMoreBtn.dataset.loading === "true") return;
+          loadMoreBtn.dataset.loading = "true";
+          loadMoreBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Loading...`;
           currentPage++;
-          fetchRepositories(true);
-        });
+          await fetchRepositories(true);
+          loadMoreBtn.dataset.loading = "false";
+          loadMoreBtn.innerHTML = `<i class="fas fa-plus"></i> Load More`;
+        }, 300));
       }
 
       fetchRepositories();

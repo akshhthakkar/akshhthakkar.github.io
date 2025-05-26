@@ -448,7 +448,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      animation: pulse 1.5s infinite ease-in-out
+      animation: none
     }
 
     [data-theme="dark"] .sc {
@@ -489,20 +489,6 @@
       width: 120px;
       height: 2.2em;
       margin-top: 0.75rem
-    }
-
-    @keyframes pulse {
-      0% {
-        opacity: 0.6
-      }
-
-      50% {
-        opacity: 1
-      }
-
-      100% {
-        opacity: 0.6
-      }
     }
 
     .btn {
@@ -553,6 +539,14 @@
       to {
         opacity: 1;
         transform: translateY(0)
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .bc,
+      .btn {
+        transition: none;
       }
     }
 
@@ -667,7 +661,7 @@
   <footer class="ft">
     <p>© 2025 Aksh Thakkar</p>
   </footer>
-  <script>document.addEventListener("DOMContentLoaded", () => { const b = document.body, d = document.getElementById("t-d"), m = document.getElementById("t-m"), h = document.querySelector(".ham"), n = document.querySelector(".nb-l"), l = document.getElementById("bl"); function t(e) { b.setAttribute("data-theme", e); d.checked = m.checked = e === "dark"; localStorage.setItem("theme", e) } const s = localStorage.getItem("theme") || "light"; t(s);[d, m].forEach(c => c && c.addEventListener("change", () => { t(c.checked ? "dark" : "light") })); if (h && n) h.addEventListener("click", () => n.classList.toggle("active")); document.querySelectorAll(".nb-l li a").forEach(i => i.addEventListener("click", () => { if (n.classList.contains("active")) n.classList.remove("active") })); function f(d) { return d ? new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : "Date N/A" } function sk(c = 3) { l.innerHTML = ""; for (let i = 0; i < c; i++) { const s = document.createElement("div"); s.className = "sc"; s.innerHTML = '<div class="sl t"></div><div class="sl m"></div><div class="sl x"></div><div class="sl x"></div><div class="sl b"></div>'; l.appendChild(s) } } function fb() { const k = "dtb", kt = "dtbt", cd = 5 * 60 * 1000, cb = localStorage.getItem(k), ct = localStorage.getItem(kt); if (cb && ct && (Date.now() - ct) < cd) { r(JSON.parse(cb)); return } sk(); fetch("https://dev.to/api/articles?username=akshthakkar&per_page=30").then(res => { if (!res.ok) throw new Error(`DEV.to error: ${res.status}`); return res.json() }).then(d => { localStorage.setItem(k, JSON.stringify(d)); localStorage.setItem(kt, Date.now()); r(d) }).catch(e => { l.innerHTML = `<div id="err"><p>Failed to load blogs: ${e.message}</p><button class="btn" onclick="fb()">Retry</button></div>` }) } function r(d) { l.innerHTML = ""; if (d.length === 0) { l.innerHTML = "<div>No blogs found. Start writing!</div>"; return } const b = d.map(p => ({ t: p.title, u: `article.html?id=${p.id}&slug=${encodeURIComponent(p.slug)}`, d: p.description || "No excerpt available. Click to read the full post.", s: "DEV.to", dt: p.published_at })); b.sort((a, b) => new Date(b.dt) - new Date(a.dt)); b.forEach(p => { const c = document.createElement("div"); c.className = "bc"; c.setAttribute("role", "article"); c.innerHTML = `<a href="${p.u}" class="btl" aria-label="Read ${p.t}">${p.t}</a><div class="bm"><span><i class="fas fa-calendar-alt" aria-hidden="true"></i> ${f(p.dt)}</span><span><i class="fas fa-globe" aria-hidden="true"></i> ${p.s}</span></div><p>${p.d}</p><a href="${p.u}" class="bl" aria-label="Read more about ${p.t}">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>`; l.appendChild(c); lz(c, e => e.classList.add("visible")) }) } fb(); setInterval(fb, 5 * 60 * 1000) });</script>
+  <script>document.addEventListener("DOMContentLoaded", () => { const b = document.body, d = document.getElementById("t-d"), m = document.getElementById("t-m"), h = document.querySelector(".ham"), n = document.querySelector(".nb-l"), l = document.getElementById("bl"); function t(e) { b.setAttribute("data-theme", e); d.checked = m.checked = e === "dark"; localStorage.setItem("theme", e) } const s = localStorage.getItem("theme") || "light"; t(s);[d, m].forEach(c => c && c.addEventListener("change", () => { t(c.checked ? "dark" : "light") })); if (h && n) h.addEventListener("click", () => n.classList.toggle("active")); document.querySelectorAll(".nb-l li a").forEach(i => i.addEventListener("click", () => { if (n.classList.contains("active")) n.classList.remove("active") })); function f(d) { return d ? new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : "Date N/A" } function sk(c = 3) { l.innerHTML = ""; for (let i = 0; i < c; i++) { const s = document.createElement("div"); s.className = "sc"; s.innerHTML = '<div class="sl t"></div><div class="sl m"></div><div class="sl x"></div><div class="sl x"></div><div class="sl b"></div>'; l.appendChild(s) } } async function fb() { sk(); try { const res = await fetch("https://dev.to/api/articles?username=akshthakkar&per_page=30&state=fresh", { cache: "no-store" }); if (!res.ok) throw new Error(`DEV.to error: ${res.status}`); const d = await res.json(); r(d); } catch (e) { l.innerHTML = `<div id="err"><p>Failed to load blogs: ${e.message}</p></div>` } } function r(d) { l.innerHTML = ""; if (d.length === 0) { l.innerHTML = "<div>No blogs found. Start writing!</div>"; return } const b = d.map(p => ({ t: p.title, u: `article.html?id=${p.id}&slug=${encodeURIComponent(p.slug)}`, d: p.description || "No excerpt available. Click to read the full post.", s: "DEV.to", dt: p.published_at })); b.sort((a, b) => new Date(b.dt) - new Date(a.dt)); b.forEach(p => { const c = document.createElement("div"); c.className = "bc"; c.setAttribute("role", "article"); c.innerHTML = `<a href="${p.u}" class="btl" aria-label="Read ${p.t}">${p.t}</a><div class="bm"><span><i class="fas fa-calendar-alt" aria-hidden="true"></i> ${f(p.dt)}</span><span><i class="fas fa-globe" aria-hidden="true"></i> ${p.s}</span></div><p>${p.d}</p><a href="${p.u}" class="bl" aria-label="Read more about ${p.t}">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>`; l.appendChild(c); lz(c, e => e.classList.add("visible")) }) } fb(); });</script>
 </body>
 
 </html>
