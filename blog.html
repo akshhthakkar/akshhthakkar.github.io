@@ -51,7 +51,6 @@
       }
     </script>
     <style>
-      /* Your existing styles remain unchanged */
       html {
         box-sizing: border-box;
         scroll-behavior: smooth;
@@ -472,7 +471,7 @@
         background-color: var(--cbd);
         border-radius: 4px;
         height: 1em;
-        margin-bottom: 0.5 jargonly loading placeholder;
+        margin-bottom: 0.5rem;
       }
       [data-theme="dark"] .sl {
         background-color: var(--cbd);
@@ -653,7 +652,7 @@
       <a href="index.html" class="nb-b"><strong>Aksh</strong></a>
       <ul class="nb-l">
         <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#certifications">Certifications</a></li>
+        <li><a href="index.html#certifications">Certification</a></li>
         <li><a href="blog.html">Blogs</a></li>
         <li><a href="repositories.html">Repositories</a></li>
         <li class="dts">
@@ -693,18 +692,18 @@
     <script>
       const allBlogs = [
         {
-          url: "article.html?slug=introduction&devto_username=akshthakkar",
-          title: "Introduction",
-          description:
-            "A brief introduction to my interests in web development, software development, and learning new technologies.",
-          source: "DEV.to",
-          date: "2025-05-25",
-        },
-        {
-          url: "article.html?slug=personal-portfolio-website&devto_username=akshthakkar",
+          url: "article.html?id=2526134&slug=personal-portfolio-website-48jo&devto_username=akshthakkar",
           title: "Personal Portfolio Website",
           description:
             "Insights and tips on building a personal portfolio website to showcase your work and skills.",
+          source: "DEV.to",
+          date: "2025-05-20",
+        },
+        {
+          url: "article.html?id=2526135&slug=introduction-4g734&devto_username=akshthakkar", // REPLACE id AND slug WITH ACTUAL VALUES
+          title: "Introduction",
+          description:
+            "A brief introduction to my interests in web development, software development, and learning new technologies.",
           source: "DEV.to",
           date: "2025-05-25",
         },
@@ -728,7 +727,8 @@
 
         function setTheme(theme) {
           body.setAttribute("data-theme", theme);
-          toggleDesktop.checked = toggleMobile.checked = theme === "dark";
+          if (toggleDesktop) toggleDesktop.checked = theme === "dark";
+          if (toggleMobile) toggleMobile.checked = theme === "dark";
           localStorage.setItem("theme", theme);
         }
 
@@ -757,8 +757,12 @@
 
         document.querySelectorAll(".nb-l li a").forEach((link) =>
           link.addEventListener("click", () => {
-            if (navLinks.classList.contains("active"))
+            if (
+              window.innerWidth <= 768 &&
+              navLinks.classList.contains("active")
+            ) {
               navLinks.classList.remove("active");
+            }
           })
         );
 
@@ -795,14 +799,27 @@
         }
 
         function validateBlog(blog) {
-          return (
-            blog &&
-            typeof blog.url === "string" &&
-            typeof blog.title === "string" &&
-            typeof blog.description === "string" &&
-            typeof blog.source === "string" &&
-            blog.date
-          );
+          if (!blog || typeof blog.url !== "string" || !blog.url) {
+            console.warn("Invalid blog URL:", blog);
+            return false;
+          }
+          if (typeof blog.title !== "string" || !blog.title) {
+            console.warn("Invalid blog title:", blog);
+            return false;
+          }
+          if (typeof blog.description !== "string" || !blog.description) {
+            console.warn("Invalid blog description:", blog);
+            return false;
+          }
+          if (typeof blog.source !== "string" || !blog.source) {
+            console.warn("Invalid blog source:", blog);
+            return false;
+          }
+          if (!blog.date) {
+            console.warn("Missing blog date:", blog);
+            return false;
+          }
+          return true;
         }
 
         function renderBlogs(blogs) {
@@ -813,7 +830,7 @@
             blogListContainer.innerHTML = `
               <div class="error-message">
                 <i class="fas fa-info-circle"></i>
-                <p>No valid blogs found. Please check the blog data.</p>
+                <p>No valid blogs found. Please check the blog data in the allBlogs array.</p>
               </div>`;
             return;
           }
