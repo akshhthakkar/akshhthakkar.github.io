@@ -19,9 +19,9 @@
     <meta property="og:type" content="website" />
     <meta
       http-equiv="Permissions-Policy"
-      content="ch-ua-form-factor=(self), ch-ua-model=(self)"
+      content="ch-ua-form-factor=(none), data-context=(self)"
     />
-    <title>Aksh Thakkar - Blogs</title>
+    <title>Aksh Thakkar | Blogs</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -36,10 +36,11 @@
     ></script>
     <script>
       function lz(e, c) {
+        if (!e) return;
         const o = new IntersectionObserver(
           (t, r) => {
             t.forEach((i) => {
-              if (i.isIntersecting) {
+              if (i.isIntersecting && i.target) {
                 c(i.target);
                 r.unobserve(i.target);
               }
@@ -690,6 +691,7 @@
     </footer>
     <script>
       const allBlogs = [
+        // call https://dev.to/api/articles?username=akshthakkar to get ID and SLUG for new post
         {
           url: "article.html?id=2526134&slug=personal-portfolio-website-48jo&devto_username=akshthakkar",
           title: "Personal Portfolio Website",
@@ -723,6 +725,11 @@
         const hamburgerButton = document.querySelector(".ham");
         const navLinks = document.querySelector(".nb-l");
         const blogListContainer = document.getElementById("bl");
+
+        if (!blogListContainer) {
+          console.error("Blog list container (#bl) not found");
+          return;
+        }
 
         function setTheme(theme) {
           body.setAttribute("data-theme", theme);
@@ -799,23 +806,23 @@
 
         function validateBlog(blog) {
           if (!blog || typeof blog.url !== "string" || !blog.url) {
-            console.warn("Invalid blog URL:");
+            console.warn("Invalid blog URL:", blog);
             return false;
           }
           if (typeof blog.title !== "string" || !blog.title) {
-            console.warn("Invalid blog title:");
+            console.warn("Invalid blog title:", blog);
             return false;
           }
           if (typeof blog.description !== "string" || !blog.description) {
-            console.warn("Invalid blog description:");
+            console.warn("Invalid blog description:", blog);
             return false;
           }
           if (typeof blog.source !== "string" || !blog.source) {
-            console.warn("Invalid blog source:");
+            console.warn("Invalid blog source:", blog);
             return false;
           }
           if (!blog.date) {
-            console.warn("Missing blog date:");
+            console.warn("Missing blog date:", blog);
             return false;
           }
           return true;
@@ -829,7 +836,7 @@
             blogListContainer.innerHTML = `
               <div class="error-message">
                 <i class="fas fa-info-circle"></i>
-                <p>No valid blogs found. Please check the blog data in data in the allBlogs array.</p>
+                <p>No valid blogs found. Please check the blog data in the allBlogs array.</p>
               </div>`;
             return;
           }
@@ -842,18 +849,20 @@
             card.innerHTML = `
               <a href="${post.url}" class="btl" aria-label="Read ${
               post.title
-            }">${post.title}</Link>
-              <div class="meta-btm">
-                <span><i class="fas fa-calendar-alt"></i> ${formatDate(
+            }">${post.title}</a>
+              <div class="bm">
+                <span><i class="fas fa-calendar-alt" aria-hidden="true"></i> ${formatDate(
                   post.date
                 )}</span>
-                <span><i class="fas fa-globe"></i> ${post.source}</span>
+                <span><i class="fas fa-globe" aria-hidden="true"></i> ${
+                  post.source
+                }</span>
               </div>
               <p>${post.description}</p>
               <a href="${post.url}" class="bl" aria-label="Read more about ${
               post.title
             }">
-                Read More <i class="fas fa-arrow-right"></i>
+                Read More <i class="fas fa-arrow-right" aria-hidden="true"></i>
               </a>`;
             blogListContainer.appendChild(card);
             lz(card, (element) => element.classList.add("visible"));
