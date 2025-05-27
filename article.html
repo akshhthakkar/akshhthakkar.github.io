@@ -713,6 +713,7 @@
               articleMeta.sourceUrl = window.location.href;
             } else if (articleId || (articleSlug && devToUsername)) {
               let response;
+              let data;
 
               if (articleId) {
                 fetchUrl = `https://dev.to/api/articles/${articleId}`;
@@ -737,7 +738,7 @@
                 throw new Error("404 Not Found");
               }
 
-              const data = await response.json();
+              data = await response.json();
               if (!data || !data.body_markdown) {
                 throw new Error("404 Not Found");
               }
@@ -749,6 +750,17 @@
               articleHtmlContent = marked.parse(data.body_markdown || "");
               articleMeta.sourceUrl = data.url || "";
               articleMeta.publishedDate = data.published_at || "";
+
+              // --- START OF THE MANUAL DATE OVERRIDE FIX ---
+              // This specifically targets your "Personal Portfolio Website" post by its Dev.to ID.
+              // It ensures the date shown is always May 25, 2025, regardless of the API's published_at value.
+              const targetArticleId = "2526134"; // The Dev.to ID for "Personal Portfolio Website"
+              if (articleId === targetArticleId) {
+                // Set the date to May 25, 2025, using an ISO 8601 string
+                // This ensures consistency across timezones for display.
+                articleMeta.publishedDate = "2025-05-25T00:00:00Z";
+              }
+              // --- END OF THE MANUAL DATE OVERRIDE FIX ---
             } else {
               articleWrapper.innerHTML = `
                 <div id="error">
@@ -802,7 +814,7 @@
                     }</a></p>`
                   : ""
               }
-            `;
+              `;
 
             document.querySelectorAll(".ar-c img").forEach((img) => {
               if (img.src) {
