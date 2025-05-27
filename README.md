@@ -11,20 +11,19 @@ https://akshhthakkar.github.io
 
 ---
 
-
 ### 💻 Technologies Used
 
-* HTML
-* CSS
-* JavaScript
-* DEV.to API
+- HTML
+- CSS
+- JavaScript
+- DEV.to API
 
 ---
 
 ### 🤝 Connect
 
-* **Website:** [https://akshhthakkar.github.io](https://akshhthakkar.github.io)
-* **DEV.to:** [@akshthakkar](https://dev.to/akshthakkar)
-* **GitHub:** [@akshhthakkar](https://github.com/akshhthakkar)
+- **Website:** [https://akshhthakkar.github.io](https://akshhthakkar.github.io)
+- **DEV.to:** [@akshthakkar](https://dev.to/akshthakkar)
+- **GitHub:** [@akshhthakkar](https://github.com/akshhthakkar)
 
 ---
