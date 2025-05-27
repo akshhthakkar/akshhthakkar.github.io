@@ -1,671 +1,851 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="Blog post by Aksh Thakkar, Computer Science student at Parul University.">
-    <meta property="og:title" content="Aksh Thakkar - Blog Post">
-    <meta property="og:description" content="Read blog posts by Aksh Thakkar on web dev and AI.">
-    <meta property="og:url" content="https://akshhthakkar.github.io/article.html">
-    <meta property="og:image" content="/images/profile.jpg">
-    <meta property="og:site_name" content="Aksh Thakkar Portfolio">
-    <meta property="og:type" content="article">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Blog post by Aksh Thakkar, Computer Science student at Parul University."
+    />
+    <meta property="og:title" content="Aksh Thakkar - Blog Post" />
+    <meta
+      property="og:description"
+      content="Read blog posts by Aksh Thakkar on web dev and AI."
+    />
+    <meta
+      property="og:url"
+      content="https://akshhthakkar.github.io/article.html"
+    />
+    <meta property="og:image" content="/images/profile.jpg" />
+    <meta property="og:site_name" content="Aksh Thakkar Portfolio" />
+    <meta property="og:type" content="article" />
     <title>Aksh Thakkar - Blog Post</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        xintegrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400&display=swap">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400&display=swap"
+    />
     <script>
-        function lz(e, c) {
-            const o = new IntersectionObserver((t, r) => {
-                t.forEach(i => {
-                    if (i.isIntersecting) {
-                        c(i.target);
-                        r.unobserve(i.target)
-                    }
-                })
-            }, {
-                rootMargin: "100px"
+      // Function for lazy loading elements (e.g., images)
+      function lz(e, c) {
+        const o = new IntersectionObserver(
+          (t, r) => {
+            t.forEach((i) => {
+              if (i.isIntersecting) {
+                c(i.target);
+                r.unobserve(i.target);
+              }
             });
-            o.observe(e)
-        }
+          },
+          {
+            rootMargin: "100px", // Load elements 100px before they enter the viewport
+          }
+        );
+        o.observe(e);
+      }
+      // Removed the window.onload check for marked.js here
+      // as it's now loaded synchronously before the main script.
     </script>
     <style>
-        html {
-            box-sizing: border-box;
-            scroll-behavior: smooth
-        }
+      /* Base styles and variables */
+      html {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
 
-        *,
-        *:before,
-        *:after {
-            box-sizing: inherit
-        }
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
 
-        :root {
-            --bg: #fff;
-            --txt: #333;
-            --hdt: #000;
-            --acc: #007bff;
-            --ach: #0056b3;
-            --nbm: #f8f8f8;
-            --cbg: #fff;
-            --cbd: #e8e8e8;
-            --sl: rgba(0, 0, 0, 0.02);
-            --hl: rgba(0, 0, 0, 0.05);
-            --sob: #ccc;
-            --son: #4CAF50;
-            --scc: #fff;
-            --sbd: #999;
-            --hgs: #e0f2f7;
-            --hgm: #ccecf7;
-            --hge: #fff;
-            --error-color: #dc3545;
-            --error-color-rgb: 220, 53, 69;
-        }
+      :root {
+        --bg: #fff;
+        --txt: #333;
+        --hdt: #000;
+        --acc: #007bff;
+        --ach: #0056b3;
+        --nbm: #f8f8f8;
+        --cbg: #fff;
+        --cbd: #e8e8e8;
+        --sl: rgba(0, 0, 0, 0.02);
+        --hl: rgba(0, 0, 0, 0.05);
+        --sob: #ccc;
+        --son: #4caf50;
+        --scc: #fff;
+        --sbd: #999;
+        --hgs: #e0f2f7;
+        --hgm: #ccecf7;
+        --hge: #fff;
+        --error-color: #dc3545;
+        --error-color-rgb: 220, 53, 69;
+      }
 
-        [data-theme="dark"] {
-            --bg: #121212;
-            --txt: #e0e0e0;
-            --hdt: #fff;
-            --acc: #66b3ff;
-            --ach: #4da6ff;
-            --nbm: #1a1a1a;
-            --cbg: #1e1e1e;
-            --cbd: #252525;
-            --sl: rgba(255, 255, 255, 0.02);
-            --hl: rgba(255, 255, 255, 0.05);
-            --sob: #555;
-            --son: #2196F3;
-            --sbd: #777;
-            --hgs: #0a2a4a;
-            --hgm: #1a3a5a;
-            --hge: #121212;
-            --error-color: #ff6b6b;
-            --error-color-rgb: 255, 107, 107;
-        }
+      [data-theme="dark"] {
+        --bg: #121212;
+        --txt: #e0e0e0;
+        --hdt: #fff;
+        --acc: #66b3ff;
+        --ach: #4da6ff;
+        --nbm: #1a1a1a;
+        --cbg: #1e1e1e;
+        --cbd: #252525;
+        --sl: rgba(255, 255, 255, 0.02);
+        --hl: rgba(255, 255, 255, 0.05);
+        --sob: #555;
+        --son: #2196f3;
+        --sbd: #777;
+        --hgs: #0a2a4a;
+        --hgm: #1a3a5a;
+        --hge: #121212;
+        --error-color: #ff6b6b;
+        --error-color-rgb: 255, 107, 107;
+      }
 
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--txt);
-            transition: background 0.3s, color 0.3s;
-            line-height: 1.6
-        }
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg);
+        color: var(--txt);
+        transition: background 0.3s, color 0.3s;
+        line-height: 1.6;
+      }
 
+      /* Navbar styles */
+      .nb {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background: var(--bg);
+        box-shadow: 0 1px 4px var(--sl);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      [data-theme="dark"] .nb {
+        box-shadow: 0 1px 4px var(--sl);
+      }
+
+      .nb-b {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--hdt);
+        text-decoration: none;
+      }
+
+      .nb-l {
+        list-style: none;
+        display: flex;
+        gap: 1.8rem;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+      }
+
+      .nb-l li a {
+        text-decoration: none;
+        color: var(--txt);
+        font-weight: 500;
+        transition: color 0.2s ease-in-out;
+        position: relative;
+        padding-bottom: 0.2rem;
+      }
+
+      .nb-l li a:hover {
+        color: var(--acc);
+      }
+
+      .nb-l li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--acc);
+        transition: width 0.3s ease-in-out;
+      }
+
+      .nb-l li a:hover::after {
+        width: 100%;
+      }
+
+      /* Theme toggle switch styles */
+      .ts {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .ts input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .sld {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--sob);
+        border-radius: 34px;
+        transition: background-color 0.4s;
+        border: 1px solid var(--sbd);
+      }
+
+      .sld:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 3px;
+        background-color: var(--scc);
+        border-radius: 50%;
+        transition: transform 0.4s;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+      }
+
+      .ts input:checked + .sld {
+        background-color: var(--son);
+        border-color: var(--son);
+      }
+
+      .ts input:checked + .sld:before {
+        transform: translateX(26px);
+      }
+
+      .sld .ik {
+        position: absolute;
+        top: 50%;
+        font-size: 0.7em;
+        color: var(--txt);
+        transition: transform 0.4s, opacity 0.4s;
+        z-index: 3;
+      }
+
+      .sld .fs {
+        left: 11px;
+        transform: translateY(-50%) translateX(0);
+        opacity: 1;
+      }
+
+      .sld .fm {
+        left: 37px;
+        transform: translateY(-50%) translateX(0);
+        opacity: 0;
+      }
+
+      .ts input:checked + .sld .fs {
+        transform: translateY(-50%) translateX(26px);
+        opacity: 0;
+      }
+
+      .ts input:checked + .sld .fm {
+        transform: translateY(-50%) translateX(-26px);
+        opacity: 1;
+      }
+
+      .dts {
+        margin-left: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .mcg {
+        display: none;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .ham {
+        display: none;
+        font-size: 1.8rem;
+        background: none;
+        border: none;
+        color: var(--txt);
+        cursor: pointer;
+        padding: 0.5rem;
+        z-index: 11;
+      }
+
+      /* Main content container */
+      .ct {
+        max-width: 1000px;
+        margin: auto;
+        padding: 2rem;
+      }
+
+      /* Article container styles */
+      .ar {
+        background: var(--cbg);
+        border-radius: 12px;
+        padding: 2.5rem;
+        box-shadow: 0 8px 20px var(--sl);
+        margin-bottom: 2rem;
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+
+      [data-theme="dark"] .ar {
+        box-shadow: 0 8px 20px var(--sl);
+      }
+
+      .ar h1 {
+        font-size: 2.8rem;
+        color: var(--acc);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        line-height: 1.2;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+      }
+
+      [data-theme="dark"] .ar h1 {
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05);
+      }
+
+      .ar-c {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--txt);
+      }
+
+      .ar-c h2 {
+        font-size: 2rem;
+        margin: 2rem 0 1rem;
+        color: var(--hdt);
+        border-bottom: 1px solid var(--cbd);
+        padding-bottom: 0.5rem;
+      }
+
+      [data-theme="dark"] .ar-c h2 {
+        border-bottom: 1px solid var(--cbd);
+      }
+
+      .ar-c h3 {
+        font-size: 1.6rem;
+        margin: 1.8rem 0 0.8rem;
+        color: var(--hdt);
+      }
+
+      .ar-c img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        display: block;
+        margin: 1.5rem auto;
+        box-shadow: 0 4px 10px var(--sl);
+        opacity: 0; /* Hidden by default for lazy load effect */
+      }
+
+      [data-theme="dark"] .ar-c img {
+        box-shadow: 0 4px 10px var(--sl);
+      }
+
+      .ar-c img.visible {
+        opacity: 1; /* Made visible by Intersection Observer */
+      }
+
+      .ar-c a {
+        color: var(--acc);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .ar-c a:hover {
+        text-decoration: underline;
+        color: var(--ach);
+      }
+
+      .ar-c pre {
+        background: var(--bg);
+        padding: 1.2rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        border: 1px solid var(--cbd);
+        margin: 1.5rem 0;
+        box-shadow: inset 0 0 5px var(--sl);
+      }
+
+      [data-theme="dark"] .ar-c pre {
+        border: 1px solid var(--cbd);
+        box-shadow: inset 0 0 5px var(--sl);
+      }
+
+      .ar-c code {
+        font-family: "Fira Code", "Courier New", monospace;
+        font-size: 0.95rem;
+        color: var(--txt);
+      }
+
+      .ar-c ul,
+      .ar-c ol {
+        margin: 1rem 0;
+        padding-left: 2rem;
+      }
+
+      .ar-c blockquote {
+        border-left: 5px solid var(--acc);
+        padding: 0.8rem 0 0.8rem 1.2rem;
+        margin: 1.5rem 0;
+        color: var(--txt);
+        opacity: 0.9;
+        background-color: rgba(0, 0, 0, 0.03);
+        border-radius: 4px;
+      }
+
+      [data-theme="dark"] .ar-c blockquote {
+        background-color: rgba(255, 255, 255, 0.03);
+      }
+
+      /* Error message styles */
+      #error {
+        text-align: center;
+        color: var(--error-color); /* Use error color for visibility */
+        font-weight: 500;
+        padding: 1rem;
+        border: 1px solid var(--error-color);
+        border-radius: 8px;
+        background-color: rgba(var(--error-color-rgb), 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+        margin: 1.5rem auto; /* Center the error message */
+        max-width: 500px; /* Limit width for better readability */
+      }
+
+      #error i.fas {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Button styles */
+      .btn {
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        background-color: var(--acc);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background-color 0.2s, transform 0.1s;
+        font-weight: 600;
+        box-shadow: 0 2px 5px var(--sl);
+      }
+
+      [data-theme="dark"] .btn {
+        box-shadow: 0 2px 5px var(--sl);
+      }
+
+      .btn:hover {
+        background-color: var(--ach);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px var(--hl);
+      }
+
+      [data-theme="dark"] .btn:hover {
+        box-shadow: 0 4px 8px var(--hl);
+      }
+
+      .cta {
+        text-align: center;
+        margin: 2rem 0;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      /* Footer styles */
+      .ft {
+        text-align: center;
+        padding: 1rem;
+        background: var(--bg);
+        color: var(--txt);
+        margin-top: 2rem;
+        box-shadow: 0 -1px 4px var(--sl);
+      }
+
+      [data-theme="dark"] .ft {
+        box-shadow: 0 -1px 4px var(--sl);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
         .nb {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: var(--bg);
-            box-shadow: 0 1px 4px var(--sl);
-            position: sticky;
-            top: 0;
-            z-index: 10
-        }
-
-        [data-theme="dark"] .nb {
-            box-shadow: 0 1px 4px var(--sl)
+          padding: 1rem 1.5rem;
         }
 
         .nb-b {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--hdt);
-            text-decoration: none
+          flex-grow: 1;
+          font-size: 1.4rem;
         }
 
         .nb-l {
-            list-style: none;
-            display: flex;
-            gap: 1.8rem;
-            margin: 0;
-            padding: 0;
-            align-items: center
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          background-color: var(--nbm);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          position: absolute;
+          top: 100%;
+          left: 0;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease-out;
         }
 
-        .nb-l li a {
-            text-decoration: none;
-            color: var(--txt);
-            font-weight: 500;
-            transition: color 0.2s ease-in-out;
-            position: relative;
-            padding-bottom: 0.2rem
+        .nb-l.active {
+          display: flex;
+          max-height: 300px;
         }
 
-        .nb-l li a:hover {
-            color: var(--acc)
-        }
-
-        .nb-l li a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--acc);
-            transition: width 0.3s ease-in-out
-        }
-
-        .nb-l li a:hover::after {
-            width: 100%
-        }
-
-        .ts {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent
-        }
-
-        .ts input {
-            opacity: 0;
-            width: 0;
-            height: 0
-        }
-
-        .sld {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--sob);
-            border-radius: 34px;
-            transition: background-color 0.4s;
-            border: 1px solid var(--sbd)
-        }
-
-        .sld:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 3px;
-            background-color: var(--scc);
-            border-radius: 50%;
-            transition: transform 0.4s;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 2
-        }
-
-        .ts input:checked+.sld {
-            background-color: var(--son);
-            border-color: var(--son)
-        }
-
-        .ts input:checked+.sld:before {
-            transform: translateX(26px)
-        }
-
-        .sld .ik {
-            position: absolute;
-            top: 50%;
-            font-size: 0.7em;
-            color: var(--txt);
-            transition: transform 0.4s, opacity 0.4s;
-            z-index: 3
-        }
-
-        .sld .fs {
-            left: 11px;
-            transform: translateY(-50%) translateX(0);
-            opacity: 1
-        }
-
-        .sld .fm {
-            left: 37px;
-            transform: translateY(-50%) translateX(0);
-            opacity: 0
-        }
-
-        .ts input:checked+.sld .fs {
-            transform: translateY(-50%) translateX(26px);
-            opacity: 0
-        }
-
-        .ts input:checked+.sld .fm {
-            transform: translateY(-50%) translateX(-26px);
-            opacity: 1
+        .nb-l li {
+          width: 100%;
+          text-align: center;
+          padding: 0.8rem 0;
         }
 
         .dts {
-            margin-left: 1.5rem;
-            display: flex;
-            align-items: center
+          display: none;
         }
 
         .mcg {
-            display: none;
-            align-items: center;
-            gap: 1rem
+          display: flex;
         }
 
         .ham {
-            display: none;
-            font-size: 1.8rem;
-            background: none;
-            border: none;
-            color: var(--txt);
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 11
+          display: block;
         }
 
         .ct {
-            max-width: 1000px;
-            margin: auto;
-            padding: 2rem
+          padding: 1rem;
         }
 
         .ar {
-            background: var(--cbg);
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 8px 20px var(--sl);
-            margin-bottom: 2rem;
-            transition: background 0.3s, box-shadow 0.3s
-        }
-
-        [data-theme="dark"] .ar {
-            box-shadow: 0 8px 20px var(--sl)
+          padding: 1.5rem;
         }
 
         .ar h1 {
-            font-size: 2.8rem;
-            color: var(--acc);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            line-height: 1.2;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05)
-        }
-
-        [data-theme="dark"] .ar h1 {
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05)
-        }
-
-        .ar-c {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: var(--txt)
+          font-size: 2.2rem;
         }
 
         .ar-c h2 {
-            font-size: 2rem;
-            margin: 2rem 0 1rem;
-            color: var(--hdt);
-            border-bottom: 1px solid var(--cbd);
-            padding-bottom: 0.5rem
-        }
-
-        [data-theme="dark"] .ar-c h2 {
-            border-bottom: 1px solid var(--cbd)
+          font-size: 1.8rem;
         }
 
         .ar-c h3 {
-            font-size: 1.6rem;
-            margin: 1.8rem 0 0.8rem;
-            color: var(--hdt)
+          font-size: 1.4rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nb {
+          padding: 1rem;
         }
 
-        .ar-c img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            display: block;
-            margin: 1.5rem auto;
-            box-shadow: 0 4px 10px var(--sl);
-            opacity: 0
+        .ar h1 {
+          font-size: 1.8rem;
         }
 
-        [data-theme="dark"] .ar-c img {
-            box-shadow: 0 4px 10px var(--sl)
+        .ar-c h2 {
+          font-size: 1.5rem;
         }
 
-        .ar-c img.visible {
-            opacity: 1
+        .ar-c h3 {
+          font-size: 1.2rem;
         }
-
-        .ar-c a {
-            color: var(--acc);
-            text-decoration: none;
-            transition: color 0.2s
-        }
-
-        .ar-c a:hover {
-            text-decoration: underline;
-            color: var(--ach)
-        }
-
-        .ar-c pre {
-            background: var(--bg);
-            padding: 1.2rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            border: 1px solid var(--cbd);
-            margin: 1.5rem 0;
-            box-shadow: inset 0 0 5px var(--sl)
-        }
-
-        [data-theme="dark"] .ar-c pre {
-            border: 1px solid var(--cbd);
-            box-shadow: inset 0 0 5px var(--sl)
-        }
-
-        .ar-c code {
-            font-family: 'Fira Code', 'Courier New', monospace;
-            font-size: 0.95rem;
-            color: var(--txt)
-        }
-
-        .ar-c ul,
-        .ar-c ol {
-            margin: 1rem 0;
-            padding-left: 2rem
-        }
-
-        .ar-c blockquote {
-            border-left: 5px solid var(--acc);
-            padding: 0.8rem 0 0.8rem 1.2rem;
-            margin: 1.5rem 0;
-            color: var(--txt);
-            opacity: 0.9;
-            background-color: rgba(0, 0, 0, 0.03);
-            border-radius: 4px
-        }
-
-        [data-theme="dark"] .ar-c blockquote {
-            background-color: rgba(255, 255, 255, 0.03)
-        }
-
-        #error {
-            text-align: center;
-            color: var(--txt);
-            margin-top: 2rem
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.6rem 1.2rem;
-            background-color: var(--acc);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.2s, transform 0.1s;
-            font-weight: 600;
-            box-shadow: 0 2px 5px var(--sl)
-        }
-
-        [data-theme="dark"] .btn {
-            box-shadow: 0 2px 5px var(--sl)
-        }
-
-        .btn:hover {
-            background-color: var(--ach);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px var(--hl)
-        }
-
-        [data-theme="dark"] .btn:hover {
-            box-shadow: 0 4px 8px var(--hl)
-        }
-
-        .cta {
-            text-align: center;
-            margin: 2rem 0;
-            display: flex;
-            justify-content: center;
-            gap: 1rem
-        }
-
-        .ft {
-            text-align: center;
-            padding: 1rem;
-            background: var(--bg);
-            color: var(--txt);
-            margin-top: 2rem;
-            box-shadow: 0 -1px 4px var(--sl)
-        }
-
-        [data-theme="dark"] .ft {
-            box-shadow: 0 -1px 4px var(--sl)
-        }
-
-        @media (max-width: 768px) {
-            .nb {
-                padding: 1rem 1.5rem
-            }
-
-            .nb-b {
-                flex-grow: 1;
-                font-size: 1.4rem
-            }
-
-            .nb-l {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: var(--nbm);
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                position: absolute;
-                top: 100%;
-                left: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease-out
-            }
-
-            .nb-l.active {
-                display: flex;
-                max-height: 300px
-            }
-
-            .nb-l li {
-                width: 100%;
-                text-align: center;
-                padding: 0.8rem 0
-            }
-
-            .dts {
-                display: none
-            }
-
-            .mcg {
-                display: flex
-            }
-
-            .ham {
-                display: block
-            }
-
-            .ct {
-                padding: 1rem
-            }
-
-            .ar {
-                padding: 1.5rem
-            }
-
-            .ar h1 {
-                font-size: 2.2rem
-            }
-
-            .ar-c h2 {
-                font-size: 1.8rem
-            }
-
-            .ar-c h3 {
-                font-size: 1.4rem
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nb {
-                padding: 1rem
-            }
-
-            .ar h1 {
-                font-size: 1.8rem
-            }
-
-            .ar-c h2 {
-                font-size: 1.5rem
-            }
-
-            .ar-c h3 {
-                font-size: 1.2rem
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body data-theme="light">
+  <body data-theme="light">
     <nav class="nb">
-        <a href="index.html" class="nb-b"><strong>Aksh</strong></a>
-        <ul class="nb-l">
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#certifications">Certifications</a></li>
-            <li><a href="blog.html">Blogs</a></li>
-            <li><a href="repositories.html">Repositories</a></li>
-            <li class="dts">
-                <label class="ts" aria-label="Toggle dark mode">
-                    <input type="checkbox" id="t-d">
-                    <span class="sld">
-                        <i class="fas fa-sun ik fs"></i>
-                        <i class="fas fa-moon ik fm"></i>
-                    </span>
-                </label>
-            </li>
-        </ul>
-        <div class="mcg">
-            <label class="ts" aria-label="Toggle dark mode">
-                <input type="checkbox" id="t-m">
-                <span class="sld">
-                    <i class="fas fa-sun ik fs"></i>
-                    <i class="fas fa-moon ik fm"></i>
-                </span>
-            </label>
-            <button class="ham" aria-label="Toggle navigation menu">☰</button>
-        </div>
+      <a href="index.html" class="nb-b"><strong>Aksh</strong></a>
+      <ul class="nb-l">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#certifications">Certifications</a></li>
+        <li><a href="blog.html">Blogs</a></li>
+        <li><a href="repositories.html">Repositories</a></li>
+        <li class="dts">
+          <label class="ts" aria-label="Toggle dark mode"
+            ><input type="checkbox" id="t-d" /><span class="sld"
+              ><i class="fas fa-sun ik fs"></i
+              ><i class="fas fa-moon ik fm"></i></span
+          ></label>
+        </li>
+      </ul>
+      <div class="mcg">
+        <label class="ts" aria-label="Toggle dark mode"
+          ><input type="checkbox" id="t-m" /><span class="sld"
+            ><i class="fas fa-sun ik fs"></i
+            ><i class="fas fa-moon ik fm"></i></span></label
+        ><button class="ham" aria-label="Toggle navigation menu">☰</button>
+      </div>
     </nav>
     <section class="ct">
-        <div class="ar" id="ar" role="article">
-            <div id="loading">Loading...</div>
-        </div>
-        <div class="cta"><a href="blog.html" class="btn" aria-label="Back to Blogs">Back to Blogs</a></div>
+      <div class="ar" id="ar" role="article">
+        <div id="loading">Loading...</div>
+      </div>
+      <div class="cta">
+        <a href="blog.html" class="btn" aria-label="Back to Blogs"
+          >Back to Blogs</a
+        >
+      </div>
     </section>
     <footer class="ft">
-        <p>© 2025 Aksh Thakkar</p>
+      <p>© 2025 Aksh Thakkar</p>
     </footer>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const body = document.body;
-            const toggleDesktop = document.getElementById("t-d");
-            const toggleMobile = document.getElementById("t-m");
-            const hamburgerButton = document.querySelector(".ham");
-            const navLinks = document.querySelector(".nb-l");
-            const articleContainer = document.getElementById("ar");
-            const loadingIndicator = document.getElementById("loading");
+      document.addEventListener("DOMContentLoaded", () => {
+        const body = document.body;
+        const toggleDesktop = document.getElementById("t-d");
+        const toggleMobile = document.getElementById("t-m");
+        const hamburgerButton = document.querySelector(".ham");
+        const navLinks = document.querySelector(".nb-l");
+        const articleContainer = document.getElementById("ar");
+        const loadingIndicator = document.getElementById("loading");
 
-            function setTheme(theme) {
-                body.setAttribute("data-theme", theme);
-                if (toggleDesktop) toggleDesktop.checked = theme === "dark";
-                if (toggleMobile) toggleMobile.checked = theme === "dark";
-                localStorage.setItem("theme", theme);
-            }
+        // Theme toggling logic
+        function setTheme(theme) {
+          body.setAttribute("data-theme", theme);
+          if (toggleDesktop) toggleDesktop.checked = theme === "dark";
+          if (toggleMobile) toggleMobile.checked = theme === "dark";
+          localStorage.setItem("theme", theme);
+        }
 
-            const savedTheme = localStorage.getItem("theme") || "light";
-            setTheme(savedTheme);
+        const savedTheme = localStorage.getItem("theme") || "light";
+        setTheme(savedTheme);
 
-            [toggleDesktop, toggleMobile].forEach(toggle => {
-                if (toggle) {
-                    toggle.addEventListener("change", () => {
-                        setTheme(toggle.checked ? "dark" : "light");
-                    });
-                }
+        [toggleDesktop, toggleMobile].forEach((toggle) => {
+          if (toggle) {
+            toggle.addEventListener("change", () => {
+              setTheme(toggle.checked ? "dark" : "light");
             });
-
-            if (hamburgerButton && navLinks) {
-                hamburgerButton.addEventListener("click", () => navLinks.classList.toggle("active"));
-                hamburgerButton.addEventListener("keydown", (e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        navLinks.classList.toggle("active");
-                    }
-                });
-            }
-
-            document.querySelectorAll(".nb-l li a").forEach(link => link.addEventListener("click", () => {
-                if (window.innerWidth <= 768 && navLinks.classList.contains("active")) {
-                    navLinks.classList.remove("active");
-                }
-            }));
-
-            document.addEventListener('click', (event) => {
-                if (navLinks.classList.contains('active') &&
-                    !navLinks.contains(event.target) &&
-                    !hamburgerButton.contains(event.target)) {
-                    navLinks.classList.remove('active');
-                }
-            });
-
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                }
-            });
-
-            const params = new URLSearchParams(window.location.search);
-            const articleId = params.get("id");
-            const articleSlug = params.get("slug");
-
-            if (!articleId && !articleSlug) {
-                loadingIndicator.style.display = "none";
-                articleContainer.innerHTML = '<div id="error">No article ID or slug provided.</div>';
-                return;
-            }
-
-            const apiUrl = articleId ? `https://dev.to/api/articles/${articleId}` : `https://dev.to/api/articles/${articleSlug}`;
-
-            fetch(apiUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`DEV.to error: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (typeof marked === "undefined") {
-                        throw new Error("marked.js not loaded");
-                    }
-                    loadingIndicator.style.display = "none";
-                    const articleContentHtml = marked.parse(data.body_markdown || "No content available");
-                    document.querySelector("meta[property='og:title']").content = data.title;
-                    document.querySelector("meta[property='og:description']").content = data.description || "Blog post by Aksh Thakkar";
-                    articleContainer.innerHTML = `<h1>${data.title}</h1><div class="ar-c">${articleContentHtml}</div><p>Source: <a href="${data.url}" target="_blank" rel="noopener noreferrer">DEV.to</a></p>`;
-                    document.querySelectorAll(".ar-c img").forEach(img => lz(img, element => element.classList.add("visible")));
-                    const canonicalLink = document.createElement("link");
-                    canonicalLink.rel = "canonical";
-                    canonicalLink.href = window.location.href;
-                    document.head.appendChild(canonicalLink);
-                })
-                .catch(error => {
-                    loadingIndicator.style.display = "none";
-                    articleContainer.innerHTML = `<div id="error">Failed to load article: ${error.message}</div>`;
-                });
+          }
         });
-    </script>
-</body>
 
+        // Hamburger menu logic
+        if (hamburgerButton && navLinks) {
+          hamburgerButton.addEventListener("click", () =>
+            navLinks.classList.toggle("active")
+          );
+          hamburgerButton.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              navLinks.classList.toggle("active");
+            }
+          });
+        }
+
+        document.querySelectorAll(".nb-l li a").forEach((link) =>
+          link.addEventListener("click", () => {
+            if (
+              window.innerWidth <= 768 &&
+              navLinks.classList.contains("active")
+            ) {
+              navLinks.classList.remove("active");
+            }
+          })
+        );
+
+        document.addEventListener("click", (event) => {
+          if (
+            navLinks.classList.contains("active") &&
+            !navLinks.contains(event.target) &&
+            !hamburgerButton.contains(event.target)
+          ) {
+            navLinks.classList.remove("active");
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && navLinks.classList.contains("active")) {
+            navLinks.classList.remove("active");
+          }
+        });
+
+        // Get URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const articleId = params.get("id"); // For DEV.to by ID
+        const articleSlug = params.get("slug"); // For DEV.to by slug
+        const localFilePath = params.get("file"); // For local Markdown file
+        const devToUsername = params.get("devto_username"); // Required for DEV.to by slug
+
+        // Function to load and render content
+        async function loadArticleContent() {
+          loadingIndicator.style.display = "block"; // Always show loading indicator initially
+
+          let fetchUrl = ""; // Declared outside try block to be accessible in catch
+
+          try {
+            let articleTitle = "Blog Post"; // Default title
+            let articleDescription = "Read blog posts by Aksh Thakkar"; // Default description
+            let articleContentHtml = "";
+            let originalSourceUrl = "";
+
+            if (localFilePath) {
+              // Scenario 1: Load local Markdown file
+              fetchUrl = localFilePath;
+              console.log("Attempting to fetch local file from:", fetchUrl);
+
+              const response = await fetch(fetchUrl);
+              if (!response.ok) {
+                // If response is not OK, it's a 404 or other network error
+                throw new Error(
+                  `Failed to load local article: ${response.status} ${response.statusText}. Please ensure the file exists at '${fetchUrl}' and you are serving your site with a local web server (e.g., Python's http.server or 'serve' npm package) to avoid CORS issues.`
+                );
+              }
+              const markdownContent = await response.text();
+
+              articleContentHtml = marked.parse(markdownContent);
+
+              // Attempt to extract title from the first heading in Markdown
+              const firstHeadingMatch = markdownContent.match(/^#\s*(.*)/m);
+              if (firstHeadingMatch && firstHeadingMatch[1]) {
+                articleTitle = firstHeadingMatch[1];
+              } else {
+                // Fallback to a title derived from the file path if no H1 found
+                articleTitle = localFilePath
+                  .split("/")
+                  .pop()
+                  .replace(/\.md$/, "")
+                  .replace(/-/g, " ")
+                  .split(" ")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" ");
+              }
+              articleDescription = `Content from local file: ${localFilePath}`;
+              originalSourceUrl = window.location.href; // Source is this page itself
+            } else if (articleId) {
+              // Scenario 2: Load DEV.to article by ID
+              fetchUrl = `https://dev.to/api/articles/${articleId}`;
+              console.log(
+                "Attempting to fetch DEV.to article by ID from:",
+                fetchUrl
+              );
+
+              const response = await fetch(fetchUrl);
+              if (!response.ok) {
+                throw new Error(
+                  `DEV.to API error: ${response.status} ${response.statusText}. Article with ID '${articleId}' might not exist or is private.`
+                );
+              }
+              const data = await response.json();
+
+              articleTitle = data.title;
+              articleDescription =
+                data.description || "Blog post by Aksh Thakkar";
+              articleContentHtml = marked.parse(
+                data.body_markdown || "No content available"
+              );
+              originalSourceUrl = data.url; // Original URL on DEV.to
+            } else if (articleSlug && devToUsername) {
+              // Scenario 3: Load DEV.to article by slug and username
+              fetchUrl = `https://dev.to/api/articles/by_path?path=/${devToUsername}/${articleSlug}`;
+              console.log(
+                "Attempting to fetch DEV.to article by path (username/slug) from:",
+                fetchUrl
+              );
+
+              const response = await fetch(fetchUrl);
+              if (!response.ok) {
+                throw new Error(
+                  `DEV.to API error: ${response.status} ${response.statusText}. Article with slug '${articleSlug}' for user '${devToUsername}' might not exist or is private.`
+                );
+              }
+              const data = await response.json();
+
+              articleTitle = data.title;
+              articleDescription =
+                data.description || "Blog post by Aksh Thakkar";
+              articleContentHtml = marked.parse(
+                data.body_markdown || "No content available"
+              );
+              originalSourceUrl = data.url; // Original URL on DEV.to
+            } else {
+              // No valid parameters provided in the URL
+              loadingIndicator.style.display = "none";
+              articleContainer.innerHTML = `
+                <div id="error">
+                  <i class="fas fa-exclamation-circle"></i>
+                  <p>No article source provided in the URL.</p>
+                  <p>Please use parameters like <code>?file=path/to/your.md</code> for local files, or <code>?id=DEV_TO_ID</code> or <code>?slug=DEV_TO_SLUG&devto_username=YOUR_USERNAME</code> for DEV.to articles.</p>
+                </div>
+              `;
+              return; // Exit the function if no valid parameters
+            }
+
+            // Update meta tags for SEO and social sharing
+            document.title = `Aksh Thakkar - ${articleTitle}`;
+            document.querySelector("meta[property='og:title']").content =
+              articleTitle;
+            document.querySelector("meta[property='og:description']").content =
+              articleDescription;
+            document.querySelector("meta[property='og:url']").content =
+              window.location.href; // Canonical URL for this page
+
+            // Render content into the article container
+            articleContainer.innerHTML = `
+              <h1>${articleTitle}</h1>
+              <div class="ar-c">${articleContentHtml}</div>
+              ${
+                originalSourceUrl
+                  ? `<p>Original Source: <a href="${originalSourceUrl}" target="_blank" rel="noopener noreferrer">${
+                      originalSourceUrl.includes("dev.to")
+                        ? "DEV.to"
+                        : "External Link"
+                    }</a></p>`
+                  : ""
+              }
+            `;
+
+            // Lazy load images within the article content
+            document
+              .querySelectorAll(".ar-c img")
+              .forEach((img) =>
+                lz(img, (element) => element.classList.add("visible"))
+              );
+
+            // Add or update canonical link
+            let canonicalLink = document.querySelector("link[rel='canonical']");
+            if (!canonicalLink) {
+              canonicalLink = document.createElement("link");
+              canonicalLink.rel = "canonical";
+              document.head.appendChild(canonicalLink);
+            }
+            canonicalLink.href = window.location.href;
+          } catch (error) {
+            console.error("Error loading article:", error);
+            articleContainer.innerHTML = `
+              <div id="error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Failed to load article from <code>${fetchUrl}</code>:</p>
+                <p>${error.message}</p>
+                <p>Please check the browser console for more details and ensure your local server is running for local files.</p>
+              </div>
+            `;
+          } finally {
+            loadingIndicator.style.display = "none"; // Hide loading indicator regardless of success or failure
+          }
+        }
+
+        // Call the function to load article content when the DOM is ready
+        loadArticleContent();
+      });
+    </script>
+  </body>
 </html>
