@@ -125,7 +125,7 @@
       }
       .nb-b {
         font-size: 1.6rem;
-        font-weight: 700;
+        font-weight: bold;
         color: var(--hdt);
         text-decoration: none;
       }
@@ -584,7 +584,6 @@
       @media (max-width: 768px) {
         .nb {
           padding: 1rem 1.5rem;
-          flex-wrap: nowrap;
         }
         .nb-b {
           font-size: 1.4rem;
@@ -700,7 +699,7 @@
           date: "2025-05-20",
         },
         {
-          url: "article.html?id=2526135&slug=introduction-4g734&devto_username=akshthakkar", // REPLACE id AND slug WITH ACTUAL VALUES
+          url: "article.html?id=2526140&slug=introduction-4g88&devto_username=akshthakkar", // REPLACE 2526140 WITH ACTUAL ID
           title: "Introduction",
           description:
             "A brief introduction to my interests in web development, software development, and learning new technologies.",
@@ -800,23 +799,23 @@
 
         function validateBlog(blog) {
           if (!blog || typeof blog.url !== "string" || !blog.url) {
-            console.warn("Invalid blog URL:", blog);
+            console.warn("Invalid blog URL:");
             return false;
           }
           if (typeof blog.title !== "string" || !blog.title) {
-            console.warn("Invalid blog title:", blog);
+            console.warn("Invalid blog title:");
             return false;
           }
           if (typeof blog.description !== "string" || !blog.description) {
-            console.warn("Invalid blog description:", blog);
+            console.warn("Invalid blog description:");
             return false;
           }
           if (typeof blog.source !== "string" || !blog.source) {
-            console.warn("Invalid blog source:", blog);
+            console.warn("Invalid blog source:");
             return false;
           }
           if (!blog.date) {
-            console.warn("Missing blog date:", blog);
+            console.warn("Missing blog date:");
             return false;
           }
           return true;
@@ -830,7 +829,7 @@
             blogListContainer.innerHTML = `
               <div class="error-message">
                 <i class="fas fa-info-circle"></i>
-                <p>No valid blogs found. Please check the blog data in the allBlogs array.</p>
+                <p>No valid blogs found. Please check the blog data in data in the allBlogs array.</p>
               </div>`;
             return;
           }
@@ -843,20 +842,18 @@
             card.innerHTML = `
               <a href="${post.url}" class="btl" aria-label="Read ${
               post.title
-            }">${post.title}</a>
-              <div class="bm">
-                <span><i class="fas fa-calendar-alt" aria-hidden="true"></i> ${formatDate(
+            }">${post.title}</Link>
+              <div class="meta-btm">
+                <span><i class="fas fa-calendar-alt"></i> ${formatDate(
                   post.date
                 )}</span>
-                <span><i class="fas fa-globe" aria-hidden="true"></i> ${
-                  post.source
-                }</span>
+                <span><i class="fas fa-globe"></i> ${post.source}</span>
               </div>
               <p>${post.description}</p>
               <a href="${post.url}" class="bl" aria-label="Read more about ${
               post.title
             }">
-                Read More <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                Read More <i class="fas fa-arrow-right"></i>
               </a>`;
             blogListContainer.appendChild(card);
             lz(card, (element) => element.classList.add("visible"));
