@@ -813,6 +813,16 @@
         margin-bottom: 0.5rem;
       }
 
+      .rc .project-image {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .rc,
         .sc,
@@ -1060,6 +1070,18 @@
           <i class="fas fa-plus"></i> Load More
         </button>
       </div>
+
+      <section class="ct" role="region" aria-label="Live Projects">
+        <h2>🌐 Live Projects</h2>
+        <div class="rg" id="live-projects">
+          <div class="tc">
+            <div class="ls" role="status" aria-live="polite">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+        <div class="cta"></div>
+      </section>
       <h2>🛠️ Languages and Tools</h2>
       <div class="lt">
         <div class="ti">
@@ -1199,6 +1221,9 @@
         const navLinks = document.querySelector(".nb-l");
         const loadMoreBtn = document.getElementById("lm");
         const repositoriesGrid = document.getElementById("r");
+        const liveProjectsGrid = document.getElementById("live-projects");
+        // Removed: const exploreMoreLiveProjectsBtn = document.getElementById("explore-more-live-projects");
+
         let currentPage = 1;
         const reposPerPage = 6;
         let themeChangeTimeout;
@@ -1225,6 +1250,7 @@
             if (toggleDesktop) toggleDesktop.checked = theme === "dark";
             if (toggleMobile) toggleMobile.checked = theme === "dark";
             localStorage.setItem("theme", theme);
+
             const githubStatsImg = document.getElementById("gs");
             if (githubStatsImg) {
               const currentSrc = githubStatsImg.src;
@@ -1281,6 +1307,35 @@
                     `;
         }
 
+        function createLiveProjectCard(project) {
+          return `
+            <div class="rc">
+                <a href="${
+                  project.url
+                }" class="rtl" target="_blank" rel="noopener">${
+            project.name
+          }</a>
+                ${
+                  project.imageUrl
+                    ? `<img src="${project.imageUrl}" alt="${project.name} preview" loading="lazy" class="project-image" />`
+                    : ""
+                }
+                <p>${project.description}</p>
+                <div class="rm">
+                    ${project.tags
+                      .map(
+                        (tag) =>
+                          `<span><i class="fas fa-tag"></i> ${tag}</span>`
+                      )
+                      .join("")}
+                </div>
+                <a href="${
+                  project.url
+                }" class="rl" target="_blank" rel="noopener">View Live <i class="fas fa-external-link-alt"></i></a>
+            </div>
+          `;
+        }
+
         function debounce(func, wait) {
           let timeout;
           return function (...args) {
@@ -1290,34 +1345,58 @@
         }
 
         async function fetchRepositories(append = false) {
+          const username = "akshhthakkar";
+          const reposUrl = `https://api.github.com/users/${username}/repos?per_page=${reposPerPage}&page=${currentPage}&sort=updated&direction=desc`;
           const cacheKey = `repos_page_${currentPage}`;
           const cachedData = localStorage.getItem(cacheKey);
           const cacheExpiration = 5 * 60 * 1000;
-          const now = new Date().getTime();
 
-          if (cachedData) {
-            const { data, timestamp } = JSON.parse(cachedData);
-            if (now - timestamp < cacheExpiration) {
-              const filteredRepos = data.filter(
-                (repo) => repo.name !== "akshhthakkar.github.io"
-              );
-              if (!append) repositoriesGrid.innerHTML = "";
-              repositoriesGrid.insertAdjacentHTML(
-                "beforeend",
-                filteredRepos.map(createRepoCard).join("")
-              );
-              loadMoreBtn.style.display =
-                filteredRepos.length === reposPerPage ? "inline-block" : "none";
-              return;
-            }
+          if (!append) {
+            showSkeletonLoaders();
+            loadMoreBtn.style.display = "none";
+          } else {
+            loadMoreBtn.setAttribute("data-loading", "true");
+            loadMoreBtn.innerHTML =
+              '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            loadMoreBtn.disabled = true;
           }
 
-          if (!append) showSkeletonLoaders();
-
           try {
-            const response = await fetch(
-              `https://api.github.com/users/akshhthakkar/repos?sort=updated&direction=desc&per_page=${reposPerPage}&page=${currentPage}`
-            );
+            if (cachedData) {
+              const { data, timestamp } = JSON.parse(cachedData);
+              if (new Date().getTime() - timestamp < cacheExpiration) {
+                const filteredRepos = data.filter(
+                  (repo) => repo.name !== "akshhthakkar.github.io"
+                );
+                filteredRepos.sort((a, b) => {
+                  if (a.stargazers_count !== b.stargazers_count) {
+                    return b.stargazers_count - a.stargazers_count;
+                  }
+                  return (
+                    new Date(b.updated_at).getTime() -
+                    new Date(a.updated_at).getTime()
+                  );
+                });
+
+                if (!append) repositoriesGrid.innerHTML = "";
+                repositoriesGrid.insertAdjacentHTML(
+                  "beforeend",
+                  filteredRepos.map(createRepoCard).join("")
+                );
+
+                if (data.length === reposPerPage) {
+                  loadMoreBtn.style.display = "block";
+                  loadMoreBtn.disabled = false;
+                  loadMoreBtn.innerHTML =
+                    '<i class="fas fa-plus"></i> Load More';
+                } else {
+                  loadMoreBtn.style.display = "none";
+                }
+                return;
+              }
+            }
+
+            const response = await fetch(reposUrl);
             if (!response.ok) {
               let errorMessage = `HTTP Error: ${response.status} - ${response.statusText}.`;
               if (response.status === 403) {
@@ -1333,81 +1412,113 @@
             }
 
             const data = await response.json();
+            localStorage.setItem(
+              cacheKey,
+              JSON.stringify({ data, timestamp: new Date().getTime() })
+            );
+
             const filteredRepos = data.filter(
               (repo) => repo.name !== "akshhthakkar.github.io"
             );
+            filteredRepos.sort((a, b) => {
+              if (a.stargazers_count !== b.stargazers_count) {
+                return b.stargazers_count - a.stargazers_count;
+              }
+              return (
+                new Date(b.updated_at).getTime() -
+                new Date(a.updated_at).getTime()
+              );
+            });
 
-            localStorage.setItem(
-              cacheKey,
-              JSON.stringify({ data, timestamp: now })
-            );
-
-            if (filteredRepos.length === 0 && !append) {
-              repositoriesGrid.innerHTML =
-                '<p class="tc">No public repositories found (excluding this portfolio).</p>';
-              loadMoreBtn.style.display = "none";
-              return;
+            if (!append) {
+              repositoriesGrid.innerHTML = "";
             }
 
-            if (!append) repositoriesGrid.innerHTML = "";
-            repositoriesGrid.insertAdjacentHTML(
-              "beforeend",
-              filteredRepos.map(createRepoCard).join("")
-            );
-            loadMoreBtn.style.display =
-              filteredRepos.length === reposPerPage ? "inline-block" : "none";
+            if (filteredRepos.length === 0 && currentPage === 1) {
+              repositoriesGrid.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-circle"></i>
+                        No public repositories found (excluding this portfolio) or all repositories are forks/without descriptions.
+                    </div>
+                `;
+              loadMoreBtn.style.display = "none";
+            } else {
+              filteredRepos.forEach((repo) => {
+                repositoriesGrid.innerHTML += createRepoCard(repo);
+              });
+              if (data.length === reposPerPage) {
+                loadMoreBtn.style.display = "block";
+                loadMoreBtn.disabled = false;
+                loadMoreBtn.innerHTML = '<i class="fas fa-plus"></i> Load More';
+              } else {
+                loadMoreBtn.style.display = "none";
+              }
+            }
           } catch (error) {
             console.error("Failed to fetch repositories:", error);
-            let errorMessage = `Unable to load repositories. Please try again later.`;
-            if (
-              error instanceof TypeError &&
-              error.message === "Failed to fetch"
-            ) {
-              errorMessage =
-                "Network issue detected. Please check your internet connection.";
-            } else if (error.message.includes("rate limit exceeded")) {
-              errorMessage =
+            let displayErrorMessage = `Failed to load repositories. Please try again later.`;
+            if (error.message.includes("rate limit exceeded")) {
+              displayErrorMessage =
                 "GitHub API rate limit exceeded. Please try again later.";
+            } else if (error.message.includes("Network issue")) {
+              displayErrorMessage =
+                "Network issue detected. Please check your internet connection.";
+            } else {
+              displayErrorMessage = error.message;
             }
 
-            if (append && repositoriesGrid.children.length > 0) {
+            if (!append || currentPage === 1) {
+              repositoriesGrid.innerHTML = `
+                    <div class="error-message" role="alert">
+                        <i class="fas fa-exclamation-circle"></i>
+                        ${displayErrorMessage}
+                    </div>
+                `;
+            } else {
               repositoriesGrid.insertAdjacentHTML(
                 "beforeend",
-                `
-                                <p class="tc error-message" style="margin-top: 1rem;" role="alert">
-                                    <i class="fas fa-exclamation-triangle"></i> ${errorMessage}
-                                </p>
-                            `
+                `<p class="tc error-message" style="margin-top: 1rem;" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i> ${displayErrorMessage}
+                    </p>`
               );
-            } else {
-              repositoriesGrid.innerHTML = `
-                                <p class="tc error-message" role="alert">
-                                    <i class="fas fa-exclamation-triangle"></i> ${errorMessage}
-                                </p>
-                            `;
             }
             loadMoreBtn.style.display = "none";
+          } finally {
+            loadMoreBtn.setAttribute("data-loading", "false");
           }
         }
 
-        function trapFocus(event) {
-          const focusableElements = navLinks.querySelectorAll("a,button,input");
-          const firstFocusableElement = focusableElements[0];
-          const lastFocusableElement =
-            focusableElements[focusableElements.length - 1];
+        function displayLiveProjects() {
+          const liveProjectsData = [
+            {
+              name: "ERP System",
+              description:
+                "An Enterprise Resource Planning (ERP) system built using React.js for the frontend, Node.js and Express.js for the backend, and MongoDB as the database, exposed via a REST API. It also includes a dedicated admin panel for comprehensive control and management.",
+              url: "https://aksh-erp-demo-prjct.pages.dev",
+              tags: [
+                "React.js",
+                "Node.js",
+                "Express.js",
+                "MongoDB",
+                "REST API",
+              ],
+              imageUrl:
+                "https://placehold.co/400x250/007bff/ffffff?text=ERP+System",
+            },
+          ];
 
-          if (event.key === "Tab") {
-            if (event.shiftKey) {
-              if (document.activeElement === firstFocusableElement) {
-                event.preventDefault();
-                lastFocusableElement.focus();
-              }
-            } else {
-              if (document.activeElement === lastFocusableElement) {
-                event.preventDefault();
-                firstFocusableElement.focus();
-              }
-            }
+          if (liveProjectsData.length > 0) {
+            liveProjectsGrid.innerHTML = liveProjectsData
+              .map(createLiveProjectCard)
+              .join("");
+            // Removed: exploreMoreLiveProjectsBtn.style.display = "none";
+            document
+              .querySelectorAll("#live-projects .project-image")
+              .forEach(lazyLoadImage);
+          } else {
+            liveProjectsGrid.innerHTML =
+              '<p class="tc">No live projects currently available.</p>';
+            // Removed: exploreMoreLiveProjectsBtn.style.display = "none";
           }
         }
 
@@ -1415,19 +1526,23 @@
         applyTheme(savedTheme);
 
         if (toggleDesktop) {
-          toggleDesktop.addEventListener("change", () => {
-            applyTheme(toggleDesktop.checked ? "dark" : "light");
-          });
+          toggleDesktop.addEventListener("change", (e) =>
+            applyTheme(e.target.checked ? "dark" : "light")
+          );
         }
         if (toggleMobile) {
-          toggleMobile.addEventListener("change", () => {
-            applyTheme(toggleMobile.checked ? "dark" : "light");
-          });
+          toggleMobile.addEventListener("change", (e) =>
+            applyTheme(e.target.checked ? "dark" : "light")
+          );
         }
 
         if (hamburger && navLinks) {
           hamburger.addEventListener("click", () => {
             navLinks.classList.toggle("active");
+            hamburger.setAttribute(
+              "aria-expanded",
+              navLinks.classList.contains("active")
+            );
             if (navLinks.classList.contains("active")) {
               const firstNavLink = navLinks.querySelector("a");
               if (firstNavLink) firstNavLink.focus();
@@ -1456,10 +1571,32 @@
           link.addEventListener("click", () => {
             if (navLinks.classList.contains("active")) {
               navLinks.classList.remove("active");
+              hamburger.setAttribute("aria-expanded", "false");
               navLinks.removeEventListener("keydown", trapFocus);
             }
           });
         });
+
+        function trapFocus(event) {
+          const focusableElements = navLinks.querySelectorAll("a,button,input");
+          const firstFocusableElement = focusableElements[0];
+          const lastFocusableElement =
+            focusableElements[focusableElements.length - 1];
+
+          if (event.key === "Tab") {
+            if (event.shiftKey) {
+              if (document.activeElement === firstFocusableElement) {
+                event.preventDefault();
+                lastFocusableElement.focus();
+              }
+            } else {
+              if (document.activeElement === lastFocusableElement) {
+                event.preventDefault();
+                firstFocusableElement.focus();
+              }
+            }
+          }
+        }
 
         if (loadMoreBtn) {
           loadMoreBtn.addEventListener(
@@ -1478,15 +1615,11 @@
 
         fetchRepositories();
 
-        const githubStatsImg = document.getElementById("gs");
-        if (githubStatsImg) lazyLoadImage(githubStatsImg);
+        displayLiveProjects();
 
-        const profileViewsImg = document.getElementById("pv");
-        if (profileViewsImg) lazyLoadImage(profileViewsImg);
-
-        document
-          .querySelectorAll(".lt img")
-          .forEach((img) => lazyLoadImage(img));
+        lazyLoadImage(document.getElementById("gs"));
+        lazyLoadImage(document.getElementById("pv"));
+        document.querySelectorAll(".lt img").forEach(lazyLoadImage);
       });
     </script>
   </body>
