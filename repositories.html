@@ -1511,14 +1511,12 @@
             liveProjectsGrid.innerHTML = liveProjectsData
               .map(createLiveProjectCard)
               .join("");
-            // Removed: exploreMoreLiveProjectsBtn.style.display = "none";
             document
               .querySelectorAll("#live-projects .project-image")
               .forEach(lazyLoadImage);
           } else {
             liveProjectsGrid.innerHTML =
               '<p class="tc">No live projects currently available.</p>';
-            // Removed: exploreMoreLiveProjectsBtn.style.display = "none";
           }
         }
 
@@ -1612,11 +1610,8 @@
             }, 300)
           );
         }
-
         fetchRepositories();
-
         displayLiveProjects();
-
         lazyLoadImage(document.getElementById("gs"));
         lazyLoadImage(document.getElementById("pv"));
         document.querySelectorAll(".lt img").forEach(lazyLoadImage);
