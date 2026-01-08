@@ -19,9 +19,9 @@ export default function Home() {
     // Dynamically adjust particles based on window width for performance
     const updateParticles = () => {
       if (window.innerWidth < 768) {
-        setParticleCount(200); // Increased mobile count
+        setParticleCount(600); // Increased mobile count
       } else {
-        setParticleCount(1000); // Increased desktop count
+        setParticleCount(1500); // Increased desktop count
       }
     };
 
