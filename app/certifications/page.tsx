@@ -197,7 +197,7 @@ export default function CertificationsPage() {
                         className="flex items-center gap-1.5 px-3 py-1 bg-green-500/10 text-green-400 text-xs font-medium rounded-full border border-green-500/20 hover:bg-green-500/20 transition-colors"
                       >
                         <CheckCircle className="w-3.5 h-3.5" />
-                        Verify
+                        Verify Badge
                       </Link>
                     )}
                   </div>
