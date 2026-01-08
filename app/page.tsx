@@ -46,13 +46,14 @@ export default function Home() {
       >
         <ul className="flex items-center justify-center gap-6">
           {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium duration-500 text-zinc-400 hover:text-zinc-100"
-            >
-              {item.name}
-            </Link>
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className="text-sm font-medium duration-500 text-zinc-400 hover:text-zinc-100"
+              >
+                {item.name}
+              </Link>
+            </li>
           ))}
         </ul>
       </nav>
@@ -183,6 +184,8 @@ export default function Home() {
                     <img
                       src="/images/profile.png"
                       alt="Aksh Thakkar Body"
+                      width={500}
+                      height={500}
                       className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[115%] max-w-none h-auto object-cover"
                     />
                     <div className="absolute inset-0 rounded-full shadow-[inset_0_10px_20px_rgba(0,0,0,0.2)] pointer-events-none" />
@@ -203,6 +206,8 @@ export default function Home() {
                     <img
                       src="/images/profile.png"
                       alt="Aksh Thakkar Head"
+                      width={500}
+                      height={500}
                       className="w-full h-auto object-cover"
                     />
                   </motion.div>

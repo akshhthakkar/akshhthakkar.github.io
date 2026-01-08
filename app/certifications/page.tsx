@@ -148,39 +148,52 @@ export default function CertificationsPage() {
           {certifications.map((cert, index) => (
             <motion.div key={index} variants={item}>
               <Card>
-                <Link href={cert.link} target="_blank">
-                  <article className="relative w-full h-full p-4 md:p-8 pb-16 md:pb-20">
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="text-xs text-zinc-100">
-                        <time dateTime={cert.date}>{cert.date}</time>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-zinc-500 text-xs flex items-center gap-1">
-                          <Award className="w-4 h-4" />
-                          {cert.issuer}
-                        </span>
-                      </div>
+                <article className="relative w-full h-full p-4 md:p-8 pb-16 md:pb-20">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="text-xs text-zinc-100">
+                      <time dateTime={cert.date}>{cert.date}</time>
                     </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-zinc-500 text-xs flex items-center gap-1">
+                        <Award className="w-4 h-4" />
+                        {cert.issuer}
+                      </span>
+                    </div>
+                  </div>
 
+                  <Link
+                    href={cert.link}
+                    target="_blank"
+                    className="block group"
+                  >
                     <h2 className="mt-4 text-xl font-bold text-zinc-100 group-hover:text-white lg:text-2xl font-display">
                       {cert.title}
                     </h2>
                     <p className="mt-4 leading-7 duration-150 text-zinc-400 group-hover:text-zinc-300 text-sm">
                       {cert.description}
                     </p>
-                    <div className="absolute bottom-4 md:bottom-8 left-4 right-4 md:left-8 md:right-8 flex justify-between items-center">
-                      <p className="text-zinc-200 hover:text-zinc-50 text-sm flex items-center gap-2">
-                        View Certificate <span aria-hidden="true">&rarr;</span>
-                      </p>
-                      {cert.verifyUrl && (
-                        <span className="flex items-center gap-1.5 px-3 py-1 bg-green-500/10 text-green-400 text-xs font-medium rounded-full border border-green-500/20">
-                          <CheckCircle className="w-3.5 h-3.5" />
-                          Verify
-                        </span>
-                      )}
-                    </div>
-                  </article>
-                </Link>
+                  </Link>
+
+                  <div className="absolute bottom-4 md:bottom-8 left-4 right-4 md:left-8 md:right-8 flex justify-between items-center">
+                    <Link
+                      href={cert.link}
+                      target="_blank"
+                      className="text-zinc-200 hover:text-zinc-50 text-sm flex items-center gap-2"
+                    >
+                      View Certificate <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                    {cert.verifyUrl && (
+                      <Link
+                        href={cert.verifyUrl}
+                        target="_blank"
+                        className="flex items-center gap-1.5 px-3 py-1 bg-green-500/10 text-green-400 text-xs font-medium rounded-full border border-green-500/20 hover:bg-green-500/20 transition-colors"
+                      >
+                        <CheckCircle className="w-3.5 h-3.5" />
+                        Verify
+                      </Link>
+                    )}
+                  </div>
+                </article>
               </Card>
             </motion.div>
           ))}
