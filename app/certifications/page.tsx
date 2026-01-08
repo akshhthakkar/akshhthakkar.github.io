@@ -6,17 +6,26 @@ import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import Particles from "../components/particles";
 import { motion } from "framer-motion";
-import { Award } from "lucide-react";
+import { Award, CheckCircle } from "lucide-react";
 
 // Certifications in chronological order (Newest -> Oldest)
-const certifications = [
+const certifications: {
+  title: string;
+  issuer: string;
+  description: string;
+  link: string;
+  date: string;
+  verifyUrl?: string;
+}[] = [
   {
     title: "AWS Cloud Foundations",
     issuer: "AWS",
     description:
       "AWS Cloud Foundations certification covering core cloud concepts and services.",
-    link: "/images/AWS Cloud Foundations.pdf",
+    link: "/images/AWS_Academy_Graduate_Cloud_Foundations.pdf",
     date: "2025",
+    verifyUrl:
+      "https://www.credly.com/badges/5ed2f142-4ae8-46dd-9ac2-c9b13962cf1d",
   },
   {
     title: "Diploma in Computer Engineering",
@@ -160,9 +169,15 @@ export default function CertificationsPage() {
                       {cert.description}
                     </p>
                     <div className="absolute bottom-4 md:bottom-8 left-4 right-4 md:left-8 md:right-8 flex justify-between items-center">
-                      <p className="text-zinc-200 hover:text-zinc-50 text-sm">
+                      <p className="text-zinc-200 hover:text-zinc-50 text-sm flex items-center gap-2">
                         View Certificate <span aria-hidden="true">&rarr;</span>
                       </p>
+                      {cert.verifyUrl && (
+                        <span className="flex items-center gap-1.5 px-3 py-1 bg-green-500/10 text-green-400 text-xs font-medium rounded-full border border-green-500/20">
+                          <CheckCircle className="w-3.5 h-3.5" />
+                          Verify
+                        </span>
+                      )}
                     </div>
                   </article>
                 </Link>
