@@ -1,17 +1,138 @@
 ---
-title: ERP System
-description: An Enterprise Resource Planning (ERP) system built using React.js for the frontend, Node.js and Express.js for the backend, and MongoDB as the database, exposed via a REST API. It also includes a dedicated admin panel for comprehensive control and management.
+title: H5 ERP System
+description: Enterprise Resource Planning for Inventory, Sales & Analytics. A full-stack ERP platform designed to help small and medium businesses manage inventory, process sales, and gain business insights through analytics.
 date: 2024-12-15
 url: https://h5-erp.vercel.app
 published: true
 ---
 
-An Enterprise Resource Planning (ERP) system built using React.js for the frontend, Node.js and Express.js for the backend, and MongoDB as the database, exposed via a REST API. It also includes a dedicated admin panel for comprehensive control and management.
+The H5 ERP System is a full-stack ERP platform designed to help small and medium businesses manage inventory, process sales, and gain business insights through analytics. The goal of this project was to build a robust, backend-driven system that mirrors how real ERP software behaves in production.
+
+## Why I Built This
+
+Most academic projects stop at CRUD operations. This project goes further.
+
+I wanted to understand how real business systems:
+
+- Maintain data integrity during sales
+- Track profit and cost accurately
+- Handle edge cases like dead stock and zero sales
+- Automate workflows like billing, notifications, and reports
+
+This ERP system was built to simulate real operational challenges, not just display data.
+
+## Core Features
+
+### Authentication & Security
+
+- JWT-based authentication for login and registration
+- Google OAuth support for simplified onboarding
+- Protected routes and middleware-based access control
+
+### Inventory Management
+
+- Add, edit, and delete products with image uploads
+- Cost price (CP) and selling price tracking
+- Minimum stock thresholds for alerts
+- System-defined and custom user categories
+
+### Sales & Billing
+
+- Stock validation before every sale
+- Automatic inventory deduction using atomic transactions
+- PDF bill generation for every sale
+- Bills uploaded to cloud storage and emailed to customers
+
+### Analytics & Reports
+
+- Monthly sales reports
+- Top-selling products
+- Dead stock detection
+- Profit summary based on cost vs revenue
+
+### Smart Notifications & Supply Chain
+
+- Low stock alerts
+- Forecast-based restock suggestions
+- Deduplicated notifications to avoid spam
+- Cron-based background jobs for scheduled tasks
+
+## System Design Highlights
+
+This project focuses heavily on robust backend design:
+
+- Atomic sales transactions ensure inventory accuracy
+- Edge-case handling for zero sales, dead stock, and partial failures
+- Decoupled architecture using controllers, services, and utilities
+- Audit and restock logs for traceability
+
+The system is designed to behave predictably even under incorrect or unexpected input.
+
+## Application Flow Overview
+
+### Authentication Flow
+
+Users authenticate via JWT or Google OAuth, after which all routes are protected using middleware.
+
+### Inventory Flow
+
+Products are created with pricing and category metadata, images are uploaded to cloud storage, and inventory is persisted in MongoDB.
+
+### Sales Flow
+
+Sales validate available stock → deduct inventory → create sales records → generate PDF bills → upload bills → email customers → trigger alerts if required.
+
+### Profit Calculation
+
+Profit is calculated dynamically based on cost price and selling price across all sales.
 
 ## Tech Stack
 
-- React.js
+### Backend
+
 - Node.js
 - Express.js
-- MongoDB
-- REST API
+- MongoDB (Mongoose)
+- JWT Authentication
+- Cloudinary (image & PDF storage)
+- Nodemailer (email delivery)
+- PDFKit (bill generation)
+
+### Frontend
+
+- React
+- Vite
+- Redux for state management
+
+## What I Learned
+
+This project significantly improved my understanding of:
+
+- Backend-first system design
+- Data consistency and transactional safety
+- Real-world business workflows
+- Scalable API structuring
+- Cloud-based file handling and email automation
+
+It also taught me how small design decisions impact system reliability.
+
+## Deployment Considerations
+
+The application is structured for production deployment with:
+
+- Environment-based configuration
+- Cloud-ready asset storage
+- Secure credential handling
+- Configurable CORS and API base URLs
+
+## Project Status
+
+The system is functionally complete and stable. Future improvements include:
+
+- Role-based access control
+- Advanced forecasting models
+- Improved UI analytics dashboards
+
+---
+
+**[🚀 Live Demo](https://h5-erp.vercel.app)**
