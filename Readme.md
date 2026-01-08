@@ -1,62 +1,29 @@
-# Aksh Thakkar - Portfolio
+# My Personal Portfolio Website
 
-My personal portfolio website built with Next.js, featuring animated particles, smooth transitions, and a minimal dark theme.
-
-🌐 **Live**: [akshhthakkar.github.io](https://akshhthakkar.github.io)
+This repository contains the code for my personal portfolio and blog. It's a place to showcase my projects, share my articles on web development, AI, and technology, and help you connect with me.
 
 ---
 
-## 🚀 Tech Stack
+### 🌐 Live Demo
 
-- **Framework**: Next.js 13 (App Router)
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion + Custom CSS
-- **Content**: MDX with Contentlayer
-- **Language**: TypeScript
+You can visit the live website here:
+https://akshhthakkar.github.io
 
 ---
 
-## 🛠️ Running Locally
+### 💻 Technologies Used
 
-```bash
-# Clone the repository
-git clone https://github.com/akshhthakkar/akshhthakkar.github.io.git
-cd akshhthakkar.github.io
-
-# Create .env file
-cp .env.example .env
-
-# Install dependencies
-pnpm install
-
-# Run development server
-pnpm dev
-```
+- HTML
+- CSS
+- JavaScript
+- DEV.to API
 
 ---
 
-## 👤 About Me
+### 🤝 Connect
 
-**Aksh Thakkar** - 3rd year B.Tech Computer Engineering student at Parul University (Batch of 2027)
-
-### 🔗 Connect
-
-| Platform     | Link                                    |
-| ------------ | --------------------------------------- |
-| **GitHub**   | https://github.com/akshhthakkar         |
-| **LinkedIn** | https://www.linkedin.com/in/akshthakkar |
-| **DEV.to**   | https://dev.to/akshthakkar              |
-| **Twitter**  | https://twitter.com/akshhthakkar        |
-| **Email**    | aksht455@gmail.com                      |
-
-### 💻 Coding Profiles
-
-- [LeetCode](https://www.leetcode.com/akshthakkar)
-- [HackerRank](https://www.hackerrank.com/aksht455)
-- [CodeChef](https://www.codechef.com/users/akshthakkar)
+- **Website:** [https://akshhthakkar.github.io](https://akshhthakkar.github.io)
+- **DEV.to:** [@akshthakkar](https://dev.to/akshthakkar)
+- **GitHub:** [@akshhthakkar](https://github.com/akshhthakkar)
 
 ---
-
-## 📜 Credits
-
-Template based on [chronark.com](https://github.com/chronark/chronark.com) - Modified and customized for my portfolio.
