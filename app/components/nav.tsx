@@ -57,6 +57,7 @@ export const Navigation: React.FC = () => {
           <Link
             href="/"
             className="duration-200 text-zinc-300 hover:text-zinc-100"
+            aria-label="Go back to home page"
           >
             <ArrowLeft className="w-6 h-6 " />
           </Link>

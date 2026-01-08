@@ -272,7 +272,7 @@ export default function Home() {
                 me to build{" "}
                 <Link
                   target="_blank"
-                  href="https://akshthakkar.me/wallpapers/"
+                  href="https://wallpaperverse.akshthakkar.me"
                   className="text-zinc-100 underline decoration-zinc-500 underline-offset-4 hover:decoration-zinc-100 transition-colors"
                 >
                   WallpaperVerse
