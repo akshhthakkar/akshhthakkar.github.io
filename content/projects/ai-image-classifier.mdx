@@ -1,17 +1,93 @@
 ---
 title: "AI Image Classifier"
-description: "This AI Image Classifier is a user-friendly web application built with Streamlit that lets you upload images and classify them using the pre-trained MobileNetV2 model from TensorFlow. It identifies objects in images and displays the top-3 predictions with confidence scores. Perfect for exploring AI-powered image recognition!"
+description: "Image Recognition Using MobileNetV2. A simple and interactive web application that allows users to upload images and instantly classify them using a pre-trained deep learning model."
 date: 2024-06-06
 url: https://ai-image-classifier-aksh.streamlit.app/
 published: true
 ---
 
-This AI Image Classifier is a user-friendly web application built with Streamlit that lets you upload images and classify them using the pre-trained MobileNetV2 model from TensorFlow. It identifies objects in images and displays the top-3 predictions with confidence scores. Perfect for exploring AI-powered image recognition!
+The AI Image Classifier is a simple and interactive web application that allows users to upload images and instantly classify them using a pre-trained deep learning model.
+
+This project was built to explore practical AI usage—taking a powerful model and wrapping it in a clean, accessible interface that anyone can use without ML knowledge.
+
+## Why I Built This
+
+I wanted to understand how pre-trained AI models can be:
+
+- Integrated into real applications
+- Used without training from scratch
+- Presented through a clean, user-friendly interface
+
+Instead of focusing on model training, this project emphasizes application-level AI integration, which is how AI is often used in real-world products.
+
+## What the App Does
+
+1. Users upload an image (JPG, JPEG, or PNG)
+2. The image is processed and passed to a deep learning model
+3. The app returns the top 3 predictions along with confidence scores
+4. Results are displayed instantly in a clean UI
+
+The experience is designed to be fast, simple, and intuitive.
+
+## Core Features
+
+### Image Upload & Classification
+
+- Supports common image formats
+- Instant inference after upload
+
+### Pre-trained AI Model
+
+- Uses MobileNetV2, trained on ImageNet
+- Lightweight and efficient for fast predictions
+- No custom training required
+
+### Top Predictions
+
+- Displays the top 3 predicted classes
+- Shows confidence percentages for transparency
+
+### Clean & Interactive UI
+
+- Built with Streamlit
+- Minimal layout focused on usability
 
 ## Tech Stack
 
-- **Python**
-- **TensorFlow**
-- **OpenCV**
-- **MobileNetV2**
-- **Streamlit**
+- **Python** – Core language
+- **Streamlit** – Web interface
+- **TensorFlow / Keras** – Deep learning framework
+- **MobileNetV2** – Pre-trained image classification model
+
+## How It Works (High Level)
+
+1. User uploads an image
+2. Image is resized and preprocessed
+3. MobileNetV2 performs inference
+4. Predictions are decoded and ranked
+5. Top 3 results are displayed with confidence scores
+
+This mirrors how many production AI features work behind the scenes.
+
+## What I Learned
+
+Through this project, I gained a clearer understanding of:
+
+- Using pre-trained deep learning models effectively
+- Image preprocessing for inference
+- Deploying AI functionality through simple web apps
+- Making AI outputs understandable for non-technical users
+
+It reinforced the idea that AI is most valuable when it's accessible.
+
+## Project Status
+
+The application is complete and functional. Possible future improvements include:
+
+- Support for camera input
+- Batch image classification
+- Model comparison or confidence visualization
+
+---
+
+**[🚀 Live Demo](https://ai-image-classifier-aksh.streamlit.app/)**

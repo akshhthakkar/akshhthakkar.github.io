@@ -30,14 +30,14 @@ export default async function PostPage({ params }: Props) {
   }
 
   return (
-    <div className="bg-zinc-50 min-h-screen">
+    <div className="relative min-h-screen bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900">
       <Particles
         className="absolute inset-0 -z-10 animate-fade-in"
         quantity={500}
       />
       <Header project={project} views={0} />
 
-      <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">
+      <article className="px-4 py-12 mx-auto max-w-4xl prose prose-invert prose-headings:text-zinc-100 prose-p:text-zinc-300 prose-li:text-zinc-300 prose-strong:text-zinc-100 prose-a:text-zinc-100 prose-a:underline hover:prose-a:text-white">
         <Mdx code={project.body.code} />
       </article>
     </div>
