@@ -13,7 +13,6 @@
     "not IE 11"
   ],
   "dependencies": {
-    "@next/font": "^13.5.4",
     "@next/mdx": "^13.5.4",
     "@upstash/redis": "^1.23.3",
     "contentlayer": "^0.3.4",
