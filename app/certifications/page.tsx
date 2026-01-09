@@ -18,7 +18,7 @@ const certifications: {
   verifyUrl?: string;
 }[] = [
   {
-    title: "Solutions Architecture Job Simulation",
+    title: "AWS Solutions Architecture Job Simulation",
     issuer: "Forage",
     description:
       "Completed an AWS Solutions Architecture job simulation focused on designing scalable, highly available cloud architectures.",
