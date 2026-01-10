@@ -53,6 +53,11 @@ export const metadata: Metadata = {
     creator: "@akshhthakkar",
   },
   icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "any" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    apple: "/favicon.png",
     shortcut: "/favicon.png",
   },
   robots: {
