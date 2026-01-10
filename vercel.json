@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/wallpapers/:path*",
+      "destination": "https://wallpaperverse.akshthakkar.me/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/wallpapers",
+      "destination": "https://wallpaperverse.akshthakkar.me/",
+      "permanent": true
+    }
+  ]
+}
