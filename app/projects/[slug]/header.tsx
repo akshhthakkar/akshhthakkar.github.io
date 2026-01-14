@@ -3,8 +3,11 @@ import { ArrowLeft, Eye, Github, Linkedin, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
+import { supabase } from "@/util/supabase";
+
 type Props = {
   project: {
+    slug: string; // Added slug
     url?: string;
     title: string;
     description: string;
@@ -13,9 +16,25 @@ type Props = {
 
   views: number;
 };
-export const Header: React.FC<Props> = ({ project, views }) => {
+export const Header: React.FC<Props> = ({ project, views: initialViews }) => {
   const ref = useRef<HTMLElement>(null);
   const [isIntersecting, setIntersecting] = useState(true);
+  const [views, setViews] = useState(initialViews);
+
+  useEffect(() => {
+    const fetchViews = async () => {
+      const { data, error } = await supabase
+        .from("views")
+        .select("count")
+        .eq("slug", project.slug)
+        .single();
+
+      if (data) {
+        setViews(data.count);
+      }
+    };
+    fetchViews();
+  }, [project.slug]);
 
   const links: { label: string; href: string; icon?: React.ReactNode }[] = [];
   if (project.repository) {
