@@ -3,7 +3,6 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Particles from "./components/particles";
 
 const navigation = [
   { name: "Projects", href: "/projects" },
@@ -11,33 +10,30 @@ const navigation = [
   { name: "Contact", href: "/contact" },
 ];
 
+// Global variable to track intro state across SPA navigation (resets on refresh)
+let isIntroShown = false;
+
 export default function Home() {
-  const [particleCount, setParticleCount] = useState(50);
-  const [introFinished, setIntroFinished] = useState(false);
+  const [introFinished, setIntroFinished] = useState(isIntroShown);
+  // Capture the initial state to determine if we should use shortened animations
+  // consistently throughout the component's lifecycle
+  const [shouldSkipAnimation] = useState(isIntroShown);
 
   useEffect(() => {
-    // Dynamically adjust particles based on window width for performance
-    const updateParticles = () => {
-      if (window.innerWidth < 768) {
-        setParticleCount(600); // Increased mobile count
-      } else {
-        setParticleCount(1500); // Increased desktop count
-      }
-    };
-
-    updateParticles();
-    window.addEventListener("resize", updateParticles);
-    return () => window.removeEventListener("resize", updateParticles);
+    if (isIntroShown) {
+      setIntroFinished(true);
+    } else {
+      // Use a small timeout to avoid React Strict Mode (Dev) double-mount causing instant skip
+      // This ensures we only set the flag if the component stays mounted for at least 100ms
+      const timer = setTimeout(() => {
+        isIntroShown = true;
+      }, 100);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   return (
     <div className="flex flex-col min-h-screen w-full overflow-x-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black duration-1000">
-      {/* Background Particles */}
-      <Particles
-        className="absolute inset-0 -z-10 animate-fade-in"
-        quantity={particleCount}
-      />
-
       {/* Navigation - Fades in after intro */}
       <nav
         className={`my-8 w-full z-20 transition-opacity duration-1000 ${
@@ -88,7 +84,10 @@ export default function Home() {
                 opacity: !introFinished ? 1 : 0,
                 scaleX: !introFinished ? 1 : 0.5,
               }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
+              transition={{
+                duration: shouldSkipAnimation ? 0.8 : 1.5,
+                ease: "easeOut",
+              }}
               className="w-full max-w-lg h-px bg-gradient-to-r from-transparent via-zinc-300/50 to-transparent mb-4"
             />
 
@@ -106,10 +105,12 @@ export default function Home() {
                 letterSpacing: "0em",
               }}
               transition={{
-                duration: 3,
+                duration: shouldSkipAnimation ? 0.8 : 3,
                 ease: "easeOut",
               }}
-              onAnimationComplete={() => setIntroFinished(true)}
+              onAnimationComplete={() => {
+                setIntroFinished(true);
+              }}
               className="py-2 text-4xl text-transparent bg-white text-edge-outline sm:text-6xl md:text-7xl lg:text-8xl whitespace-nowrap bg-clip-text leading-tight z-20"
             >
               aksh thakkar
@@ -141,7 +142,10 @@ export default function Home() {
                 opacity: !introFinished ? 1 : 0,
                 scaleX: !introFinished ? 1 : 0.5,
               }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
+              transition={{
+                duration: shouldSkipAnimation ? 0.8 : 1.5,
+                ease: "easeOut",
+              }}
               className="w-full max-w-lg h-px bg-gradient-to-r from-transparent via-zinc-300/50 to-transparent mt-4"
             />
           </div>
@@ -152,7 +156,11 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 1 }} // Slight delay after shift
+                transition={{
+                  duration: shouldSkipAnimation ? 0.8 : 1.5,
+                  delay: shouldSkipAnimation ? 0 : 0.5,
+                  ease: "easeOut",
+                }} // Slight delay after shift
                 className="text-sm md:text-base text-zinc-400 max-w-md md:max-w-xl leading-relaxed"
               >
                 <h2 className="break-words">
@@ -174,7 +182,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 1.0 }} // Slower reveal (1.0s delay)
+              transition={{ duration: 1, delay: shouldSkipAnimation ? 0 : 1.0 }} // Slower reveal (1.0s delay)
               className="w-full md:w-1/2 flex justify-center md:justify-end h-[400px] md:h-[500px] items-end pb-8"
             >
               <div className="flex flex-col items-center gap-6">
@@ -217,7 +225,10 @@ export default function Home() {
                 <motion.p
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 2.2 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: shouldSkipAnimation ? 0 : 2.2,
+                  }}
                   className="text-zinc-500 italic text-sm text-center max-w-xs"
                 >
                   “If I don’t have to do it, I won’t. If I have to, I’ll make it
@@ -235,39 +246,73 @@ export default function Home() {
       {introFinished && (
         <>
           {/* About Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="w-full max-w-7xl mx-auto px-6 md:px-12 py-24 text-center md:text-left"
-          >
-            <div className="max-w-3xl mx-auto space-y-8 text-zinc-400 leading-relaxed text-lg">
-              <h3 className="text-2xl font-display text-zinc-100 mb-8 text-center">
+          <section className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-24 pb-8 text-center md:text-left">
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.2,
+                  },
+                },
+              }}
+              className="max-w-3xl mx-auto space-y-8 text-zinc-400 leading-relaxed text-lg"
+            >
+              <motion.h3
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+                }}
+                className="text-2xl font-display text-zinc-100 mb-8 text-center"
+              >
                 About Me
-              </h3>
+              </motion.h3>
 
-              <p>
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+                }}
+              >
                 I’m a 3rd year Computer Science Engineering student with
                 hands-on experience in Python and web development, and a growing
                 interest in cloud and AI-driven systems.
-              </p>
+              </motion.p>
 
-              <p>
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+                }}
+              >
                 I’ve built full-stack projects like an ERP system and a
                 centralized appointment booking platform, focusing on backend
                 logic, authentication, and real user workflows rather than a
                 single technology.
-              </p>
+              </motion.p>
 
-              <p>
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+                }}
+              >
                 I’ve completed AWS Cloud Foundations and apply cloud concepts
                 while deploying and improving my projects. Alongside this, I’m
                 exploring AI with the goal of integrating intelligent features
                 into practical applications.
-              </p>
+              </motion.p>
 
-              <p>
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+                }}
+              >
                 Outside development, I enjoy music and visual design, which led
                 me to build{" "}
                 <Link
@@ -279,9 +324,9 @@ export default function Home() {
                 </Link>
                 , a curated wallpaper platform that blends creativity with clean
                 UI and functionality.
-              </p>
-            </div>
-          </motion.section>
+              </motion.p>
+            </motion.div>
+          </section>
 
           {/* Download Resume Button */}
           <motion.div

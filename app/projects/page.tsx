@@ -6,7 +6,6 @@ import { allProjects } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { motion } from "framer-motion";
-import Particles from "../components/particles";
 import { Eye } from "lucide-react";
 import { supabase } from "@/util/supabase";
 
@@ -64,11 +63,7 @@ export default function ProjectsPage() {
     <div className="relative pb-16 min-h-screen overflow-hidden">
       <Navigation />
 
-      {/* Background Particles */}
-      <Particles
-        className="absolute inset-0 -z-10 animate-fade-in"
-        quantity={500}
-      />
+      <Navigation />
 
       <div className="px-6 pt-20 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
         <div className="max-w-2xl mx-auto lg:mx-0">

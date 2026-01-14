@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
+import BackgroundParticles from "./components/background-particles";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://akshthakkar.me"),
@@ -106,6 +107,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <BackgroundParticles />
         <Analytics />
       </body>
     </html>

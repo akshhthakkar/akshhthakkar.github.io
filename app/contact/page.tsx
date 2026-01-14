@@ -1,9 +1,9 @@
 "use client";
-import { Github, Mail, Twitter, Linkedin } from "lucide-react";
+import { Github, Mail, Twitter, Linkedin, Check } from "lucide-react";
 import Link from "next/link";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Particles from "../components/particles";
 
@@ -106,40 +106,7 @@ export default function ContactPage() {
           className="grid w-full grid-cols-1 gap-8 mx-auto sm:grid-cols-2 lg:grid-cols-4 lg:gap-16"
         >
           {socials.map((s) => (
-            <motion.div key={s.label} variants={item}>
-              <Card>
-                <Link
-                  href={s.href}
-                  target="_blank"
-                  className="p-4 relative flex flex-col items-center gap-4 duration-700 group md:gap-8 md:py-24 lg:pb-48 md:px-10"
-                >
-                  <span
-                    className="absolute w-px h-2/3 bg-gradient-to-b from-zinc-500 via-zinc-500/50 to-transparent"
-                    aria-hidden="true"
-                  />
-                  <span className="relative z-10 flex items-center justify-center w-12 h-12 text-sm duration-1000 border rounded-full text-zinc-200 group-hover:text-white group-hover:bg-zinc-900 border-zinc-500 bg-zinc-900 group-hover:border-zinc-200 drop-shadow-orange">
-                    {s.icon}
-                  </span>{" "}
-                  <div className="z-10 flex flex-col items-center w-full">
-                    <span
-                      // Handle Font Size Logic: Email gets smaller text, others get larger text
-                      className={`text-lg font-medium duration-150 text-zinc-200 group-hover:text-white font-display text-center whitespace-nowrap
-                                                ${
-                                                  s.label === "Email"
-                                                    ? "xl:text-2xl"
-                                                    : "xl:text-3xl"
-                                                } 
-                                            `}
-                    >
-                      {s.handle}
-                    </span>
-                    <span className="mt-4 text-sm text-center duration-1000 text-zinc-400 group-hover:text-zinc-200">
-                      {s.label}
-                    </span>
-                  </div>
-                </Link>
-              </Card>
-            </motion.div>
+            <SocialCard key={s.label} s={s} itemVariants={item} />
           ))}
         </motion.div>
       </div>
@@ -223,5 +190,77 @@ export default function ContactPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+function SocialCard({ s, itemVariants }: { s: any; itemVariants: any }) {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (s.label === "Email") {
+      // Check if it's desktop (using 768px as breakpoint for standard mobile)
+      if (window.innerWidth >= 768) {
+        e.preventDefault();
+        navigator.clipboard.writeText(s.handle);
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+      }
+      // If mobile, let default behavior (mailto) happen
+    }
+  };
+
+  return (
+    <motion.div variants={itemVariants}>
+      <Card>
+        <Link
+          href={s.href}
+          target="_blank"
+          onClick={handleClick}
+          className="p-4 relative flex flex-col items-center gap-4 duration-700 group md:gap-8 md:py-24 lg:pb-48 md:px-10"
+        >
+          <span
+            className="absolute w-px h-2/3 bg-gradient-to-b from-zinc-500 via-zinc-500/50 to-transparent"
+            aria-hidden="true"
+          />
+          <span className="relative z-10 flex items-center justify-center w-12 h-12 text-sm duration-1000 border rounded-full text-zinc-200 group-hover:text-white group-hover:bg-zinc-900 border-zinc-500 bg-zinc-900 group-hover:border-zinc-200 drop-shadow-orange">
+            {s.icon}
+          </span>{" "}
+          <div className="z-10 flex flex-col items-center w-full">
+            <span
+              className={`text-lg font-medium duration-150 text-zinc-200 group-hover:text-white font-display text-center whitespace-nowrap
+                        ${s.label === "Email" ? "xl:text-2xl" : "xl:text-3xl"} 
+                    `}
+            >
+              {s.handle}
+            </span>
+            <AnimatePresence mode="wait">
+              {isCopied ? (
+                <motion.div
+                  key="copied"
+                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="mt-4 flex items-center justify-center gap-2 text-sm font-medium text-emerald-400 bg-emerald-950/30 px-4 py-1.5 rounded-full border border-emerald-500/20 shadow-[0_0_15px_rgba(52,211,153,0.15)]"
+                >
+                  <Check className="w-3.5 h-3.5" />
+                  <span>Copied</span>
+                </motion.div>
+              ) : (
+                <motion.span
+                  key="label"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="mt-4 text-sm text-center duration-1000 text-zinc-400 group-hover:text-zinc-200 h-9 flex items-center"
+                >
+                  {s.label}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </div>
+        </Link>
+      </Card>
+    </motion.div>
   );
 }

@@ -3,7 +3,7 @@ import { allProjects } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
 import { Header } from "./header";
 import "./mdx.css";
-import Particles from "../../components/particles";
+import "./mdx.css";
 import { ViewCounter } from "./view-counter";
 
 export const revalidate = 60;
@@ -32,10 +32,6 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900">
-      <Particles
-        className="absolute inset-0 -z-10 animate-fade-in"
-        quantity={500}
-      />
       <Header project={project} views={0} />
       <ViewCounter slug={project.slug} trackView={true} />
 

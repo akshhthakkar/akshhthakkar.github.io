@@ -4,7 +4,6 @@ import Link from "next/link";
 import React from "react";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
-import Particles from "../components/particles";
 import { motion } from "framer-motion";
 import { Award, CheckCircle } from "lucide-react";
 
@@ -29,7 +28,7 @@ const certifications: {
     title: "AWS Cloud Foundations",
     issuer: "AWS",
     description:
-      "AWS Cloud Foundations certification covering core cloud concepts and services.",
+      "AWS Cloud Foundations certification covering core cloud concepts and foundational AWS services",
     link: "/images/AWS_Academy_Graduate_Cloud_Foundations.pdf",
     date: "2025",
     verifyUrl:
@@ -38,7 +37,7 @@ const certifications: {
   {
     title: "Diploma in Computer Engineering",
     issuer: "Silver Oak University",
-    description: "Completed Diploma with 10 CGPA.",
+    description: "Completed Diploma in Computer Engineering with 10 CGPA.",
     link: "/images/Diploma Certificate .pdf",
     date: "2024",
   },
@@ -53,7 +52,7 @@ const certifications: {
   {
     title: "Listening Skills Finalist",
     issuer: "Global Fun Fest",
-    description: "Finalist in Listening Skills Event.",
+    description: "Finalist in the Listening Skills event at Global Fun Fest",
     link: "/images/Listening.pdf",
     date: "2024",
   },
@@ -65,15 +64,8 @@ const certifications: {
     date: "2024",
   },
   {
-    title: "Python Programming",
-    issuer: "C-DAC",
-    description: "Completed 100+ hours training with A+ grade.",
-    link: "/images/Python - A.pdf",
-    date: "2023",
-  },
-  {
     title: "Ideathon Winner",
-    issuer: "Startups 2023",
+    issuer: "Ideathon 2023",
     description: "Secured 1st place in Ideathon competition leading a team.",
     link: "/images/Ideathon.pdf",
     date: "2023",
@@ -97,6 +89,13 @@ const certifications: {
     issuer: "Workshop",
     description: "Hands-on experience in Computer Networks.",
     link: "/images/CN Workshop.pdf",
+    date: "2023",
+  },
+  {
+    title: "Python Programming",
+    issuer: "C-DAC",
+    description: "Completed 100+ hours of training in python with A+ grade.",
+    link: "/images/Python - A.pdf",
     date: "2023",
   },
   {
@@ -129,11 +128,7 @@ export default function CertificationsPage() {
     <div className="relative pb-16 min-h-screen overflow-hidden">
       <Navigation />
 
-      {/* Background Particles */}
-      <Particles
-        className="absolute inset-0 -z-10 animate-fade-in"
-        quantity={500}
-      />
+      <Navigation />
 
       <div className="px-6 pt-20 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
         <div className="max-w-2xl mx-auto lg:mx-0">
