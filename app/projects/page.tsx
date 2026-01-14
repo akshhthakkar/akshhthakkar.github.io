@@ -8,6 +8,7 @@ import { Card } from "../components/card";
 import { motion } from "framer-motion";
 import Particles from "../components/particles";
 import { Eye } from "lucide-react";
+import { supabase } from "@/util/supabase";
 
 export default function ProjectsPage() {
   const [views, setViews] = useState<Record<string, number>>({});
@@ -21,30 +22,28 @@ export default function ProjectsPage() {
         new Date(a.date ?? Number.POSITIVE_INFINITY).getTime()
     );
 
-  // Fetch view counts from Upstash Redis
+  // Fetch view counts from Supabase
   useEffect(() => {
     const fetchViews = async () => {
-      const viewCounts: Record<string, number> = {};
-      for (const project of sorted) {
-        try {
-          const response = await fetch(
-            `${process.env.NEXT_PUBLIC_UPSTASH_REDIS_REST_URL}/get/pageviews:projects:${project.slug}`,
-            {
-              headers: {
-                Authorization: `Bearer ${process.env.NEXT_PUBLIC_UPSTASH_REDIS_REST_TOKEN}`,
-              },
-            }
-          );
-          const data = await response.json();
-          viewCounts[project.slug] = parseInt(data.result) || 0;
-        } catch (error) {
-          viewCounts[project.slug] = 0;
-        }
+      const { data, error } = await supabase
+        .from("views")
+        .select("slug, count");
+
+      if (error) {
+        console.error("Error fetching views:", error);
+        return;
       }
+
+      const viewCounts: Record<string, number> = {};
+      data?.forEach((view: any) => {
+        viewCounts[view.slug] = view.count;
+      });
+
       setViews(viewCounts);
     };
+
     fetchViews();
-  }, []);
+  }, [sorted]);
 
   const container = {
     hidden: { opacity: 0 },

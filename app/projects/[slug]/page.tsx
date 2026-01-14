@@ -4,6 +4,7 @@ import { Mdx } from "@/app/components/mdx";
 import { Header } from "./header";
 import "./mdx.css";
 import Particles from "../../components/particles";
+import { ViewCounter } from "./view-counter";
 
 export const revalidate = 60;
 
@@ -36,6 +37,7 @@ export default async function PostPage({ params }: Props) {
         quantity={500}
       />
       <Header project={project} views={0} />
+      <ViewCounter slug={project.slug} trackView={true} />
 
       <article className="px-4 py-12 mx-auto max-w-4xl prose prose-invert prose-headings:text-zinc-100 prose-p:text-zinc-300 prose-li:text-zinc-300 prose-strong:text-zinc-100 prose-a:text-zinc-100 prose-a:underline hover:prose-a:text-white">
         <Mdx code={project.body.code} />
