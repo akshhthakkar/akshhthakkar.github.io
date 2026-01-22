@@ -17,6 +17,14 @@ const certifications: {
   verifyUrl?: string;
 }[] = [
   {
+    title: "Vibe Hack 2.0",
+    issuer: "Hack With India",
+    description:
+      "Secured a position among the Top 5,000 teams out of 25,000 at BuildWithIndia, demonstrating strong problem-solving, teamwork, and real-world tech skills.",
+    link: "/images/Devnovate.pdf",
+    date: "2026",
+  },
+  {
     title: "AWS Solutions Architecture Job Simulation",
     issuer: "Forage",
     description:
