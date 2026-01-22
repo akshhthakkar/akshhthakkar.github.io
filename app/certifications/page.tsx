@@ -17,10 +17,18 @@ const certifications: {
   verifyUrl?: string;
 }[] = [
   {
+    title: "Software Engineering Job Simulation",
+    issuer: "Forage",
+    description:
+      "Completed JPMorganChase's Software Engineering Job Simulation on Forage with hands-on experience in Kafka, Spring Boot microservices, REST APIs, JPA, and testing.",
+    link: "/images/JP Morgan Chase.pdf",
+    date: "2026",
+  },
+  {
     title: "Vibe Hack 2.0",
     issuer: "Hack With India",
     description:
-      "Secured a position among the Top 5,000 teams out of 25,000 at BuildWithIndia, demonstrating strong problem-solving, teamwork, and real-world tech skills.",
+      "Secured a position among the Top 5,000 teams out of 25,000 at BuildWithIndia Hackathon, demonstrating strong problem-solving, teamwork, and real-world tech skills.",
     link: "/images/Devnovate.pdf",
     date: "2026",
   },
